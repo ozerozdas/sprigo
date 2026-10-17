@@ -561,3 +561,3077 @@ levels:
         - { type: listen_select, count: 3 }
         - { type: translate, count: 3 }
         - { type: dialogue }
+
+  A2:
+    title: Elementary
+    description: >
+      Communicate in simple, routine tasks on familiar topics and describe your background, past and plans.
+
+    units:
+      - id: jobs-work
+        title: Jobs & Work
+        description: Talk about jobs, workplaces and your working day.
+        icon: 💼
+        steps:
+          - id: professions
+            title: Professions
+            description: Say what people do; with ser, no article before the job.
+            vocabulary: [médico, médica, enfermero, enfermera, profesor, profesora, camarero, abogado, ingeniera, "el trabajo"]
+            grammar:
+              - pattern: "Soy enfermera."
+              - pattern: "¿A qué te dedicas?"
+              - pattern: "Mi hermano es abogado."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+          - id: at-work
+            title: At Work
+            description: Say where and as what you work.
+            vocabulary: ["la oficina", "la empresa", "el hospital", "la tienda", "el jefe", "la jefa", "el compañero", "trabajar como"]
+            grammar:
+              - pattern: "Trabajo como camarero en un restaurante."
+              - pattern: "Trabajo en una empresa grande."
+              - pattern: "¿Dónde trabajas?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: how-often
+            title: How Often?
+            description: Frequency adverbs and expressions for routines at work.
+            vocabulary: [siempre, "a menudo", "a veces", "casi nunca", nunca, "todos los días", "una vez a la semana"]
+            grammar:
+              - pattern: "Siempre llego a las nueve."
+              - pattern: "Nunca trabajo los domingos."
+              - pattern: "A veces como en la oficina."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: job-interview
+            title: A Job Interview
+            description: Say how long you have done something with desde and hace … que.
+            vocabulary: ["la entrevista", "la experiencia", desde, "hace … que", "el sueldo", "a tiempo completo", "a tiempo parcial"]
+            grammar:
+              - pattern: "Trabajo aquí desde 2020."
+              - pattern: "Hace tres años que estudio español."
+              - pattern: "¿Cuánto tiempo hace que trabajas aquí?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: job_interview
+                goal: Answer questions about your job, your experience and how long you have worked there.
+
+      - id: comparisons
+        title: Comparisons
+        description: Compare people, things and places.
+        icon: ⚖️
+        steps:
+          - id: mas-menos-que
+            title: More & Less
+            description: Compare with más … que and menos … que.
+            vocabulary: [alto, bajo, caro, barato, rápido, lento, "más … que", "menos … que"]
+            grammar:
+              - pattern: "Madrid es más grande que Sevilla."
+              - pattern: "El tren es menos caro que el avión."
+              - pattern: "Mi hermana es más alta que yo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: mejor-peor
+            title: Better & Worse
+            description: The irregular comparatives mejor, peor, mayor and menor.
+            vocabulary: [mejor, peor, mayor, menor, bueno, malo]
+            grammar:
+              - pattern: "Este café es mejor que el otro."
+              - pattern: "Mi hermano es mayor que yo."
+              - pattern: "Hoy el tiempo está peor que ayer."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: tan-como
+            title: As … As
+            description: Equal comparisons with tan … como and tanto como.
+            vocabulary: ["tan … como", "tanto como", "tanto … como", igual, parecido, diferente]
+            grammar:
+              - pattern: "Ana es tan simpática como su madre."
+              - pattern: "No trabajo tanto como tú."
+              - pattern: "Tengo tantos libros como Pedro."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_type }
+          - id: el-mas
+            title: The Best of All
+            description: Superlatives with el/la más … de and -ísimo.
+            vocabulary: ["el más", "la más", "el mejor", "el peor", "del mundo", carísimo, buenísimo]
+            grammar:
+              - pattern: "Es la ciudad más bonita de España."
+              - pattern: "Es el mejor restaurante del barrio."
+              - pattern: "La comida está buenísima."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: choosing_a_city
+                goal: Compare two cities with a friend and decide which one is the best to visit.
+
+      - id: at-the-shops
+        title: At the Shops
+        description: Buy things, ask for sizes and colors and return items.
+        icon: 🛍️
+        steps:
+          - id: quantities
+            title: How Much & How Many
+            description: Quantities and containers at the market.
+            vocabulary: ["un kilo de", "medio kilo", "una docena de", "una botella de", "una lata de", "un paquete de", "¿cuánto cuesta?", "¿cuántos?"]
+            grammar:
+              - pattern: "Quería un kilo de tomates, por favor."
+              - pattern: "¿Cuánto cuestan las naranjas?"
+              - pattern: "¿Algo más?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+          - id: este-ese-aquel
+            title: This One, That One
+            description: Demonstratives este, ese and aquel.
+            vocabulary: [este, esta, ese, esa, aquel, aquella, estos, esos]
+            grammar:
+              - pattern: "¿Cuánto cuesta esta camisa?"
+              - pattern: "Prefiero ese bolso."
+              - pattern: "Aquellos zapatos son muy caros."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: object-pronouns
+            title: I'll Take It
+            description: Direct object pronouns lo, la, los and las.
+            vocabulary: [lo, la, los, las, "la talla", probarse, "me lo llevo", "el probador"]
+            grammar:
+              - pattern: "¿Lo tiene en azul?"
+              - pattern: "Me la pruebo."
+              - pattern: "Me los llevo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: returning-things
+            title: Returning Things
+            description: Return or exchange something that does not fit or does not work.
+            vocabulary: [devolver, cambiar, "el tique", "el recibo", roto, "me queda grande", "me queda pequeño"]
+            grammar:
+              - pattern: "Quiero devolver esta chaqueta."
+              - pattern: "Me queda pequeña. ¿La puedo cambiar?"
+              - pattern: "Aquí tiene el tique."
+            activities:
+              - { type: learn }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: shop_counter
+                goal: Explain that something you bought does not fit and ask to exchange it.
+
+      - id: health-body
+        title: Health & the Body
+        description: Say what hurts, see a doctor and give advice.
+        icon: 🩺
+        steps:
+          - id: body-parts
+            title: The Body
+            vocabulary: ["la cabeza", "el brazo", "la mano", "la pierna", "el pie", "la espalda", "el estómago", "la garganta"]
+            grammar:
+              - pattern: "Tengo las manos frías."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+          - id: me-duele
+            title: It Hurts
+            description: Say what hurts with doler, which works like gustar.
+            vocabulary: [doler, "me duele", "me duelen", "¿qué te pasa?", "estar enfermo", "estar resfriado"]
+            grammar:
+              - pattern: "Me duele la cabeza."
+              - pattern: "Me duelen los pies."
+              - pattern: "¿Te duele mucho?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: at-the-doctor
+            title: At the Doctor
+            description: Describe symptoms and understand the doctor.
+            vocabulary: ["la fiebre", "la tos", "la gripe", "la receta", "la pastilla", "la farmacia", "tener fiebre"]
+            grammar:
+              - pattern: "Tengo fiebre y tos desde ayer."
+              - pattern: "Tome una pastilla cada ocho horas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: doctor_visit
+                goal: Tell the doctor your symptoms, say since when you have them and ask what to take.
+          - id: giving-advice
+            title: Giving Advice
+            description: Advise someone with deberías, tienes que and the tú imperative.
+            vocabulary: [deberías, "tienes que", descansa, bebe, toma, "ve al médico", "no fumes"]
+            grammar:
+              - pattern: "Deberías descansar más."
+              - pattern: "Bebe mucha agua."
+              - pattern: "Tienes que ir al médico."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: speak }
+
+      - id: travel-plans
+        title: Travel Plans
+        description: Plan a trip, get around and book a room.
+        icon: ✈️
+        steps:
+          - id: travel-words
+            title: Travel Words
+            vocabulary: ["el viaje", "la maleta", "el billete", "el pasaporte", "el vuelo", "el equipaje", "de ida y vuelta", "las vacaciones"]
+            grammar:
+              - pattern: "Necesito un billete de ida y vuelta."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: ir-a
+            title: Going To
+            description: Talk about plans with ir a + infinitive.
+            vocabulary: ["ir a", "este verano", "el mes que viene", "la próxima semana", visitar, quedarse]
+            grammar:
+              - pattern: "Voy a viajar a México en julio."
+              - pattern: "¿Qué vas a hacer este verano?"
+              - pattern: "Nos vamos a quedar una semana."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: airport-station
+            title: At the Airport & Station
+            description: Check in, find your gate and ask about delays.
+            vocabulary: ["el aeropuerto", "la estación", "la puerta de embarque", "el andén", "facturar", "con retraso", "la salida", "la llegada"]
+            grammar:
+              - pattern: "¿A qué hora sale el tren para Barcelona?"
+              - pattern: "El vuelo sale con retraso."
+              - pattern: "Quiero facturar esta maleta."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: translate }
+          - id: booking-hotel
+            title: Booking a Hotel
+            description: Ask for a room politely with quería and me gustaría.
+            vocabulary: ["la habitación", individual, doble, "la reserva", "el desayuno", "la noche", "me gustaría", quería]
+            grammar:
+              - pattern: "Quería una habitación doble para dos noches."
+              - pattern: "Me gustaría reservar una mesa."
+              - pattern: "¿El desayuno está incluido?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: hotel_reception
+                goal: Book a room for two nights, ask the price and whether breakfast is included.
+
+      - id: the-future
+        title: The Future
+        description: Make predictions, promises and plans.
+        icon: 🔮
+        steps:
+          - id: futuro-regular
+            title: Future Tense (Regular)
+            description: "The futuro simple: infinitive + é, ás, á, emos, éis, án."
+            vocabulary: [mañana, "pasado mañana", "dentro de", "en el futuro", viajaré, hablarás, vivirá]
+            grammar:
+              - pattern: "Mañana hablaré con el jefe."
+              - pattern: "¿Dónde vivirás el año que viene?"
+              - pattern: "Dentro de dos años terminaremos la carrera."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank }
+              - { type: listen_select }
+          - id: futuro-irregular
+            title: Future Tense (Irregular)
+            description: Irregular futures like tendré, haré, podré and saldré.
+            vocabulary: [tendré, haré, podré, saldré, vendré, diré, sabré, querré]
+            grammar:
+              - pattern: "Tendré más tiempo en agosto."
+              - pattern: "¿Qué harás el fin de semana?"
+              - pattern: "No podré venir mañana."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: si-futuro
+            title: If … Then
+            description: Real conditions with si + present + future.
+            vocabulary: [si, "si llueve", "si tengo tiempo", "si puedo", entonces]
+            grammar:
+              - pattern: "Si llueve, nos quedaremos en casa."
+              - pattern: "Si tengo tiempo, te llamaré."
+              - pattern: "¿Qué harás si no encuentras trabajo?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: hopes-plans
+            title: Hopes & Plans
+            description: Talk about intentions and hopes with pensar and esperar + infinitive.
+            vocabulary: [pensar, esperar, "tener ganas de", "el sueño", "algún día", "el plan"]
+            grammar:
+              - pattern: "Pienso estudiar en el extranjero."
+              - pattern: "Espero encontrar un trabajo mejor."
+              - pattern: "Algún día viviré junto al mar."
+            activities:
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: new_year_plans
+                goal: Tell a friend your plans and hopes for next year and ask about theirs.
+
+      - id: childhood
+        title: When I Was a Child
+        description: Describe habits and situations in the past with the imperfect.
+        icon: 🧸
+        steps:
+          - id: imperfecto-regular
+            title: The Imperfect (Regular)
+            description: The imperfecto of -ar (-aba) and -er/-ir (-ía) verbs.
+            vocabulary: ["cuando era niño", "de pequeño", jugaba, vivía, comía, tenía, "todos los veranos"]
+            grammar:
+              - pattern: "De pequeño jugaba en la calle."
+              - pattern: "Vivíamos en un pueblo pequeño."
+              - pattern: "¿Qué comías de niño?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank }
+              - { type: listen_select }
+          - id: imperfecto-irregular
+            title: Was, Went, Saw
+            description: "The only three irregular imperfects: ser, ir and ver."
+            vocabulary: [era, eras, éramos, iba, íbamos, veía, veíamos]
+            grammar:
+              - pattern: "Cuando era niña, iba al colegio en bici."
+              - pattern: "Veíamos dibujos animados todas las tardes."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: soler
+            title: Used To
+            description: Past habits with soler + infinitive and the imperfect.
+            vocabulary: [soler, solía, "normalmente", "antes", "ya no", "todavía"]
+            grammar:
+              - pattern: "Antes solía levantarme muy temprano."
+              - pattern: "Antes fumaba, pero ya no."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: describing-the-past
+            title: Describing the Past
+            description: Describe people, places and how things were.
+            vocabulary: [había, tranquilo, ruidoso, tímido, travieso, "la casa de mis abuelos", "el barrio"]
+            grammar:
+              - pattern: "En mi barrio había un parque muy grande."
+              - pattern: "Mi abuela era muy cariñosa."
+            activities:
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: family_photos
+                goal: Look at old photos with a friend and describe what your life was like as a child.
+
+      - id: telling-stories
+        title: Telling Stories
+        description: Tell what happened, and what was going on when it happened.
+        icon: 📖
+        steps:
+          - id: preterite-imperfect
+            title: Preterite or Imperfect?
+            description: Finished events with the preterite, background with the imperfect.
+            vocabulary: ["un día", "aquel día", "hacía sol", "estaba cansado", llegué, decidí]
+            grammar:
+              - pattern: "Hacía sol, así que fuimos a la playa."
+              - pattern: "Estaba cansado y me acosté pronto."
+              - pattern: "Ayer fui al cine; antes iba todas las semanas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 3 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: estaba-cuando
+            title: I Was … When
+            description: An action in progress (estaba + gerundio) interrupted by an event.
+            vocabulary: [estaba, "estaba durmiendo", "estaba cocinando", cuando, sonó, llamó, empezó]
+            grammar:
+              - pattern: "Estaba duchándome cuando sonó el teléfono."
+              - pattern: "¿Qué estabas haciendo cuando te llamé?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: story-connectors
+            title: And Then …
+            description: Connectors that move a story along.
+            vocabulary: ["de repente", mientras, "al principio", "al final", entonces, "por eso", "más tarde"]
+            grammar:
+              - pattern: "Mientras caminaba, empezó a llover."
+              - pattern: "De repente, se apagó la luz."
+              - pattern: "Al final, todo salió bien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+          - id: telling-a-story
+            title: Tell Me What Happened
+            vocabulary: ["¿qué pasó?", "¡qué susto!", "¡no me digas!", perder, encontrar, "la historia"]
+            grammar:
+              - pattern: "Perdí el autobús porque estaba hablando con mi vecina."
+            activities:
+              - { type: translate, count: 2 }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: coffee_with_a_friend
+                goal: Tell a friend about something unexpected that happened to you and react to their story.
+
+      - id: life-experiences
+        title: Life Experiences
+        description: Talk about what you have and haven't done.
+        icon: 🌍
+        steps:
+          - id: preterito-perfecto
+            title: Have You Ever …?
+            description: The pretérito perfecto with haber + participle (-ado, -ido).
+            vocabulary: [he, has, ha, hemos, han, visitado, comido, vivido]
+            grammar:
+              - pattern: "He visitado Perú dos veces."
+              - pattern: "¿Has comido paella?"
+              - pattern: "Nunca hemos vivido en el extranjero."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank }
+              - { type: listen_select }
+          - id: irregular-participles
+            title: Irregular Participles
+            description: Common irregular participles like hecho, visto, dicho and escrito.
+            vocabulary: [hecho, visto, dicho, escrito, puesto, vuelto, abierto, roto]
+            grammar:
+              - pattern: "¿Has visto la última película de Almodóvar?"
+              - pattern: "Todavía no he hecho los deberes."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: ya-todavia
+            title: Already, Not Yet, Ever
+            description: Ya, todavía no, alguna vez and nunca with the perfect.
+            vocabulary: [ya, "todavía no", "alguna vez", nunca, "esta semana", "hoy", "este año"]
+            grammar:
+              - pattern: "¿Ya has terminado?"
+              - pattern: "Todavía no he llamado a mi madre."
+              - pattern: "¿Has estado alguna vez en Cuba?"
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: talking-experiences
+            title: My Experiences
+            description: Share experiences and say when they happened.
+            vocabulary: ["la experiencia", "una vez", "muchas veces", increíble, "nunca jamás", probar]
+            grammar:
+              - pattern: "He probado muchas comidas raras."
+              - pattern: "Una vez subí a un volcán."
+            activities:
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: getting_to_know_someone
+                goal: Ask someone about things they have done in their life and share your own experiences.
+
+      - id: invitations-rules
+        title: Invitations & Rules
+        description: Make calls, invite people, ask permission and talk about rules.
+        icon: 📞
+        steps:
+          - id: phone-messages
+            title: Phone Calls & Messages
+            description: Answer the phone and leave a message.
+            vocabulary: ["¿diga?", "¿sí?", "de parte de quién", "un momento", "el mensaje", "el móvil", "llamar más tarde"]
+            grammar:
+              - pattern: "¿Está Laura, por favor?"
+              - pattern: "¿Le puedo dejar un mensaje?"
+              - pattern: "Te llamo más tarde."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: listen_type }
+          - id: invitations
+            title: Invitations
+            description: Invite, accept and politely refuse.
+            vocabulary: ["¿te apetece?", "¿quieres venir?", "¡claro!", "me encantaría", "lo siento, no puedo", quedar, "otro día"]
+            grammar:
+              - pattern: "¿Te apetece ir al cine el sábado?"
+              - pattern: "Me encantaría, pero no puedo."
+              - pattern: "¿Quedamos a las ocho?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: planning_an_evening
+                goal: Invite a friend out, agree on a day and a time, or politely say no.
+          - id: asking-permission
+            title: Asking Permission
+            description: Ask for and give permission with poder and ¿te importa si…?
+            vocabulary: ["¿puedo?", "¿se puede?", "¿te importa si…?", "claro que sí", "por supuesto", "mejor no"]
+            grammar:
+              - pattern: "¿Puedo abrir la ventana?"
+              - pattern: "¿Te importa si llego un poco tarde?"
+              - pattern: "¿Se puede pagar con tarjeta?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak }
+          - id: rules
+            title: Rules
+            description: Obligation and prohibition with hay que, tener que and no se puede.
+            vocabulary: ["hay que", "tener que", "no se puede", "está prohibido", obligatorio, "la norma"]
+            grammar:
+              - pattern: "Hay que llevar el pasaporte."
+              - pattern: "Aquí no se puede fumar."
+              - pattern: "Tenemos que llegar a las ocho."
+            activities:
+              - { type: learn }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+
+    checkpoint:
+      title: A2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  B1:
+    title: Intermediate
+    description: >
+      Deal with most everyday situations, narrate experiences and events, express wishes, opinions and plans, and briefly give reasons for them.
+
+    units:
+      - id: past-tenses
+        title: Past Tenses Together
+        description: Combine the past tenses to tell what happened, what had happened before and how things were.
+        icon: 🕰️
+        steps:
+          - id: perfecto-indefinido
+            title: Perfecto or Indefinido?
+            description: He comido for today and this week; comí for yesterday and finished times.
+            vocabulary: [hoy, "esta mañana", "este año", ayer, anoche, "el año pasado", "hace dos días", "alguna vez", "en 2019"]
+            grammar:
+              - pattern: "Esta mañana he desayunado en casa."
+              - pattern: "Ayer desayuné en un bar."
+              - pattern: "¿Has estado alguna vez en México? Sí, estuve allí en 2019."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: pluscuamperfecto
+            title: Pluscuamperfecto
+            description: Say what had already happened before another past event with había + participle.
+            vocabulary: [había, habías, habíamos, habían, ya, todavía, antes, "cuando llegué", "nunca antes"]
+            grammar:
+              - pattern: "Cuando llegué a la estación, el tren ya había salido."
+              - pattern: "Nunca había visto el mar antes de ese viaje."
+              - pattern: "Ellos ya habían cenado cuando los llamamos."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: narrating-past
+            title: Narrating the Past
+            description: Mix indefinido for events, imperfecto for background and pluscuamperfecto for earlier events.
+            vocabulary: ["de repente", "en ese momento", "al final", "mientras", "un rato después", "por suerte", "por desgracia", "resulta que"]
+            grammar:
+              - pattern: "Hacía sol y paseábamos por el parque cuando de repente empezó a llover."
+              - pattern: "Me di cuenta de que había olvidado las llaves."
+              - pattern: "Mientras yo cocinaba, mi hermano puso la mesa."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: anecdote
+            title: Telling an Anecdote
+            description: Tell a short personal story and react to someone else's.
+            vocabulary: ["¿Sabes qué me pasó?", "fíjate", "¡Qué fuerte!", "¡No me digas!", "total, que", "lo peor fue que", "lo mejor fue que", "me quedé sin palabras"]
+            grammar:
+              - pattern: "¿Sabes qué me pasó el otro día?"
+              - pattern: "Lo peor fue que no había traído el móvil."
+              - pattern: "Total, que al final llegamos tardísimo."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: telling_an_anecdote
+                goal: Tell a friend a funny or surprising thing that happened to you, using several past tenses.
+
+      - id: wishes-feelings
+        title: Wishes & Feelings
+        description: Express wishes, hopes and feelings with the present subjunctive.
+        icon: 🌠
+        steps:
+          - id: subjuntivo-regular
+            title: Present Subjunctive
+            description: "Form the regular present subjunctive: -ar verbs take -e, -er/-ir verbs take -a."
+            vocabulary: [hable, hables, coma, comas, viva, vivan, trabaje, estudie, escriba, "que"]
+            grammar:
+              - pattern: "Quiero que hables con ella."
+              - pattern: "Es necesario que comamos algo."
+              - pattern: "Prefiero que vivan cerca de nosotros."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: subjuntivo-irregular
+            title: Irregular Subjunctive
+            description: Learn sea, vaya, tenga, haga, esté, sepa and verbs built on the yo form.
+            vocabulary: [sea, vaya, tenga, haga, esté, sepa, venga, diga, salga, pueda]
+            grammar:
+              - pattern: "Espero que tengas un buen viaje."
+              - pattern: "No quiero que vayas solo."
+              - pattern: "Es importante que sepa la verdad."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: querer-esperar-que
+            title: Querer & Esperar Que
+            description: Infinitive with the same subject, que + subjunctive with a different subject.
+            vocabulary: [querer, esperar, preferir, necesitar, desear, "me alegra", "me molesta", "me da miedo", "me encanta"]
+            grammar:
+              - pattern: "Quiero viajar. / Quiero que viajes conmigo."
+              - pattern: "Me alegra que estés aquí."
+              - pattern: "Me molesta que la gente hable tan alto."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank }
+          - id: ojala
+            title: Ojalá
+            description: Express hopes and good wishes with ojalá and que + subjunctive.
+            vocabulary: [ojalá, "¡Que te mejores!", "¡Que lo pases bien!", "¡Que tengas suerte!", "¡Que aproveche!", "¡Que descanses!", felicidades, "la suerte"]
+            grammar:
+              - pattern: "Ojalá haga buen tiempo mañana."
+              - pattern: "Ojalá que apruebes el examen."
+              - pattern: "¡Que tengas un buen fin de semana!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: wishing_a_friend_luck
+                goal: Wish a friend luck before an important event and say what you hope will happen.
+
+      - id: opinions
+        title: Opinions
+        description: Give and justify opinions, and agree or disagree politely.
+        icon: 💬
+        steps:
+          - id: creo-que
+            title: Creo Que / No Creo Que
+            description: Indicative after creo que and pienso que; subjunctive after no creo que.
+            vocabulary: ["creo que", "no creo que", "pienso que", "me parece que", "no me parece que", "en mi opinión", "para mí", "estoy seguro de que"]
+            grammar:
+              - pattern: "Creo que tienes razón."
+              - pattern: "No creo que sea una buena idea."
+              - pattern: "Me parece que el precio es demasiado alto."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: agreeing-disagreeing
+            title: Agreeing & Disagreeing
+            description: Agree, disagree and partly agree without sounding rude.
+            vocabulary: ["estoy de acuerdo", "no estoy de acuerdo", "tienes razón", "yo también", "yo tampoco", "depende", "no es para tanto", "en parte sí, pero"]
+            grammar:
+              - pattern: "Estoy de acuerdo contigo."
+              - pattern: "No estoy de acuerdo con lo que dices."
+              - pattern: "En parte tienes razón, pero no del todo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: giving-reasons
+            title: Giving Reasons
+            description: Explain why with porque, ya que, como and por eso.
+            vocabulary: [porque, "ya que", como, "por eso", "así que", "debido a", "es que", "por lo tanto"]
+            grammar:
+              - pattern: "Como no tenía dinero, me quedé en casa."
+              - pattern: "No voy a la fiesta porque estoy muy cansado."
+              - pattern: "Ya que estás aquí, ayúdame con esto."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: discussing-topic
+            title: Discussing a Topic
+            description: Exchange opinions on an everyday issue and back them up.
+            vocabulary: ["el tema", "la ventaja", "el problema", "la solución", "por ejemplo", "sin embargo", "además", "desde mi punto de vista"]
+            grammar:
+              - pattern: "Desde mi punto de vista, el transporte público es la mejor solución."
+              - pattern: "Sin embargo, no creo que todo el mundo pueda usarlo."
+              - pattern: "Además, es más barato que tener coche."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: city_debate
+                goal: Discuss whether cars should be banned from the city centre, giving reasons for your opinion.
+
+      - id: advice-requests
+        title: Advice & Requests
+        description: Give instructions, warnings and advice formally and informally.
+        icon: 🧭
+        steps:
+          - id: imperativo-usted
+            title: Formal Imperative
+            description: Give instructions with usted and ustedes, which take subjunctive forms.
+            vocabulary: [pase, siga, gire, espere, firme, rellene, "tome asiento", "pasen ustedes", "siéntense"]
+            grammar:
+              - pattern: "Pase, por favor, y tome asiento."
+              - pattern: "Siga recto y gire a la derecha."
+              - pattern: "Rellenen este formulario, por favor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+          - id: imperativo-negativo
+            title: Negative Imperative
+            description: Tell someone not to do something with no + subjunctive.
+            vocabulary: ["no hables", "no comas", "no vayas", "no digas", "no hagas", "no te preocupes", "no toques", "no llegue tarde"]
+            grammar:
+              - pattern: "No hables tan alto, por favor."
+              - pattern: "No te preocupes, todo va a salir bien."
+              - pattern: "No llegue tarde a la reunión."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: imperativo-pronombres
+            title: Imperative with Pronouns
+            description: Attach pronouns to positive commands, place them before negative ones.
+            vocabulary: [dámelo, dímelo, explícamelo, póntelo, siéntate, cállate, "no me lo des", "no se lo digas", "no te lo pongas"]
+            grammar:
+              - pattern: "¿El libro? Dámelo, por favor."
+              - pattern: "No se lo digas a nadie."
+              - pattern: "Siéntate aquí y no te muevas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete }
+          - id: recomendar-que
+            title: Recommending
+            description: Give advice with recomendar, aconsejar and sugerir que + subjunctive.
+            vocabulary: [recomendar, aconsejar, sugerir, "te recomiendo que", "te aconsejo que", "le sugiero que", "lo mejor es que", "deberías"]
+            grammar:
+              - pattern: "Te recomiendo que pruebes la paella."
+              - pattern: "El médico me aconseja que duerma más."
+              - pattern: "Lo mejor es que lo hables con tu jefe."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: advising_a_visitor
+                goal: Recommend places, food and tips to a friend who is visiting your city for the first time.
+
+      - id: hypotheses
+        title: Hypotheses
+        description: Talk about imaginary situations, polite requests and advice with the conditional.
+        icon: 💭
+        steps:
+          - id: condicional
+            title: The Conditional
+            description: Form the conditional, including the irregular stems tendr-, podr-, har-, dir-.
+            vocabulary: [viajaría, compraría, viviría, tendría, podría, haría, diría, saldría, querría, vendría]
+            grammar:
+              - pattern: "Con más tiempo, viajaría por toda Sudamérica."
+              - pattern: "Yo no diría eso."
+              - pattern: "Me gustaría vivir cerca del mar."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+          - id: peticiones-corteses
+            title: Polite Requests
+            description: Ask for things and favours politely with ¿podrías…? and ¿te importaría…?
+            vocabulary: ["¿podrías…?", "¿podría…?", "¿te importaría…?", "me gustaría", "¿sería posible…?", "un favor", "abrir la ventana", "bajar la música"]
+            grammar:
+              - pattern: "¿Podrías ayudarme con la maleta?"
+              - pattern: "¿Le importaría cerrar la puerta?"
+              - pattern: "Me gustaría hablar con el responsable."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: yo-que-tu
+            title: If I Were You
+            description: Give advice with yo que tú, yo en tu lugar and deberías.
+            vocabulary: ["yo que tú", "yo en tu lugar", deberías, "tendrías que", "sería mejor", "valdría la pena", "no lo pensaría", "aceptaría"]
+            grammar:
+              - pattern: "Yo que tú, aceptaría el trabajo."
+              - pattern: "Yo en tu lugar, hablaría con ella."
+              - pattern: "Deberías descansar un poco más."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: si-tuviera
+            title: If I Had…
+            description: "Imagine unreal situations: si + imperfect subjunctive, then the conditional (intro)."
+            vocabulary: [tuviera, fuera, pudiera, viviera, ganara, "si tuviera", "si fuera", "la lotería"]
+            grammar:
+              - pattern: "Si tuviera más dinero, viajaría por el mundo."
+              - pattern: "Si fuera tú, no lo haría."
+              - pattern: "¿Qué harías si ganaras la lotería?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: dream_life
+                goal: Talk with a friend about what you would do if you won the lottery or could live anywhere.
+
+      - id: reported-speech-b1
+        title: Reported Speech
+        description: Report what other people say, said and asked.
+        icon: 🗣️
+        steps:
+          - id: dice-que
+            title: Dice Que
+            description: Report what someone says now, without changing the tense.
+            vocabulary: ["dice que", "dicen que", "comenta que", "explica que", "cuenta que", "me ha dicho que", "según él", "según ella"]
+            grammar:
+              - pattern: "Marta dice que está cansada."
+              - pattern: "Mis padres dicen que vienen el sábado."
+              - pattern: "Según él, la reunión es a las diez."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
+          - id: dijo-que
+            title: Dijo Que
+            description: Shift tenses back when reporting past speech; present becomes imperfecto, indefinido becomes pluscuamperfecto.
+            vocabulary: ["dijo que", "me contó que", "explicó que", "comentó que", "aquel día", "el día anterior", "al día siguiente", "allí"]
+            grammar:
+              - pattern: "Dijo que estaba muy ocupado."
+              - pattern: "Me contó que había perdido el pasaporte."
+              - pattern: "Explicó que iría al día siguiente."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: pregunto-si
+            title: Preguntó Si / Qué
+            description: Report questions with preguntar si and question words with accents.
+            vocabulary: ["preguntó si", "me preguntó qué", "quería saber", "dónde", "cuándo", "cómo", "por qué", "cuánto"]
+            grammar:
+              - pattern: "Me preguntó si quería ir al cine."
+              - pattern: "Quería saber dónde vivía."
+              - pattern: "Le pregunté por qué no había venido."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: reporting-conversation
+            title: Reporting a Conversation
+            description: Pass on a conversation, a message or a piece of news to someone else.
+            vocabulary: [avisar, recordar, prometer, pedir, "me pidió que", "me prometió que", "el recado", "de su parte"]
+            grammar:
+              - pattern: "Me pidió que te llamara."
+              - pattern: "Me prometió que no volvería a pasar."
+              - pattern: "Te llamó Luis y me dijo que lo llamaras de su parte."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: passing_on_news
+                goal: Tell a friend what a colleague told you and asked you during a phone call.
+
+      - id: relative-clauses
+        title: Relative Clauses
+        description: Join ideas and describe people, places and things with relative pronouns.
+        icon: 🔗
+        steps:
+          - id: que-quien
+            title: Que & Quien
+            description: Use que for people and things, quien after prepositions and for people.
+            vocabulary: [que, quien, quienes, "con quien", "para quien", "el chico que", "la película que", "la persona que"]
+            grammar:
+              - pattern: "El chico que vive al lado es médico."
+              - pattern: "La película que vimos ayer era muy buena."
+              - pattern: "Ella es la amiga con quien viajé a Perú."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: donde-lo-que
+            title: Donde & Lo Que
+            description: Refer to places with donde and to whole ideas with lo que.
+            vocabulary: [donde, "lo que", "el pueblo donde", "la casa donde", "todo lo que", "lo que más me gusta", "lo que pasa es que", "lo que quieras"]
+            grammar:
+              - pattern: "Este es el pueblo donde nació mi abuela."
+              - pattern: "Lo que más me gusta es viajar."
+              - pattern: "No entiendo lo que dices."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: el-que-cuyo
+            title: El Que & Cuyo
+            description: Use el que / la que after prepositions and cuyo to show possession.
+            vocabulary: ["el que", "la que", "los que", "las que", "en el que", "con la que", cuyo, cuya]
+            grammar:
+              - pattern: "Esa es la empresa en la que trabajo."
+              - pattern: "Los que quieran venir, que se apunten."
+              - pattern: "Tengo un amigo cuya madre es actriz."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: describing-someone
+            title: Describing Someone You Know
+            description: Describe someone's character and identify people with relative clauses.
+            vocabulary: [simpático, generoso, tímido, cariñoso, testarudo, "de confianza", "llevarse bien con", "es de los que"]
+            grammar:
+              - pattern: "Es una persona en la que puedes confiar."
+              - pattern: "Mi tío es de los que siempre llegan tarde."
+              - pattern: "Me llevo muy bien con la gente que es sincera."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: describing_a_friend
+                goal: Describe a close friend or relative and explain why this person is important to you.
+
+      - id: work-careers
+        title: Work & Careers
+        description: Apply for jobs, take part in interviews and meetings, and talk about your career.
+        icon: 📈
+        steps:
+          - id: applying-job
+            title: Applying for a Job
+            description: Talk about a CV, a cover letter and the requirements of a job offer.
+            vocabulary: ["el currículum", "la carta de presentación", "la oferta de empleo", "el puesto", "los requisitos", "la formación", "solicitar", "el candidato"]
+            grammar:
+              - pattern: "Me gustaría solicitar el puesto de recepcionista."
+              - pattern: "Buscan a alguien que hable inglés."
+              - pattern: "Le adjunto mi currículum."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: interview-advanced
+            title: The Job Interview
+            description: Talk about your strengths, weaknesses and achievements in an interview.
+            vocabulary: ["los puntos fuertes", "los puntos débiles", "el logro", responsable, organizado, "trabajar en equipo", "bajo presión", "la incorporación"]
+            grammar:
+              - pattern: "Uno de mis puntos fuertes es que trabajo bien en equipo."
+              - pattern: "En mi último trabajo conseguí aumentar las ventas."
+              - pattern: "¿Cuándo podría incorporarse?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - { type: multiple_choice }
+          - id: at-meeting
+            title: At a Meeting
+            description: Make suggestions, interrupt politely and summarise decisions in a meeting.
+            vocabulary: ["la reunión", "el orden del día", "el plazo", "el proyecto", proponer, "perdona que te interrumpa", "en resumen", "quedamos en que"]
+            grammar:
+              - pattern: "Propongo que cambiemos la fecha de entrega."
+              - pattern: "Perdona que te interrumpa, pero tengo una duda."
+              - pattern: "En resumen, quedamos en que Ana preparará el informe."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+          - id: career-changes
+            title: Career Changes
+            description: Talk about changing jobs, studying again and plans for your professional future.
+            vocabulary: ["cambiar de trabajo", "dejar el trabajo", ascender, "el ascenso", despedir, "montar un negocio", "el autónomo", "la jubilación"]
+            grammar:
+              - pattern: "Hace un año dejé mi trabajo y monté mi propio negocio."
+              - pattern: "Me gustaría trabajar en algo que me guste de verdad."
+              - pattern: "Si pudiera, estudiaría otra carrera."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: career_change_chat
+                goal: Talk with a friend about why you want to change careers and what you plan to do next.
+
+      - id: habits-lifestyle
+        title: Habits & Lifestyle
+        description: Talk about habits you have changed, kept or started again, and give lifestyle advice.
+        icon: 🧘
+        steps:
+          - id: dejar-seguir
+            title: Dejar de & Seguir
+            description: Say what you stopped doing with dejar de + infinitive and what you still do with seguir + gerundio.
+            vocabulary: ["dejar de", seguir, continuar, fumar, "comer carne", "ya no", "todavía", "llevar + gerundio"]
+            grammar:
+              - pattern: "Dejé de fumar hace cinco años."
+              - pattern: "Sigo viviendo en el mismo barrio."
+              - pattern: "Llevo dos años estudiando español."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: acabar-volver
+            title: Acabar de & Volver a
+            description: Say what just happened with acabar de and what happens again with volver a.
+            vocabulary: ["acabar de", "volver a", "empezar a", "ponerse a", "otra vez", "de nuevo", "hace un momento", "recién"]
+            grammar:
+              - pattern: "Acabo de llegar a casa."
+              - pattern: "He vuelto a hacer deporte."
+              - pattern: "Cuando llegó, se puso a llorar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: healthy-living
+            title: Healthy Living
+            description: Talk about diet, exercise, sleep and stress.
+            vocabulary: ["la dieta equilibrada", "hacer ejercicio", "el estrés", "dormir bien", "la comida basura", "el sedentarismo", "estar en forma", "cuidarse"]
+            grammar:
+              - pattern: "Intento llevar una dieta equilibrada."
+              - pattern: "Desde que hago yoga, tengo menos estrés."
+              - pattern: "Cada vez como menos comida basura."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank }
+          - id: es-importante-que
+            title: Lifestyle Advice
+            description: Give general advice with es importante que, es mejor que and es necesario que + subjunctive.
+            vocabulary: ["es importante que", "es mejor que", "es necesario que", "es bueno que", "hace falta que", "es fundamental", "conviene", "el hábito"]
+            grammar:
+              - pattern: "Es importante que duermas al menos siete horas."
+              - pattern: "Es mejor que no tomes café por la noche."
+              - pattern: "Es bueno hacer ejercicio todos los días."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: healthy_habits_advice
+                goal: Advise a stressed friend on how to sleep better and live a healthier life.
+
+      - id: media-technology
+        title: Media & Technology
+        description: Talk about the news, social media and technology, and weigh up pros and cons.
+        icon: 📱
+        steps:
+          - id: news-media
+            title: News & Media
+            description: Talk about the news and where you get information from.
+            vocabulary: ["las noticias", "el periódico", "el titular", "el periodista", "la prensa", "el telediario", "estar informado", "según la prensa"]
+            grammar:
+              - pattern: "Suelo leer las noticias en el móvil."
+              - pattern: "Según el periódico, los precios han subido."
+              - pattern: "¿Te has enterado de lo que ha pasado?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_type, count: 2 }
+              - { type: fill_blank }
+          - id: social-media
+            title: Social Media Habits
+            description: Describe how you use social networks and how much time you spend online.
+            vocabulary: ["las redes sociales", "el seguidor", publicar, compartir, "dar me gusta", "subir una foto", "la publicación", enganchado]
+            grammar:
+              - pattern: "Paso demasiado tiempo en las redes sociales."
+              - pattern: "Nunca publico fotos de mis hijos."
+              - pattern: "Mi hermana está enganchada al móvil."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+          - id: technology
+            title: Technology
+            description: Talk about devices, apps and solving technical problems.
+            vocabulary: ["el portátil", "la aplicación", "la contraseña", descargar, instalar, actualizar, "la batería", "no funciona"]
+            grammar:
+              - pattern: "Se me ha olvidado la contraseña."
+              - pattern: "Se me ha acabado la batería."
+              - pattern: "¿Sabes cómo se descarga esta aplicación?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: pros-cons
+            title: Pros & Cons
+            description: Weigh up advantages and disadvantages with por un lado, por otro lado and en cambio.
+            vocabulary: ["por un lado", "por otro lado", "en cambio", "la ventaja", "la desventaja", "a pesar de", "aunque", "en conclusión"]
+            grammar:
+              - pattern: "Por un lado, internet nos conecta; por otro lado, nos aísla."
+              - pattern: "Aunque es útil, el móvil puede crear adicción."
+              - pattern: "En conclusión, todo depende de cómo lo usemos."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: technology_debate
+                goal: Discuss the advantages and disadvantages of children using smartphones and reach a conclusion.
+
+    checkpoint:
+      title: B1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  B2:
+    title: Upper Intermediate
+    description: >
+      Understand the main ideas of complex texts, interact with fluency and spontaneity, and argue a viewpoint on a wide range of topics, weighing advantages and disadvantages.
+
+    units:
+      - id: regrets
+        title: Regrets & Hypotheticals
+        description: Talk about unreal situations in the present and the past, and express regret.
+        icon: 💭
+        steps:
+          - id: imperfecto-subjuntivo
+            title: The Imperfect Subjunctive
+            description: Form the imperfect subjunctive from the preterite, with -ra and -se endings.
+            vocabulary: [fuera, tuviera, hiciera, dijera, pudiera, supiera, viniera, estuviera, "fuese", "tuviese"]
+            grammar:
+              - pattern: "Si tuviera más tiempo, aprendería a tocar el piano."
+              - pattern: "Me gustaría que vinieras a la fiesta."
+              - pattern: "Si yo fuese tú, no lo haría."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_type }
+          - id: si-hubiera
+            title: If I Had Known
+            description: Use si hubiera + participle with habría + participle for unreal past conditions.
+            vocabulary: ["hubiera sabido", "habría ido", "hubiera estudiado", "habría aprobado", "a tiempo", "la oportunidad", "perder el tren", "darse cuenta"]
+            grammar:
+              - pattern: "Si hubiera sabido la verdad, te lo habría dicho."
+              - pattern: "Si hubiéramos salido antes, no habríamos perdido el tren."
+              - pattern: "Si me hubieras avisado, habría ido contigo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: mixed-conditionals
+            title: Mixed Conditionals
+            description: Link a past condition to a present result and vice versa.
+            vocabulary: ["ahora mismo", "hoy en día", "estar casado", "vivir en el extranjero", "la carrera", "elegir", "aceptar el trabajo", "ser diferente"]
+            grammar:
+              - pattern: "Si hubiera aceptado aquel trabajo, ahora viviría en Londres."
+              - pattern: "Si no fuera tan tímido, le habría pedido su número."
+              - pattern: "Si hubiera estudiado medicina, hoy sería médica."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+          - id: ojala-hubiera
+            title: Expressing Regret
+            description: Express regret with ojalá hubiera, arrepentirse de and lamentar.
+            vocabulary: ["arrepentirse de", "lamentar", "ojalá", "el error", "la culpa", "echar de menos", "pedir perdón", "hacer caso"]
+            grammar:
+              - pattern: "Ojalá hubiera estudiado más para el examen."
+              - pattern: "Me arrepiento de no haberle hecho caso."
+              - pattern: "Lamento que no hayas podido venir."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: speak }
+              - type: dialogue
+                scenario: talking_about_regrets
+                goal: Tell a friend about a decision you regret and say what you would have done differently.
+
+      - id: deduction
+        title: Deduction & Speculation
+        description: Make guesses and deductions about the present and the past.
+        icon: 🔍
+        steps:
+          - id: futuro-probabilidad
+            title: Guessing About the Present
+            description: Use the future tense to express probability in the present.
+            vocabulary: ["estará", "tendrá", "habrá", "serán", "el atasco", "el retraso", "suponer", "seguramente"]
+            grammar:
+              - pattern: "No contesta; estará en el metro."
+              - pattern: "¿Cuántos años tendrá su hermano?"
+              - pattern: "Habrá unas cincuenta personas en la sala."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: condicional-probabilidad
+            title: Guessing About the Past
+            description: Use the conditional and the future perfect to speculate about past events.
+            vocabulary: ["serían", "estaría", "habría salido", "se habrá olvidado", "aquella noche", "a esas horas", "imaginar", "probablemente"]
+            grammar:
+              - pattern: "Cuando llegó serían las diez de la noche."
+              - pattern: "No vino a la reunión; se le habrá olvidado."
+              - pattern: "Estaría muy cansado, porque se durmió enseguida."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - { type: error_correct }
+              - { type: translate }
+          - id: quizas-tal-vez
+            title: Maybe and Perhaps
+            description: Use quizás, tal vez and a lo mejor with the indicative or the subjunctive.
+            vocabulary: [quizás, "tal vez", "a lo mejor", "puede que", "es posible que", "lo más probable es que", "igual", "no creo que"]
+            grammar:
+              - pattern: "Quizás llegue tarde, porque hay mucho tráfico."
+              - pattern: "A lo mejor está enfermo."
+              - pattern: "Puede que no haya entendido la pregunta."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+              - { type: listen_type }
+          - id: mystery
+            title: Solving a Mystery
+            description: Combine deduction structures to discuss what might have happened.
+            vocabulary: ["la pista", "el sospechoso", "la coartada", "desaparecer", "deber de", "no cabe duda de que", "estar seguro de que", "la explicación"]
+            grammar:
+              - pattern: "Debe de haber salido por la ventana."
+              - pattern: "No cabe duda de que alguien entró anoche."
+              - pattern: "No creo que fuera el vecino."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: discussing_a_mystery
+                goal: Speculate with a friend about what happened and agree on the most likely explanation.
+
+      - id: passive-impersonal
+        title: Passive & Impersonal
+        description: Shift the focus from who does something to what is done.
+        icon: 📰
+        steps:
+          - id: pasiva-ser
+            title: The Passive with Ser
+            description: Form the passive with ser + participle agreeing with the subject.
+            vocabulary: ["construir", "fundar", "descubrir", "elegir", "inaugurar", "detener", "por parte de", "el ayuntamiento"]
+            grammar:
+              - pattern: "El puente fue construido en el siglo XIX."
+              - pattern: "Los ladrones fueron detenidos por la policía."
+              - pattern: "La nueva alcaldesa ha sido elegida por mayoría."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_type }
+          - id: pasiva-refleja
+            title: The Reflexive Passive
+            description: Use se with a verb agreeing with the thing done, the most common passive in Spanish.
+            vocabulary: ["se vende", "se alquila", "se buscan", "se necesita", "el piso", "el anuncio", "la oferta", "el producto"]
+            grammar:
+              - pattern: "Se venden pisos en el centro."
+              - pattern: "Se alquila habitación con vistas al mar."
+              - pattern: "En esta fábrica se producen mil coches al día."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank }
+          - id: se-impersonal
+            title: Impersonal Se
+            description: Make general statements with impersonal se and the third person plural.
+            vocabulary: ["se dice que", "se cree que", "se vive bien", "se puede", "no se permite", "dicen que", "la gente", "en general"]
+            grammar:
+              - pattern: "En este país se vive muy bien."
+              - pattern: "Se dice que el restaurante va a cerrar."
+              - pattern: "No se puede fumar en el interior."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_type }
+          - id: news-passives
+            title: Passives in the News
+            description: Understand and use passive and impersonal structures in news reports.
+            vocabulary: ["el titular", "la noticia", "según fuentes oficiales", "la investigación", "anunciar", "informar", "aprobar una ley", "el gobierno"]
+            grammar:
+              - pattern: "La ley fue aprobada ayer por el Parlamento."
+              - pattern: "Se ha abierto una investigación sobre el accidente."
+              - pattern: "Según fuentes oficiales, se esperan más lluvias."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate, count: 2 }
+              - { type: listen_type }
+
+      - id: time-future
+        title: Time Clauses & the Future
+        description: Talk about future events, deadlines and long-term changes.
+        icon: ⏳
+        steps:
+          - id: cuando-subjuntivo
+            title: When You Arrive
+            description: Use cuando + present subjunctive for future events, and the indicative for habits.
+            vocabulary: ["cuando", "llegar", "terminar", "jubilarse", "ser mayor", "tener tiempo", "mudarse", "independizarse"]
+            grammar:
+              - pattern: "Cuando llegues, llámame."
+              - pattern: "Cuando sea mayor, quiero vivir en el campo."
+              - pattern: "Cuando llego a casa, siempre me ducho."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: futuro-perfecto
+            title: Will Have Done
+            description: Use the future perfect for actions completed before a future point.
+            vocabulary: ["habré terminado", "habrán llegado", "para entonces", "para el lunes", "dentro de diez años", "el plazo", "entregar", "conseguir"]
+            grammar:
+              - pattern: "Para el lunes habré terminado el informe."
+              - pattern: "Dentro de diez años habremos pagado la hipoteca."
+              - pattern: "Cuando llegues, ya se habrán ido todos."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - { type: translate }
+          - id: antes-de-que
+            title: Before, Until, As Soon As
+            description: Use antes de que, hasta que and en cuanto with the subjunctive for future time.
+            vocabulary: ["antes de que", "hasta que", "en cuanto", "tan pronto como", "después de que", "mientras", "esperar", "avisar"]
+            grammar:
+              - pattern: "Tenemos que salir antes de que empiece a llover."
+              - pattern: "No me iré hasta que me lo expliques."
+              - pattern: "En cuanto sepa algo, te aviso."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+              - { type: listen_type }
+          - id: long-term-predictions
+            title: Predicting Long-Term Changes
+            description: Make predictions about how life will have changed in the future.
+            vocabulary: ["el futuro", "la tecnología", "la inteligencia artificial", "desaparecer", "sustituir", "cambiar", "es probable que", "dudo que"]
+            grammar:
+              - pattern: "Dentro de treinta años habrán desaparecido muchos trabajos."
+              - pattern: "Es probable que los coches se conduzcan solos."
+              - pattern: "Dudo que la gente deje de leer libros."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: predicting_the_future
+                goal: Discuss how work and daily life will have changed in thirty years and justify your predictions.
+
+      - id: linking-ideas
+        title: Linking Ideas
+        description: Connect ideas to express contrast, concession, cause and result.
+        icon: 🔗
+        steps:
+          - id: aunque
+            title: Although and Even If
+            description: Use aunque with the indicative for facts and the subjunctive for possibilities.
+            vocabulary: ["aunque", "aun así", "sin embargo", "llover", "estar cansado", "costar", "merecer la pena", "de todas formas"]
+            grammar:
+              - pattern: "Aunque llueve, vamos a salir."
+              - pattern: "Aunque llueva mañana, iremos a la playa."
+              - pattern: "Aunque me lo pidas, no lo haré."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: a-pesar-de
+            title: Despite
+            description: Use a pesar de with a noun or infinitive and a pesar de que with a clause.
+            vocabulary: ["a pesar de", "a pesar de que", "pese a", "las dificultades", "el esfuerzo", "la crisis", "seguir adelante", "lograr"]
+            grammar:
+              - pattern: "A pesar de la lluvia, el concierto se celebró."
+              - pattern: "A pesar de que estaba enfermo, fue a trabajar."
+              - pattern: "Pese a tener poco dinero, viajaron por toda Europa."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+          - id: cause-result
+            title: Cause and Result
+            description: Link causes and results with debido a, ya que, por lo tanto and así que.
+            vocabulary: ["debido a", "ya que", "puesto que", "como", "por lo tanto", "así que", "por eso", "de modo que"]
+            grammar:
+              - pattern: "El vuelo se canceló debido a la niebla."
+              - pattern: "Como no tenía llaves, tuve que esperar fuera."
+              - pattern: "No ha estudiado, así que no aprobará."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: structuring-argument
+            title: Structuring an Argument
+            description: Organise an argument with connectors for ordering, adding and concluding.
+            vocabulary: ["en primer lugar", "por un lado", "por otro lado", "además", "es más", "en cambio", "en resumen", "en conclusión"]
+            grammar:
+              - pattern: "Por un lado, es barato; por otro lado, es poco práctico."
+              - pattern: "Además, hay que tener en cuenta el impacto ambiental."
+              - pattern: "En conclusión, creo que las ventajas superan a los inconvenientes."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+              - { type: speak }
+
+      - id: purpose-conditions
+        title: Purpose & Conditions
+        description: Express purpose and set conditions with the subjunctive.
+        icon: 🤝
+        steps:
+          - id: para-que
+            title: So That
+            description: Use para + infinitive with the same subject and para que + subjunctive with a different one.
+            vocabulary: ["para que", "a fin de que", "con el objetivo de", "explicar", "entender", "ayudar", "ahorrar", "enterarse"]
+            grammar:
+              - pattern: "Te lo explico para que lo entiendas."
+              - pattern: "Ahorramos para comprar una casa."
+              - pattern: "Hablé despacio para que todos me entendieran."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_type }
+          - id: con-tal-de-que
+            title: Provided That and Unless
+            description: Set conditions with con tal de que, a menos que, siempre que and a no ser que.
+            vocabulary: ["con tal de que", "siempre que", "a menos que", "a no ser que", "salvo que", "prestar", "devolver", "prometer"]
+            grammar:
+              - pattern: "Te presto el coche con tal de que me lo devuelvas mañana."
+              - pattern: "Iremos a pie a menos que llueva."
+              - pattern: "Puedes quedarte siempre que no hagas ruido."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_type }
+          - id: en-caso-de-que
+            title: In Case
+            description: Talk about precautions with en caso de que + subjunctive and por si + indicative.
+            vocabulary: ["en caso de que", "por si", "por si acaso", "la emergencia", "el paraguas", "llevar", "olvidarse", "el seguro"]
+            grammar:
+              - pattern: "En caso de que haya un incendio, utilice la escalera."
+              - pattern: "Llévate el paraguas por si llueve."
+              - pattern: "Te dejo mi número por si acaso."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+          - id: negotiating-conditions
+            title: Negotiating Conditions
+            description: Negotiate an agreement by setting and accepting conditions.
+            vocabulary: ["el acuerdo", "la condición", "el plazo de entrega", "el descuento", "estar dispuesto a", "aceptar", "rechazar", "a cambio de"]
+            grammar:
+              - pattern: "Le haremos un descuento siempre que pague por adelantado."
+              - pattern: "Estamos dispuestos a aceptar, con tal de que cumplan el plazo."
+              - pattern: "No firmaremos a menos que cambien esta cláusula."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: negotiating_a_deal
+                goal: Negotiate the price and delivery terms of an order, setting at least two conditions.
+
+      - id: reported-speech-b2
+        title: Advanced Reported Speech
+        description: Report what others said, asked, suggested and ordered.
+        icon: 🗣️
+        steps:
+          - id: reporting-verbs
+            title: Reporting Verbs
+            description: Use sugerir, pedir, recomendar and aconsejar followed by que + subjunctive.
+            vocabulary: [sugerir, pedir, recomendar, aconsejar, exigir, "insistir en", prohibir, proponer]
+            grammar:
+              - pattern: "El médico me recomienda que haga más ejercicio."
+              - pattern: "Mi jefa insiste en que lleguemos a la hora."
+              - pattern: "Te sugiero que lo pienses bien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+          - id: backshift-subjuntivo
+            title: Reporting in the Past
+            description: Shift the present subjunctive into the imperfect subjunctive after a past reporting verb.
+            vocabulary: ["me pidió que", "me dijo que", "nos aconsejó que", "le sugerí que", "viniera", "llamara", "trajera", "esperara"]
+            grammar:
+              - pattern: "Me pidió que viniera a las ocho."
+              - pattern: "Nos aconsejaron que no saliéramos de noche."
+              - pattern: "Le dije que me llamara cuando llegara."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_type }
+          - id: reporting-questions-orders
+            title: Reporting Questions and Orders
+            description: Report questions with si and question words, and orders with que + subjunctive.
+            vocabulary: ["preguntar si", "preguntar dónde", "querer saber", "ordenar", "mandar", "contestar", "el día anterior", "aquel día"]
+            grammar:
+              - pattern: "Me preguntó si había estado alguna vez en México."
+              - pattern: "Quería saber dónde había dejado las llaves."
+              - pattern: "El profesor nos mandó que apagáramos los móviles."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank }
+              - { type: error_correct }
+          - id: retelling-conversation
+            title: Retelling a Conversation
+            description: Retell a conversation accurately, adjusting tenses, pronouns and time words.
+            vocabulary: ["comentar", "explicar", "contar", "añadir", "advertir", "quejarse de", "al día siguiente", "esa misma tarde"]
+            grammar:
+              - pattern: "Me contó que se iba a mudar al día siguiente."
+              - pattern: "Me advirtió que no confiara en él."
+              - pattern: "Se quejó de que nadie la hubiera ayudado."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: retelling_a_conversation
+                goal: Tell a friend what your manager said, asked and asked you to do in a meeting.
+
+      - id: debate
+        title: Debate & Persuasion
+        description: Give opinions carefully, concede points and persuade others.
+        icon: ⚖️
+        steps:
+          - id: hedging
+            title: Hedging
+            description: Soften opinions with expressions like me da la impresión de que and por lo visto.
+            vocabulary: ["me da la impresión de que", "por lo visto", "al parecer", "tengo entendido que", "da la sensación de que", "en cierto modo", "hasta cierto punto", "no estoy del todo seguro"]
+            grammar:
+              - pattern: "Me da la impresión de que no le interesa el proyecto."
+              - pattern: "Por lo visto, van a subir los precios."
+              - pattern: "Hasta cierto punto, tienes razón."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_type }
+          - id: conceding
+            title: Conceding a Point
+            description: Admit part of an argument before disagreeing, with es verdad que … pero and the subjunctive.
+            vocabulary: ["es verdad que", "es cierto que", "no digo que", "reconozco que", "admito que", "de acuerdo, pero", "no niego que", "aun así"]
+            grammar:
+              - pattern: "Es verdad que es caro, pero la calidad es excelente."
+              - pattern: "No digo que sea mala idea, pero es arriesgada."
+              - pattern: "No niego que tenga sus ventajas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+          - id: persuasive-language
+            title: Persuasive Language
+            description: Persuade with impersonal expressions such as es fundamental que + subjunctive.
+            vocabulary: ["es fundamental que", "es imprescindible que", "es necesario que", "hace falta que", "convencer", "está claro que", "sin duda", "no hay que olvidar que"]
+            grammar:
+              - pattern: "Es fundamental que todos participemos en la decisión."
+              - pattern: "Está claro que necesitamos un cambio."
+              - pattern: "No hay que olvidar que el tiempo es limitado."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: speak }
+          - id: having-debate
+            title: Having a Debate
+            description: Take part in a debate, interrupt politely and defend your position.
+            vocabulary: ["el debate", "el argumento", "la postura", "perdona que te interrumpa", "déjame terminar", "en mi opinión", "estar en contra de", "estar a favor de"]
+            grammar:
+              - pattern: "Perdona que te interrumpa, pero no estoy de acuerdo."
+              - pattern: "Déjame terminar, por favor."
+              - pattern: "Estoy a favor de que se reduzca la jornada laboral."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: debating_a_proposal
+                goal: Argue for or against a four-day working week, conceding at least one point to the other side.
+
+      - id: society-environment
+        title: Society & the Environment
+        description: Discuss environmental and social problems and propose solutions.
+        icon: 🌍
+        steps:
+          - id: environmental-issues
+            title: Environmental Issues
+            description: Talk about climate change, pollution and the loss of natural resources.
+            vocabulary: ["el cambio climático", "la contaminación", "el calentamiento global", "la sequía", "los residuos", "las energías renovables", "la deforestación", "el medio ambiente"]
+            grammar:
+              - pattern: "La contaminación del aire está empeorando en las ciudades."
+              - pattern: "Cada vez hay más sequías en el sur del país."
+              - pattern: "Me preocupa que se talen tantos bosques."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: social-issues
+            title: Social Issues
+            description: Discuss inequality, unemployment, housing and other social problems.
+            vocabulary: ["la desigualdad", "el paro", "la pobreza", "la vivienda", "el alquiler", "la inmigración", "la discriminación", "la sanidad pública"]
+            grammar:
+              - pattern: "El precio de la vivienda ha subido muchísimo en los últimos años."
+              - pattern: "Es injusto que tanta gente no pueda pagar el alquiler."
+              - pattern: "La tasa de paro juvenil sigue siendo muy alta."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: possible-solutions
+            title: Possible Solutions
+            description: Propose solutions with habría que, se debería and convendría + infinitive.
+            vocabulary: ["habría que", "se debería", "convendría", "invertir en", "fomentar", "reducir", "reciclar", "las medidas"]
+            grammar:
+              - pattern: "Habría que invertir más en transporte público."
+              - pattern: "Se debería fomentar el uso de la bicicleta."
+              - pattern: "Convendría que el gobierno tomara medidas urgentes."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank }
+              - { type: word_bank }
+              - { type: listen_type }
+          - id: global-issue
+            title: Discussing a Global Issue
+            description: Discuss the causes, effects and solutions of a global problem.
+            vocabulary: ["la causa", "la consecuencia", "a nivel mundial", "la responsabilidad", "concienciar", "la sociedad", "los recursos", "tomar conciencia"]
+            grammar:
+              - pattern: "Una de las principales causas es el consumo excesivo."
+              - pattern: "Si no actuamos ya, las consecuencias serán graves."
+              - pattern: "Es hora de que tomemos conciencia del problema."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: discussing_a_global_issue
+                goal: Discuss the causes of a global problem and agree on two realistic solutions.
+
+      - id: science-culture
+        title: Science, Culture & the Arts
+        description: Describe trends, explain causes and talk about discoveries, art and culture.
+        icon: 🔬
+        steps:
+          - id: describing-trends
+            title: Describing Trends
+            description: Describe how things are changing with cada vez más, seguir + gerund and ir + gerund.
+            vocabulary: ["cada vez más", "cada vez menos", "aumentar", "disminuir", "la tendencia", "el porcentaje", "seguir creciendo", "ir mejorando"]
+            grammar:
+              - pattern: "Cada vez más gente trabaja desde casa."
+              - pattern: "El número de lectores sigue disminuyendo."
+              - pattern: "La situación va mejorando poco a poco."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+          - id: cause-effect
+            title: Cause and Effect
+            description: Explain causes and effects with provocar, dar lugar a and deberse a.
+            vocabulary: ["provocar", "causar", "dar lugar a", "deberse a", "tener como consecuencia", "influir en", "el efecto", "el factor"]
+            grammar:
+              - pattern: "El aumento de las temperaturas se debe a la actividad humana."
+              - pattern: "La nueva ley dio lugar a muchas protestas."
+              - pattern: "Las redes sociales influyen en nuestra forma de pensar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: scientific-discoveries
+            title: Scientific Discoveries
+            description: Talk about research and discoveries, using passive and impersonal structures.
+            vocabulary: ["el descubrimiento", "la investigación", "el investigador", "el experimento", "la vacuna", "demostrar", "llevar a cabo", "el avance"]
+            grammar:
+              - pattern: "La penicilina fue descubierta por casualidad."
+              - pattern: "Se ha demostrado que dormir poco afecta a la memoria."
+              - pattern: "Los investigadores llevaron a cabo un experimento con mil personas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank }
+              - { type: listen_type }
+          - id: art-culture
+            title: Talking About Art and Culture
+            description: Give and justify opinions about films, books, exhibitions and music.
+            vocabulary: ["la obra", "la exposición", "el cuadro", "el argumento", "el director", "emocionante", "conmovedor", "me dejó indiferente"]
+            grammar:
+              - pattern: "Lo que más me gustó fue la banda sonora."
+              - pattern: "La novela está basada en hechos reales."
+              - pattern: "Me sorprendió que el final fuera tan triste."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: discussing_art_and_culture
+                goal: Recommend a film, book or exhibition to a friend and explain what you liked about it.
+
+    checkpoint:
+      title: B2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  C1:
+    title: Advanced
+    description: >
+      Understand demanding, longer texts and recognise implicit meaning, express yourself fluently and spontaneously, and use Spanish flexibly and effectively for social, academic and professional purposes.
+
+    units:
+      - id: subjunctive-mastery
+        title: Subjunctive Mastery
+        description: Use the subjunctive with confidence in complex and nuanced sentences.
+        icon: 🎯
+        steps:
+          - id: relative-subjunctive
+            title: Relative Clauses
+            description: Use the subjunctive for unknown or non-existent antecedents.
+            vocabulary: ["buscar a alguien que", "no hay nadie que", "cualquiera que", "lo que sea", "dondequiera que", "quienquiera que", "el antecedente", "un sitio donde"]
+            grammar:
+              - pattern: "Busco a alguien que sepa programar en Python."
+              - pattern: "No hay nadie que entienda este informe."
+              - pattern: "Haz lo que quieras, pero hazlo bien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: el-hecho-de-que
+            title: El hecho de que
+            description: Use the subjunctive after el hecho de que and similar noun clauses.
+            vocabulary: ["el hecho de que", "que + subjuntivo", "me parece lógico que", "es comprensible que", "no es que", "me extraña que", "me sorprende que", "es natural que"]
+            grammar:
+              - pattern: "El hecho de que no haya llamado me preocupa."
+              - pattern: "Que lo digas tú no significa que sea verdad."
+              - pattern: "No es que no quiera, es que no puedo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: como-si
+            title: Como si
+            description: Talk about unreal comparisons with como si and the imperfect or pluperfect subjunctive.
+            vocabulary: ["como si", "ni que", "fingir", "hacer como que", "aparentar", "de repente", "tal cual", "a sabiendas"]
+            grammar:
+              - pattern: "Habla como si lo supiera todo."
+              - pattern: "Me miró como si hubiera visto un fantasma."
+              - pattern: "¡Ni que fuera tan difícil!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: por-mucho-que
+            title: Por mucho que
+            description: Express concession with por mucho que, por más que and aunque.
+            vocabulary: ["por mucho que", "por más que", "por muy … que", aunque, "aun cuando", "así", "ni aunque", "de todos modos"]
+            grammar:
+              - pattern: "Por mucho que insistas, no voy a cambiar de opinión."
+              - pattern: "Por muy cansado que estés, tienes que terminarlo."
+              - pattern: "No lo haría ni aunque me pagaran el doble."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: persuading_a_stubborn_friend
+                goal: Hold your position politely while acknowledging every argument your friend puts forward.
+
+      - id: emphasis-word-order
+        title: Emphasis & Word Order
+        description: Highlight information through structure, word order and lo.
+        icon: 🔦
+        steps:
+          - id: cleft-sentences
+            title: Cleft Sentences
+            description: Focus on key information with ser + lo que, quien and donde.
+            vocabulary: ["lo que más me molesta", "fue él quien", "es aquí donde", "fue entonces cuando", "es por eso por lo que", "lo que pasa es que", "lo único que", "así es como"]
+            grammar:
+              - pattern: "Lo que más me molesta es su falta de puntualidad."
+              - pattern: "Fue ella quien lo descubrió."
+              - pattern: "Fue entonces cuando me di cuenta del error."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: clitic-doubling
+            title: Topic First
+            description: Put the topic first and repeat it with an object pronoun.
+            vocabulary: ["el libro", "la película", "a mi hermana", "eso", "ya lo he leído", "no la he visto", "se lo dije", "a mí"]
+            grammar:
+              - pattern: "El libro ya lo he leído."
+              - pattern: "A mi hermana no la veo desde hace meses."
+              - pattern: "Eso ya te lo había dicho yo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: neuter-lo
+            title: Neuter Lo
+            description: Use lo + adjective and lo + adjective/adverb + que for emphasis.
+            vocabulary: ["lo difícil", "lo bueno", "lo malo", "lo mejor", "lo bonito que es", "lo bien que", "lo mucho que", "a lo grande"]
+            grammar:
+              - pattern: "Lo difícil es empezar."
+              - pattern: "No sabes lo bonito que es el pueblo."
+              - pattern: "Me sorprendió lo bien que habla español."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: making-a-point
+            title: Making a Point
+            description: Stress what matters with emphatic expressions.
+            vocabulary: ["sí que", "bien que", "ni siquiera", "precisamente", "justamente", "lo que es", "de verdad", "ni mucho menos"]
+            grammar:
+              - pattern: "Sí que lo sabía, pero no dijo nada."
+              - pattern: "No es, ni mucho menos, la mejor solución."
+              - pattern: "Precisamente por eso te lo cuento."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: team_meeting_priorities
+                goal: Make clear which issue matters most and why the team should tackle it first.
+
+      - id: advanced-structures
+        title: Advanced Structures
+        description: Use periphrases, non-finite clauses, nominalisation and ellipsis.
+        icon: 🏗️
+        steps:
+          - id: verbal-periphrases
+            title: Verbal Periphrases
+            description: Express duration, progression and approximation with periphrases.
+            vocabulary: ["llevar + gerundio", "ir + gerundio", "venir a + infinitivo", "andar + gerundio", "acabar + gerundio", "seguir sin", "estar por", "dejar de"]
+            grammar:
+              - pattern: "Llevo tres años viviendo en Sevilla."
+              - pattern: "Poco a poco vamos entendiendo el problema."
+              - pattern: "Viene a costar unos doscientos euros."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: participle-gerund-clauses
+            title: Participle & Gerund Clauses
+            description: Condense ideas with absolute participles and gerund clauses.
+            vocabulary: ["una vez terminado", "habiendo dicho esto", "dicho esto", "acabada la reunión", "teniendo en cuenta", "visto lo visto", "hecho el trabajo", "considerando que"]
+            grammar:
+              - pattern: "Una vez terminado el informe, lo enviaremos."
+              - pattern: "Habiendo dicho esto, pasemos al siguiente punto."
+              - pattern: "Acabada la reunión, todos se fueron a casa."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nominalisation
+            title: Nominalisation
+            description: Turn verbs and adjectives into nouns for a denser, formal style.
+            vocabulary: ["la llegada", "la aprobación", "el aumento", "la disminución", "la puesta en marcha", "la toma de decisiones", "el cumplimiento", "la falta de"]
+            grammar:
+              - pattern: "La aprobación de la ley se retrasó un mes."
+              - pattern: "El aumento de los precios preocupa a los consumidores."
+              - pattern: "La puesta en marcha del proyecto está prevista para enero."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: ellipsis-substitution
+            title: Ellipsis & Substitution
+            description: Avoid repetition with lo, el de, el que and ellipsis.
+            vocabulary: ["el de", "la que", "los de", "lo es", "también", "tampoco", "sí", "el mío"]
+            grammar:
+              - pattern: "Me gusta más el coche de Ana que el de Luis."
+              - pattern: "Parece fácil, pero no lo es."
+              - pattern: "Yo no he ido, pero mi hermano sí."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+
+      - id: hedging-discourse
+        title: Hedging & Discourse
+        description: Link ideas smoothly, soften claims and manage a discussion.
+        icon: 🧭
+        steps:
+          - id: discourse-markers
+            title: Discourse Markers
+            description: Contrast, reinforce and reformulate with discourse markers.
+            vocabulary: ["no obstante", "en cambio", "de hecho", "es decir", "o sea", "por consiguiente", "en cualquier caso", "dicho de otro modo", "sin embargo"]
+            grammar:
+              - pattern: "El plan es ambicioso; no obstante, es viable."
+              - pattern: "Ella prefiere el campo; yo, en cambio, la ciudad."
+              - pattern: "De hecho, los datos indican lo contrario."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: softening-claims
+            title: Softening Claims
+            description: Hedge statements with the conditional and impersonal phrases.
+            vocabulary: ["cabría pensar", "parece ser que", "al parecer", "según parece", "podría decirse", "en cierta medida", "hasta cierto punto", "tiende a"]
+            grammar:
+              - pattern: "Cabría pensar que la medida ha fracasado."
+              - pattern: "Parece ser que el acuerdo se firmará pronto."
+              - pattern: "Hasta cierto punto, tienes razón."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: concession
+            title: Concession
+            description: Admit a point while keeping your argument with si bien and aun así.
+            vocabulary: ["si bien", "aun así", "por mucho que", "a pesar de que", "pese a", "con todo", "aunque", "de todas formas"]
+            grammar:
+              - pattern: "Si bien es cierto que hay riesgos, las ventajas son mayores."
+              - pattern: "Es caro; aun así, merece la pena."
+              - pattern: "Pese a las críticas, el proyecto siguió adelante."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: steering-discussion
+            title: Steering a Discussion
+            description: Take the floor, redirect and sum up in a discussion.
+            vocabulary: ["si me permites", "volviendo a", "en resumidas cuentas", "a lo que iba", "por cierto", "en relación con", "retomando", "para concluir"]
+            grammar:
+              - pattern: "Si me permites, quisiera añadir algo."
+              - pattern: "Volviendo a lo que decías antes, no estoy de acuerdo."
+              - pattern: "En resumidas cuentas, necesitamos más tiempo."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice }
+              - type: dialogue
+                scenario: chairing_a_panel_discussion
+                goal: Keep the discussion on track, bring speakers back to the topic and summarise the main points.
+
+      - id: professional-life
+        title: Professional Life
+        description: Negotiate, lead and write formally at work.
+        icon: 💼
+        steps:
+          - id: negotiating-terms
+            title: Negotiating Terms
+            description: Make offers, set conditions and reach agreements.
+            vocabulary: ["la propuesta", "la contraoferta", "el margen", "las condiciones", "llegar a un acuerdo", "ceder", "siempre y cuando", "a cambio de", "el plazo de entrega"]
+            grammar:
+              - pattern: "Aceptaríamos siempre y cuando se reduzca el plazo."
+              - pattern: "Estamos dispuestos a ceder en el precio a cambio de exclusividad."
+              - pattern: "En caso de que no lleguemos a un acuerdo, buscaremos otro proveedor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: listen_type }
+          - id: managing-leading
+            title: Managing & Leading
+            description: Delegate, motivate and give feedback.
+            vocabulary: ["delegar", "la plantilla", "el rendimiento", "motivar", "rendir cuentas", "asumir responsabilidades", "la retroalimentación", "el liderazgo"]
+            grammar:
+              - pattern: "Te pediría que te encargaras de la presentación."
+              - pattern: "Convendría que revisáramos los objetivos del trimestre."
+              - pattern: "Cada uno debe rendir cuentas de su trabajo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: reports-proposals
+            title: Reports & Proposals
+            description: Write formal reports and proposals in an appropriate register.
+            vocabulary: ["el informe", "cabe destacar", "a continuación", "se adjunta", "en lo que respecta a", "con el fin de", "se recomienda", "por la presente"]
+            grammar:
+              - pattern: "Cabe destacar que las ventas han aumentado un 12 %."
+              - pattern: "Se recomienda revisar el presupuesto con el fin de reducir costes."
+              - pattern: "En lo que respecta a la logística, no se prevén cambios."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank }
+          - id: workplace-conflict
+            title: Workplace Conflict
+            description: Address tension diplomatically and find solutions.
+            vocabulary: ["el malentendido", "la tensión", "plantear un problema", "ponerse en el lugar de", "limar asperezas", "echar la culpa", "dar su brazo a torcer", "llegar a un término medio"]
+            grammar:
+              - pattern: "Entiendo tu postura, pero me gustaría que me escucharas."
+              - pattern: "No se trata de echar la culpa a nadie."
+              - pattern: "Quizá podamos llegar a un término medio."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: resolving_a_team_conflict
+                goal: Discuss a disagreement with a colleague calmly and agree on a compromise.
+
+      - id: media-information
+        title: Media & Information
+        description: Read the news critically and talk about information online.
+        icon: 📰
+        steps:
+          - id: headline-language
+            title: Headline Language
+            description: Understand the condensed style and typical verbs of headlines.
+            vocabulary: ["el titular", "la portada", "anunciar", "desmentir", "advertir", "reclamar", "dimitir", "el comunicado"]
+            grammar:
+              - pattern: "El Gobierno desmiente los rumores de dimisión."
+              - pattern: "Detenido un hombre por el robo de un cuadro."
+              - pattern: "La ministra habría ocultado información, según fuentes cercanas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
+          - id: bias-spin
+            title: Bias & Spin
+            description: Spot bias, loaded language and the rumour conditional.
+            vocabulary: ["el sesgo", "tendencioso", "manipular", "sacar de contexto", "el sensacionalismo", "la línea editorial", "imparcial", "la desinformación"]
+            grammar:
+              - pattern: "El artículo saca de contexto las palabras del alcalde."
+              - pattern: "Según el diario, el acusado habría huido al extranjero."
+              - pattern: "Es un medio bastante tendencioso."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: social-media-privacy
+            title: Social Media & Privacy
+            description: Discuss online life, data and privacy.
+            vocabulary: ["las redes sociales", "la privacidad", "los datos personales", "hacerse viral", "el algoritmo", "el ciberacoso", "la huella digital", "compartir"]
+            grammar:
+              - pattern: "Ojalá la gente pensara más antes de compartir algo."
+              - pattern: "Las plataformas deberían garantizar que nuestros datos estén protegidos."
+              - pattern: "El vídeo se hizo viral en cuestión de horas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: assessing-sources
+            title: Assessing Sources
+            description: Judge how reliable information is and express doubt.
+            vocabulary: ["la fuente", "fiable", "contrastar", "verificar", "el bulo", "de primera mano", "dudo que", "no está claro que"]
+            grammar:
+              - pattern: "Dudo que esa noticia sea cierta."
+              - pattern: "Habría que contrastar la información con otras fuentes."
+              - pattern: "No está claro que los datos procedan de un estudio serio."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: debunking_a_viral_story
+                goal: Question a friend's viral story and explain how to check whether it is true.
+
+      - id: science-tech-ethics
+        title: Science, Technology & Ethics
+        description: Discuss research, technology and the ethical questions they raise.
+        icon: 🔬
+        steps:
+          - id: research-methods
+            title: Research & Methods
+            description: Describe studies, methods and findings.
+            vocabulary: ["la hipótesis", "la muestra", "el ensayo", "los resultados", "llevar a cabo", "demostrar", "el hallazgo", "la metodología"]
+            grammar:
+              - pattern: "El estudio se llevó a cabo con una muestra de 500 personas."
+              - pattern: "Los resultados parecen confirmar la hipótesis."
+              - pattern: "Se ha demostrado que el fármaco es eficaz."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: ai-automation
+            title: AI & Automation
+            description: Talk about artificial intelligence and its impact on work.
+            vocabulary: ["la inteligencia artificial", "la automatización", "el puesto de trabajo", "sustituir", "el aprendizaje automático", "los datos", "la herramienta", "a largo plazo"]
+            grammar:
+              - pattern: "Es probable que la automatización sustituya muchos empleos."
+              - pattern: "A no ser que nos adaptemos, nos quedaremos atrás."
+              - pattern: "La inteligencia artificial está transformando la manera en que trabajamos."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: ethical-dilemmas
+            title: Ethical Dilemmas
+            description: Weigh hypotheses with mixed conditionals.
+            vocabulary: ["el dilema", "la ética", "lícito", "justificar", "los límites", "la responsabilidad", "a costa de", "el bien común"]
+            grammar:
+              - pattern: "Si hubieran regulado antes, ahora no tendríamos este problema."
+              - pattern: "¿Es lícito avanzar a costa de la privacidad?"
+              - pattern: "Nada justifica que se pongan vidas en peligro."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: debating-innovation
+            title: Debating Innovation
+            description: Argue for and against new technologies.
+            vocabulary: ["la innovación", "el avance", "los riesgos", "las ventajas", "a favor de", "en contra de", "el progreso", "poner en duda"]
+            grammar:
+              - pattern: "No pongo en duda el avance, sino el precio que pagamos por él."
+              - pattern: "Estoy a favor siempre que haya un control adecuado."
+              - pattern: "Lo preocupante es que nadie sepa cómo funciona."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+              - type: dialogue
+                scenario: tech_ethics_debate
+                goal: Argue for or against a new technology and respond to your partner's objections.
+
+      - id: society-politics
+        title: Society & Politics
+        description: Discuss social issues, the environment and how societies are governed.
+        icon: 🏛️
+        steps:
+          - id: social-inequality
+            title: Social Inequality
+            description: Talk about poverty, opportunity and inequality.
+            vocabulary: ["la desigualdad", "la brecha", "la pobreza", "la exclusión social", "la igualdad de oportunidades", "los recursos", "agravar", "paliar"]
+            grammar:
+              - pattern: "La brecha salarial sigue siendo un problema grave."
+              - pattern: "Es imprescindible que se palien los efectos de la crisis."
+              - pattern: "Cuanto mayor es la desigualdad, menor es la cohesión social."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: climate-sustainability
+            title: Climate & Sustainability
+            description: Discuss climate change and sustainable solutions.
+            vocabulary: ["el cambio climático", "las emisiones", "la sostenibilidad", "las energías renovables", "el calentamiento global", "frenar", "la huella de carbono", "a medio plazo"]
+            grammar:
+              - pattern: "De no reducir las emisiones, las consecuencias serán irreversibles."
+              - pattern: "Urge que se tomen medidas a medio plazo."
+              - pattern: "Las energías renovables van ganando terreno."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: politics-governance
+            title: Politics & Governance
+            description: Talk about elections, parties and government decisions.
+            vocabulary: ["el Gobierno", "la oposición", "las elecciones", "el escaño", "la coalición", "aprobar una ley", "el electorado", "la legislatura"]
+            grammar:
+              - pattern: "La ley fue aprobada por mayoría absoluta."
+              - pattern: "Se espera que el Gobierno anuncie nuevas medidas."
+              - pattern: "Si se hubiera formado una coalición, la legislatura habría sido más estable."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: community-action
+            title: Community Action
+            description: Organise and argue for local initiatives.
+            vocabulary: ["el vecindario", "la asociación", "el voluntariado", "movilizarse", "recoger firmas", "reivindicar", "la iniciativa", "implicarse"]
+            grammar:
+              - pattern: "Hace falta que más vecinos se impliquen."
+              - pattern: "Hemos recogido más de mil firmas para salvar el parque."
+              - pattern: "Si nos movilizamos, conseguiremos que nos escuchen."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: neighbourhood_meeting
+                goal: Convince your neighbours to support a local initiative and agree on the next steps.
+
+      - id: idioms-colloquial
+        title: Idioms & Colloquial Spanish
+        description: Sound natural with collocations, idioms and verbs of change.
+        icon: 🗣️
+        steps:
+          - id: strong-collocations
+            title: Strong Collocations
+            description: Use natural word combinations native speakers rely on.
+            vocabulary: ["tomar una decisión", "dar un paseo", "prestar atención", "hacer caso", "correr un riesgo", "echar de menos", "poner en marcha", "sacar provecho"]
+            grammar:
+              - pattern: "No le hagas caso, siempre exagera."
+              - pattern: "No quiero correr ningún riesgo innecesario."
+              - pattern: "Hay que sacar provecho de esta oportunidad."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: idioms
+            title: Idioms
+            description: Understand and use common Spanish idioms.
+            vocabulary: ["meter la pata", "estar en las nubes", "costar un ojo de la cara", "tomar el pelo", "no tener pelos en la lengua", "ser pan comido", "estar hasta las narices", "irse por las ramas"]
+            grammar:
+              - pattern: "Metí la pata al mencionar a su ex."
+              - pattern: "Ese piso cuesta un ojo de la cara."
+              - pattern: "Deja de irte por las ramas y ve al grano."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: verbs-of-change
+            title: Verbs of Change
+            description: Choose between ponerse, volverse, quedarse, hacerse and convertirse en.
+            vocabulary: [ponerse, volverse, quedarse, hacerse, "convertirse en", "llegar a ser", "ponerse rojo", "quedarse sin palabras"]
+            grammar:
+              - pattern: "Se puso nerviosa antes del examen."
+              - pattern: "Con los años se ha vuelto muy desconfiado."
+              - pattern: "Se hizo médico y luego se convirtió en director del hospital."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: storytelling-idioms
+            title: Telling a Story
+            description: Tell an anecdote lively with idioms and colloquial fillers.
+            vocabulary: ["resulta que", "total, que", "y va y", "de buenas a primeras", "para colmo", "en un abrir y cerrar de ojos", "quedarse de piedra", "al final"]
+            grammar:
+              - pattern: "Resulta que el vuelo se había cancelado."
+              - pattern: "Y para colmo, se puso a llover."
+              - pattern: "Total, que me quedé de piedra."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: telling_a_travel_mishap
+                goal: Tell a friend about a disastrous trip in a lively way, using idioms and storytelling phrases.
+
+      - id: argument-academic
+        title: Argument & Academic Writing
+        description: Build, support and present a well-structured argument.
+        icon: 🎓
+        steps:
+          - id: structuring-essay
+            title: Structuring an Essay
+            description: Introduce, develop and conclude an essay with formal connectors.
+            vocabulary: ["en primer lugar", "en segundo lugar", "por otra parte", "asimismo", "en definitiva", "a modo de conclusión", "el planteamiento", "abordar"]
+            grammar:
+              - pattern: "En este ensayo se abordará la cuestión de la vivienda."
+              - pattern: "Asimismo, conviene tener en cuenta el factor económico."
+              - pattern: "En definitiva, las medidas resultan insuficientes."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: evidence-citation
+            title: Evidence & Citation
+            description: Support claims with data and report what others say.
+            vocabulary: ["según", "de acuerdo con", "tal y como señala", "los datos", "las cifras", "respaldar", "afirmar", "sostener"]
+            grammar:
+              - pattern: "Tal y como señala el autor, el problema es estructural."
+              - pattern: "Según las cifras oficiales, el paro ha descendido."
+              - pattern: "Varios expertos sostienen que la medida no será eficaz."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: counterarguments
+            title: Counterarguments
+            description: Anticipate objections and refute them.
+            vocabulary: ["se podría objetar que", "cabe argumentar", "refutar", "no es menos cierto que", "ahora bien", "lejos de", "en realidad", "carecer de fundamento"]
+            grammar:
+              - pattern: "Se podría objetar que la medida es costosa; ahora bien, a largo plazo resulta rentable."
+              - pattern: "Lejos de solucionar el problema, lo ha agravado."
+              - pattern: "Este argumento carece de fundamento."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: presenting-case
+            title: Presenting a Case
+            description: Present an argument aloud clearly and persuasively.
+            vocabulary: ["me gustaría exponer", "como pueden ver", "quisiera subrayar", "permítanme", "en otras palabras", "para terminar", "agradezco su atención", "el turno de preguntas"]
+            grammar:
+              - pattern: "Permítanme que les explique por qué esta propuesta es necesaria."
+              - pattern: "Quisiera subrayar un aspecto fundamental."
+              - pattern: "Para terminar, les agradezco su atención."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak }
+              - type: dialogue
+                scenario: defending_a_proposal
+                goal: Present your proposal to a committee and answer their critical questions convincingly.
+
+    checkpoint:
+      title: C1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  C2:
+    title: Proficiency
+    description: >
+      Understand with ease virtually everything heard or read, summarise and reconstruct arguments from different sources, and express yourself spontaneously, fluently and precisely, distinguishing finer shades of meaning even in the most complex situations.
+
+    units:
+      - id: register-nuance
+        title: Register & Nuance
+        description: Choose the exact register and shade of meaning for every speaker and situation.
+        icon: 🎚️
+        steps:
+          - id: tu-usted-vos
+            title: Tú, Usted, Vos
+            description: Handle forms of address, voseo and shifts in formality.
+            vocabulary: [tutear, "tratar de usted", vosear, "el voseo", "el ustedeo", "romper el hielo", "guardar las formas", "ponerse estirado"]
+            grammar:
+              - pattern: "¿Nos tuteamos o prefiere que le siga tratando de usted?"
+              - pattern: "Vos sabés perfectamente lo que quiero decir."
+              - pattern: "En Colombia hay quien le dice usted hasta a su perro."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: connotation
+            title: Connotation & Shades of Meaning
+            description: Tell near-synonyms apart by their connotation and register.
+            vocabulary: [delgado, flaco, esbelto, escuálido, tacaño, ahorrador, terco, perseverante, "un tanto", "más bien"]
+            grammar:
+              - pattern: "No es tacaño, es más bien ahorrador."
+              - pattern: "Llamarlo terco sería injusto; diría que es perseverante."
+              - pattern: "Esbelto suena a elogio; escuálido, a preocupación."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank }
+          - id: euphemism
+            title: Euphemism & Understatement
+            description: Soften bad news with euphemism, litotes and mitigation.
+            vocabulary: ["pasar a mejor vida", "faltar a la verdad", "ajuste de plantilla", "persona mayor", "no está nada mal", "dejar que desear", "entrado en carnes", "invidente"]
+            grammar:
+              - pattern: "Su abuelo pasó a mejor vida el invierno pasado."
+              - pattern: "El ministro faltó a la verdad en su comparecencia."
+              - pattern: "El servicio dejó bastante que desear, por decirlo suavemente."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
+          - id: regional-varieties
+            title: Regional Varieties
+            description: Recognise varieties from Spain, Mexico, the Río de la Plata and the Caribbean and adjust your tone.
+            vocabulary: [vale, guay, chido, "¿mande?", che, boludo, chévere, guagua, "el seseo", "el yeísmo"]
+            grammar:
+              - pattern: "En Madrid es guay, en México es chido y en Caracas es chévere."
+              - pattern: "Che, ¿vos venís mañana o no?"
+              - pattern: "En Cuba la guagua es el autobús, pero en Chile es un bebé."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+              - type: dialogue
+                scenario: regional_tone_adjustment
+                goal: Talk with speakers from different countries and adapt your vocabulary and tone to each one.
+
+      - id: modality-stance
+        title: Modality & Stance
+        description: Express obligation, probability and your own stance with precision.
+        icon: ⚖️
+        steps:
+          - id: deber-modality
+            title: Deber vs Deber De
+            description: Distinguish obligation from conjecture and other modal nuances.
+            vocabulary: [deber, "deber de", "haber de", "tener que", "hay que", "estar obligado a", "cabe suponer", "no queda otra"]
+            grammar:
+              - pattern: "Debes llegar puntual; el tribunal no espera."
+              - pattern: "Deben de ser las diez, porque ya ha cerrado la panadería."
+              - pattern: "Has de saber que aquí nadie regala nada."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank }
+          - id: stance-adverbials
+            title: Stance Adverbials
+            description: Signal your stance with adverbs and set phrases.
+            vocabulary: [evidentemente, "al parecer", "a todas luces", "por lo visto", "a decir verdad", "sin lugar a dudas", supuestamente, "dicho sea de paso"]
+            grammar:
+              - pattern: "A todas luces, la reforma ha sido un fracaso."
+              - pattern: "Por lo visto, el alcalde no piensa dimitir."
+              - pattern: "A decir verdad, nunca me convenció del todo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: certainty-doubt
+            title: Certainty & Doubt
+            description: Grade certainty with the indicative, the subjunctive and hedging.
+            vocabulary: ["a lo mejor", quizá, "es posible que", "no cabe duda de que", "me consta que", "dudo mucho que", "lo más probable es que", "vete a saber"]
+            grammar:
+              - pattern: "Me consta que lo sabía desde el principio."
+              - pattern: "Dudo mucho que acepten sin rechistar."
+              - pattern: "Quizá tenga razón, quizá no; vete a saber."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: attitude-conversation
+            title: Attitude in Conversation
+            description: Show agreement, scepticism and reservations without sounding blunt.
+            vocabulary: ["ni de broma", "ya te digo", "no te creas", "hasta cierto punto", "eso habría que verlo", "dónde va a parar", "no es por nada, pero", "ojo con"]
+            grammar:
+              - pattern: "Hasta cierto punto tienes razón, pero eso habría que verlo."
+              - pattern: "No es por nada, pero ya te lo advertí."
+              - pattern: "¿Mejor que la de mi madre? ¡Dónde va a parar!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: sceptical_colleague
+                goal: Discuss a risky proposal with a colleague, showing scepticism and partial agreement tactfully.
+
+      - id: figurative-language
+        title: Figurative Language
+        description: Understand and use metaphor, opaque idioms and proverbs like a native speaker.
+        icon: 🎭
+        steps:
+          - id: metaphor-simile
+            title: Metaphor & Simile
+            description: Build and decode comparisons and everyday metaphors.
+            vocabulary: ["más terco que una mula", "como pez en el agua", "como agua de mayo", "más sordo que una tapia", "un mar de dudas", "la flor de la vida", "el ocaso", "una lluvia de críticas"]
+            grammar:
+              - pattern: "En la cocina se mueve como pez en el agua."
+              - pattern: "Aquel dinero nos vino como agua de mayo."
+              - pattern: "Tras la rueda de prensa cayó sobre él una lluvia de críticas."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: opaque-idioms
+            title: Opaque Idioms
+            description: Master idioms whose meaning cannot be guessed from their words.
+            vocabulary: ["tomar el pelo", "estar en la luna de Valencia", "irse por los cerros de Úbeda", "a buenas horas, mangas verdes", "ser la leche", "dar calabazas", "tirar la casa por la ventana", "estar hasta las narices"]
+            grammar:
+              - pattern: "No me tomes el pelo, que no estoy para bromas."
+              - pattern: "Le pregunté por el dinero y se fue por los cerros de Úbeda."
+              - pattern: "¿Ahora me lo dices? ¡A buenas horas, mangas verdes!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: refranes
+            title: Refranes
+            description: Recognise, complete and apply traditional Spanish proverbs.
+            vocabulary: ["a caballo regalado no le mires el diente", "en casa del herrero, cuchillo de palo", "no hay mal que por bien no venga", "más vale pájaro en mano que ciento volando", "a quien madruga, Dios le ayuda", "dime con quién andas y te diré quién eres", "camarón que se duerme se lo lleva la corriente", "el refranero"]
+            grammar:
+              - pattern: "Como dice el refrán, no hay mal que por bien no venga."
+              - pattern: "Es fontanero y tiene el grifo roto: en casa del herrero, cuchillo de palo."
+              - pattern: "Acepta la oferta, que más vale pájaro en mano que ciento volando."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: figurative-narration
+            title: Narrating Figuratively
+            description: Tell a story enriched with images, idioms and proverbs.
+            vocabulary: ["érase una vez", "de buenas a primeras", "en un abrir y cerrar de ojos", "la gota que colmó el vaso", "a trancas y barrancas", "con el corazón en un puño", "a la postre", "quedarse de piedra"]
+            grammar:
+              - pattern: "Aquel comentario fue la gota que colmó el vaso."
+              - pattern: "Terminamos la carrera a trancas y barrancas."
+              - pattern: "Esperamos la noticia con el corazón en un puño."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: anecdote_at_dinner
+                goal: Tell a friend a dramatic personal anecdote using vivid idioms and at least one proverb.
+
+      - id: rhetoric-persuasion
+        title: Rhetoric & Persuasion
+        description: Persuade with rhetorical devices, structure and carefully chosen words.
+        icon: 🎤
+        steps:
+          - id: rhetorical-devices
+            title: Rhetorical Devices
+            description: Identify and use anaphora, antithesis, rhetorical questions and hyperbole.
+            vocabulary: ["la anáfora", "la antítesis", "la pregunta retórica", "la hipérbole", "el paralelismo", "la gradación", "la ironía", "el clímax"]
+            grammar:
+              - pattern: "¿Acaso no merecemos todos una segunda oportunidad?"
+              - pattern: "Hemos venido a escuchar, hemos venido a aprender, hemos venido a cambiar."
+              - pattern: "Es tan poco lo que pedimos y tanto lo que está en juego."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: persuasive-structures
+            title: Persuasive Structures
+            description: Concede, counter-argue and build towards a conclusion.
+            vocabulary: ["si bien", "aun cuando", "no obstante", "ahora bien", "cabe objetar que", "es más", "en definitiva", "por si fuera poco"]
+            grammar:
+              - pattern: "Si bien el plan es ambicioso, no es en absoluto inviable."
+              - pattern: "Ahora bien, cabe objetar que los costes se han disparado."
+              - pattern: "Es caro, es lento y, por si fuera poco, contamina."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: loaded-language
+            title: Emotive & Loaded Language
+            description: Detect bias and emotional charge in the media and political discourse.
+            vocabulary: [régimen, gobierno, "recorte", "ajuste", "okupa", "activista", "desaceleración", "crisis", "daños colaterales", "polémico"]
+            grammar:
+              - pattern: "Unos lo llaman recorte; otros, ajuste necesario."
+              - pattern: "El titular habla de régimen, no de gobierno, y eso no es casual."
+              - pattern: "Decir desaceleración en vez de crisis es una forma de maquillar los datos."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: speech-delivery
+            title: Writing & Delivering a Speech
+            description: Open, structure and close a speech that moves an audience.
+            vocabulary: ["señoras y señores", "permítanme", "quisiera empezar", "no me cansaré de repetir", "para terminar", "muchas gracias por su atención", "el discurso", "la audiencia"]
+            grammar:
+              - pattern: "Permítanme empezar con una anécdota."
+              - pattern: "No me cansaré de repetir que la educación es la clave."
+              - pattern: "Para terminar, quisiera dar las gracias a quienes lo han hecho posible."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak, count: 2 }
+              - type: dialogue
+                scenario: wedding_toast_speech
+                goal: Deliver a short persuasive speech and respond to questions and objections from the audience.
+
+      - id: humour-irony
+        title: Humour, Irony & Wordplay
+        description: Catch and produce irony, sarcasm, puns and culture-specific humour.
+        icon: 😏
+        steps:
+          - id: irony-sarcasm
+            title: Irony & Sarcasm
+            description: Spot ironic intonation and sarcastic formulas.
+            vocabulary: ["¡qué bien!", "¡lo que faltaba!", "¡hombre, claro!", "¡vaya por Dios!", "no, si encima", "menudo", "¡qué gracioso!", "con retintín"]
+            grammar:
+              - pattern: "¡Lo que faltaba! Ahora se ha ido la luz."
+              - pattern: "No, si encima tendré que darte las gracias."
+              - pattern: "¡Menudo día llevo! Y aún son las diez."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: puns-double-meanings
+            title: Puns & Double Meanings
+            description: Understand puns based on homophones, polysemy and doble sentido.
+            vocabulary: ["el doble sentido", "el juego de palabras", "el calambur", "el chiste", "pillar el chiste", "la polisemia", "el albur", "la ocurrencia"]
+            grammar:
+              - pattern: "—¿Qué le dice una iguana a su hermana gemela? —Somos iguanitas."
+              - pattern: "Tardé un rato en pillar el chiste."
+              - pattern: "En México el albur es un arte de doble sentido."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+          - id: humour-across-world
+            title: Humour Across the Hispanic World
+            description: Compare humour traditions, from Spanish deadpan to Argentine and Caribbean jokes.
+            vocabulary: ["el humor negro", "la retranca", "la guasa", "la chispa", "el choteo", "el cachondeo", "tener salero", "el humorista"]
+            grammar:
+              - pattern: "Los gallegos son famosos por su retranca."
+              - pattern: "En Cuba el choteo sirve para desdramatizarlo todo."
+              - pattern: "Tiene mucha chispa contando chistes."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+          - id: funny-story
+            title: Telling a Funny Story
+            description: Time a joke, build suspense and deliver the punchline.
+            vocabulary: ["resulta que", "total, que", "y va y me dice", "te vas a reír", "partirse de risa", "el remate", "quedarse con alguien", "meter la pata"]
+            grammar:
+              - pattern: "Resulta que iba yo tan tranquilo y va y me dice..."
+              - pattern: "Total, que metí la pata hasta el fondo."
+              - pattern: "Nos partimos de risa cuando nos enteramos."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: speak }
+              - type: dialogue
+                scenario: embarrassing_story_bar
+                goal: Tell an embarrassing funny story with good timing and react to your friend's teasing.
+
+      - id: academic-writing
+        title: Academic & Formal Writing
+        description: Write precise, cohesive academic texts and formal correspondence.
+        icon: 🎓
+        steps:
+          - id: academic-register
+            title: Academic Register
+            description: Use impersonal constructions, nominalisation and hedging typical of academic Spanish.
+            vocabulary: ["cabe señalar", "se constata", "el presente trabajo", "a tenor de", "en lo que respecta a", "la hipótesis", "el planteamiento", "se desprende de"]
+            grammar:
+              - pattern: "Cabe señalar que los datos son provisionales."
+              - pattern: "De los resultados se desprende una clara correlación."
+              - pattern: "El presente trabajo pretende arrojar luz sobre la cuestión."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: cohesion
+            title: Cohesion in Long Texts
+            description: Link paragraphs with connectors, anaphora and textual organisers.
+            vocabulary: ["en primer lugar", "por otra parte", "dicho esto", "en este sentido", "a este respecto", "lo anterior", "el mencionado", "en suma"]
+            grammar:
+              - pattern: "Dicho esto, conviene matizar algunos aspectos."
+              - pattern: "En este sentido, el mencionado estudio resulta revelador."
+              - pattern: "En suma, lo anterior confirma nuestra hipótesis inicial."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+          - id: summarising-paraphrasing
+            title: Summarising & Paraphrasing
+            description: Condense and reformulate sources without copying them.
+            vocabulary: ["a grandes rasgos", "en síntesis", "según el autor", "el autor sostiene que", "dicho de otro modo", "en otras palabras", "parafrasear", "la cita"]
+            grammar:
+              - pattern: "A grandes rasgos, el autor sostiene que la memoria es selectiva."
+              - pattern: "Dicho de otro modo, recordamos lo que nos conviene."
+              - pattern: "Según la autora, la crisis no fue tanto económica como moral."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete }
+          - id: formal-correspondence
+            title: Formal Correspondence
+            description: Write formal letters and emails with the right openings and closings.
+            vocabulary: ["Estimado señor", "Estimada señora", "Muy señor mío", "Por medio de la presente", "Le saluda atentamente", "Quedo a la espera de", "Sin otro particular", "Adjunto le remito"]
+            grammar:
+              - pattern: "Por medio de la presente le comunico mi decisión de renunciar al cargo."
+              - pattern: "Sin otro particular, le saluda atentamente."
+              - pattern: "Quedo a la espera de sus noticias."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank }
+
+      - id: literature-style
+        title: Literature & Style
+        description: Read literary Spanish closely and discuss voice, tone and style.
+        icon: 📚
+        steps:
+          - id: literary-vocabulary
+            title: Literary Vocabulary
+            description: Learn words of literary register and the vocabulary of literary analysis.
+            vocabulary: [crepúsculo, sosiego, efímero, inefable, umbral, "el narrador", "el desenlace", "el realismo mágico", "el personaje", "la trama"]
+            grammar:
+              - pattern: "El crepúsculo teñía de cobre los tejados."
+              - pattern: "Fue una dicha efímera, casi inefable."
+              - pattern: "El desenlace de la novela deja al lector en el umbral de la duda."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: translate }
+          - id: narrative-voice
+            title: Narrative Voice & Tone
+            description: Recognise narrative voice and archaic forms such as the futuro de subjuntivo and pretérito anterior.
+            vocabulary: ["el narrador omnisciente", "el monólogo interior", "el estilo indirecto libre", "el futuro de subjuntivo", "el pretérito anterior", "hubiere", "fuere", "hubo terminado"]
+            grammar:
+              - pattern: "Apenas hubo terminado de hablar, se levantó y salió."
+              - pattern: "El que infringiere esta norma será sancionado."
+              - pattern: "Adonde fueres, haz lo que vieres."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: stylistic-variation
+            title: Stylistic Variation
+            description: Rewrite the same content in different styles and registers.
+            vocabulary: ["la prosa", "el estilo llano", "barroco", "conciso", "recargado", "coloquial", "lacónico", "el hipérbaton"]
+            grammar:
+              - pattern: "Del salón en el ángulo oscuro, silenciosa y cubierta de polvo, veíase el arpa."
+              - pattern: "Lo bueno, si breve, dos veces bueno."
+              - pattern: "Su prosa es lacónica, casi telegráfica."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: discussing-book
+            title: Discussing a Book
+            description: Argue an interpretation of a novel and recommend or pan it.
+            vocabulary: ["engancharse", "el ritmo narrativo", "flojo", "redondo", "inverosímil", "la obra maestra", "dejar huella", "leer entre líneas"]
+            grammar:
+              - pattern: "Me enganchó desde la primera página."
+              - pattern: "El final me pareció algo inverosímil, la verdad."
+              - pattern: "Hay que leer entre líneas para entender al protagonista."
+            activities:
+              - { type: learn }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: book_club_debate
+                goal: Defend your interpretation of a novel at a book club and respond to a member who disliked it.
+
+      - id: ideas-philosophy
+        title: Ideas & Philosophy
+        description: Discuss abstract ideas, reason rigorously and explore hypotheticals.
+        icon: 🤔
+        steps:
+          - id: abstract-concepts
+            title: Abstract Concepts
+            description: Talk about abstract notions such as freedom, justice and identity.
+            vocabulary: ["la libertad", "la justicia", "el albedrío", "la conciencia", "la ética", "lo absoluto", "lo relativo", "el ser"]
+            grammar:
+              - pattern: "Lo justo no siempre coincide con lo legal."
+              - pattern: "¿Existe de verdad el libre albedrío?"
+              - pattern: "Lo relativo de la verdad no la hace menos necesaria."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: logic-fallacies
+            title: Logic & Fallacies
+            description: Name and rebut common fallacies in arguments.
+            vocabulary: ["la falacia", "el hombre de paja", "ad hominem", "la falsa dicotomía", "la pendiente resbaladiza", "la premisa", "la conclusión", "no se sigue que"]
+            grammar:
+              - pattern: "De ahí no se sigue que todos sean culpables."
+              - pattern: "Eso es un ataque ad hominem, no un argumento."
+              - pattern: "Me planteas una falsa dicotomía: hay más opciones."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete }
+          - id: thought-experiments
+            title: Thought Experiments
+            description: Explore hypotheticals with complex conditional and concessive clauses.
+            vocabulary: ["supongamos que", "imaginemos que", "de ser así", "en el supuesto de que", "aun suponiendo que", "a no ser que", "el dilema", "el experimento mental"]
+            grammar:
+              - pattern: "Supongamos que pudieras borrar un recuerdo: ¿lo harías?"
+              - pattern: "De haberlo sabido, habría actuado de otro modo."
+              - pattern: "Aun suponiendo que tuvieras razón, el dilema seguiría en pie."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: listen_type }
+          - id: philosophical-discussion
+            title: A Philosophical Discussion
+            description: Sustain a reasoned debate on a big question.
+            vocabulary: ["a mi juicio", "en el fondo", "lo que subyace", "matizar", "rebatir", "en última instancia", "la paradoja", "pienso, luego existo"]
+            grammar:
+              - pattern: "A mi juicio, en el fondo se trata de una cuestión ética."
+              - pattern: "Permíteme que matice tu argumento."
+              - pattern: "En última instancia, lo que subyace es el miedo a la muerte."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete }
+              - type: dialogue
+                scenario: free_will_debate
+                goal: Debate whether free will exists, rebutting arguments and pointing out fallacies.
+
+      - id: culture-identity
+        title: Culture, Language & Identity
+        description: Reflect on language change, identity and communication across cultures.
+        icon: 🌎
+        steps:
+          - id: language-change
+            title: Language Change & Spanglish
+            description: Discuss anglicisms, Spanglish, language norms and the RAE.
+            vocabulary: ["el anglicismo", "el préstamo", "el Spanglish", "la RAE", "la norma", "el purismo", "el extranjerismo", "el lenguaje inclusivo"]
+            grammar:
+              - pattern: "Voy a parquear la troca y te llamo pa'trás."
+              - pattern: "La RAE desaconseja el uso innecesario de extranjerismos."
+              - pattern: "La lengua la hacen los hablantes, no las academias."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: identity-belonging
+            title: Identity & Belonging
+            description: Talk about roots, migration and multiple identities.
+            vocabulary: ["las raíces", "el arraigo", "el desarraigo", "la diáspora", "sentirse de", "ni de aquí ni de allá", "la morriña", "la añoranza"]
+            grammar:
+              - pattern: "Me siento tan de aquí como de allá."
+              - pattern: "La morriña se me pasa en cuanto huelo el pulpo a feira."
+              - pattern: "Crecer entre dos culturas me hizo sentir ni de aquí ni de allá."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: cross-cultural
+            title: Cross-Cultural Communication
+            description: Navigate misunderstandings, directness and politeness across cultures.
+            vocabulary: ["el malentendido", "meter la pata", "la sobremesa", "la impuntualidad", "la hora latina", "el choque cultural", "ser directo", "andarse con rodeos"]
+            grammar:
+              - pattern: "Aquí la sobremesa puede durar más que la comida."
+              - pattern: "Sin andarse con rodeos, le dijo que no."
+              - pattern: "Lo que para unos es franqueza, para otros es mala educación."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+          - id: tradition-modernity
+            title: Tradition & Modernity
+            description: Debate how traditions survive, change or disappear.
+            vocabulary: ["la tradición", "el folclore", "las fiestas patronales", "el Día de Muertos", "la tauromaquia", "renovarse o morir", "a la antigua", "la globalización"]
+            grammar:
+              - pattern: "Renovarse o morir, dicen, pero no a cualquier precio."
+              - pattern: "El Día de Muertos se ha convertido en un fenómeno global."
+              - pattern: "Hay tradiciones que conviene conservar y otras que no."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: tradition_debate
+                goal: Discuss with a local whether a controversial tradition should be preserved, adapted or abandoned.
+
+      - id: mastery-mediation
+        title: Mastery & Mediation
+        description: Mediate between people and texts, and stay in control of any conversation.
+        icon: 🏆
+        steps:
+          - id: interpreting-reformulating
+            title: Interpreting & Reformulating
+            description: Relay and reformulate what others say for a different audience.
+            vocabulary: ["lo que quiere decir es", "si lo he entendido bien", "en pocas palabras", "reformular", "traducir a lenguaje llano", "matizar", "el intérprete", "la mediación"]
+            grammar:
+              - pattern: "Si lo he entendido bien, lo que quiere decir es que no hay presupuesto."
+              - pattern: "En pocas palabras, el contrato les obliga a pagar por adelantado."
+              - pattern: "¿Me permite que lo traduzca a lenguaje llano?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete }
+          - id: difficult-conversations
+            title: Difficult Conversations
+            description: Give criticism, deliver bad news and de-escalate conflict.
+            vocabulary: ["no quisiera que me malinterpretaras", "entiendo tu postura", "pongámonos en su lugar", "limar asperezas", "echar balones fuera", "dar la cara", "a toro pasado", "lo cortés no quita lo valiente"]
+            grammar:
+              - pattern: "No quisiera que me malinterpretaras, pero esto no puede seguir así."
+              - pattern: "Entiendo tu postura; aun así, alguien tiene que dar la cara."
+              - pattern: "Lo cortés no quita lo valiente."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: speak }
+          - id: thinking-on-feet
+            title: Thinking on Your Feet
+            description: Buy time, recover from slips and improvise answers smoothly.
+            vocabulary: ["buena pregunta", "a ver cómo lo digo", "por así decirlo", "mejor dicho", "dicho sea de paso", "salir del paso", "improvisar", "quedarse en blanco"]
+            grammar:
+              - pattern: "Buena pregunta; a ver cómo lo digo."
+              - pattern: "Fue un error, mejor dicho, una decisión precipitada."
+              - pattern: "Me quedé en blanco, pero conseguí salir del paso."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak }
+          - id: chairing-moderating
+            title: Chairing & Moderating
+            description: Open, steer and close a meeting or debate fairly.
+            vocabulary: ["damos comienzo a", "tiene la palabra", "le ruego que sea breve", "ceñirse al tema", "el orden del día", "si me permiten", "a modo de conclusión", "se levanta la sesión"]
+            grammar:
+              - pattern: "Tiene la palabra la señora Ruiz; le ruego que sea breve."
+              - pattern: "Ciñámonos al orden del día, si me permiten."
+              - pattern: "A modo de conclusión, se levanta la sesión."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: moderating_heated_debate
+                goal: Moderate a heated panel debate, keeping speakers on topic and summarising the conclusions.
+
+    checkpoint:
+      title: C2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }

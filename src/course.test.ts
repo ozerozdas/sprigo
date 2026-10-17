@@ -59,14 +59,19 @@ test("broken YAML fails with file, path and reason", () => {
   bad(en.replace("vocabulary: [one,", "vocab: [one,"), /vocab/);
 });
 
-// A1-only courses (es, fr, de, tr): same shape as en.yml's A1, so the path, chests and checkpoint work unchanged.
-for (const iso of ["es", "fr", "de", "tr"]) test(`courses/${iso}.yml is a valid A1 course: 10 units × 4 steps and a checkpoint`, () => {
+// Smaller courses: every level has the same shape as en.yml's A1, so the path, chests and checkpoint work unchanged.
+// Add a level here when a course grows (#4–#6: fr, de, tr A2).
+const LEVELS: Record<string, string[]> = { es: ["A1", "A2", "B1", "B2", "C1", "C2"], fr: ["A1"], de: ["A1"], tr: ["A1"] };
+for (const [iso, levels] of Object.entries(LEVELS)) test(`courses/${iso}.yml has ${levels.join(", ")}: 10 units × 4 steps and a checkpoint each`, () => {
   const c = parseCourse(readFileSync(new URL(`../courses/${iso}.yml`, import.meta.url), "utf8"), `${iso}.yml`);
   assert.equal(c.iso, iso);
-  assert.equal(levelRange(c), "A1");
-  const a1 = c.levels.A1!;
-  assert.deepEqual(a1.units.map((u) => u.steps.length), Array(10).fill(4));
-  assert.ok(a1.checkpoint && a1.units.every((u) => u.steps.every((st) => st.vocabulary.length + st.grammar.length > 0)));
+  assert.deepEqual(Object.keys(c.levels), levels);
+  assert.equal(levelRange(c), levels.length > 1 ? `${levels[0]}–${levels.at(-1)}` : levels[0]);
+  for (const lv of levels) {
+    const level = c.levels[lv as keyof typeof c.levels]!;
+    assert.deepEqual(level.units.map((u) => u.steps.length), Array(10).fill(4), lv);
+    assert.ok(level.checkpoint && level.units.every((u) => u.steps.every((st) => st.vocabulary.length + st.grammar.length > 0)), lv);
+  }
 });
 
 test("level range: one level alone, several as first–last", () => {
