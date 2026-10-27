@@ -300,7 +300,7 @@
   },
   "coach": {
     "title": "Your speaking",
-    "off": "Voice analysis is off. Turn it on in Settings > Advanced to see how your speaking changes.",
+    "off": "Voice analysis is off. Turn it on in Settings > Privacy & data to see how your speaking changes.",
     "empty": "After a few spoken lessons with a tutor, you'll see your progress here.",
     "steady": "Your speaking has stayed steady over your last calls.",
     "trend": {
@@ -753,6 +753,7 @@
     "whisperSmallGood": "190 MB · more accurate, a bit slower",
     "whisperTurbo": "Best (large-v3 turbo)",
     "whisperTurboGood": "574 MB · most accurate; needs a strong computer",
+    "whisperFor": "For {{lang}}, {{name}} understands much better.",
     "whisperRemove": "Delete the {{name}} model",
     "whisperRemoveAsk": "Delete the {{name}} model? You can download it again later.",
     "whisperRemoved": "Model deleted",

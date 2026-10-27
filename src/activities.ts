@@ -91,8 +91,19 @@ export function plannedActivities(activities: { type: string; count?: number }[]
 export const lessonSchema = (acts: LessonActivity[]) =>
   z.object(Object.fromEntries(acts.map((a) => [a.key, z.array(REGISTRY[a.type]!.schema).min(1).max(a.count)])));
 
-export function toItems(acts: LessonActivity[], out: Record<string, unknown[]>): Item[] {
-  return acts.flatMap((a) => (out[a.key] ?? []).map((g) => REGISTRY[a.type]!.toItem(g)).filter((x): x is Item => !!x));
+/** `langs`: the course and native languages, whose alphabets the items may use besides Latin. */
+export function toItems(acts: LessonActivity[], out: Record<string, unknown[]>, langs: string[]): Item[] {
+  const stray = strayScript(langs);
+  return acts.flatMap((a) => (out[a.key] ?? []).filter((g) => !stray(g)).map((g) => REGISTRY[a.type]!.toItem(g)).filter((x): x is Item => !!x));
+}
+
+// Small models now and then slip a word of another alphabet into a sentence ("Tíz perccel後に", "емiatt").
+const SCRIPTS: Record<string, string[]> = { Jpan: ["Hani", "Hira", "Kana"], Kore: ["Hang", "Hani"], Hans: ["Hani"], Hant: ["Hani"] };
+/** Whether a generated item has a letter outside Latin and the alphabets of `langs`. */
+export function strayScript(langs: string[]): (g: unknown) => boolean {
+  const scripts = ["Latn", "Zyyy", "Zinh", ...langs.flatMap((l) => { const sc = new Intl.Locale(l).maximize().script ?? "Latn"; return SCRIPTS[sc] ?? [sc]; })];
+  const re = new RegExp(`[^\\P{L}${scripts.map((sc) => `\\p{Script=${sc}}`).join("")}]`, "u");
+  return (g) => re.test(JSON.stringify(g));
 }
 
 // ---- Prompts ----
@@ -132,6 +143,73 @@ export function lessonPrompt(c: LessonContext, acts: LessonActivity[], mistakes:
   ].filter((l) => l !== "").join("\n");
 }
 
+// ---- Second look: local models now and then write a broken exercise ("Örülök nek", a question with no right option) ----
+// Two checks, measured on 466 Hungarian exercises against human-grade judges: a verdict per exercise, reasoned before it is
+// given (a lesson-wide list of errors dropped as many good exercises as bad ones), and choice questions solved without the key.
+
+export const reviewSystem = "You check exercises in a language-learning app.\nRespond only with JSON matching the schema.";
+export const checkSchema = z.object({ checks: z.array(z.object({ exercise: z.int(), check: s, ok: z.boolean() })) });
+export const solveSchema = z.object({ answers: z.array(z.object({ question: z.int(), reasoning: s, right: z.array(z.int()) })) });
+export const solveSystem = (course: string) => `You are a native ${course} teacher solving exercises from a language-learning app.\nRespond only with JSON matching the schema.`;
+
+type Reviewed = Pick<LessonContext, "course" | "level" | "native"> & { step: { title: string; description?: string } };
+
+const asked = (it: { prompt: string; context: string; listen: string }) => [it.prompt, it.context, it.listen && `(audio: ${it.listen})`].filter(Boolean).join(" ");
+/** One exercise in one line, with its answer. */
+export function describeItem(it: Item): string {
+  switch (it.kind) {
+    case "learn": return `Teaches: ${it.phrase} = ${it.translation}. Note: ${it.note}`;
+    case "speak": return `Say aloud: ${it.phrase} = ${it.translation}`;
+    case "match": return `Match the pairs: ${it.pairs.map(([a, b]) => `${a} = ${b}`).join("; ")}`;
+    case "choice": return `${asked(it)} Options: ${it.options.map((o, i) => (i === it.answer ? `${o} (correct)` : o)).join(" | ")}`;
+    case "input": return `${asked(it)} Answer: ${[it.answer, ...it.accepted].join(" / ")}`;
+    case "bank": {
+      const wrong = [...it.bank];
+      for (const w of it.answer) if (wrong.includes(w)) wrong.splice(wrong.indexOf(w), 1);
+      return `Build from word tiles: ${it.prompt} Answer: ${it.answer.join(" ")} (wrong tiles: ${wrong.join(", ")})`;
+    }
+  }
+}
+
+/** `text`: the reading some questions are about, if any. */
+export function checkPrompt(c: Reviewed, items: Item[], text = "") {
+  const lang = c.course.name, native = langEn(c.native);
+  return [
+    `Step: ${c.step.title}${c.step.description ? ` — ${c.step.description}` : ""}`,
+    ...(text ? [`Some questions are about this text: ${text}`] : []),
+    `Check these exercises for a native ${native} speaker learning ${lang} at CEFR level ${c.level}, as a native ${lang} teacher would.`,
+    `Go through every exercise in order. \`check\`: one short sentence verifying its answer and its ${lang}. \`ok\`: false if it has a real error:`,
+    "- the answer marked correct is wrong, or another option also fits: check every option against the sentence and the instruction;",
+    "- the answer, a teaching card, a pair or a sentence the learner reads or hears as correct has a word that does not exist, a word ending split off as its own word, a grammar mistake or wording no native speaker would use;",
+    "- a translation, pair or grammar note is wrong;",
+    `- an instruction is not in ${native}, or the exercise makes no sense.`,
+    "Wrong options and wrong tiles are meant to be wrong: never count an exercise as wrong only because a wrong option is wrong.",
+    "An exercise that is correct is ok, even if you would word it differently.",
+    "",
+    ...items.map((it, i) => `${i + 1}. ${describeItem(it)}`),
+  ].join("\n");
+}
+
+/** The choice questions, numbered as in the lesson and without their key; "" when there are none. */
+export function solvePrompt(c: Reviewed, items: Item[], text = "") {
+  const qs = items.flatMap((it, i) => (it.kind === "choice" ? [`Question ${i + 1}: ${asked(it)}\n${it.options.map((o, k) => `  ${k + 1}) ${o}`).join("\n")}`] : []));
+  return qs.length ? [
+    ...(text ? [`Some questions are about this text: ${text}`] : []),
+    `The learner's language is ${langEn(c.native)}. For each question, check every option on its own against the question: \`reasoning\` in one short sentence, then \`right\`: the numbers of all options that are a correct answer (none, one or several).`,
+    "", ...qs,
+  ].join("\n") : "";
+}
+
+/** Indexes of the exercises the checks call wrong: a failed check, or a question whose right options are not just its key. */
+export function rejected(items: Item[], checked: z.infer<typeof checkSchema> | null, solved: z.infer<typeof solveSchema> | null): Set<number> {
+  const bad = new Set((checked?.checks ?? []).filter((x) => !x.ok).map((x) => x.exercise - 1));
+  for (const a of solved?.answers ?? []) {
+    const it = items[a.question - 1], right = new Set(a.right);
+    if (it?.kind === "choice" && (right.size !== 1 || !right.has(it.answer + 1))) bad.add(a.question - 1);
+  }
+  return bad;
+}
+
 // ---- Answer checking (DECISIONS C4: normalized string match first, AI only if that fails) ----
 
 export const normalize = (t: string) =>
@@ -153,8 +231,15 @@ export const matchesAnswer = (given: string, item: { answer: string; accepted: s
 
 /** Expected words (normalized) the transcript doesn't contain (order-free, each heard word used once). Shown as "not caught" (#33). */
 export function speechMisses(expected: string, heard: string) {
-  const got = normalize(heard).split(" ");
-  return normalize(expected).split(" ").filter(Boolean).filter((w) => { const k = got.indexOf(w); if (k >= 0) got.splice(k, 1); return k < 0; });
+  const want = normalize(expected).split(" ").filter(Boolean);
+  // Whisper sometimes writes neighbouring words as one ("jónapot" for "jó napot"): such a word counts as the words it joins.
+  const got = normalize(heard).split(" ").flatMap((h) => {
+    if (want.includes(h)) return [h];
+    for (let i = 0; i < want.length; i++) for (let j = i + 2; j <= Math.min(want.length, i + 3); j++)
+      if (want.slice(i, j).join("") === h) return want.slice(i, j);
+    return [h];
+  });
+  return want.filter((w) => { const k = got.indexOf(w); if (k >= 0) got.splice(k, 1); return k < 0; });
 }
 /** Speaking check: share of the expected words the transcript contains. */
 export function speechScore(expected: string, heard: string) {

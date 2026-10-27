@@ -297,7 +297,7 @@
   },
   "coach": {
     "title": "Konuşman",
-    "off": "Ses analizi kapalı. Konuşmanın nasıl değiştiğini görmek için Ayarlar > Gelişmiş'ten aç.",
+    "off": "Ses analizi kapalı. Konuşmanın nasıl değiştiğini görmek için Ayarlar > Gizlilik ve veri bölümünden aç.",
     "empty": "Birkaç konuşmalı dersten sonra burada ilerlemeni göreceksin.",
     "steady": "Son görüşmelerinde konuşman istikrarlı.",
     "trend": {
@@ -747,6 +747,7 @@
     "whisperSmallGood": "190 MB · daha doğru, biraz yavaş",
     "whisperTurbo": "En iyi (large-v3 turbo)",
     "whisperTurboGood": "574 MB · en doğru; güçlü bir bilgisayar ister",
+    "whisperFor": "{{lang}} için {{name}} çok daha iyi anlar.",
     "whisperRemove": "{{name}} modelini sil",
     "whisperRemoveAsk": "{{name}} modeli silinsin mi? Gerekirse yeniden indirebilirsin.",
     "whisperRemoved": "Model silindi",

@@ -300,7 +300,7 @@
   },
   "coach": {
     "title": "Dein Sprechen",
-    "off": "Die Sprachanalyse ist aus. Schalte sie unter Einstellungen > Erweitert ein, um zu sehen, wie sich dein Sprechen entwickelt.",
+    "off": "Die Sprachanalyse ist aus. Schalte sie unter Einstellungen > Datenschutz & Daten ein, um zu sehen, wie sich dein Sprechen entwickelt.",
     "empty": "Nach ein paar gesprochenen Lektionen mit einem Tutor siehst du hier deinen Fortschritt.",
     "steady": "Dein Sprechen ist in deinen letzten Gesprächen gleich geblieben.",
     "trend": {
@@ -753,6 +753,7 @@
     "whisperSmallGood": "190 MB · genauer, etwas langsamer",
     "whisperTurbo": "Am besten (large-v3 turbo)",
     "whisperTurboGood": "574 MB · am genauesten; braucht einen starken Computer",
+    "whisperFor": "Für {{lang}} versteht {{name}} viel besser.",
     "whisperRemove": "Modell {{name}} löschen",
     "whisperRemoveAsk": "Modell {{name}} löschen? Du kannst es später erneut laden.",
     "whisperRemoved": "Modell gelöscht",

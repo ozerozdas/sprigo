@@ -41,7 +41,7 @@ Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 - Implementation: `react-i18next`, one file per language in `src/locales/<iso>.json`. A new language is a new file; the language list is read from the folder.
 - Rule: no hard-coded text in components, everything goes through keys (`t('nav.learn')`). A missing key falls back to English.
 - Note: interface language ≠ native language (B1). They are picked separately in Settings.
-- **Later:** English, Turkish, German, French and Spanish.
+- **Later:** English, Turkish, German, French, Spanish and Hungarian.
 
 **B3. Where course files live**
 - Bundled with the app · a user folder · both
@@ -50,7 +50,7 @@ Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 **B4. Courses shipped in v1**
 - English A1 only · English A1–A2 · several languages
 - Decision: English A1, complete
-- **Later:** English A1–C2, plus Spanish, French, German and Turkish at A1.
+- **Later:** English, Spanish, French, German, Turkish and Hungarian, A1–C2.
 
 **B5. Activity content in YAML**
 - Only `type` (the AI writes everything) · optional content (static if present, AI otherwise) · always static
@@ -85,14 +85,15 @@ Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 **C2. Generation strategy**
 - The whole lesson in one call · one call per activity · one call, falling back to one per activity
 - Decision: one call with the fallback
+- Then a second look (lessons and the live lesson's practice): the model checks each exercise and, without the key, solves each choice question; an exercise it calls wrong, or whose right options are not just its key, is dropped. On 466 Hungarian exercises from Gemma 4 26B, graded by independent judges: wrong exercises 28.5% → 20.4%, good ones dropped 5%, 7.9 → 6.7 exercises a lesson, about 7 s more. A list of errors for the whole lesson instead dropped as many good exercises as bad ones.
 
 **C3. Caching generated content**
 - Cache (same lesson when reopened) · generate fresh every time · cache + "regenerate" button
 - Decision: cache + regenerate + generate the next lesson ahead of time
 
-**C4. Checking free-text answers (translation, listen and type)**
+**C4. Checking free-text answers (translation, listen and type, word tiles)**
 - Normalized string comparison + alternative answers · AI judgement · both
-- Decision: both (normalized match and alternatives first, the AI when they don't match)
+- Decision: both (normalized match and alternatives first, the AI when they don't match). Word tiles too: with a free word order (Hungarian, Turkish) another order is often just as right, and the model gives only one.
 
 **C5. Feedback on a wrong answer**
 - Only the correct answer · a short AI explanation of why it was wrong

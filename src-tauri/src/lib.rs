@@ -203,24 +203,40 @@ fn whisper_text(model: &std::path::Path, samples: &[f32], lang: &str) -> Result<
 
 #[cfg(test)]
 mod tests {
-    /// Needs the model: `pnpm fetch-model`, then `cargo test -- --ignored`. Speech comes from macOS `say`.
-    #[test]
-    #[ignore]
-    fn whisper_transcribes_speech() {
-        let wav = std::env::temp_dir().join("sprigo-stt-test.wav");
-        let ok = std::process::Command::new("say")
-            .args(["-o", wav.to_str().unwrap(), "--data-format=LEI16@16000", "Nice to meet you. How are you today?"])
-            .status().unwrap().success();
+    /// `sentence` spoken by macOS `say` (with `voice`, if given), then transcribed in `lang`.
+    fn heard(voice: Option<&str>, sentence: &str, lang: &str) -> String {
+        let wav = std::env::temp_dir().join(format!("sprigo-stt-test-{lang}.wav"));
+        let mut say = std::process::Command::new("say");
+        if let Some(v) = voice { say.args(["-v", v]); }
+        let ok = say.args(["-o", wav.to_str().unwrap(), "--data-format=LEI16@16000", sentence]).status().unwrap().success();
         assert!(ok);
         let bytes = std::fs::read(&wav).unwrap();
         // ponytail: skip the 4 KB header region `say` writes; leading silence is harmless to whisper
         let pcm = &bytes[4096..];
         let samples: Vec<f32> = pcm.chunks_exact(2).map(|b| i16::from_le_bytes([b[0], b[1]]) as f32 / 32768.0).collect();
         let model = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join(super::STT_MODEL);
-        let text = super::whisper_text(&model, &samples, "en").unwrap().to_lowercase();
+        let text = super::whisper_text(&model, &samples, lang).unwrap().to_lowercase();
         super::release_stt();
         println!("heard: {text}");
+        text
+    }
+
+    /// Needs the model: `pnpm fetch-model`, then `cargo test -- --ignored`. Speech comes from macOS `say`.
+    #[test]
+    #[ignore]
+    fn whisper_transcribes_speech() {
+        let text = heard(None, "Nice to meet you. How are you today?", "en");
         assert!(text.contains("nice to meet you"), "{text}");
+    }
+
+    /// The Hungarian course, spoken by the macOS Hungarian voice (Tünde).
+    #[test]
+    #[ignore]
+    fn whisper_transcribes_hungarian() {
+        let text = heard(Some("Tünde"), "Jó napot kívánok! Egy kávét kérek.", "hu");
+        // whisper may write "jó napot" as one word; the lesson's speech check (speechMisses) accepts that too
+        let flat = text.replace(' ', "");
+        assert!(flat.contains("jónapotkívánok") && flat.contains("kávétkérek"), "{text}");
     }
 }
 

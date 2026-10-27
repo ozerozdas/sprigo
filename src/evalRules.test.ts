@@ -10,6 +10,12 @@ test("guessLang names each course language and gives up on short or unclear text
   assert.equal(guessLang("Yo estoy muy bien, gracias."), "es");
   assert.equal(guessLang("Je suis très content de te voir."), "fr");
   assert.equal(guessLang("Ben bugün çok yorgunum ama iyiyim."), "tr");
+  assert.equal(guessLang("Köszönöm, nagyon jól vagyok."), "hu");
+  assert.equal(guessLang("Jó napot kívánok, Kovács úr!"), "hu"); // á, í, ó and ú are Hungarian too, not only Spanish
+  assert.equal(guessLang("¿Dónde está la estación?"), "es");
+  assert.equal(guessLang("Nie wiem, co to znaczy."), "pl");
+  assert.equal(guessLang("Kiedy masz urodziny?"), "pl"); // sz is Hungarian too
+  assert.equal(guessLang("Wpisz usłyszane zdanie."), "pl");
   assert.equal(guessLang("Hello there"), null); // under 3 words
   assert.equal(guessLang("Maria Paulo Tokyo"), null); // no stopword: no winner
 });

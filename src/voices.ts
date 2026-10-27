@@ -8,6 +8,7 @@ const NAMES: Record<string, { f: string[]; m: string[] }> = {
   de: { f: ["Anna", "Petra", "Helena", "Katja", "Hedda"], m: ["Markus", "Yannick", "Conrad", "Stefan"] },
   es: { f: ["Monica", "Mónica", "Paulina", "Marisol", "Elvira", "Helena", "Laura"], m: ["Jorge", "Diego", "Juan", "Alvaro", "Pablo"] },
   fr: { f: ["Amelie", "Amélie", "Audrey", "Marie", "Denise", "Julie", "Hortense"], m: ["Thomas", "Daniel", "Nicolas", "Jacques", "Henri", "Paul"] },
+  hu: { f: ["Tünde", "Mariska", "Noemi"], m: ["Szabolcs", "Tamas"] },
 };
 const has = (voice: string, name: string) => new RegExp(`(^|[\\s(])${name}([\\s(-]|$)`, "i").test(voice);
 

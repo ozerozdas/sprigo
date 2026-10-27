@@ -1,0 +1,3612 @@
+# Hungarian course (A1–C2). Hierarchy: levels (CEFR) > units > steps > activities.
+# Activities name only a type (+ optional count and hints like scenario/goal); the AI writes the content
+# from the step's title, description, vocabulary, grammar and the level. Types: see src/course.ts.
+# Hungarian has no grammatical gender; grammar steps follow suffixes and vowel harmony, the definite and
+# indefinite conjugation, verbal prefixes and focus word order instead of mirroring the English course.
+name: Hungarian
+native_name: Magyar
+iso: hu
+flag: 🇭🇺
+
+levels:
+  A1:
+    title: Beginner
+    description: >
+      Understand and use familiar everyday expressions and very basic phrases.
+
+    units:
+      - id: greetings
+        title: Greetings & Introductions
+        description: Meet people and introduce yourself.
+        icon: 👋
+        steps:
+          - id: basic-greetings
+            title: Basic Greetings
+            description: Common ways to greet people and say goodbye, informal (szia, sziasztok, viszlát) and polite (jó napot, viszontlátásra). Jó napot kívánok and jó estét kívánok are the full polite greetings, meaning good day and good evening (kívánok is not translated).
+            vocabulary: [szia, sziasztok, "jó reggelt", "jó napot", "jó estét", "jó éjszakát", viszontlátásra, viszlát]
+            grammar:
+              - pattern: "Jó napot kívánok!"
+              - pattern: "Szia, Péter!"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: introduce-yourself
+            title: Introduce Yourself
+            description: Say your name and where you are from, and ask theirs (Hogy hívnak? to a friend, Hogy hívják? politely). Countries take -ból/-ből (Angliából jövök), but Magyarország takes -ról (Magyarországról).
+            vocabulary: [név, "a nevem", vagyok, "hogy hívnak", honnan, örülök, "én is"]
+            grammar:
+              - pattern: "Anna vagyok."
+              - pattern: "A nevem {name}."
+              - pattern: "Hogy hívnak?"
+              - pattern: "Honnan jössz? – Angliából jövök."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: meeting_someone
+                goal: Greet the person, introduce yourself, say where you are from and ask their name.
+          - id: how-are-you
+            title: How Are You?
+            description: Ask and answer how someone is, with informal vagy and polite van (Ön).
+            vocabulary: [jól, "nagyon jól", megvagyok, "nem túl jól", fáradt, köszönöm, "és te?", "és Ön?"]
+            grammar:
+              - pattern: "Hogy vagy?"
+              - pattern: "Köszönöm, jól vagyok. És te?"
+              - pattern: "Hogy van, Kovács úr?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: friend_on_the_street
+          - id: polite-words
+            title: Please & Thank You
+            description: Be polite in everyday situations.
+            vocabulary: [kérem, kérlek, köszönöm, "köszönöm szépen", szívesen, bocsánat, elnézést, "legyen szíves"]
+            grammar:
+              - pattern: "Köszönöm szépen! – Szívesen."
+              - pattern: "Elnézést, beszél angolul?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+
+      - id: numbers-colors
+        title: Numbers & Colors
+        description: Count, say your age and name colors.
+        icon: 🔢
+        steps:
+          - id: numbers-1-10
+            title: Numbers 1–10
+            vocabulary: [egy, kettő, három, négy, öt, hat, hét, nyolc, kilenc, tíz]
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: listen_type }
+          - id: numbers-11-100
+            title: Numbers 11–100
+            description: Tizen- and huszon- for the teens and twenties; két before a noun, and the noun stays singular (két alma).
+            vocabulary: [tizenegy, tizenkettő, tizenöt, húsz, huszonegy, harminc, negyven, ötven, száz]
+            grammar:
+              - pattern: "Két kávé és három tea."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: match }
+          - id: how-old
+            title: How Old Are You?
+            description: Say your age with éves and ask with hány. A number written as a word + éves is one word (húszéves, ötvenéves); with digits it is separate (20 éves).
+            vocabulary: [év, éves, hány, "hány éves", fiatal, idős]
+            grammar:
+              - pattern: "Hány éves vagy?"
+              - pattern: "Húszéves vagyok."
+              - pattern: "A bátyám harmincéves."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
+          - id: colors
+            title: Basic Colors
+            description: A color before the noun never changes; ask with milyen színű.
+            vocabulary: [piros, kék, zöld, sárga, fekete, fehér, narancssárga, barna, szürke, szín, "milyen színű"]
+            grammar:
+              - pattern: "Az autó piros."
+              - pattern: "Ez egy kék ház."
+              - pattern: "Milyen színű a táska?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 3 }
+              - { type: match }
+              - { type: fill_blank }
+              - { type: listen_select }
+
+      - id: people-family
+        title: Family & People
+        description: Talk about your family and describe people.
+        icon: 👨‍👩‍👧
+        steps:
+          - id: family-members
+            title: Family Members
+            description: Hungarian has separate words for older and younger brothers and sisters.
+            vocabulary: [anya, apa, szülők, báty, öcs, nővér, húg, testvér, nagymama, nagypapa, család]
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: possessive-endings
+            title: My, Your, His, Her (-m, -d, -a/-e)
+            description: Possessive endings follow vowel harmony (anyám, apád, a húga); a final -a/-e lengthens (apa → apám, anya → anyád) and the article stays, a before a consonant and az before a vowel (a bátyám, az apám). X's Y is X Y-a/-e (Anna testvére).
+            vocabulary: ["az én", "a te", "az ő", anyám, apám, testvérem, nővéred, "a húga"]
+            grammar:
+              - pattern: "Ez a bátyám."
+              - pattern: "Hol lakik a nővéred?"
+              - pattern: "Anna testvére orvos."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: describing-people
+            title: Describing People (vagyok, vagy)
+            description: Pronouns with vagyok, vagy, vagyunk, vagytok; for ő and ők van drops before a noun or adjective (Péter magas), and plural adjectives take -k.
+            vocabulary: [magas, alacsony, fiatal, idős, kedves, vidám, fáradt, haj, szem]
+            grammar:
+              - pattern: "Én diák vagyok."
+              - pattern: "Péter magas és kedves."
+              - pattern: "Mi nem vagyunk fáradtak."
+              - pattern: "Barna haja és kék szeme van."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: pets
+            title: Pets & Animals (van egy…)
+            description: Say what you have with van + a possessive ending, and what you don't have with nincs. Ló, madár and nyúl change their stem before the ending (lovam, madaram, nyulam).
+            vocabulary: [kutya, macska, madár, hal, ló, nyúl, háziállat, van, nincs, lovam, madaram, nyulam]
+            grammar:
+              - pattern: "Van egy kutyám."
+              - pattern: "Nincs macskám."
+              - pattern: "Van háziállatod?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+
+      - id: food-drink
+        title: Food & Drink
+        description: Order at a café and talk about what you like.
+        icon: 🍎
+        steps:
+          - id: food-basics
+            title: Food Basics
+            vocabulary: [kenyér, alma, tojás, sajt, rizs, csirke, leves, saláta, hús, krumpli]
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: drinks
+            title: Drinks
+            description: Order with kérek and the object ending -t (kávét, teát, vizet).
+            vocabulary: [víz, kávé, tea, tej, gyümölcslé, sör, bor, pohár, csésze]
+            grammar:
+              - pattern: "Egy kávét kérek."
+              - pattern: "Egy pohár vizet kérek."
+              - pattern: "Kérsz egy teát?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: likes-dislikes
+            title: I Like, I Don't Like (szeretem)
+            description: szeret with a definite object takes the definite form (szeretem a kávét); with a verb it doesn't (szeretek főzni).
+            vocabulary: [szeret, "nem szeret", imád, utál, ízlik, finom, kedvenc]
+            grammar:
+              - pattern: "Szeretem a kávét."
+              - pattern: "Nem szeretem a tejet."
+              - pattern: "Szereted a csokoládét?"
+              - pattern: "Imádok táncolni."
+              - pattern: "Ízlik a leves?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+          - id: at-the-cafe
+            title: At the Café
+            vocabulary: [étlap, számla, ár, "mennyibe kerül", rendel, fizet, pogácsa, sütemény, pincér]
+            grammar:
+              - pattern: "Egy kávét és egy pogácsát kérek."
+              - pattern: "Mennyibe kerül?"
+              - pattern: "Fizetni szeretnék."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: ordering_at_a_cafe
+                goal: Order a drink and a snack, then ask for the bill.
+
+      - id: daily-routine
+        title: Daily Routine
+        description: Time, days and what you do every day.
+        icon: ⏰
+        steps:
+          - id: telling-time
+            title: Telling the Time
+            description: Whole hours with óra; halves and quarters count toward the next hour (fél nyolc = 7:30), and -kor means at.
+            vocabulary: [óra, perc, fél, negyed, háromnegyed, mikor, hánykor, délben, éjfélkor]
+            grammar:
+              - pattern: "Hány óra van?"
+              - pattern: "Fél nyolc van."
+              - pattern: "Fél hétkor kelek."
+              - pattern: "Hánykor kezdődik a film? – Negyed kilenckor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type, count: 2 }
+          - id: days-of-week
+            title: Days of the Week
+            description: Days take -n/-on/-en/-ön for "on" (hétfőn, kedden), except vasárnap.
+            vocabulary: [hétfő, kedd, szerda, csütörtök, péntek, szombat, vasárnap, hétvége, ma, holnap]
+            grammar:
+              - pattern: "Hétfőn dolgozom."
+              - pattern: "Szombaton és vasárnap pihenek."
+              - pattern: "Milyen nap van ma?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: morning-routine
+            title: My Morning
+            description: Daily verbs, many of them -ik verbs (reggelizik, zuhanyozik) that take -m in the I form.
+            vocabulary: [felkel, reggelizik, zuhanyozik, "fogat mos", felöltözik, "dolgozni megy", "iskolába megy"]
+            grammar:
+              - pattern: "Hétkor kelek fel."
+              - pattern: "Reggelizem, aztán zuhanyozom."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: image_select }
+              - { type: translate }
+          - id: present-tense
+            title: Every Day (the Present Tense)
+            description: "Present endings with vowel harmony: -ok/-ek/-ök, -sz or -ol/-el/-öl, -unk/-ünk, -tok/-tek/-tök, -nak/-nek; -ik verbs (lakom, dolgozol)."
+            vocabulary: ["minden nap", mindig, általában, néha, soha, dolgozik, lakik, beszél, tanul]
+            grammar:
+              - pattern: "Minden nap dolgozom."
+              - pattern: "Hol laksz?"
+              - pattern: "Anna jól beszél angolul."
+              - pattern: "Soha nem iszom kávét."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+
+      - id: home
+        title: At Home
+        description: Rooms, furniture and where things are.
+        icon: 🏠
+        steps:
+          - id: rooms
+            title: Rooms
+            vocabulary: [ház, lakás, szoba, konyha, hálószoba, fürdőszoba, nappali, kert, erkély]
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: furniture
+            title: Furniture
+            vocabulary: [asztal, szék, ágy, kanapé, ajtó, ablak, lámpa, szekrény, polc]
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: image_select }
+              - { type: listen_type }
+          - id: van-nincs
+            title: There Is / There Isn't (van, nincs)
+            description: van/vannak for there is/are, nincs/nincsenek for there isn't/aren't, and -ban/-ben for in. After a number or sok/kevés the noun stays singular and the verb is van or nincs (két ágy van, sok könyv van).
+            vocabulary: [van, vannak, nincs, nincsenek, sok, kevés, "a lakásban", "a házban"]
+            grammar:
+              - pattern: "A lakásban van egy nagy nappali."
+              - pattern: "A konyhában nincs asztal."
+              - pattern: "A szobában két ágy van."
+              - pattern: "Van kert?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: where-is-it
+            title: Where Is It? (-ban, -on, alatt)
+            description: In with -ban/-ben, on with -n/-on/-en/-ön, and postpositions after the noun (az asztal alatt, a ház előtt).
+            vocabulary: [hol, alatt, fölött, mellett, mögött, előtt, között, "az asztalon", "a szekrényben"]
+            grammar:
+              - pattern: "A kulcs az asztalon van."
+              - pattern: "A macska az ágy alatt alszik."
+              - pattern: "Hol van a telefonom?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2, hint: "the prompt gives the English meaning, so only one place word fits" }
+              - { type: sentence_complete, count: 2, hint: "the prompt says in English where the thing is, so only one ending fits" }
+              - { type: translate }
+
+      - id: around-town
+        title: Around Town
+        description: Places, directions, transport and shopping.
+        icon: 🏙️
+        steps:
+          - id: places-in-town
+            title: Places in Town
+            vocabulary: [bank, bolt, pályaudvar, kórház, park, iskola, múzeum, gyógyszertár, posta, templom]
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: directions
+            title: Asking for Directions
+            vocabulary: [balra, jobbra, egyenesen, közel, messze, sarok, utca, tér]
+            grammar:
+              - pattern: "Elnézést, hol van a pályaudvar?"
+              - pattern: "Menjen egyenesen, aztán forduljon balra!"
+              - pattern: "A saroknál forduljon jobbra!"
+              - pattern: "Nincs messze, csak öt perc gyalog."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: lost_tourist
+                goal: Ask a local how to get to the museum.
+          - id: transport
+            title: Getting Around (-ba/-be, -val/-vel)
+            description: Where you go with -ba/-be; how you travel with -val/-vel, whose v becomes the last consonant (busszal, vonattal), or gyalog.
+            vocabulary: [busz, villamos, metró, vonat, taxi, bicikli, autó, jegy, gyalog]
+            grammar:
+              - pattern: "Iskolába megyek."
+              - pattern: "Busszal megyek dolgozni."
+              - pattern: "Villamossal vagy gyalog mész?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: shopping
+            title: Shopping
+            vocabulary: [vesz, bolt, olcsó, drága, méret, pénz, fizet, kártya, készpénz]
+            grammar:
+              - pattern: "Mennyibe kerül ez?"
+              - pattern: "Fizethetek kártyával?"
+              - pattern: "Ez nagyon drága."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: clothes_shop
+                goal: Ask for a different size and pay.
+
+      - id: free-time
+        title: Free Time
+        description: Hobbies, sports and what you can do.
+        icon: ⚽
+        steps:
+          - id: hobbies
+            title: Hobbies
+            description: Say what you like doing with szeretek and an infinitive in -ni.
+            vocabulary: [olvasni, "zenét hallgatni", "filmet nézni", főzni, táncolni, rajzolni, utazni, kirándulni]
+            grammar:
+              - pattern: "Szeretek olvasni."
+              - pattern: "Mit szeretsz csinálni hétvégén?"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: sports
+            title: Sports
+            description: Many sports have their own -zik verb (focizik, teniszezik).
+            vocabulary: [foci, tenisz, focizik, teniszezik, úszik, fut, kosárlabda, csapat, meccs]
+            grammar:
+              - pattern: "Szombaton focizom."
+              - pattern: "Szeretsz úszni?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: can-tud
+            title: I Can, I Can't (tudok + -ni)
+            description: Ability with tud and an infinitive in -ni; nem goes before tud.
+            vocabulary: [tud, tudok, tudsz, "nem tudok", jól, "egy kicsit", vezetni, úszni]
+            grammar:
+              - pattern: "Tudok úszni."
+              - pattern: "Nem tudok autót vezetni."
+              - pattern: "Jól tudok úszni."
+              - pattern: "Tudsz főzni? – Egy kicsit tudok."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: weekend-plans
+            title: Weekend Plans
+            description: Suggest something with menjünk and ask with van kedved…?
+            vocabulary: [szabad, elfoglalt, együtt, ráér, "van kedved", menjünk, program]
+            grammar:
+              - pattern: "Menjünk moziba!"
+              - pattern: "Van kedved kirándulni vasárnap?"
+              - pattern: "Ráérsz szombaton?"
+              - pattern: "Szabad vagy vasárnap? – Nem, elfoglalt vagyok."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - type: dialogue
+                scenario: making_plans
+                goal: Invite a friend to do something on the weekend and agree on a time.
+
+      - id: weather-clothes
+        title: Weather & Clothes
+        description: Seasons, the weather and what people are wearing.
+        icon: ☀️
+        steps:
+          - id: weather
+            title: The Weather
+            vocabulary: [idő, napos, esős, felhős, szeles, hideg, meleg, eső, hó]
+            grammar:
+              - pattern: "Milyen idő van ma?"
+              - pattern: "Ma szép napos idő van."
+              - pattern: "Esik az eső."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 3 }
+              - { type: listen_select }
+          - id: seasons-months
+            title: Seasons & Months
+            description: Months take -ban/-ben (januárban); the seasons have their own forms (tavasszal, nyáron, ősszel, télen).
+            vocabulary: [tavasz, nyár, ősz, tél, január, június, december, hónap]
+            grammar:
+              - pattern: "Nyáron meleg van."
+              - pattern: "Januárban sokszor esik a hó."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: clothes
+            title: Clothes
+            vocabulary: [ing, nadrág, ruha, cipő, kabát, sapka, pulóver, póló, farmer]
+            grammar:
+              - pattern: "Péter farmert és pólót visel."
+              - pattern: "Milyen színű a kabátod?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select }
+              - { type: translate }
+          - id: questions-negation
+            title: Questions & Not (nem, nincs, ugye)
+            description: Yes/no questions by intonation, nem before what you deny, nincs instead of nem van, sem for "not … either" and the tag ugye.
+            vocabulary: [igen, nem, nincs, sem, ugye, "én is", "én sem"]
+            grammar:
+              - pattern: "Hideg van kint?"
+              - pattern: "Nem, nincs hideg."
+              - pattern: "Ez a te sapkád, ugye?"
+              - pattern: "Nem szeretem a telet. – Én sem."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+
+      - id: yesterday
+        title: Yesterday
+        description: Talk about the past.
+        icon: 📅
+        steps:
+          - id: past-of-to-be
+            title: I Was… (voltam, volt)
+            description: "The past of van: voltam, voltál, volt, voltunk, voltatok, voltak."
+            vocabulary: [tegnap, "tegnap este", "múlt héten", tavaly, volt, voltam]
+            grammar:
+              - pattern: "Tegnap otthon voltam."
+              - pattern: "Tegnap szép idő volt."
+              - pattern: "Fáradt voltál?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: past-tense
+            title: Past Tense (-t, -tt)
+            description: The past with -t or -ott/-ett/-ött (néztem, dolgoztam, főzött), and nem before the verb.
+            vocabulary: [tegnap, dolgoztam, néztem, főztem, tanultam, beszéltem, játszottam]
+            grammar:
+              - pattern: "Tegnap este filmet néztem."
+              - pattern: "Pénteken nem dolgoztam."
+              - pattern: "Mit főztél vacsorára?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: past-irregular
+            title: What Did You Do? (mentem, ettem, ittam)
+            description: Common irregular pasts (ment, jött, evett, ivott, vett) and the definite form for a definite object (láttad a meccset?).
+            vocabulary: [mentem, jöttem, ettem, ittam, vettem, láttam, csináltam]
+            grammar:
+              - pattern: "A parkba mentünk."
+              - pattern: "Láttad a meccset?"
+              - pattern: "Mit ettél tegnap?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: last-weekend
+            title: My Last Weekend
+            vocabulary: [hétvége, "a hétvégén", jó, unalmas, először, aztán, utána, "nagyon jó volt"]
+            grammar:
+              - pattern: "Mit csináltál a hétvégén?"
+              - pattern: "Először bevásároltam, aztán főztem."
+            activities:
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: monday_morning_chat
+                goal: Tell a colleague what you did last weekend and ask about theirs.
+
+    checkpoint:
+      title: A1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  A2:
+    title: Elementary
+    description: >
+      Communicate in simple, routine tasks on familiar topics and describe your background, past and plans,
+      choosing between the definite and indefinite conjugation, the three-way place endings and the verbal prefixes.
+
+    units:
+      - id: jobs-work-a2
+        title: Jobs & Work
+        description: Talk about jobs, workplaces and your working day.
+        icon: 💼
+        steps:
+          - id: professions-a2
+            title: Professions
+            description: "Say what people do with no article, and no van in the third person (Ápoló vagyok, A bátyám ügyvéd); ask with mi a foglalkozása or mivel foglalkozik, which ask the polite you as well as he or she (to a friend, mivel foglalkozol)."
+            vocabulary: [orvos, ápoló, tanár, pincér, ügyvéd, mérnök, szakács, sofőr, eladó, foglalkozás]
+            grammar:
+              - pattern: "Ápoló vagyok."
+              - pattern: "A bátyám ügyvéd."
+              - pattern: "Mi a foglalkozása?"
+              - pattern: "Mivel foglalkozol?"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+          - id: workplace-nal-kent
+            title: At Work (-nál/-nél, -ként)
+            description: "Work at a company with -nál/-nél, in a place with -ban/-ben, and as something with -ként. Back-vowel words take -nál/-ban, front-vowel words -nél/-ben (irodában, cégnél, étteremben)."
+            vocabulary: [iroda, cég, üzlet, étterem, főnök, kolléga, munkatárs, pincérként]
+            grammar:
+              - pattern: "Egy nagy cégnél dolgozom."
+              - pattern: "Pincérként dolgozom egy étteremben."
+              - pattern: "Hol dolgozol?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: routines-frequency
+            title: How Often? (általában, hetente)
+            description: Frequency words and the -nta/-nte, -ente endings (naponta, hetente, reggelente).
+            vocabulary: [mindig, általában, gyakran, néha, ritkán, soha, naponta, hetente, reggelente]
+            grammar:
+              - pattern: "Általában korán kelek."
+              - pattern: "Reggelente busszal megyek dolgozni."
+              - pattern: "Hetente kétszer úszom."
+              - pattern: "Hétvégén soha nem dolgozom."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: job-interview-ota
+            title: A Job Interview (óta, három éve)
+            description: "Say how long with óta after a point in time or a period (2020 óta, három év óta) or with a period + -a/-e (három éve), keeping the verb in the present. A demonstrative takes its noun's ending (ennél a cégnél, ezen a területen)."
+            vocabulary: [állásinterjú, tapasztalat, fizetés, "teljes munkaidő", részmunkaidő, óta, mióta, "három éve"]
+            grammar:
+              - pattern: "2020 óta itt dolgozom."
+              - pattern: "Három éve tanulok magyarul."
+              - pattern: "Mióta dolgozik ennél a cégnél?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: job_interview
+                goal: Answer questions about your job, your experience and how long you have worked there.
+
+      - id: comparisons-a2
+        title: Comparisons
+        description: Compare people, things and places.
+        icon: ⚖️
+        steps:
+          - id: comparative-bb
+            title: Bigger, Faster (-bb, mint, -nál)
+            description: "Comparatives with -bb (-abb/-ebb after a consonant); than is either mint (nagyobb, mint Debrecen) or -nál/-nél on the other noun (nagyobb Debrecennél), never both."
+            vocabulary: [nagyobb, kisebb, idősebb, fiatalabb, olcsóbb, drágább, gyorsabb, magasabb, mint]
+            grammar:
+              - pattern: "Budapest nagyobb, mint Debrecen."
+              - pattern: "A vonat olcsóbb a repülőnél."
+              - pattern: "A húgom magasabb nálam."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: irregular-comparatives
+            title: Better, More (jobb, több)
+            description: Irregular comparatives (jó – jobb, sok – több, kevés – kevesebb, szép – szebb, könnyű – könnyebb, nehéz – nehezebb) and sokkal for much.
+            vocabulary: [jobb, rosszabb, több, kevesebb, szebb, könnyebb, nehezebb, sokkal]
+            grammar:
+              - pattern: "Ez a kávé sokkal jobb."
+              - pattern: "Ma több időm van, mint tegnap."
+              - pattern: "A magyar nehezebb, mint az angol?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: superlative-leg
+            title: The Best (leg-…-bb)
+            description: The superlative puts leg- before the comparative (legnagyobb, legjobb); "of all" is közül or the group's own place ending (a családban, Magyarországon).
+            vocabulary: [legnagyobb, legjobb, legszebb, legolcsóbb, legmagasabb, legkedvesebb, "a legtöbb", közül]
+            grammar:
+              - pattern: "A Balaton a legnagyobb tó Magyarországon."
+              - pattern: "Ki a legmagasabb a családban?"
+              - pattern: "Melyik a legolcsóbb telefon?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: olyan-mint
+            title: As … As (olyan … mint)
+            description: "Equal comparisons with olyan … mint, sameness with ugyanolyan (the same kind) and ugyanaz (the very same one), and likeness with hasonlít + -ra/-re (hasonlít rád, az anyjára)."
+            vocabulary: [olyan, ugyanolyan, ugyanaz, hasonlít, hasonló, más, különböző]
+            grammar:
+              - pattern: "Péter olyan magas, mint az apja."
+              - pattern: "Ez nem olyan drága, mint az."
+              - pattern: "Nagyon hasonlítasz az anyukádra."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: choosing_a_holiday
+                goal: Compare two holiday destinations with a friend and agree on the one you both like best.
+
+      - id: at-the-shops-a2
+        title: At the Shops
+        description: Buy food and clothes, say exactly which one you want and how much.
+        icon: 🛍️
+        steps:
+          - id: definite-indefinite
+            title: A or The? (látok – látom)
+            description: The verb shows whether its object is definite. Indefinite forms go with egy or no article (kérek egy kávét); definite forms with a/az, names, ezt and azt (kérem a számlát).
+            vocabulary: [látok, látom, kérek, kérem, keresek, keresem, veszek, veszem]
+            grammar:
+              - pattern: "Látok egy szép kabátot."
+              - pattern: "Látom a kabátot."
+              - pattern: "Kérem a számlát."
+              - pattern: "Ezt a pulóvert keresem."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: accusative-forms
+            title: The Object Ending (-t, -ot, -et, -öt, -at)
+            description: "The object takes -t straight after a vowel or j, l, ly, n, ny, r, s, sz, z, zs (almát, levest, pénzt) and a linking vowel after other consonants (sajtot, könyvet, gyümölcsöt); some short nouns take a linking vowel anyway (házat, tejet, sálat). A final a or e lengthens (alma → almát). Some nouns also shorten their last vowel and take a linking vowel (kenyér → kenyeret, levél → levelet)."
+            vocabulary: [almát, kenyeret, sajtot, tejet, házat, könyvet, levest, gyümölcsöt]
+            grammar:
+              - pattern: "Kenyeret és tejet veszek."
+              - pattern: "Mit keresel? – Egy piros sálat."
+              - pattern: "Almát vagy körtét kérsz?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: quantities-market
+            title: At the Market (kiló, deka, darab)
+            description: Quantities keep the noun singular (két kiló alma); a deka is 10 grams.
+            vocabulary: [kiló, deka, liter, darab, üveg, doboz, csomag, "fél kiló"]
+            grammar:
+              - pattern: "Fél kiló paradicsomot kérek."
+              - pattern: "Húsz deka sonkát kérek."
+              - pattern: "Két üveg ásványvizet veszek."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type }
+              - { type: sentence_complete }
+          - id: this-that-case
+            title: This One, That One (ezt, ebben)
+            description: ez and az take the same case ending as their noun (ezt a kabátot, ebben a boltban, abból a sajtból).
+            vocabulary: [ezt, azt, ebben, abban, ebből, melyik, felpróbál, "ezt kérem"]
+            grammar:
+              - pattern: "Ezt kérem, nem azt."
+              - pattern: "Ebben a boltban minden olcsó."
+              - pattern: "Melyik pulóvert próbálhatom fel?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: market_stall
+                goal: Buy fruit and vegetables at a market stall, ask for quantities, choose between two kinds and pay.
+
+      - id: health-body-a2
+        title: Health & the Body
+        description: Describe how you feel, see a doctor and give advice.
+        icon: 🩺
+        steps:
+          - id: body-parts
+            title: The Body
+            vocabulary: [fej, kéz, láb, kar, has, hát, torok, fog, szem, fül]
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: what-hurts
+            title: It Hurts (fáj a fejem)
+            description: "Say what hurts with fáj + the body part with a possessive ending (fáj a fejem), and symptoms with van and a possessive ending (lázam van, not láz van nekem). The doctor uses the polite you (Mi a panasza? = What's your complaint?)."
+            vocabulary: [fáj, láz, köhög, nátha, influenza, beteg, szédül, "rosszul vagyok"]
+            grammar:
+              - pattern: "Fáj a fejem."
+              - pattern: "Lázam van, és köhögök."
+              - pattern: "Mi a panasza?"
+              - pattern: "Mióta fáj a torka?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: must-kell
+            title: You Must Rest (kell)
+            description: Necessity with kell + infinitive, or a personal infinitive for who has to (pihenned kell); nem kell = needn't, nem szabad = mustn't.
+            vocabulary: [kell, "nem kell", "nem szabad", pihen, gyógyszer, recept, bevesz, "sok folyadék"]
+            grammar:
+              - pattern: "Pihenned kell."
+              - pattern: "Naponta háromszor kell bevenni."
+              - pattern: "Nem kell aggódni."
+              - pattern: "Nem szabad hideg vizet inni."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: imperative-advice
+            title: Get Well! (Pihenj!, Igyál!)
+            description: The imperative with -j for advice (pihenj, igyál, feküdj le); the polite form ends like the ő form (pihenjen, vegye be).
+            vocabulary: [pihenj, igyál, "feküdj le", "vedd be", pihenjen, jobbulást, "vigyázz magadra"]
+            grammar:
+              - pattern: "Pihenj sokat, és igyál sok teát!"
+              - pattern: "Vegye be ezt a gyógyszert reggel és este!"
+              - pattern: "Jobbulást kívánok!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: at_the_pharmacy
+                goal: Describe your symptoms to the pharmacist, ask what to take and how often.
+
+      - id: travel-a2
+        title: Travel & Places
+        description: Plan a trip, book a room and get around by train.
+        icon: ✈️
+        steps:
+          - id: would-like-szeretnek
+            title: I'd Like To (szeretnék)
+            description: "Wishes and plans with szeretnék, szeretnél… + infinitive, and akar for want. szabadság = time off work, holiday (free time is szabadidő)."
+            vocabulary: [szeretnék, szeretnél, akar, utazik, nyaral, tenger, hegy, szabadság]
+            grammar:
+              - pattern: "Nyáron a Balatonra szeretnék menni."
+              - pattern: "Mit szeretnél csinálni a szabadságod alatt?"
+              - pattern: "Kirándulni akarunk a hegyekben."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: three-directions
+            title: To, In, From (-ba, -ban, -ból)
+            description: "Place endings come in threes: -ba/-ban/-ból (into, in, out of), -ra/-n/-ról (onto, on, off) and -hoz/-nál/-tól (to, at, from someone). Most Hungarian towns take -ra/-n/-ról (Budapestre, Budapesten, Budapestről), foreign cities -ba/-ban/-ból (Bécsbe, Bécsben, Bécsből)."
+            vocabulary: [Budapestre, Budapesten, Budapestről, Bécsbe, Bécsben, Bécsből, "az orvoshoz", "a barátomnál"]
+            grammar:
+              - pattern: "Holnap Bécsbe utazom."
+              - pattern: "Budapesten lakom, de Szegedről jöttem."
+              - pattern: "Az orvostól jövök, most a gyógyszertárba megyek."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: booking-a-room
+            title: Booking a Room
+            description: Book for a length of time with -ra/-re (két éjszakára) and ask what is included.
+            vocabulary: [szálloda, panzió, "kétágyas szoba", éjszaka, reggeli, foglal, foglalás, kijelentkezik]
+            grammar:
+              - pattern: "Szeretnék foglalni egy kétágyas szobát két éjszakára."
+              - pattern: "Benne van az árban a reggeli?"
+              - pattern: "Hánykor kell elhagyni a szobát?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: at-the-station
+            title: At the Station
+            vocabulary: [menetjegy, retúrjegy, vágány, indul, érkezik, késik, átszáll, pályaudvar]
+            grammar:
+              - pattern: "Mikor indul a vonat Szegedre?"
+              - pattern: "Egy retúrjegyet kérek Debrecenbe."
+              - pattern: "A vonat tíz percet késik."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: buying_a_train_ticket
+                goal: Buy a return ticket, ask when the next train leaves and from which platform.
+
+      - id: plans-prefixes-a2
+        title: Plans & Verbal Prefixes
+        description: Talk about the future and use the prefixes that change what a verb means.
+        icon: 🔮
+        steps:
+          - id: present-for-future
+            title: Tomorrow I'm Going (the Present for Plans)
+            description: Plans usually take the present tense and a time word (holnap megyek, jövőre költözünk).
+            vocabulary: [holnap, holnapután, "jövő héten", "a jövő hónapban", jövőre, majd, később, hamarosan]
+            grammar:
+              - pattern: "Holnap moziba megyek."
+              - pattern: "Jövő héten Bécsbe utazunk."
+              - pattern: "Majd holnap megbeszéljük."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+          - id: fog-future
+            title: It Will Rain (fog + -ni)
+            description: fog + infinitive for predictions and promises (esni fog, nem fogok késni).
+            vocabulary: [fog, fogok, fogsz, "esni fog", "nem fogok", ígér, biztosan, talán]
+            grammar:
+              - pattern: "Holnap esni fog."
+              - pattern: "Nem fogok késni, ígérem."
+              - pattern: "Mit fogsz csinálni nyáron?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: verbal-prefixes
+            title: Verbal Prefixes (be-, ki-, fel-, le-, el-, meg-)
+            description: Prefixes add a direction (bemegy, kimegy, felmegy, lemegy, hazamegy) or show that an action gets finished (megcsinál, elolvas, megeszik).
+            vocabulary: [bemegy, kimegy, felmegy, lemegy, elmegy, hazamegy, megcsinál, elolvas]
+            grammar:
+              - pattern: "Bemegyek a boltba."
+              - pattern: "Megcsinálom a házi feladatot."
+              - pattern: "Elolvastad már a könyvet?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+          - id: prefix-word-order
+            title: Prefixes on the Move (nem megyek el)
+            description: The prefix goes after the verb when nem, a question word or another stressed word stands before it (nem megyek el, mikor jössz haza?, holnap jövök vissza).
+            vocabulary: ["nem megyek el", "mikor jössz haza", visszajön, hazajön, elindul, "csak holnap"]
+            grammar:
+              - pattern: "Ma nem megyek el otthonról."
+              - pattern: "Mikor jössz haza?"
+              - pattern: "Holnap jövök vissza, nem ma."
+              - pattern: "Elmegyünk a moziba? – Igen, elmegyünk."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+
+      - id: childhood-a2
+        title: When I Was a Child
+        description: Talk about your childhood and how things have changed.
+        icon: 🧸
+        steps:
+          - id: childhood-memories
+            title: When I Was Little (gyerekkoromban)
+            description: Talk about childhood with the past tense, gyerekkoromban, régen and akkoriban.
+            vocabulary: [gyerekkoromban, kicsi, akkoriban, régen, falu, nagyszüleim, játék, mese]
+            grammar:
+              - pattern: "Gyerekkoromban sokat olvastam."
+              - pattern: "Minden nyáron a nagyszüleimnél voltunk."
+              - pattern: "Régen falun laktunk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: past-definite
+            title: Saw a Film, Saw the Film (láttam, láttad)
+            description: "The past has definite forms too (láttad, látta, láttuk, láttátok, látták) for a definite object; the én form is the same for both (láttam), so the difference shows in the other persons (Láttál egy filmet? – Láttad a filmet?)."
+            vocabulary: [láttam, láttál, láttad, látott, látta, láttuk, olvastad, megették, elfelejtette, megtanulták]
+            grammar:
+              - pattern: "Láttál már magyar filmet?"
+              - pattern: "Láttad már ezt a filmet?"
+              - pattern: "A gyerekek megették az összes süteményt."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: amikor-clauses
+            title: When … (amikor)
+            description: Time clauses with amikor, separated from the main clause by a comma.
+            vocabulary: [amikor, akkor, "amikor kicsi voltam", mindig, sokszor, egyszer, hazaértem]
+            grammar:
+              - pattern: "Amikor kicsi voltam, falun laktunk."
+              - pattern: "Amikor esett az eső, otthon maradtunk és kártyáztunk."
+              - pattern: "Amikor hazaértem, már mindenki aludt."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: then-and-now
+            title: Then and Now (már nem, még mindig)
+            description: What has changed with már nem (no longer) and what hasn't with még mindig (still).
+            vocabulary: ["már nem", "még mindig", régen, most, változik, ugyanolyan, hosszú, rövid]
+            grammar:
+              - pattern: "Régen hosszú hajam volt, most rövid."
+              - pattern: "Már nem lakom ott."
+              - pattern: "Még mindig szeretem a meséket."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: looking_at_old_photos
+                goal: Look at old photos with a friend and say how you, your family and your town have changed.
+
+      - id: telling-stories-a2
+        title: Telling Stories
+        description: Put events in order and explain why things happened.
+        icon: 📖
+        steps:
+          - id: sequence-words
+            title: First, Then, Finally
+            vocabulary: [először, aztán, utána, majd, végül, közben, hirtelen, végre]
+            grammar:
+              - pattern: "Először reggeliztem, aztán elindultam."
+              - pattern: "Közben elkezdett esni."
+              - pattern: "Végül taxival mentünk haza."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+          - id: before-after
+            title: Before and After (mielőtt, miután)
+            description: mielőtt and miután before a clause, or előtt and után after a noun (vacsora előtt, a film után).
+            vocabulary: [mielőtt, miután, előtt, után, "vacsora után", "munka előtt", korábban, később]
+            grammar:
+              - pattern: "Mielőtt elmentem, bezártam az ajtót."
+              - pattern: "Miután megvacsoráztunk, sétáltunk egyet."
+              - pattern: "Munka után bevásárolok."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: because-so
+            title: Because, So, But (mert, ezért, de)
+            description: Reasons with mert, results with ezért, contrast with de and pedig.
+            vocabulary: [mert, ezért, de, pedig, mégis, sajnos, szerencsére, lekésik]
+            grammar:
+              - pattern: "Nem jöttem el, mert beteg voltam."
+              - pattern: "Fáradt voltam, ezért korán lefeküdtem."
+              - pattern: "Siettem, de mégis lekéstem a buszt."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: telling-anecdote-a2
+            title: Guess What Happened! (Képzeld!)
+            description: Tell a short story and react to someone else's.
+            vocabulary: [képzeld, "mi történt", "el sem hiszed", nahát, "nem igaz", szerencsére, sajnos, "és aztán?"]
+            grammar:
+              - pattern: "Képzeld, mi történt tegnap!"
+              - pattern: "El sem hiszed, kivel találkoztam!"
+              - pattern: "Nahát, ez nem igaz!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: telling_an_anecdote
+                goal: Tell a friend about something surprising that happened to you yesterday and react to their story.
+
+      - id: experiences-a2
+        title: Experiences
+        description: Say what you have and haven't done, and how you liked it.
+        icon: 🌍
+        steps:
+          - id: ever-been
+            title: Have You Ever…? (már, még soha)
+            description: "Experiences take the plain past with már (ever, already), még nem (not yet) and még soha (never). már can stand before or after the verb (Már láttam ezt a filmet = Láttam már ezt a filmet)."
+            vocabulary: [már, "még nem", "még soha", valaha, kipróbál, lángos, pálinka, Eger]
+            grammar:
+              - pattern: "Voltál már Egerben?"
+              - pattern: "Még soha nem ettem lángost."
+              - pattern: "Már láttam ezt a filmet."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: how-many-times
+            title: How Many Times? (-szor/-szer/-ször)
+            description: Count times with -szor/-szer/-ször (kétszer, ötször); the first time is először.
+            vocabulary: [egyszer, kétszer, háromszor, ötször, hányszor, először, sokszor, "még egyszer"]
+            grammar:
+              - pattern: "Kétszer voltam Szegeden."
+              - pattern: "Hányszor voltál Budapesten?"
+              - pattern: "Most vagyok itt először."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
+          - id: tetszik-izlik
+            title: Did You Like It? (tetszik, ízlik)
+            description: "With tetszik (looks or feels good) and ízlik (tastes good) the thing liked is the subject and the person who likes it takes -nak/-nek (nekem, neked, Annának). Word order is free (Tetszik nekem a film = A film tetszik nekem)."
+            vocabulary: [tetszik, tetszett, ízlik, ízlett, nekem, neked, neki, nekünk]
+            grammar:
+              - pattern: "Nagyon tetszett a koncert."
+              - pattern: "Neked ízlett a halászlé?"
+              - pattern: "Annának nem tetszik ez a ruha."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: travel-stories
+            title: Travel Stories
+            vocabulary: [élmény, utazás, kirándulás, szállás, csodálatos, kalandos, megérte, "soha nem felejtem el"]
+            grammar:
+              - pattern: "Csodálatos élmény volt!"
+              - pattern: "Ezt soha nem felejtem el."
+              - pattern: "Megérte elmenni."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: sharing_travel_stories
+                goal: Tell a friend about the best trip you have taken and ask about theirs.
+
+      - id: invitations-rules-a2
+        title: Invitations & Rules
+        description: Invite people, ask for permission and follow the rules.
+        icon: 🎉
+        steps:
+          - id: invitations
+            title: Invitations (Eljössz…?)
+            description: Invite, accept and say no politely (eljössz?, szívesen, sajnos nem érek rá).
+            vocabulary: [meghív, meghívás, eljön, buli, születésnap, szívesen, "sajnos nem érek rá", "majd máskor"]
+            grammar:
+              - pattern: "Eljössz a születésnapomra szombaton?"
+              - pattern: "Köszönöm a meghívást, szívesen megyek!"
+              - pattern: "Sajnos nem érek rá, majd máskor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: may-i-hat
+            title: May I? (-hat/-het)
+            description: "Ask for permission and say what is possible with -hat/-het (bejöhetek?, kinyithatom?) and lehet. lehet takes a plain infinitive (Itt lehet ülni?), never a -hat/-het verb; nem lehet and nem szabad both say something is not allowed."
+            vocabulary: [bejöhetek, leülhetek, kinyithatom, lehet, szabad, "nem lehet", megenged, persze]
+            grammar:
+              - pattern: "Bejöhetek?"
+              - pattern: "Kinyithatom az ablakot?"
+              - pattern: "Itt nem lehet dohányozni."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: rules-tilos
+            title: Rules (tilos, kötelező, muszáj)
+            description: Signs and rules with tilos, kötelező and nem szabad, and muszáj for a personal must.
+            vocabulary: [tilos, kötelező, "nem szabad", muszáj, szabály, parkolás, dohányzás, belépés]
+            grammar:
+              - pattern: "Itt tilos a parkolás."
+              - pattern: "Nem szabad a fűre lépni."
+              - pattern: "Muszáj elmennem, mert késésben vagyok."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: lets-junk
+            title: Let's… (menjünk, együnk)
+            description: Suggestions with the mi form of the imperative (menjünk, együnk), definite with a definite object (nézzük meg a filmet).
+            vocabulary: [menjünk, együnk, igyunk, nézzünk, "nézzük meg", sétáljunk, maradjunk, induljunk]
+            grammar:
+              - pattern: "Menjünk el kirándulni!"
+              - pattern: "Együnk valamit, éhes vagyok!"
+              - pattern: "Nézzük meg ezt a filmet!"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: planning_a_party
+                goal: Plan a birthday party with a friend, suggest where, when and what to eat, and agree on the details.
+
+    checkpoint:
+      title: A2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  B1:
+    title: Intermediate
+    description: >
+      Deal with most everyday situations, narrate experiences with one past tense and the right time words, express wishes,
+      regrets and opinions in the conditional, report what others said or asked, and give advice and reasons with the subjunctive.
+
+    units:
+      - id: past-narration-b1
+        title: Telling What Happened
+        description: Narrate past events with one past tense, time words and the -va/-ve forms.
+        icon: 🕰️
+        steps:
+          - id: background-event
+            title: In the Middle of It (éppen, közben)
+            description: Hungarian has one past tense; éppen, közben and miközben show what was going on when something else happened.
+            vocabulary: [éppen, közben, miközben, "épp akkor", hirtelen, megszólal, csörög, "elment az áram"]
+            grammar:
+              - pattern: "Éppen főztem, amikor megszólalt a telefon."
+              - pattern: "Miközben vártam a buszt, elkezdett esni."
+              - pattern: "Épp akkor lépett be, amikor rólad beszéltünk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: already-by-then
+            title: Had Already Happened (mire, addigra)
+            description: "For an earlier past event Hungarian keeps the past tense and adds már. Mire (by the time) pairs with addigra or már in the main clause (Mire odaértünk, addigra a vonat már elindult); előtte = before that; még sosem = never before (not yet is még nem)."
+            vocabulary: [addigra, mire, már, előtte, korábban, "még sosem", elindul, befejez]
+            grammar:
+              - pattern: "Mire odaértünk, a vonat már elindult."
+              - pattern: "Addigra már mindenki hazament."
+              - pattern: "Előtte még sosem láttam tengert."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: state-va-ve
+            title: Open, Closed, Sitting (nyitva, zárva, ülve)
+            description: "-va/-ve forms describe a state (nyitva van, be van zárva) or how something is done (ülve, sietve, mosolyogva). State forms take van; manner forms go with an ordinary verb, never with van (sietve megy, mosolyogva köszön)."
+            vocabulary: [nyitva, zárva, ülve, állva, sietve, mosolyogva, "be van zárva", "ki van kapcsolva"]
+            grammar:
+              - pattern: "A bolt vasárnap zárva van."
+              - pattern: "Az ajtó be van zárva."
+              - pattern: "Mosolyogva köszön mindenkinek."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: telling-anecdote-b1
+            title: Telling an Anecdote
+            description: "Tell a short personal story, set the scene and react to someone else's (Tényleg? És aztán? Ne mondd!)."
+            vocabulary: ["képzeld el", "nem fogod elhinni", "a legrosszabb az volt", szerencsére, végül, megijed, "jól alakult", nevet, "Tényleg?", "És aztán?", "Mesélj!", "Ne mondd!"]
+            grammar:
+              - pattern: "Nem fogod elhinni, mi történt velem a múlt héten!"
+              - pattern: "A legrosszabb az volt, hogy otthon felejtettem a telefonomat."
+              - pattern: "Végül szerencsére minden jól alakult."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: telling_an_anecdote
+                goal: Tell a friend about something funny or surprising that happened to you, setting the scene and saying what had happened before.
+
+      - id: conditional-b1
+        title: If & Would
+        description: Real conditions with ha, and the conditional mood for wishes, polite requests and unreal situations.
+        icon: 🔀
+        steps:
+          - id: real-conditions-ha
+            title: If It Rains (ha + present)
+            description: Real conditions with ha + present; the main clause is present or imperative (Ha esik, otthon maradunk; Ha ráérsz, gyere át!).
+            vocabulary: [ha, akkor, különben, "ha esik", "ha ráérsz", "ha akarod", "abban az esetben"]
+            grammar:
+              - pattern: "Ha holnap esik, nem megyünk kirándulni."
+              - pattern: "Ha ráérsz, gyere át hozzánk!"
+              - pattern: "Ha korán indulsz, eléred a vonatot."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: conditional-na-ne
+            title: Would (-na/-ne, -ná/-né)
+            description: The conditional adds -na/-ne for indefinite and -ná/-né for definite forms; én takes -nék in the indefinite and -nám/-ném in the definite (lennék, mennék, megvenném).
+            vocabulary: [lenne, lennék, mennék, vennék, megvenném, csinálnád, "jó lenne", gazdag]
+            grammar:
+              - pattern: "Ha lenne időm, többet olvasnék."
+              - pattern: "Ha gazdag lennék, vennék egy házat a Balatonnál."
+              - pattern: "Jó lenne, ha eljönnél."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: polite-requests-conditional
+            title: "Could You…? (Megmondaná…?)"
+            description: "Polite requests and offers in the conditional (megmondaná, segítenél, innál valamit?); lenne szíves = would you be so kind."
+            vocabulary: [megmondaná, segítenél, "lenne szíves", innál, "nem bánnám", megtennéd, "ha nem gond"]
+            grammar:
+              - pattern: "Megmondaná, hol van a posta?"
+              - pattern: "Segítenél egy kicsit?"
+              - pattern: "Lenne szíves becsukni az ablakot?"
+              - pattern: "Innál valamit?"
+            activities:
+              - { type: learn }
+              - { type: word_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: unreal-present
+            title: In Your Place (a helyedben)
+            description: Unreal situations and advice with ha + conditional in both clauses, and a helyedben (in your place).
+            vocabulary: ["a helyedben", inkább, "nem tenném", megpróbálnám, elfogadnám, ajánlat, lottó, változtat]
+            grammar:
+              - pattern: "A helyedben elfogadnám az ajánlatot."
+              - pattern: "Ha te lennél a főnök, mit változtatnál meg?"
+              - pattern: "Mit csinálnál, ha nyernél a lottón?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - type: dialogue
+                scenario: asking_for_advice
+                goal: Ask a friend what they would do in your situation and react to their advice.
+
+      - id: wishes-regrets-b1
+        title: Wishes & Regrets
+        description: Say what you wish were different, now and in the past.
+        icon: 🌠
+        steps:
+          - id: barcsak-wishes
+            title: If Only (bárcsak)
+            description: Wishes with bárcsak or de jó lenne, ha… and the conditional; szeretném, ha… for what you want from others.
+            vocabulary: [bárcsak, "de jó lenne", "szeretném, ha", "az a vágyam, hogy", "az álmom, hogy", remél]
+            grammar:
+              - pattern: "Bárcsak itt lennél!"
+              - pattern: "De jó lenne, ha nem kellene dolgozni!"
+              - pattern: "Szeretném, ha eljönnél velünk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: past-conditional-volna
+            title: Would Have (-tam volna)
+            description: The past conditional is the past tense + volna (mentem volna, láttad volna), in both clauses of an unreal past.
+            vocabulary: [volna, "mentem volna", "megvettem volna", "lett volna", "tudtam volna", "ha tudtam volna", kár]
+            grammar:
+              - pattern: "Ha tudtam volna, szóltam volna."
+              - pattern: "Ha korábban indultunk volna, nem késtük volna le a vonatot."
+              - pattern: "Kár, hogy nem jöttél el, jó lett volna."
+              - pattern: "Ha tudtam volna, felhívtalak volna."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: regrets-sajnalom
+            title: I Regret… (sajnálom, hogy)
+            description: "Regrets with sajnálom, hogy…, kár, hogy…, bárcsak … volna and nem kellett volna. When I act on you, the verb ends in -lak/-lek (nem hívtalak fel = I didn't call you)."
+            vocabulary: [sajnál, megbán, kár, "nem kellett volna", hiba, "ha újrakezdhetném"]
+            grammar:
+              - pattern: "Sajnálom, hogy nem hívtalak fel."
+              - pattern: "Bárcsak többet tanultam volna!"
+              - pattern: "Nem kellett volna ennyit ennem."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: dreams-plans
+            title: Dreams & Plans
+            description: "Talk about dreams and goals with arról álmodom, hogy + the present (egyszer Japánba utazom), a célom or az álmom, hogy + the subjunctive (megtanuljak, utazzak) and egyszer majd + szeretnék."
+            vocabulary: [álom, "arról álmodom", terv, cél, "egyszer majd", elér, megvalósít, nyugdíj]
+            grammar:
+              - pattern: "Arról álmodom, hogy egyszer Japánba utazom."
+              - pattern: "A célom, hogy jövőre megtanuljak autót vezetni."
+              - pattern: "Egyszer majd saját kávézót szeretnék nyitni."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: talking_about_dreams
+                goal: Tell a friend about a dream of yours, what you would do differently if you could, and ask about theirs.
+
+      - id: opinions-b1
+        title: Opinions
+        description: Give your opinion, agree and disagree, and weigh up pros and cons.
+        icon: 💬
+        steps:
+          - id: giving-opinions
+            title: I Think (szerintem, úgy gondolom)
+            description: "Give opinions with szerint + a personal ending (szerintem, szerinted, szerintünk), úgy gondolom, hogy… and az a véleményem, hogy…"
+            vocabulary: [szerintem, "úgy gondolom", "az a véleményem, hogy", "úgy érzem", vélemény, számomra, "nekem úgy tűnik"]
+            grammar:
+              - pattern: "Szerintem ez jó ötlet."
+              - pattern: "Úgy gondolom, hogy igazad van."
+              - pattern: "Mi a véleményed erről?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: agree-disagree
+            title: Agree & Disagree (egyetért + -val/-vel)
+            description: "egyetért takes -val/-vel (egyetértek veled); its prefix moves after the verb in nem értek egyet. With pronouns it is velem, veled, vele, velünk, veletek, velük."
+            vocabulary: [egyetért, "nem értek egyet", veled, "igazad van", "ebben nem vagyok biztos", részben, teljesen, "éppen ellenkezőleg"]
+            grammar:
+              - pattern: "Teljesen egyetértek veled."
+              - pattern: "Ebben nem értek egyet Péterrel."
+              - pattern: "Igazad van, de…"
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: pros-cons
+            title: Pros & Cons (előny, hátrány)
+            description: "Weigh pros and cons with előnye and hátránya, hogy…, egyrészt… másrészt… and viszont or ugyanakkor (both mean however)."
+            vocabulary: [előny, hátrány, egyrészt, másrészt, viszont, ugyanakkor, "az a baj", "a lényeg"]
+            grammar:
+              - pattern: "Egyrészt olcsó, másrészt messze van."
+              - pattern: "A városi élet előnye, hogy minden közel van."
+              - pattern: "Az a baj, hogy nincs elég időm."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: discussion-b1
+            title: A Discussion
+            vocabulary: [szerinted, "miért gondolod", "hogy érted", például, mondjuk, "attól függ", "nem mindegy", megbeszél]
+            grammar:
+              - pattern: "Miért gondolod így?"
+              - pattern: "Attól függ, mennyi pénzünk van."
+              - pattern: "Hogy érted ezt?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: debating_a_topic
+                goal: Discuss with a friend whether it is better to live in a city or in the countryside, giving your reasons.
+
+      - id: reported-speech-b1
+        title: Reported Speech
+        description: Report what someone said, asked or told you to do.
+        icon: 🗣️
+        steps:
+          - id: azt-mondta
+            title: He Said That… (azt mondta, hogy)
+            description: "Report statements with azt mondta, hogy…; the verb keeps the tense the speaker used (Azt mondta, hogy fáradt), so English backshift is undone (He said he lived there = Azt mondta, hogy ott él). azt makes the reporting verb definite (azt közölte, azt közölték)."
+            vocabulary: ["azt mondta", "azt írta", "azt mesélte", elmond, "azt közölte", "azt állította", szerinte]
+            grammar:
+              - pattern: "Péter azt mondta, hogy holnap jön."
+              - pattern: "Anna azt írta, hogy beteg."
+              - pattern: "Azt mesélte, hogy Londonban lakott."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: indirect-questions-e
+            title: Asked Whether (-e)
+            description: "A reported yes/no question adds -e to its verb (megkérdezte, hogy ráérek-e); a question with a question word keeps it and never takes -e (megkérdezte, hol lakom). hogy before the question word is optional (Megkérdezte, hogy hol lakom = Megkérdezte, hol lakom)."
+            vocabulary: [megkérdez, "ráérsz-e", "eljön-e", kíváncsi, vajon, "nem tudom, hogy"]
+            grammar:
+              - pattern: "Megkérdezte, hogy ráérek-e holnap."
+              - pattern: "Nem tudom, hogy eljön-e."
+              - pattern: "Megkérdezte, hol lakom."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice }
+          - id: reported-requests
+            title: She Asked Me To… (azt kérte, hogy)
+            description: "Report requests and orders with azt kérte or azt mondta, hogy + the subjunctive (Azt kérte, hogy hívjam fel). The subjunctive shows who must act (Megkért, hogy várjak = he asked me to wait; Megkérte, hogy várjon = he asked him or her to wait)."
+            vocabulary: ["azt kérte", megkér, "hívjam fel", várjak, siessünk, figyelmeztet, "ne mondjam el"]
+            grammar:
+              - pattern: "Azt kérte, hogy hívjam fel este."
+              - pattern: "A főnök azt mondta, hogy siessünk."
+              - pattern: "Megkért, hogy ne mondjam el senkinek."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: passing-on-messages
+            title: Passing On a Message
+            description: "Take and pass on a message with azt üzeni, hogy…, megmondom neki, hogy… and szólj neki, hogy + the subjunctive."
+            vocabulary: [üzen, üzenet, "azt üzeni", "megmondom neki", "szólok neki", visszahív, keres, átad, "Átadjak neki valamit?", "Hagy üzenetet?"]
+            grammar:
+              - pattern: "Anna azt üzeni, hogy késik egy kicsit."
+              - pattern: "Megmondom neki, hogy kerested."
+              - pattern: "Kérlek, szólj neki, hogy hívjon vissza!"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: taking_a_phone_message
+                goal: Take a phone message for a colleague and pass it on, reporting what the caller said and asked.
+
+      - id: relative-clauses-b1
+        title: Relative Clauses
+        description: Join sentences with aki, ami, amely, ahol and their pointer words.
+        icon: 🔗
+        steps:
+          - id: aki-ami
+            title: Who, Which (aki, ami, amely)
+            description: aki for people, ami or amely for things; they take the case ending of their role in the clause (akit, amit, akivel, amiről).
+            vocabulary: [aki, ami, amely, akit, amit, akivel, amiről, akinek]
+            grammar:
+              - pattern: "Az a férfi, akivel beszéltem, az apám."
+              - pattern: "A könyv, amit olvasok, nagyon izgalmas."
+              - pattern: "Ismered azt a lányt, akinek piros kabátja van?"
+              - pattern: "Az a nő, akinek segítettem, a szomszédom."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: ahol-amikor
+            title: Where, When (ahol, ahová, amikor)
+            vocabulary: [ahol, ahová, ahonnan, amikor, amióta, ameddig, ahogy]
+            grammar:
+              - pattern: "Ez az a ház, ahol születtem."
+              - pattern: "Emlékszel arra a napra, amikor megismerkedtünk?"
+              - pattern: "Oda megyünk, ahová te szeretnél."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
+          - id: pointer-words
+            title: The One Who (az, aki; azt, amit)
+            description: "A pointer word in the main clause (az, azt, azzal, ott) takes its own case and points to the relative clause (Azt csinálom, amit akarok). The pointer azt takes the definite verb, amit the indefinite (Azt csinálom, amit szeretek)."
+            vocabulary: ["az, aki", "azt, amit", "azzal, akivel", "ott, ahol", "mindenki, aki", "minden, amit"]
+            grammar:
+              - pattern: "Azt csinálom, amit akarok."
+              - pattern: "Az nyer, aki gyorsabb."
+              - pattern: "Mindent elmondtam, amit tudtam."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: describing-places-b1
+            title: Describing People & Places
+            vocabulary: [környék, kerület, szomszéd, hangulat, nyüzsgő, csendes, híres, felnő]
+            grammar:
+              - pattern: "Abban a kerületben lakom, ahol felnőttem."
+              - pattern: "Van egy szomszédom, akit mindenki ismer."
+              - pattern: "Ez az a kávézó, amelyről meséltem."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: showing_your_town
+                goal: Show a visitor around your neighbourhood, describing the people and places that matter to you.
+
+      - id: requests-advice-b1
+        title: Advice & Polite Requests
+        description: Ask, advise and tell people what to do with the subjunctive and the conditional.
+        icon: 🤝
+        steps:
+          - id: subjunctive-hogy
+            title: I Want You To… (hogy + subjunctive)
+            description: "After akar, javasol, kér or fontos + hogy, the second verb takes the imperative-subjunctive (Azt akarom, hogy gyere el). Verbs ending in s or z double it (olvass, érkezz); jön gives gyere or jöjj."
+            vocabulary: ["azt akarom, hogy", javasol, "azt javaslom, hogy", "fontos, hogy", "jobb, ha", kér, jöjj, érkezz, megírd]
+            grammar:
+              - pattern: "Azt akarom, hogy gyere el velem."
+              - pattern: "Azt javaslom, hogy pihenj többet."
+              - pattern: "Fontos, hogy időben érkezz."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice }
+          - id: giving-advice
+            title: You Should… (kellene, érdemes)
+            description: Advice with kellene (should), érdemes (it's worth it), jobb lenne, ha… and mi lenne, ha…?
+            vocabulary: [kellene, érdemes, "jobb lenne", "nem ártana", tanács, tanácsol, "mi lenne, ha"]
+            grammar:
+              - pattern: "Többet kellene aludnod."
+              - pattern: "Érdemes korán elindulni."
+              - pattern: "Mi lenne, ha holnap beszélnénk erről?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: imperative-definite
+            title: Do It! (csináld meg, mondd meg)
+            description: The definite imperative (csináld, mondd, vedd fel) and the prefix after the verb (hívj fel, ne felejtsd el).
+            vocabulary: ["csináld meg", "mondd meg", "vedd fel", "hívj fel", "ne felejtsd el", "ne aggódj", "add ide", "várj meg"]
+            grammar:
+              - pattern: "Mondd meg Péternek, hogy hívjon fel!"
+              - pattern: "Ne felejtsd el a kulcsot!"
+              - pattern: "Add ide a sót, légy szíves!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: making-a-complaint
+            title: Making a Complaint
+            vocabulary: [panasz, reklamál, kicserél, hibás, garancia, "nem működik", vezető, visszakap]
+            grammar:
+              - pattern: "Szeretnék reklamálni, mert a mosógép nem működik."
+              - pattern: "Ki tudnák cserélni, vagy visszakaphatnám a pénzemet?"
+              - pattern: "Beszélhetnék a vezetővel?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: returning_a_faulty_product
+                goal: Return a faulty product to a shop, explain the problem politely and ask for a repair, a replacement or your money back.
+
+      - id: work-careers-b1
+        title: Work & Careers
+        description: Apply for jobs, talk about tasks and deadlines, and say why you do things.
+        icon: 📈
+        steps:
+          - id: purpose-hogy
+            title: In Order To (azért, hogy; -ért)
+            description: "Purpose (not reason, which is azért, mert) with (azért,) hogy + a subjunctive that matches who acts (Azért tanulok, hogy jobb állást kapjak); -ért is a case ending on the noun for what you go or pay for (kenyérért, ezért a kabátért)."
+            vocabulary: ["azért, hogy", cél, "annak érdekében, hogy", kenyérért, pénzért, "ezért a kabátért"]
+            grammar:
+              - pattern: "Azért tanulok magyarul, hogy Budapesten dolgozhassak."
+              - pattern: "Leugrom a boltba kenyérért."
+              - pattern: "Mennyit fizettél ezért a kabátért?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: applying-for-a-job
+            title: Applying for a Job
+            vocabulary: [állás, pályázat, önéletrajz, jelentkezik, "motivációs levél", végzettség, gyakorlat, bérigény, csatol]
+            grammar:
+              - pattern: "Jelentkeztem egy állásra egy nemzetközi cégnél."
+              - pattern: "Csatoltam az önéletrajzomat."
+              - pattern: "Milyen végzettsége van?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: workplace-tasks
+            title: Tasks & Deadlines (el kell intéznem)
+            vocabulary: [feladat, határidő, értekezlet, beszámoló, elintéz, túlóra, csapatmunka, "be kell fejeznem"]
+            grammar:
+              - pattern: "Péntekig be kell fejeznem a beszámolót."
+              - pattern: "Ma még el kell intéznem néhány telefont."
+              - pattern: "Holnap kilenckor értekezletünk lesz."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: performance-review
+            title: A Performance Review
+            vocabulary: [előléptetés, fizetésemelés, teljesítmény, elégedett, fejlődik, visszajelzés, felelősség, megérdemel]
+            grammar:
+              - pattern: "Elégedett vagyok a munkáddal."
+              - pattern: "Szeretnék beszélni a fizetésemelésről."
+              - pattern: "Úgy érzem, megérdemlem az előléptetést."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: asking_for_a_raise
+                goal: Talk to your manager about your achievements this year and ask for a raise or a promotion.
+
+      - id: habits-lifestyle-b1
+        title: Habits & Lifestyle
+        description: Talk about habits, healthy living and how you spend your time.
+        icon: 🌱
+        steps:
+          - id: szokott
+            title: I Usually Do (szokott + -ni)
+            description: "Habits with szokott + infinitive, which looks like a past form but means the present (Reggelente futni szoktam). It has only these past-looking forms (szoktam, szoktál, szokott, szoktunk, szoktatok, szoktak), never szokok; be used to is hozzászokik."
+            vocabulary: [szokott, szoktam, szoktál, "nem szoktam", rendszeresen, időnként, "mit szoktál"]
+            grammar:
+              - pattern: "Reggelente futni szoktam."
+              - pattern: "Mit szoktál csinálni hétvégén?"
+              - pattern: "Nem szoktam reggelizni."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+          - id: get-used-to
+            title: Get Used To, Give Up (hozzászokik, leszokik)
+            description: "Change habits with hozzászokik + -hoz/-hez/-höz (get used to), leszokik + -ról/-ről (give up), rászokik + -ra/-re (take up) and abbahagy (stop); after nem the prefix follows the verb (nem szokott hozzá)."
+            vocabulary: [hozzászokik, leszokik, rászokik, abbahagy, elkezd, dohányzás, "a korai keléshez"]
+            grammar:
+              - pattern: "Már hozzászoktam a korai keléshez."
+              - pattern: "Tavaly leszoktam a dohányzásról."
+              - pattern: "Abbahagytam a kávézást."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: healthy-living
+            title: Healthy Living
+            vocabulary: [egészséges, mozgás, edz, diéta, zöldség, cukor, alvás, stressz]
+            grammar:
+              - pattern: "Hetente háromszor edzek."
+              - pattern: "Próbálok kevesebb cukrot enni."
+              - pattern: "Elég alvás nélkül nem tudok koncentrálni."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: free-time-b1
+            title: How I Spend My Free Time
+            vocabulary: [kikapcsolódik, pihenés, "időt tölt", önkéntes, állatmenhely, barkácsol, kert]
+            grammar:
+              - pattern: "Hétvégén a kertben szoktam kikapcsolódni."
+              - pattern: "Sok időt töltök a családommal."
+              - pattern: "Önkéntesként dolgozom egy állatmenhelyen."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: lifestyle_chat
+                goal: Compare your daily habits with a friend's and agree on one healthy change you will both try.
+
+      - id: media-technology-b1
+        title: Media & Technology
+        description: Talk about devices, apps and social media.
+        icon: 📱
+        steps:
+          - id: devices-apps
+            title: Devices & Apps
+            vocabulary: [okostelefon, alkalmazás, letölt, feltölt, jelszó, bejelentkezik, képernyő, töltő]
+            grammar:
+              - pattern: "Letöltöttem egy új alkalmazást."
+              - pattern: "Elfelejtettem a jelszavamat."
+              - pattern: "Hol van a töltőm?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: hato-heto
+            title: Can Be Done (-ható/-hető)
+            description: "-ható/-hető makes an adjective of what can be done (letölthető, elérhető, olvasható). The plural is -hatók/-hetők or -hatóak/-hetőek, both correct."
+            vocabulary: [letölthető, elérhető, olvasható, ehető, használható, kapható, látható]
+            grammar:
+              - pattern: "Az alkalmazás ingyen letölthető."
+              - pattern: "A jegyek online is kaphatók."
+              - pattern: "Ez a gomba nem ehető."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: as-es-nouns
+            title: Actions as Nouns (-ás/-és)
+            description: -ás/-és turns a verb into a noun (olvas → olvasás, letölt → letöltés), which can take any case or possessive ending.
+            vocabulary: [olvasás, letöltés, keresés, vásárlás, beállítás, frissítés, "online vásárlás"]
+            grammar:
+              - pattern: "Az online vásárlás nagyon kényelmes."
+              - pattern: "A frissítés után nem működik a telefonom."
+              - pattern: "A keresés nem hozott eredményt."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: social-media
+            title: Social Media
+            vocabulary: ["közösségi média", bejegyzés, megoszt, kedvel, követő, hír, álhír, hírlevél]
+            grammar:
+              - pattern: "Megosztottam egy bejegyzést a közösségi médiában."
+              - pattern: "Sokan elhiszik az álhíreket."
+              - pattern: "Hány követőd van?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: tech_support_call
+                goal: Call a help line because an app stopped working after an update, describe the problem and follow the steps they give.
+
+    checkpoint:
+      title: B1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  B2:
+    title: Upper Intermediate
+    description: >
+      Interact with fluency on a wide range of topics, have things done with the causative, express the passive the Hungarian way,
+      speculate and hypothesise, link complex ideas, describe with participles and argue a point of view.
+
+    units:
+      - id: causative-b2
+        title: Getting Things Done
+        description: Have things done and make people do things with the causative -tat/-tet.
+        icon: 🛠️
+        steps:
+          - id: causative-tat-tet
+            title: Have It Done (-tat/-tet)
+            description: "The causative -tat/-tet (-at/-et after some verbs) means having someone do something (megjavíttatom, levágatom). kitakaríttat = have a room or flat cleaned, kitisztíttat = have clothes cleaned."
+            vocabulary: [megjavíttat, levágat, kitakaríttat, kitisztíttat, megcsináltat, elvégeztet, kimosat, szerelő, fodrász]
+            grammar:
+              - pattern: "Megjavíttattam a mosógépet."
+              - pattern: "Holnap levágatom a hajamat."
+              - pattern: "Hol szoktad kitisztíttatni az öltönyödet?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: causee-val-vel
+            title: Make Someone Do It (-val/-vel)
+            description: "The person made to act takes -val/-vel when the verb already has an object (átíratta velem a jelentést) and -t when it doesn't (megnevettet valakit, megvárakoztatja az ügyfeleket). Never -nak/-nek for the person made to act, which names who it is done for (újraíratta velem = made me rewrite it; újraíratta nekem = had it rewritten for me)."
+            vocabulary: [átírat, újraírat, "velem", "velünk", megnevettet, megvárakoztat, rávesz, kényszerít]
+            grammar:
+              - pattern: "A tanár újraíratta velünk a dolgozatot."
+              - pattern: "A főnök átíratta velem a jelentést."
+              - pattern: "Ne várakoztasd meg az ügyfeleket!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: let-or-make
+            title: Let or Make? (enged, hagy, -tat)
+            description: Let someone do something with enged + -ni or hagyja, hogy…; make them do it with the causative or kényszerít.
+            vocabulary: [enged, megenged, hagy, "hagyja, hogy", kényszerít, tilt, "nem hagyja"]
+            grammar:
+              - pattern: "A szüleim nem engedtek el a buliba."
+              - pattern: "Hagyd, hogy én fizessek!"
+              - pattern: "Senki sem kényszerített arra, hogy aláírd."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: repairs-services
+            title: Repairs & Services
+            vocabulary: [javítás, szerviz, árajánlat, alkatrész, garancia, "mikorra lesz kész", kiszáll, munkadíj]
+            grammar:
+              - pattern: "Mikorra lesz kész az autó?"
+              - pattern: "Kérnék egy árajánlatot a javításra."
+              - pattern: "A munkadíj nincs benne az árban."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: arranging_a_repair
+                goal: Call a repair service about a broken boiler, describe the problem and agree when it will be fixed and for how much.
+
+      - id: passive-alternatives-b2
+        title: The Passive, the Hungarian Way
+        description: Say what was done without naming who did it.
+        icon: 🏗️
+        steps:
+          - id: impersonal-3pl
+            title: It Was Built (the ők form)
+            description: Hungarian has no everyday passive; it uses the ők form with no subject (A hidat 1849-ben adták át; Azt mondják, …).
+            vocabulary: ["azt mondják", "úgy tartják", építették, felújították, bezárták, felfedezték, megnyitották, átadták]
+            grammar:
+              - pattern: "A Lánchidat 1849-ben adták át."
+              - pattern: "Azt mondják, hogy idén hideg tél lesz."
+              - pattern: "A múzeumot tavaly újították fel."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: odik-verbs
+            title: It Begins, It Gets Done (-ódik/-ődik)
+            description: Many verbs have a pair with no doer in -ódik/-ődik, -ul/-ül or -ik (kezd – kezdődik, befejez – befejeződik, nyit – nyílik, elkészít – elkészül).
+            vocabulary: [kezdődik, befejeződik, nyílik, elkészül, megjavul, változik, alakul, eldől]
+            grammar:
+              - pattern: "Az előadás nyolckor kezdődik."
+              - pattern: "Elkészült a jelentés."
+              - pattern: "Az ajtó magától kinyílt."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: va-ve-van-result
+            title: It Is Done (le van foglalva)
+            description: "-va/-ve + van shows the result of an action (le van foglalva, ki van fizetve, el van intézve). The thing is the subject, without -t (A kód fel van írva), and the prefix is always a separate word (le van foglalva, never levan)."
+            vocabulary: ["le van foglalva", "ki van fizetve", "el van intézve", "fel van írva", "meg van javítva", "alá van írva"]
+            grammar:
+              - pattern: "Az asztal már le van foglalva."
+              - pattern: "A számla ki van fizetve."
+              - pattern: "Minden el van intézve, nem kell aggódnod."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: official-notices
+            title: Notices & Announcements
+            vocabulary: [tájékoztat, értesít, "felhívjuk figyelmét", szünetel, karbantartás, ideiglenesen, lezár, utas]
+            grammar:
+              - pattern: "Tájékoztatjuk kedves utasainkat, hogy a vonat húsz percet késik."
+              - pattern: "Karbantartás miatt a szolgáltatás ideiglenesen szünetel."
+              - pattern: "Az utat lezárták a forgalom elől."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: a_cancelled_train
+                goal: Your train has been cancelled; ask at the information desk what happened, what your options are, and get a new ticket or a refund.
+
+      - id: hypotheticals-b2
+        title: Hypotheticals
+        description: Imagine other outcomes, talk about appearances and precautions.
+        icon: 🌀
+        steps:
+          - id: mixed-conditionals
+            title: If I Had…, I Would Now
+            description: Mix the past and present conditional (Ha nem költöztem volna el, most is ott laknék).
+            vocabulary: ["most is", "ma már", elköltözik, "más lenne", "nem lennék itt", folyékonyan]
+            grammar:
+              - pattern: "Ha nem költöztem volna Budapestre, most is vidéken laknék."
+              - pattern: "Ha tavaly elkezdtem volna, ma már folyékonyan beszélnék."
+              - pattern: "Ha nem találkoztunk volna, most nem lennék itt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: mintha
+            title: As If (mintha)
+            description: mintha + conditional for as if, in the present (mintha ő lenne a főnök) and the past (mintha nem látott volna).
+            vocabulary: [mintha, "úgy tesz, mintha", "úgy néz ki, mintha", "olyan, mintha", "mintha csak", tettet]
+            grammar:
+              - pattern: "Úgy viselkedik, mintha ő lenne a főnök."
+              - pattern: "Úgy tett, mintha nem látott volna."
+              - pattern: "Olyan, mintha tegnap lett volna."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: nehogy-hatha
+            title: Or Else, Just in Case (különben, nehogy, hátha)
+            description: különben (otherwise), nehogy + subjunctive (so that … not) and hátha (in case, maybe).
+            vocabulary: [különben, nehogy, hátha, mindenesetre, "nehogy elfelejtsd", "vigyázz, nehogy", "lekésed a vonatot", elkésel]
+            grammar:
+              - pattern: "Siess, különben lekésed a vonatot!"
+              - pattern: "Írd fel, nehogy elfelejtsd!"
+              - pattern: "Viszek esernyőt, hátha esik."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: what-if-discussion
+            title: What If…? (mi lett volna, ha)
+            description: "Talk about what would have happened with mi lett volna, ha + the past conditional, and imagine with képzeld el (elképzel = to imagine)."
+            vocabulary: ["mi lett volna, ha", "mi lenne, ha", elképzel, lehetőség, "ki tudja", következmény, döntés]
+            grammar:
+              - pattern: "Mi lett volna, ha nem fogadtad volna el azt az állást?"
+              - pattern: "Képzeld el, milyen lenne az élet internet nélkül!"
+              - pattern: "Ki tudja, mi történt volna."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: imagining_another_life
+                goal: Imagine with a friend how your lives would be different today if you had made one big decision differently.
+
+      - id: deduction-speculation-b2
+        title: Deduction & Speculation
+        description: Say how sure you are and guess what happened.
+        icon: 🔍
+        steps:
+          - id: certainty-adverbs
+            title: Surely, Probably, Maybe
+            vocabulary: [biztosan, valószínűleg, talán, "lehet, hogy", aligha, nyilván, "minden bizonnyal", kétlem]
+            grammar:
+              - pattern: "Biztosan elfelejtette."
+              - pattern: "Valószínűleg dugóban ül."
+              - pattern: "Lehet, hogy már elment."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: hat-het-deduction
+            title: He May Have… (-hatott/-hetett, kell lennie)
+            description: "Guess about the past with -hatott/-hetett = may or might have (elfelejthette, eltévedhetett); must have is biztosan + the past (biztosan elfelejtette); must be is kell + a personal infinitive (itt kell lennie); should have is kellett volna (meg kellett volna érkeznie), never kell volna."
+            vocabulary: [elfelejthette, eltévedhetett, "itt kell lennie", "meg kellett volna érkeznie", "nem lehetett", "biztos, hogy"]
+            grammar:
+              - pattern: "Elfelejthette a kulcsát."
+              - pattern: "A kulcsnak itt kell lennie valahol."
+              - pattern: "Már meg kellett volna érkeznie."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: vajon-wondering
+            title: I Wonder (vajon)
+            vocabulary: [vajon, kíváncsi, "kíváncsi vagyok, hogy", "nem értem, miért", rejtély, "mi lehet", gyanús]
+            grammar:
+              - pattern: "Vajon miért nem hív?"
+              - pattern: "Kíváncsi vagyok, hogy eljön-e."
+              - pattern: "Mi lehet ebben a dobozban?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: solving-a-mystery
+            title: Solving a Mystery
+            vocabulary: [nyom, gyanú, gyanúsít, bizonyíték, tanú, kizárt, elképzelhető, magyarázat]
+            grammar:
+              - pattern: "Kizárt, hogy ő tette."
+              - pattern: "Elképzelhető, hogy valaki elvitte."
+              - pattern: "Erre csak egy magyarázat van."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: missing_parcel_mystery
+                goal: Work out with a flatmate what happened to a missing parcel, weighing up who could have taken it and why.
+
+      - id: time-clauses-b2
+        title: Time Clauses
+        description: Say exactly when things happen in relation to each other.
+        icon: ⏳
+        steps:
+          - id: amig-ameddig
+            title: While, Until (amíg, amíg nem)
+            description: "amíg (or ameddig, the same) for while or as long as; amíg … nem for until, with nem right before the verb and the prefix in front of it (Várj, amíg vissza nem jövök)."
+            vocabulary: [amíg, ameddig, "amíg nem", "amíg vissza nem jövök", addig, egészen]
+            grammar:
+              - pattern: "Amíg főzöl, megterítek."
+              - pattern: "Várj itt, amíg vissza nem jövök!"
+              - pattern: "Addig maradok, ameddig szükség van rám."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: mire-amint
+            title: By the Time, As Soon As (mire, amint)
+            description: "mire = by the time, amint and mihelyt = as soon as; alighogy = no sooner … than, for past events (Alighogy leültünk, megszólalt a csengő)."
+            vocabulary: [mire, amint, mihelyt, alighogy, rögtön, azonnal, "mire odaérünk"]
+            grammar:
+              - pattern: "Mire hazaérsz, kész lesz a vacsora."
+              - pattern: "Amint megtudok valamit, szólok."
+              - pattern: "Alighogy leültünk, megszólalt a csengő."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: amiota-azota
+            title: Since (amióta, azóta)
+            vocabulary: [amióta, azóta, mióta, "évek óta", "attól fogva", "kezdettől fogva"]
+            grammar:
+              - pattern: "Amióta itt lakom, nem volt ilyen hideg."
+              - pattern: "Azóta sem láttam."
+              - pattern: "Évek óta ugyanott dolgozik."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: deadlines-ig-ra
+            title: Until and By (-ig, -ra/-re)
+            description: "-ig for until or as far as (ötig = until five, a sarokig = as far as the corner), -ra/-re for by a deadline (péntekre = by Friday, holnapra = by tomorrow). With kell, -ig can set a deadline too (péntekig le kell adni)."
+            vocabulary: [ötig, péntekig, péntekre, holnapra, határidő, legkésőbb, "a végéig", ütemterv]
+            grammar:
+              - pattern: "Ötig dolgozom, utána ráérek."
+              - pattern: "Péntekre kész lesz a fordítás."
+              - pattern: "Legkésőbb holnapra küldd el, kérlek!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: planning_a_schedule
+                goal: Agree with a colleague on a project timetable, saying what has to be ready by when and who works on what until then.
+
+      - id: linking-ideas-b2
+        title: Linking Ideas
+        description: Connect ideas with concession, contrast, addition and cause.
+        icon: 🧩
+        steps:
+          - id: although-bar
+            title: Although (bár, noha, annak ellenére, hogy)
+            description: "bár, habár, noha and annak ellenére, hogy open the although clause; the main clause may add mégis (Bár fáradt volt, mégis elment)."
+            vocabulary: [bár, habár, noha, "annak ellenére, hogy", mégis, "ennek ellenére", azonban]
+            grammar:
+              - pattern: "Bár fáradt volt, mégis elment edzeni."
+              - pattern: "Annak ellenére, hogy esett, kirándultunk."
+              - pattern: "Noha sokat tanult, nem sikerült a vizsgája."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: contrast-viszont
+            title: Whereas, However (viszont, míg, ezzel szemben)
+            vocabulary: [viszont, míg, "ezzel szemben", azonban, pedig, ellenben, ugyanakkor]
+            grammar:
+              - pattern: "Én a hegyeket szeretem, ő viszont a tengert."
+              - pattern: "A nővérem nagyon csendes, míg az öcsém folyton beszél."
+              - pattern: "Ezzel szemben vidéken olcsóbbak a lakások."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: addition-sot
+            title: Moreover, In Other Words (sőt, ráadásul, vagyis)
+            description: "nemcsak … hanem … is = not only … but also (ráadásul never goes inside it); sőt = what's more, even (jó, sőt kiváló); ráadásul = on top of that; vagyis and azaz = that is, in other words."
+            vocabulary: [sőt, ráadásul, "nemcsak … hanem … is", vagyis, illetve, azaz, valamint]
+            grammar:
+              - pattern: "Nemcsak okos, hanem kedves is."
+              - pattern: "Drága, ráadásul nem is finom."
+              - pattern: "Holnap, vagyis szerdán találkozunk."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: cause-effect
+            title: Because, So (mivel, emiatt, hiszen)
+            vocabulary: [mivel, hiszen, ezért, emiatt, tehát, így, "ennek következtében"]
+            grammar:
+              - pattern: "Mivel esett, otthon maradtunk."
+              - pattern: "Elromlott a kocsi, emiatt késtem el."
+              - pattern: "Hiszen megmondtam!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: explaining_a_decision
+                goal: Explain to a friend why you turned down a job offer, weighing the reasons for and against.
+
+      - id: participles-b2
+        title: Participles
+        description: Describe people and things with present, past and future participles.
+        icon: 📝
+        steps:
+          - id: present-participle
+            title: The Man Sitting Next to Me (-ó/-ő)
+            description: -ó/-ő makes an adjective of an ongoing action and can carry its own words before it (a mellettem ülő férfi, a Bécsbe induló vonat).
+            vocabulary: [ülő, álló, induló, dolgozó, olvasó, "a mellettem ülő", "a Bécsbe induló", "a parton álló"]
+            grammar:
+              - pattern: "A mellettem ülő férfi végig telefonált."
+              - pattern: "A Bécsbe induló vonat a hatodik vágányról indul."
+              - pattern: "A Duna partján álló épület a Parlament."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: past-participle
+            title: The Bread I Bought Yesterday (-t/-tt)
+            description: "The past participle in -t/-tt (a tegnap vett kenyér, az elveszett kulcs, a megadott határidő). az elveszett kulcs is the key that got lost (elvész), az elvesztett kulcs the key someone lost (elveszt)."
+            vocabulary: [vett, elveszett, megjavított, "a tegnap vett", ajánlott, kért, megadott, "a fent említett"]
+            grammar:
+              - pattern: "A tegnap vett kenyér már száraz."
+              - pattern: "Megtaláltam az elveszett kulcsomat."
+              - pattern: "Kérem, a megadott határidőig küldje el!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: future-participle
+            title: To Be Done (-andó/-endő)
+            description: -andó/-endő marks what must or will be done (a megoldandó feladat, a fizetendő összeg, a teendők).
+            vocabulary: [megoldandó, fizetendő, elvégzendő, betartandó, teendő, "a teendők"]
+            grammar:
+              - pattern: "A fizetendő összeg tízezer forint."
+              - pattern: "Ez egy sürgősen megoldandó probléma."
+              - pattern: "Mik a mai teendőink?"
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: describing-impressions
+            title: Describing Impressions
+            vocabulary: [lenyűgöző, meglepő, érdekes, unalmas, izgalmas, megnyugtató, lehangoló, fárasztó]
+            grammar:
+              - pattern: "Lenyűgöző kilátás nyílt a hegyről."
+              - pattern: "A hírek eléggé lehangolóak voltak."
+              - pattern: "Fárasztó, de nagyon érdekes nap volt."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: reviewing_an_exhibition
+                goal: Tell a friend about an exhibition or film you saw, describing what you found impressive, surprising or boring.
+
+      - id: debate-persuasion-b2
+        title: Debate & Persuasion
+        description: Take a position, answer counter-arguments and persuade.
+        icon: 🎙️
+        steps:
+          - id: taking-a-position
+            title: Taking a Position
+            vocabulary: ["meggyőződésem, hogy", "kétségtelen, hogy", határozottan, "véleményem szerint", álláspont, érvel, érv]
+            grammar:
+              - pattern: "Meggyőződésem, hogy ez a helyes döntés."
+              - pattern: "Kétségtelen, hogy a technológia megváltoztatta az életünket."
+              - pattern: "Milyen érvek szólnak mellette?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: counter-arguments
+            title: Yes, But… (elismerem, hogy)
+            vocabulary: ["igaz, de", "elismerem, hogy", ugyanakkor, ellenérv, cáfol, "figyelmen kívül hagy", "hosszú távon"]
+            grammar:
+              - pattern: "Elismerem, hogy drága, de hosszú távon megéri."
+              - pattern: "Ezt az érvet nem lehet figyelmen kívül hagyni."
+              - pattern: "Igaz, hogy kényelmes, de nem környezetbarát."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: persuading
+            title: Convincing Someone (meggyőz, rábeszél)
+            vocabulary: [meggyőz, rábeszél, lebeszél, "érdemes lenne", "gondold végig", ajánl, biztosít]
+            grammar:
+              - pattern: "Sikerült meggyőznöm a szüleimet."
+              - pattern: "Rábeszélt, hogy menjek el vele."
+              - pattern: "Gondold végig még egyszer!"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: formal-debate
+            title: A Formal Debate
+            description: "szót kérek asks for the floor; hadd fejezzem be keeps the floor when interrupted; visszatérve, összefoglalva and végezetül steer and close the debate."
+            vocabulary: ["szót kérek", "hadd fejezzem be", visszatérve, összefoglalva, "a kérdés az", végezetül, javasol]
+            grammar:
+              - pattern: "Hadd fejezzem be, kérem!"
+              - pattern: "Összefoglalva: a javaslat előnyei meghaladják a hátrányait."
+              - pattern: "Visszatérve az eredeti kérdésre: ki fizeti mindezt?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: town_hall_debate
+                goal: Argue for or against a new shopping centre in your town at a public meeting, responding to the other side's points.
+
+      - id: society-environment-b2
+        title: Society & the Environment
+        description: Discuss environmental and social issues and how things change.
+        icon: 🌳
+        steps:
+          - id: environment
+            title: The Environment
+            vocabulary: [környezetvédelem, klímaváltozás, szennyezés, újrahasznosítás, "szelektív hulladékgyűjtés", "megújuló energia", fenntartható]
+            grammar:
+              - pattern: "A szelektív hulladékgyűjtés mindenki felelőssége."
+              - pattern: "Egyre több megújuló energiát használunk."
+              - pattern: "Mit tehetünk a klímaváltozás ellen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: social-issues
+            title: Social Issues
+            vocabulary: [munkanélküliség, szegénység, egyenlőtlenség, lakhatás, egészségügy, oktatás, társadalom, nyugdíj]
+            grammar:
+              - pattern: "A fiatalok számára egyre nehezebb lakást venni."
+              - pattern: "Az egészségügy komoly gondokkal küzd."
+              - pattern: "A társadalom egyre inkább elöregszik."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: translative-va-ve
+            title: Turning Into (-vá/-vé, válik)
+            description: The translative -vá/-vé turns its v into a copy of a final consonant (zöldebbé, sivataggá) and keeps it after a vowel (népszerűvé); it goes with válik and tesz.
+            vocabulary: [válik, "lehetővé tesz", népszerűvé, kötelezővé, elérhetővé, sivataggá, egyre]
+            grammar:
+              - pattern: "A város egyre zöldebbé válik."
+              - pattern: "Az internet lehetővé tette a távmunkát."
+              - pattern: "A kerékpározás népszerűvé vált."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: local-community
+            title: Local Community
+            vocabulary: [önkormányzat, polgármester, lakók, kezdeményezés, "közösségi kert", aláírásgyűjtés, "lakossági fórum"]
+            grammar:
+              - pattern: "A lakók aláírásgyűjtést szerveztek."
+              - pattern: "Az önkormányzat új parkot épít."
+              - pattern: "Részt vettem egy lakossági fórumon."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: community_garden
+                goal: Convince a neighbour to join your initiative for a community garden, explaining its benefits and how they can help.
+
+      - id: science-culture-arts-b2
+        title: Science, Culture & the Arts
+        description: Talk about exhibitions, books, films, research and famous inventions.
+        icon: 🎭
+        steps:
+          - id: arts-culture
+            title: Arts & Culture
+            vocabulary: [kiállítás, előadás, színház, rendező, festmény, szobor, hangverseny, bemutató]
+            grammar:
+              - pattern: "Láttad már az új kiállítást a Nemzeti Galériában?"
+              - pattern: "A darabot egy fiatal rendező állította színpadra."
+              - pattern: "A bemutató után beszélgetés lesz a színészekkel."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: books-films
+            title: Books & Films
+            vocabulary: [regény, író, szereplő, cselekmény, megfilmesít, fordítás, főszereplő, olvasmányos]
+            grammar:
+              - pattern: "A filmet egy magyar regényből készítették."
+              - pattern: "A főszereplő egy fiatal tanárnő."
+              - pattern: "A könyv sokkal jobb volt, mint a film."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: science-research
+            title: Science & Research
+            vocabulary: [kutatás, kutató, kísérlet, felfedezés, eredmény, tudós, "Nobel-díj", jut]
+            grammar:
+              - pattern: "A kutatók arra jutottak, hogy a rendszeres mozgás javítja a memóriát."
+              - pattern: "A kísérlet eredményei meglepőek voltak."
+              - pattern: "Szent-Györgyi Albert 1937-ben orvosi Nobel-díjat kapott."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: hungarian-inventions
+            title: Hungarian Inventions
+            vocabulary: [találmány, feltaláló, feltalál, golyóstoll, gyufa, "Rubik-kocka", porlasztó, holográfia]
+            grammar:
+              - pattern: "A golyóstollat Bíró László találta fel."
+              - pattern: "Irinyi János találta fel a zajtalan gyufát."
+              - pattern: "Gábor Dénes a holográfiáért kapott Nobel-díjat."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: museum_visit
+                goal: Visit a science museum with a friend, talk about famous inventions and say which one you find most important and why.
+
+    checkpoint:
+      title: B2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  C1:
+    title: Advanced
+    description: >
+      Express yourself fluently and precisely: steer emphasis with focus and word order, use verbal prefixes with their
+      figurative meanings, write in the nominal formal style, link complex arguments, hedge and handle professional, media
+      and public life, and follow colloquial and idiomatic Hungarian.
+
+    units:
+      - id: focus-word-order-c1
+        title: Focus & Word Order
+        description: Put the right word right before the verb and stress what matters.
+        icon: 🎯
+        steps:
+          - id: focus-position
+            title: Right Before the Verb (focus)
+            description: "The stressed, new or contrasted part goes straight before the verb and pushes its prefix behind it: neutral Péter eltörte a vázát, but with Péter in focus Péter törte el a vázát, nem én."
+            vocabulary: [fókusz, hangsúly, "nem …, hanem", "éppen ő", "Péter törte el", "tegnap érkezett meg"]
+            grammar:
+              - pattern: "Péter törte el a vázát, nem én."
+              - pattern: "Nem tegnap, hanem ma érkezett meg."
+              - pattern: "A kulcsot a táskámban hagytam, nem a kocsiban."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: csak-is-sem
+            title: Only, Also, Even (csak, is, még … is)
+            description: "csak stands before the focus; is and sem follow the word they stress. In még … is and még … sem (even, not even) the stressed word sits between (még a nagymamám is, még egy pohár vizet sem); mégsem written as one word means still not or after all. ráér = to have time (Csak holnap érek rá = I'm only free tomorrow)."
+            vocabulary: [csak, is, sem, "még a nagymamám is", "még egy pohár vizet sem", egyedül, kizárólag]
+            grammar:
+              - pattern: "Csak holnap érek rá."
+              - pattern: "Még a nagymamám is tud tabletet használni."
+              - pattern: "Még egy pohár vizet sem kaptunk."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: topic-contrast
+            title: As For… (ami … illeti, pedig)
+            description: "Open with the topic, then contrast it with pedig or viszont, or frame it with ami … illeti. pedig, viszont, azonban and ellenben are interchangeable after the contrasted topic (a főzeléket pedig nem = a főzeléket viszont nem)."
+            vocabulary: ["ami … illeti", "ami engem illet", pedig, viszont, azonban, ellenben]
+            grammar:
+              - pattern: "Ami engem illet, én maradnék."
+              - pattern: "Én kávét kérek, ő pedig teát."
+              - pattern: "A levest szeretem, a főzeléket viszont nem."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: emphatic-words
+            title: Emphatic Words (igenis, dehogy, bizony)
+            description: "igenis insists on a disputed fact (Igenis elmegyek!); dehogy rejects a suggestion, = of course not (Haragszol? – Dehogy!); bizony and hát persze confirm; egyenesen = downright; egyáltalán nem = not at all. igenis, bizony and hát persze can fill the same slot."
+            vocabulary: [igenis, dehogy, bizony, "hát persze", csakis, egyenesen, "egyáltalán nem"]
+            grammar:
+              - pattern: "Igenis elmegyek!"
+              - pattern: "Dehogy haragszom rád!"
+              - pattern: "Ez egyenesen botrány!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: clearing_up_a_misunderstanding
+                goal: Clear up a misunderstanding with a colleague about who was supposed to do what, stressing the right words.
+
+      - id: verbal-prefixes-c1
+        title: Verbal Prefixes in Depth
+        description: Use prefixes for figurative meanings, completed actions and word families.
+        icon: 🧭
+        steps:
+          - id: figurative-prefixes
+            title: Beyond Direction (rájön, utánanéz)
+            description: "Many prefixed verbs have a figurative meaning of their own (rájön, utánanéz, rávesz, lebeszél, kijön valakivel, kiderül). rájön = figure out, utánanéz = look into, rávesz = persuade, lebeszél = talk out of, kijön valakivel = get along with someone (go out with is jár valakivel), beválik = work out, kiderül = turn out, felmerül = come up."
+            vocabulary: [rájön, utánanéz, rávesz, lebeszél, "kijön valakivel", beválik, kiderül, felmerül]
+            grammar:
+              - pattern: "Végre rájöttem a megoldásra."
+              - pattern: "Utánanézek, és holnap szólok."
+              - pattern: "Kiderült, hogy igaza volt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: perfective-prefixes
+            title: Done or Not (olvasta – elolvasta)
+            description: Without a prefix an action is ongoing or general (olvastam a könyvet); with one it is completed (elolvastam).
+            vocabulary: [elolvas, megír, megeszik, megfőz, felépít, megtanul, kitakarít, elmosogat]
+            grammar:
+              - pattern: "Egész este olvastam, de nem olvastam el a könyvet."
+              - pattern: "Megírtad már a levelet?"
+              - pattern: "Tegnap kitakarítottam a lakást."
+              - pattern: "Már megettem az egész pizzát."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: verb-families
+            title: One Verb, Many Prefixes (beír, leír, aláír)
+            description: "Each prefix adds its own sense: beír = write in, enter; leír = write down, describe; kiír = write out, post; átír = rewrite; felír = note down, prescribe; aláír = sign; elír = miswrite; megír = write (to completion)."
+            vocabulary: [beír, leír, kiír, átír, felír, aláír, elír, megír]
+            grammar:
+              - pattern: "Írd be a neved a táblázatba!"
+              - pattern: "Leírnád a receptet?"
+              - pattern: "Aláírta a szerződést."
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: prefixes-in-commands
+            title: Prefixes in Commands & Answers
+            description: Commands put the prefix after the verb (gyere be, csukd be), ne keeps it there (ne menj el), and a prefix alone can answer yes (Megírtad? – Meg.).
+            vocabulary: ["gyere be", "csukd be", "kapcsold be", "kapcsold ki", "ne menj el", "ne kapcsold ki", meg, el]
+            grammar:
+              - pattern: "Gyere be, és csukd be az ajtót!"
+              - pattern: "Ne kapcsold ki a számítógépet!"
+              - pattern: "Megírtad a házit? – Meg."
+            activities:
+              - { type: learn }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: giving_instructions
+                goal: Talk a friend through setting up a new device step by step, using commands with prefixes.
+
+      - id: nominal-style-c1
+        title: Nominal & Formal Style
+        description: Read and write the noun-heavy style of official and professional Hungarian.
+        icon: 📑
+        steps:
+          - id: nominal-phrases
+            title: Nominal Style (a … befejezése után)
+            description: Formal Hungarian turns clauses into noun phrases with -ás/-és and possessives (a projekt befejezése után, aláírását követően).
+            vocabulary: [befejezése, elkészülte, "megérkezése után", távollétében, "jóváhagyását követően", "-t megelőzően"]
+            grammar:
+              - pattern: "A projekt befejezése után szabadságra megyek."
+              - pattern: "Az igazgató távollétében a helyettese dönt."
+              - pattern: "A szerződés aláírását követően elkezdjük a munkát."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: formal-connectives
+            title: Formal Phrases (-val kapcsolatban, -t illetően)
+            vocabulary: ["-val kapcsolatban", "-ra vonatkozóan", "-t illetően", "-nak köszönhetően", következtében, érdekében, alapján]
+            grammar:
+              - pattern: "A változásokkal kapcsolatban szeretnék kérdezni."
+              - pattern: "Az új szabályokat illetően még nincs döntés."
+              - pattern: "A gyors beavatkozásnak köszönhetően senki sem sérült meg."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: participle-phrases-c1
+            title: Long Participle Phrases
+            description: Long participle phrases before the noun replace relative clauses (a tavaly bevezetett szabály, az általunk javasolt megoldás).
+            vocabulary: ["a tavaly bevezetett", "az általunk javasolt", "a hamarosan megjelenő", "a fent említett", mellékelt, érintett]
+            grammar:
+              - pattern: "A tavaly bevezetett szabály sok vitát váltott ki."
+              - pattern: "Az általunk javasolt megoldás olcsóbb."
+              - pattern: "Kérjük, olvassa el a mellékelt dokumentumot!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: official-letter
+            title: An Official Letter
+            description: "Open with Tisztelt …! (Tisztelt Ügyfelünk! and Tisztelt Ügyfél! are both standard), cite with hivatkozva + -ra (levelére = your letter, levelemre = my letter), close with Üdvözlettel or Tisztelettel."
+            vocabulary: [Tisztelt, "tájékoztatjuk, hogy", mellékelten, hivatkozva, kérelem, ügyintéző, Üdvözlettel, Tisztelettel]
+            grammar:
+              - pattern: "Tisztelt Ügyfelünk!"
+              - pattern: "Hivatkozva május 3-án kelt levelére tájékoztatjuk, hogy kérelmét elfogadtuk."
+              - pattern: "Mellékelten küldöm a kért dokumentumokat."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: calling_a_government_office
+                goal: Phone a government office about a missing document, refer to your earlier letter and agree on the next steps in formal Hungarian.
+
+      - id: advanced-connectors-c1
+        title: Advanced Connectors
+        description: Express conditions, reasons and concessions precisely, and structure an essay.
+        icon: 🪢
+        steps:
+          - id: condition-connectors
+            title: Provided That (amennyiben, feltéve, hogy)
+            description: "Conditions with amennyiben, feltéve, hogy, abban az esetben, ha, hacsak nem and kivéve, ha. attól függően, hogy introduces a full clause (attól függően, hogy mennyi időnk lesz); before a noun use -tól/-től függően (az időjárástól függően)."
+            vocabulary: [amennyiben, "feltéve, hogy", "abban az esetben, ha", "hacsak nem", "attól függően, hogy", "kivéve, ha"]
+            grammar:
+              - pattern: "Amennyiben kérdése van, forduljon hozzánk bizalommal."
+              - pattern: "Feltéve, hogy nem esik, a rendezvényt a szabadban tartjuk."
+              - pattern: "Hacsak nem történik valami váratlan, péntekre végzünk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: reason-connectors
+            title: Since, After All (minthogy, ugyanis, elvégre)
+            description: "mivel and minthogy (since) usually open the sentence (Minthogy…, …); ugyanis (you see) and hiszen (as you know) come after the main clause; elvégre = after all, not végre (finally). mivel, ugyanis and hiszen often fit the same slot."
+            vocabulary: [mivel, minthogy, "tekintve, hogy", lévén, ugyanis, hiszen, elvégre]
+            grammar:
+              - pattern: "Minthogy senki sem jelentkezett, a tanfolyam elmarad."
+              - pattern: "Nem jövök, ugyanis beteg vagyok."
+              - pattern: "Elvégre te is ott voltál!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: concession-connectors
+            title: Even If, Whatever (még ha … is, bármi)
+            description: "Concession with még ha … is and akár … akár, and the -ever words with bár- or akár- (bárki, bármi, akármikor). is is a separate word right after the stressed word (Még ha esik is); the main clause takes akkor is or nothing (…, akkor is elmegyünk); bár- and akár- forms are interchangeable (bárki = akárki)."
+            vocabulary: ["még ha … is", "akár … akár", bárki, bármi, bármikor, akárhogy, "mindegy, hogy"]
+            grammar:
+              - pattern: "Még ha esik is, elmegyünk."
+              - pattern: "Akár hiszed, akár nem, igaz."
+              - pattern: "Bármit mondasz, nem hiszek neked."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: essay-structure
+            title: Structuring an Essay
+            vocabulary: [bevezetés, tárgyalás, befejezés, "először is", továbbá, végezetül, "mindent összevetve"]
+            grammar:
+              - pattern: "Először is szeretném tisztázni a fogalmakat."
+              - pattern: "Továbbá érdemes megemlíteni, hogy a költségek is nőttek."
+              - pattern: "Mindent összevetve a javaslat támogatható."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: planning_an_essay
+                goal: Plan an argumentative essay with a classmate, agreeing on the thesis, the main arguments and the order of the paragraphs.
+
+      - id: hedging-discourse-c1
+        title: Hedging & Discourse
+        description: Soften claims, keep a conversation flowing and say no diplomatically.
+        icon: 🌫️
+        steps:
+          - id: hedging
+            title: Seems, Supposedly (úgy tűnik, állítólag)
+            vocabulary: ["úgy tűnik", állítólag, látszólag, "bizonyos mértékig", némileg, mintegy, feltehetően]
+            grammar:
+              - pattern: "Úgy tűnik, a helyzet javul."
+              - pattern: "Állítólag lemondott a miniszter."
+              - pattern: "A projekt költsége mintegy kétmilliárd forint."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: softening
+            title: Softening (hogy úgy mondjam, kissé)
+            vocabulary: [mondhatni, "hogy úgy mondjam", "ha szabad így fogalmaznom", mintha, kissé, inkább]
+            grammar:
+              - pattern: "Ha szabad így fogalmaznom, ez kissé elhamarkodott döntés volt."
+              - pattern: "Mintha egy kicsit fáradt lennél."
+              - pattern: "Hogy úgy mondjam, nem ez volt életem legjobb napja."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: discourse-markers
+            title: Discourse Markers (szóval, egyébként, amúgy)
+            description: "szóval and tehát = so (resuming), hát = well, egyébként, amúgy and mellesleg = by the way, na mindegy = oh well, never mind, ugye = right?; szóval and hát can both resume a story, egyébként and amúgy are interchangeable."
+            vocabulary: [szóval, tehát, egyébként, mellesleg, "na mindegy", amúgy, ugye, hát]
+            grammar:
+              - pattern: "Szóval, hol is tartottam?"
+              - pattern: "Egyébként tudod, hogy Anna férjhez megy?"
+              - pattern: "Na mindegy, majd megbeszéljük."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: diplomatic-refusal
+            title: Saying No Diplomatically
+            description: "Acknowledge (megtisztelő az ajánlat, only for an offer or invitation, not a request for help), soften (attól tartok, sajnos), refuse with nem áll módomban + infinitive, and leave the door open (egyelőre, megfontolom, nem zárom ki)."
+            vocabulary: ["nem áll módomban", megtisztelő, "attól tartok", egyelőre, megfontol, "nem zárom ki"]
+            grammar:
+              - pattern: "Megtisztelő az ajánlat, de sajnos most nem áll módomban elfogadni."
+              - pattern: "Attól tartok, ez így nem fog működni."
+              - pattern: "Megfontolom, és jövő héten jelentkezem."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: turning_down_a_request
+                goal: Turn down a colleague's request for help with a project diplomatically and offer an alternative.
+
+      - id: professional-life-c1
+        title: Professional Life
+        description: Run meetings, negotiate, present and write formal emails.
+        icon: 🏢
+        steps:
+          - id: meetings
+            title: Meetings (napirend, javaslat)
+            vocabulary: [napirend, "napirendi pont", jegyzőkönyv, javaslat, határozat, egyhangúlag, szavaz]
+            grammar:
+              - pattern: "Térjünk át a következő napirendi pontra!"
+              - pattern: "A javaslatot egyhangúlag elfogadták."
+              - pattern: "Ki vezeti a jegyzőkönyvet?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: negotiation
+            title: Negotiation
+            vocabulary: [tárgyalás, ajánlat, ellenajánlat, engedmény, kompromisszum, feltétel, megállapodás, hajlandó]
+            grammar:
+              - pattern: "Hajlandók vagyunk engedni az árból, ha nagyobb tételt rendelnek."
+              - pattern: "Ez az ajánlat számunkra nem elfogadható."
+              - pattern: "Sikerült megállapodásra jutnunk."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: presentations
+            title: Giving a Presentation
+            description: "Structure a talk; rátér valamire = move on to (Ezzel rá is térnék a következő pontra); in ahogy az ábrán is látható, is follows az ábrán."
+            vocabulary: [előadás, ábra, dia, "szeretném bemutatni", "ahogy az ábrán látható", rátér, összefoglalásként]
+            grammar:
+              - pattern: "Előadásomban három témát szeretnék érinteni."
+              - pattern: "Ahogy az ábrán is látható, az eladások nőttek."
+              - pattern: "Ezzel rá is térnék a következő pontra."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+          - id: formal-email
+            title: Formal Emails (Tisztelt…, Üdvözlettel)
+            description: "Formal emails open with Tisztelt …! and close with Üdvözlettel (= Kind regards) or Tisztelettel (= Yours sincerely)."
+            vocabulary: ["Tisztelt Kovács Úr!", "Kedves Anna!", "Köszönöm gyors válaszát", "Előre is köszönöm", Üdvözlettel, csatolmány]
+            grammar:
+              - pattern: "Tisztelt Kovács Úr! Köszönöm gyors válaszát."
+              - pattern: "Előre is köszönöm segítségét!"
+              - pattern: "A csatolmányban megtalálja a szerződés tervezetét."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: business_negotiation
+                goal: Negotiate the price and delivery date of an order with a supplier, making and answering counter-offers politely.
+
+      - id: media-information-c1
+        title: Media & Information
+        description: Follow the news, report what people claim and check sources.
+        icon: 📰
+        steps:
+          - id: news-language
+            title: The Language of News
+            vocabulary: [közöl, nyilatkozik, bejelent, cáfol, megerősít, "értesülések szerint", "a hírek szerint", szóvivő]
+            grammar:
+              - pattern: "A kormányszóvivő megerősítette a hírt."
+              - pattern: "Értesülések szerint a tárgyalások megszakadtak."
+              - pattern: "A cég cáfolta a vádakat."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select }
+          - id: reporting-verbs
+            title: Claims & Denials (állítja, tagadja)
+            description: "Reporting verbs with hogy; after tagad and kétel the clause often goes into the conditional, present or past (kétlem, hogy igaz lenne; tagadja, hogy ott lett volna). The past conditional of van is lett volna, never volt volna; the indicative (tagadja, hogy ott volt) is also correct."
+            vocabulary: [állít, tagad, elismer, hangsúlyoz, figyelmeztet, kifejt, beismer, kijelent, szóvivő]
+            grammar:
+              - pattern: "A szakértő hangsúlyozta, hogy nincs ok a pánikra."
+              - pattern: "A gyanúsított tagadja, hogy ott lett volna."
+              - pattern: "A miniszter elismerte, hogy hibát követtek el."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: fact-checking
+            title: Fact-Checking
+            vocabulary: [álhír, tényellenőrzés, forrás, hiteles, megbízható, félrevezető, elfogult, manipulál]
+            grammar:
+              - pattern: "Mindig ellenőrizd a forrást!"
+              - pattern: "Ez a cikk félrevezető és elfogult."
+              - pattern: "Honnan tudod, hogy hiteles az információ?"
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: discussing-the-news
+            title: Discussing the News
+            vocabulary: ["hallottad, hogy", "olvastam valahol", felháborító, bulvár, címlap, hírportál]
+            grammar:
+              - pattern: "Hallottad, hogy bezár a régi mozi?"
+              - pattern: "Olvastam valahol, hogy drágulni fog a benzin."
+              - pattern: "Ez a hír a címlapra került."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: news_discussion
+                goal: Discuss a news story with a friend, questioning where it came from and how reliable it is.
+
+      - id: science-ethics-c1
+        title: Science, Technology & Ethics
+        description: Discuss AI, privacy and medical ethics.
+        icon: 🔬
+        steps:
+          - id: artificial-intelligence
+            title: Artificial Intelligence
+            vocabulary: ["mesterséges intelligencia", algoritmus, adat, automatizálás, "gépi tanulás", "önvezető autó", "nyelvi modell"]
+            grammar:
+              - pattern: "A mesterséges intelligencia sok munkahelyet átalakít."
+              - pattern: "Az algoritmusok döntéseit nehéz átlátni."
+              - pattern: "Kié a felelősség, ha egy önvezető autó balesetet okoz?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: privacy-data
+            title: Privacy & Data
+            vocabulary: [adatvédelem, magánszféra, megfigyelés, "személyes adat", hozzájárulás, adatszivárgás, kiszivárog, titkosít]
+            grammar:
+              - pattern: "A személyes adataimat nem adom ki senkinek."
+              - pattern: "A cég a hozzájárulásunk nélkül használta az adatainkat."
+              - pattern: "Kiszivárogtak az ügyfelek adatai."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: medicine-ethics
+            title: Medicine & Ethics
+            vocabulary: [génszerkesztés, klónozás, állatkísérlet, "etikai kérdés", védőoltás, kockázat, mérlegel]
+            grammar:
+              - pattern: "A génszerkesztés komoly etikai kérdéseket vet fel."
+              - pattern: "Az állatkísérletek megítélése megosztó."
+              - pattern: "A kockázatokat és az előnyöket egyaránt mérlegelni kell."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+          - id: ethical-debate
+            title: An Ethical Debate
+            vocabulary: [erkölcsileg, elfogadható, megengedhető, határ, visszaélés, szabályoz, felelősség]
+            grammar:
+              - pattern: "Hol húzzuk meg a határt?"
+              - pattern: "Ez erkölcsileg nem elfogadható."
+              - pattern: "Szigorúbban kellene szabályozni ezt a területet."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: ethics_panel
+                goal: Take part in a panel discussion about whether AI should make medical decisions, arguing your view with care.
+
+      - id: society-politics-c1
+        title: Society & Politics
+        description: Talk about the political system, elections, appearances and civic life.
+        icon: 🏛️
+        steps:
+          - id: political-system
+            title: The Political System
+            vocabulary: [Országgyűlés, kormány, ellenzék, képviselő, miniszterelnök, "köztársasági elnök", párt, választás]
+            grammar:
+              - pattern: "Az Országgyűlést négyévente választják meg."
+              - pattern: "Az ellenzék bírálta a kormány javaslatát."
+              - pattern: "Melyik párt nyerte meg a választást?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: elections-voting
+            title: Elections & Voting
+            vocabulary: [szavaz, szavazat, választópolgár, részvétel, népszavazás, jelölt, kampány, eredmény]
+            grammar:
+              - pattern: "A választásokon magas volt a részvétel."
+              - pattern: "Kire fogsz szavazni?"
+              - pattern: "A kampány során a jelöltek vitát folytattak."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: seems-to-be
+            title: Seems To Be (-nak tűnik, bizonyul)
+            description: "Appearances with tűnik, látszik and bizonyul + -nak/-nek (jónak tűnik, sikeresnek bizonyult). tűnik and látszik are interchangeable here (jónak tűnik = jónak látszik)."
+            vocabulary: [tűnik, látszik, bizonyul, "jónak tűnik", "sikeresnek bizonyult", "elégedettnek látszik", "úgy néz ki"]
+            grammar:
+              - pattern: "A terv jónak tűnik."
+              - pattern: "Az intézkedés sikeresnek bizonyult."
+              - pattern: "A miniszter elégedettnek látszott."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: rights-responsibilities
+            title: Rights & Responsibilities
+            vocabulary: [állampolgár, jog, kötelesség, Alaptörvény, törvény, "emberi jogok", tüntetés, véleménynyilvánítás]
+            grammar:
+              - pattern: "Minden állampolgárnak joga van a szabad véleménynyilvánításhoz."
+              - pattern: "Ezrek tüntettek a parlament előtt."
+              - pattern: "A törvénynek összhangban kell lennie az Alaptörvénnyel."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: local_election_debate
+                goal: Debate a local issue such as public transport or housing with a neighbour who disagrees with you.
+
+      - id: idioms-colloquial-c1
+        title: Idioms & Colloquial Hungarian
+        description: Understand and use everyday slang, common idioms and lively reactions.
+        icon: 😎
+        steps:
+          - id: colloquial-speech
+            title: Colloquial Speech (tök jó, király)
+            description: "tök = totally, király = awesome, jó fej = a nice, fun person, nem semmi = impressive, para = scary or stressful, gáz = embarrassing or bad, durva = harsh, intense, szuper = super."
+            vocabulary: ["tök jó", király, "jó fej", "nem semmi", para, gáz, durva, szuper]
+            grammar:
+              - pattern: "Tök jó volt a buli!"
+              - pattern: "Ez a srác nagyon jó fej."
+              - pattern: "Nem semmi, amit csináltál!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select }
+          - id: everyday-slang
+            title: Everyday Slang (kaja, srác, haver)
+            vocabulary: [kaja, pia, srác, csaj, haver, lóvé, kocsi, suli]
+            grammar:
+              - pattern: "Van valami kaja a hűtőben?"
+              - pattern: "Ma este jönnek a haverok."
+              - pattern: "Holnap nincs suli!"
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: common-idioms
+            title: Common Idioms
+            description: "ég és föld a különbség = worlds apart (no van), töri a fejét = racks his brain, beadja a derekát = gives in, veszi a lapot = takes the hint, kilóg a lóláb = the hidden motive shows, nagy feneket kerít valaminek = makes a big fuss about it."
+            vocabulary: ["ég és föld", "töri a fejét", "beadja a derekát", "veszi a lapot", "kilóg a lóláb", "nagy feneket kerít"]
+            grammar:
+              - pattern: "Ég és föld a különbség a kettő között."
+              - pattern: "Már egy órája ezen töröm a fejem."
+              - pattern: "Végül beadta a derekát, és megengedte."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: reactions-interjections
+            title: Reactions (Na ne!, Ugyan már!, Hű!)
+            description: "na ne = no way! (disbelief), ugyan már = oh come on (dismissing), hű = wow, naná = you bet, hajrá = go for it, ejnye = tut-tut (mild reproach), jaj = oh no, ouch."
+            vocabulary: ["na ne", jaj, hű, naná, "ugyan már", hajrá, ejnye]
+            grammar:
+              - pattern: "Na ne! Ezt nem hiszem el!"
+              - pattern: "Ugyan már, ne butáskodj!"
+              - pattern: "Hű, de szép!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: catching_up_with_a_friend
+                goal: Catch up with an old friend over coffee in relaxed, colloquial Hungarian, reacting to their news.
+
+    checkpoint:
+      title: C1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  C2:
+    title: Proficiency
+    description: >
+      Understand with ease virtually everything heard or read, from Petőfi to an official decision, summarise and mediate
+      between registers, and express yourself spontaneously and precisely, choosing the right form of address, idiom,
+      proverb and stance for every situation.
+
+    units:
+      - id: register-politeness-c2
+        title: Register & Politeness
+        description: Choose between te, Ön, maga and tetszik, use titles and say the right phrase on every occasion.
+        icon: 🎩
+        steps:
+          - id: te-on-maga
+            title: Te, Ön, Maga & Tetszik
+            description: "Choose between tegezés, Ön and maga, and use tetszik + infinitive to address older people (Hogy tetszik lenni? = How are you?); here tetszik is the respectful you, not like. Csókolom is a respectful hello to older women (and from children to adults), not a kiss."
+            vocabulary: [tegez, magáz, önöz, tegeződik, "Hogy tetszik lenni?", "Mit tetszik kérni?", csókolom, bácsi, néni]
+            grammar:
+              - pattern: "Hogy tetszik lenni, Marika néni?"
+              - pattern: "Nyugodtan tegeződjünk!"
+              - pattern: "Csókolom, Erzsi néni!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: titles-address
+            title: Titles & Forms of Address
+            vocabulary: ["doktor úr", tanárnő, néni, bácsi, uram, asszonyom, hölgyem, "igazgató úr"]
+            grammar:
+              - pattern: "Doktor úr, kérdezhetek valamit?"
+              - pattern: "Elnézést, uram, ez az Ön kabátja?"
+              - pattern: "Jani bácsi minden reggel itt kávézik."
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: elaborate-politeness
+            title: Elaborate Politeness (Parancsoljon, Legyen olyan kedves)
+            vocabulary: [parancsoljon, tessék, "Szabad?", "Megengedi?", "legyen olyan kedves", "foglaljon helyet", "kezét csókolom"]
+            grammar:
+              - pattern: "Parancsoljon, foglaljon helyet!"
+              - pattern: "Legyen olyan kedves, és adja át az üzenetemet!"
+              - pattern: "Szabad egy táncra?"
+              - pattern: "Megengedi, hogy leüljek?"
+              - pattern: "Tessék, itt a kávéja!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+          - id: occasion-phrases
+            title: The Right Phrase for Every Occasion
+            description: "Egészségére váljék! is the host's reply when thanked for a meal (a toast is Egészségére!); Erőt, egészséget! wishes strength and health; Isten éltessen (to Ön, Isten éltesse) is for birthdays and name days; Fogadja őszinte részvétemet! offers condolences."
+            vocabulary: ["Egészségére váljék!", "Fogadja őszinte részvétemet!", "Isten nyugosztalja!", "Erőt, egészséget!", "Isten éltessen!", "Isten éltesse!", "Boldog névnapot!", "Áldott, békés ünnepeket!"]
+            grammar:
+              - pattern: "Fogadja őszinte részvétemet!"
+              - pattern: "Isten éltessen sokáig, erőt, egészséget!"
+              - pattern: "Köszönöm az ebédet! – Egészségére váljék!"
+            activities:
+              - { type: learn }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: name_day_visit
+                goal: Visit an elderly neighbour on her name day, greet her with the right phrases and keep the conversation polite and warm.
+
+      - id: modality-stance-c2
+        title: Modality & Stance
+        description: Express obligation, propriety, willingness and certainty with precision.
+        icon: ⚖️
+        steps:
+          - id: illik-erdemes
+            title: Proper, Worth It, Advisable (illik, nem árt, célszerű)
+            vocabulary: [illik, "nem illik", "nem árt", célszerű, ajánlatos, kívánatos, érdemes]
+            grammar:
+              - pattern: "Nem illik tele szájjal beszélni."
+              - pattern: "Nem árt, ha előre szólsz."
+              - pattern: "Célszerű időben foglalni."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: obliged-willing
+            title: Obliged, Forced, Willing (köteles, kénytelen, hajlandó)
+            vocabulary: [köteles, kénytelen, hajlandó, képes, jogosult, "módjában áll", tartozik]
+            grammar:
+              - pattern: "Kénytelen voltam lemondani az utat."
+              - pattern: "A bérlő köteles megtéríteni a kárt."
+              - pattern: "Nem vagyok hajlandó ezt elfogadni."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: stance-adverbs
+            title: Stance (meglepő módon, kétségkívül)
+            vocabulary: [nyilvánvalóan, kétségkívül, "meglepő módon", "érthető módon", "furcsa módon", "szerencsés módon", nyilván]
+            grammar:
+              - pattern: "Meglepő módon senki sem tiltakozott."
+              - pattern: "Érthető módon a lakók felháborodtak."
+              - pattern: "Kétségkívül ez volt az év legjobb filmje."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: degrees-of-certainty
+            title: Degrees of Certainty
+            vocabulary: [kizárt, elképzelhetetlen, valószínűtlen, "nem kizárt", "könnyen lehet", "szinte biztos", "minden jel arra mutat"]
+            grammar:
+              - pattern: "Minden jel arra mutat, hogy a terv sikerülni fog."
+              - pattern: "Nem kizárt, hogy későbbre halasztják."
+              - pattern: "Szinte biztos, hogy ő nyer."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: weighing_the_odds
+                goal: Weigh up with a colleague how likely the possible outcomes of a negotiation are and what you are obliged or willing to do.
+
+      - id: idioms-szolasok-c2
+        title: Idioms (szólások)
+        description: Use idioms built on animals, the body and food in natural conversation.
+        icon: 🐎
+        steps:
+          - id: animal-idioms
+            title: Animal Idioms
+            description: "bakot lő = make a blunder; lóvá tesz = fool someone; egyik kutya, másik eb = six of one, half a dozen of the other; kígyót-békát kiabál valakire = rail at someone; farkasszemet néz valakivel = stare someone down; itt van a kutya elásva = that's the crux of it."
+            vocabulary: ["bakot lő", "lóvá tesz", "egyik kutya, másik eb", "kígyót-békát kiabál", "farkasszemet néz", "itt van a kutya elásva"]
+            grammar:
+              - pattern: "Ezzel nagy bakot lőttél."
+              - pattern: "Egyik kutya, másik eb: mindkettő ugyanolyan."
+              - pattern: "Ne tegyél lóvá!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: body-idioms
+            title: Body Idioms
+            description: "fáj a foga valamire (-ra/-re) = crave something; a nyelvem hegyén van = it's on the tip of my tongue; elveszti a fejét = lose one's head (panic); orránál fogva vezet = lead someone by the nose; a szívén visel = have at heart; fél szemmel figyel = keep half an eye on."
+            vocabulary: ["fáj a foga valamire", "a nyelve hegyén van", "elveszti a fejét", "orránál fogva vezet", "a szívén visel", "fél szemmel figyel"]
+            grammar:
+              - pattern: "Régóta fáj a foga egy új autóra."
+              - pattern: "A nyelvem hegyén van a neve."
+              - pattern: "Nem kell rögtön elveszteni a fejed!"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+          - id: food-idioms
+            title: Food Idioms
+            description: "nem eszik olyan forrón a kását = it's not as bad as it sounds; kerek perec = flatly, bluntly; kenyérre lehet kenni = (of a person) very good-natured; nem fenékig tejfel = not all a bed of roses; kutyából nem lesz szalonna = a leopard can't change its spots; mézesmázos = sugary, falsely sweet."
+            vocabulary: ["nem eszik olyan forrón a kását", "kerek perec", "kenyérre lehet kenni", "nem fenékig tejfel", "kutyából nem lesz szalonna", mézesmázos]
+            grammar:
+              - pattern: "Nem eszik olyan forrón a kását."
+              - pattern: "Kerek perec megmondta, hogy nem jön."
+              - pattern: "Olyan kedves, hogy kenyérre lehet kenni."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: idioms-in-conversation
+            title: Idioms in Conversation
+            description: "eső után köpönyeg = too late; kilóg a lóláb = the hidden motive shows; kosarat kap = be turned down; elviszi a balhét = take the rap; a fejére nő valakinek = (a person) gets out of hand; ég a talaj a lába alatt = things get too hot for someone."
+            vocabulary: ["eső után köpönyeg", "kilóg a lóláb", "kosarat kap", "elviszi a balhét", "a fejére nő", "ég a talaj a lába alatt"]
+            grammar:
+              - pattern: "Most már eső után köpönyeg."
+              - pattern: "Kosarat kapott a lánytól."
+              - pattern: "Végül ő vitte el a balhét."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: gossip_with_idioms
+                goal: Gossip with a friend about a mutual acquaintance's latest adventure, using idioms naturally.
+
+      - id: proverbs-kozmondasok-c2
+        title: Proverbs (közmondások)
+        description: Know the proverbs every Hungarian knows, quote them and explain them.
+        icon: 📜
+        steps:
+          - id: common-proverbs
+            title: Common Proverbs
+            vocabulary: ["Aki korán kel, aranyat lel.", "Lassan járj, tovább érsz.", "Ajándék lónak ne nézd a fogát.", "Addig üsd a vasat, amíg meleg.", "Nem esik messze az alma a fájától."]
+            grammar:
+              - pattern: "Ahogy a mondás tartja: lassan járj, tovább érsz."
+              - pattern: "Nem esik messze az alma a fájától: ő is orvos lett, mint az apja."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: wisdom-proverbs
+            title: Proverbs of Wisdom
+            vocabulary: ["Ki mint vet, úgy arat.", "Néma gyereknek anyja sem érti a szavát.", "Okos enged, szamár szenved.", "Jobb ma egy veréb, mint holnap egy túzok.", "Aki másnak vermet ás, maga esik bele."]
+            grammar:
+              - pattern: "Szólj neki bátran: néma gyereknek anyja sem érti a szavát!"
+              - pattern: "Jobb ma egy veréb, mint holnap egy túzok, ezért elfogadtam az ajánlatot."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: proverbs-in-use
+            title: Quoting Proverbs Naturally
+            description: Quote half a proverb and let the listener finish it (Hát, aki korán kel…).
+            vocabulary: ["ahogy a mondás tartja", "ahogy mondani szokás", "aki korán kel, aranyat lel", "addig üsd a vasat, amíg meleg", "sok kicsi sokra megy", "sok lúd disznót győz"]
+            grammar:
+              - pattern: "Hát, ahogy mondani szokás: aki korán kel…"
+              - pattern: "Addig üsd a vasat, amíg meleg: írj neki még ma!"
+              - pattern: "Sok kicsi sokra megy, ezért minden hónapban félreteszek egy keveset."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: explaining-a-proverb
+            title: Explaining a Proverb
+            description: "Explain real Hungarian proverbs in Hungarian, naming the proverb (Lassan járj, tovább érsz; Aki korán kel, aranyat lel)."
+            vocabulary: ["azt jelenti, hogy", "átvitt értelemben", "szó szerint", tanulság, megfelelő, magyarázat]
+            grammar:
+              - pattern: "Ez a közmondás azt jelenti, hogy aki kitartó, az célba ér."
+              - pattern: "Szó szerint lefordítva nincs sok értelme."
+              - pattern: "Mi ennek a közmondásnak az angol megfelelője?"
+              - pattern: "A „Lassan járj, tovább érsz” azt jelenti, hogy a türelem kifizetődik."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: explaining_proverbs
+                goal: Explain a Hungarian proverb to a foreign friend, find its equivalent in their language and use it in a real situation.
+
+      - id: rhetoric-c2
+        title: Rhetoric & Persuasion
+        description: Open a speech, use rhetorical devices and recognise the most famous Hungarian lines.
+        icon: 🎤
+        steps:
+          - id: opening-a-speech
+            title: Opening a Speech
+            description: "Open a speech formally. köszönt is indefinite with mindenkit (köszöntök mindenkit) and definite with Önöket or a vendégeket (köszöntöm a vendégeket)."
+            vocabulary: ["Tisztelt Hölgyeim és Uraim!", "Kedves Barátaim!", megtiszteltetés, "engedjék meg", köszönt, egybegyűltek]
+            grammar:
+              - pattern: "Tisztelt Hölgyeim és Uraim! Nagy megtiszteltetés számomra, hogy itt lehetek."
+              - pattern: "Engedjék meg, hogy néhány szóban bemutassam a tervünket."
+              - pattern: "Szeretettel köszöntök mindenkit."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: rhetorical-devices
+            title: Rhetorical Devices (minél … annál)
+            vocabulary: ["költői kérdés", ismétlés, fokozás, ellentét, "minél … annál", "nemcsak … hanem … is"]
+            grammar:
+              - pattern: "Minél többet tanulunk, annál többet értünk."
+              - pattern: "Nemcsak a mi jövőnkről, hanem gyermekeink jövőjéről is szó van."
+              - pattern: "Meddig várunk még?"
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: famous-lines
+            title: Lines Every Hungarian Knows
+            description: Petőfi's Nemzeti dal, Kölcsey's Himnusz and Vörösmarty's Szózat, and how their lines live on in everyday speech.
+            vocabulary: ["Nemzeti dal", Himnusz, Szózat, Petőfi, Kölcsey, Vörösmarty, "Itt az idő, most vagy soha!", "Talpra magyar!"]
+            grammar:
+              - pattern: "Talpra magyar, hí a haza! Itt az idő, most vagy soha!"
+              - pattern: "Rabok legyünk, vagy szabadok? Ez a kérdés, válasszatok!"
+              - pattern: "Isten, áldd meg a magyart jó kedvvel, bőséggel!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+              - { type: listen_select }
+          - id: persuasive-speech
+            title: A Persuasive Speech
+            vocabulary: ["fel kell tennünk a kérdést", "itt az ideje", "nem engedhetjük meg", "közös felelősségünk", "arra kérem Önöket", "ne feledjük"]
+            grammar:
+              - pattern: "Itt az ideje, hogy cselekedjünk."
+              - pattern: "Nem engedhetjük meg magunknak, hogy tétlenül nézzük."
+              - pattern: "Arra kérem Önöket, hogy támogassák a javaslatot."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: rehearsing_a_speech
+                goal: Rehearse a short persuasive speech for a town meeting with a friend who interrupts with objections.
+
+      - id: humour-wordplay-c2
+        title: Humour, Irony & Wordplay
+        description: Catch irony, enjoy King Matthias tales, tongue twisters and Móricka jokes.
+        icon: 😄
+        steps:
+          - id: irony-sarcasm
+            title: Irony & Sarcasm (na persze, hogyne)
+            description: "na persze and hogyne literally mean of course; said sarcastically they mean yeah, right. még mit nem = no way."
+            vocabulary: ["na persze", "még mit nem", hogyne, csodás, irónia, gúnyos, "már csak ez hiányzott"]
+            grammar:
+              - pattern: "Na persze, és én vagyok a kínai császár."
+              - pattern: "Hogyne, majd pont te fogsz segíteni!"
+              - pattern: "Csodás, már csak ez hiányzott!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+          - id: king-matthias-tales
+            title: King Matthias Tales (Mátyás király)
+            description: "Folk tales of King Matthias, the just king who travelled in disguise. Meghalt Mátyás király, oda az igazság = King Matthias is dead, justice is gone (igazság = justice here)."
+            vocabulary: ["Mátyás király", igazságos, álruha, furfangos, "az okos lány", "kolozsvári bíró", mese]
+            grammar:
+              - pattern: "Mátyás király álruhában járta az országot."
+              - pattern: "Az okos lány hozott is ajándékot, meg nem is."
+              - pattern: "Meghalt Mátyás király, oda az igazság."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: translate }
+          - id: wordplay-tongue-twisters
+            title: Wordplay & Tongue Twisters
+            description: "beugrat = to trick someone (a verb; the noun is beugratás); csattanó and poén = punchline; nyelvtörő = tongue twister."
+            vocabulary: [szójáték, kétértelmű, poén, csattanó, nyelvtörő, beugrat, "beugratós kérdés"]
+            grammar:
+              - pattern: "Mit sütsz, kis szűcs? Sós húst sütsz, kis szűcs?"
+              - pattern: "Ez a vicc nem rossz, csak gyenge a csattanója."
+              - pattern: "Jól beugrattál ezzel a kérdéssel!"
+            activities:
+              - { type: learn }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+          - id: telling-jokes
+            title: Telling Jokes (Móricka)
+            vocabulary: [Móricka, vicc, elmesél, nevet, kinevet, humorérzék, "ezen jót nevettem"]
+            grammar:
+              - pattern: "Ismered azt a viccet, amikor Móricka elkésik az iskolából?"
+              - pattern: "Ezen jót nevettem!"
+              - pattern: "Nincs humorérzéke, semmin sem nevet."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: telling_a_joke
+                goal: Tell a friend a joke or a funny story, build up to the punchline and react to theirs with a touch of irony.
+
+      - id: academic-writing-c2
+        title: Academic & Formal Writing
+        description: Write and discuss academic texts in an impersonal, precise style.
+        icon: 🎓
+        steps:
+          - id: academic-phrases
+            title: Academic Phrases
+            vocabulary: ["jelen tanulmány", szakirodalom, "a fentiekből következik", "e tekintetben", hipotézis, módszertan, "az eredmények azt mutatják"]
+            grammar:
+              - pattern: "Jelen tanulmány célja annak vizsgálata, hogyan változik a fiatalok szókincse."
+              - pattern: "A fentiekből következik, hogy a hipotézis igazolódott."
+              - pattern: "Az eredmények azt mutatják, hogy a módszer hatékony."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: citing-sources
+            title: Citing & Referring (szerint, alapján)
+            vocabulary: [szerint, alapján, hivatkozik, idéz, forrás, lábjegyzet, irodalomjegyzék]
+            grammar:
+              - pattern: "Kovács (2019) szerint a jelenség ennél összetettebb."
+              - pattern: "A felmérés alapján megállapítható, hogy a részvétel csökkent."
+              - pattern: "A szerző több korábbi kutatásra is hivatkozik."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: impersonal-style
+            title: Impersonal Style (megállapítható, feltételezhető)
+            description: Impersonal statements with -ható/-hető and hogy (megállapítható, hogy…; feltételezhető, hogy…) and figyelembe véve.
+            vocabulary: [megállapítható, elmondható, kijelenthető, feltételezhető, "figyelembe véve", "tekintettel arra"]
+            grammar:
+              - pattern: "Megállapítható, hogy a változás jelentős."
+              - pattern: "Feltételezhető, hogy a tendencia folytatódik."
+              - pattern: "A korlátokat figyelembe véve az eredmények biztatóak."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+          - id: writing-an-abstract
+            title: Writing an Abstract
+            vocabulary: [összefoglaló, kivonat, kulcsszavak, dolgozat, tárgyal, bemutat, rávilágít]
+            grammar:
+              - pattern: "A dolgozat a nyelvújítás hatását tárgyalja."
+              - pattern: "A tanulmány rávilágít a kérdés gyakorlati jelentőségére."
+              - pattern: "Kulcsszavak: nyelvújítás, szókincs, Kazinczy Ferenc."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: thesis_supervision
+                goal: Discuss the structure and main findings of your thesis with your supervisor and defend your methodology.
+
+      - id: literature-style-c2
+        title: Literature & Style
+        description: Read the classics, recognise archaic forms and analyse a poem.
+        icon: ✒️
+        steps:
+          - id: classic-poets
+            title: Classic Poets (Petőfi, Arany, Ady, József Attila)
+            description: "versszak = stanza, verssor = line of a poem."
+            vocabulary: ["Petőfi Sándor", "Arany János", "Ady Endre", "József Attila", vers, költő, versszak, verssor, rím]
+            grammar:
+              - pattern: "Petőfi Sándor a magyar irodalom egyik legismertebb költője."
+              - pattern: "Arany János Toldija ma is kötelező olvasmány."
+              - pattern: "József Attila verseit sokan fejből tudják."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: archaic-forms
+            title: Archaic Forms (vala, monda, látván)
+            description: "Recognise archaic forms in older texts and say them in modern Hungarian (vala = volt, valék = voltam, monda = mondta, lőn = lett as in became or there was, látván = látva, lévén = being, imigyen = így)."
+            vocabulary: [vala, monda, lőn, látván, lévén, imigyen, valék]
+            grammar:
+              - pattern: "Ez vala a régi magyarok szokása."
+              - pattern: "Ezt látván a király elmosolyodott."
+              - pattern: "És monda Isten: Legyen világosság!"
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+          - id: literary-style
+            title: Literary Style (metafora, hasonlat)
+            vocabulary: [metafora, hasonlat, megszemélyesítés, alliteráció, jelző, "költői szórend", hangulat]
+            grammar:
+              - pattern: "Ősz húrja zsong, jajong, busong a tájon."
+              - pattern: "A metafora azonosít, a hasonlat összehasonlít."
+              - pattern: "Kosztolányi stílusa könnyed és pontos."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: analysing-a-poem
+            title: Analysing a Poem
+            vocabulary: ["a vers témája", "lírai én", mű, üzenet, értelmez, jelképez, elmúlás]
+            grammar:
+              - pattern: "A vers témája az elmúlás."
+              - pattern: "Szerintem a fa a reményt jelképezi."
+              - pattern: "Hogyan értelmezed az utolsó versszakot?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: book_club
+                goal: Discuss a Hungarian novel or poem at a book club, interpreting its images and defending your reading.
+
+      - id: language-identity-c2
+        title: Language & Identity
+        description: Explore the language reform, dialects, word origins and Hungarians beyond the borders.
+        icon: 🗺️
+        steps:
+          - id: language-reform
+            title: The Language Reform (nyelvújítás)
+            description: "The language reform (around 1770–1830, led by Kazinczy) coined thousands of words (mozdony, cukrászda, kedvenc). Later calques such as számítógép (after computer) are 20th-century."
+            vocabulary: [nyelvújítás, Kazinczy, szóalkotás, szókincs, jövevényszó, "idegen szó", tükörszó]
+            grammar:
+              - pattern: "A nyelvújítás idején több ezer új szó született."
+              - pattern: "A mozdony és a cukrászda is a nyelvújítás korából származik."
+              - pattern: "A számítógép szó a computer mintájára jött létre."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: regional-speech
+            title: Regional Speech (ö-zés, tájszavak)
+            description: Regional features such as ö-zés around Szeged (mögyök for megyek), Palóc vowels and old words kept in Transylvania.
+            vocabulary: [nyelvjárás, tájszó, ö-zés, palóc, erdélyi, csángó, kiejtés]
+            grammar:
+              - pattern: "Szegeden sokan ö-znek: azt mondják, hogy mögyök."
+              - pattern: "A palóc nyelvjárásban az a-t rövid á-hoz hasonlóan ejtik."
+              - pattern: "Az erdélyi magyarok sok régi szót megőriztek."
+            activities:
+              - { type: learn }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: word-origins
+            title: Where Words Come From
+            vocabulary: [finnugor, uráli, "ótörök eredetű", szláv, latin, német, etimológia]
+            grammar:
+              - pattern: "A magyar az uráli nyelvcsaládba tartozik."
+              - pattern: "Az alma és a búza ótörök eredetű szavak."
+              - pattern: "A kéz és a víz finnugor örökség."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: beyond-the-borders
+            title: Hungarians Beyond the Borders
+            vocabulary: ["határon túli", kisebbség, anyaország, "kettős állampolgárság", Erdély, Felvidék, Vajdaság, diaszpóra]
+            grammar:
+              - pattern: "Sok magyar él a határokon túl, például Erdélyben és a Felvidéken."
+              - pattern: "Kettős állampolgárságot kapott."
+              - pattern: "A diaszpórában élők is ápolják a nyelvet."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: identity_conversation
+                goal: Talk with a Hungarian from Transylvania about how language, dialect and borders shape identity.
+
+      - id: mastery-mediation-c2
+        title: Mastery & Mediation
+        description: Summarise, paraphrase, move between registers and interpret for others.
+        icon: 🌉
+        steps:
+          - id: summarising
+            title: Summarising (dióhéjban, a lényeg)
+            vocabulary: [összefoglalva, röviden, "a lényeg az, hogy", dióhéjban, "más szóval", vagyis]
+            grammar:
+              - pattern: "Dióhéjban: a projekt késik, de nincs veszélyben."
+              - pattern: "A lényeg az, hogy mindenki elégedett."
+              - pattern: "Más szóval: kevesebb pénzből többet kell kihoznunk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+          - id: paraphrasing
+            title: Paraphrasing (magyarán, azaz)
+            description: "fogalmaz = to word something (átfogalmaz, egyszerűbben fogalmazva), not foglal; magyarán = in plain words, bluntly; azaz and értsd = that is; körülír = describe in other words."
+            vocabulary: [azaz, értsd, magyarán, "egyszerűbben fogalmazva", átfogalmaz, körülír, szinonima]
+            grammar:
+              - pattern: "Magyarán: nem kaptuk meg a pénzt."
+              - pattern: "Egyszerűbben fogalmazva: túl drága."
+              - pattern: "Hogyan fogalmaznád át ezt a mondatot?"
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: between-registers
+            title: Between Registers (hivatalos – hétköznapi)
+            vocabulary: ["hivatalos nyelv", "hétköznapi nyelv", szaknyelv, közérthető, elmagyaráz, "hivatali zsargon"]
+            grammar:
+              - pattern: "Elmagyaráznád közérthetően ezt a hivatalos levelet?"
+              - pattern: "A szaknyelvet le kell fordítani hétköznapi nyelvre."
+              - pattern: "Ez hivatali zsargon, egyszerűen annyit jelent, hogy fizetni kell."
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select }
+          - id: interpreting
+            title: Interpreting for Someone
+            vocabulary: [tolmácsol, tolmács, fordít, közvetít, "azt mondja, hogy", "azt kérdezi", "azt szeretné tudni"]
+            grammar:
+              - pattern: "Azt kérdezi, hogy mennyibe kerül a javítás."
+              - pattern: "Szívesen tolmácsolok, ha szükséges."
+              - pattern: "Azt szeretné tudni, hogy holnap is nyitva lesznek-e."
+              - pattern: "Azt mondja, hogy erősen fáj a dereka."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: interpreting_at_the_doctor
+                goal: Interpret between a doctor and a foreign friend, passing on questions and answers accurately and politely.
+
+    checkpoint:
+      title: C2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }

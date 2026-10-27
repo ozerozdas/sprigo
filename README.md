@@ -32,7 +32,7 @@
 
 ## Features
 
-- **Structured courses:** English A1 → C2, plus Spanish, French, German and Turkish at A1. 50+ steps per level, a harvest basket at the end of each unit and a checkpoint at the end of each level. Each unit has a guidebook in your own language, and a unit or level test lets you skip ahead.
+- **Structured courses:** English, Spanish, French, German, Turkish and Hungarian, A1 → C2. 50+ steps per level, a harvest basket at the end of each unit and a checkpoint at the end of each level. Each unit has a guidebook in your own language, and a unit or level test lets you skip ahead.
 - **AI-generated lessons:** translate, fill in the blank, match, listen, word bank, error correction and more. Lessons adapt to your recent mistakes, and a harder Mastery version turns a finished lesson gold.
 - **Live lesson:** a video-call style lesson with one of six animated tutors who talks with you, with live captions. You can cut in while the tutor is speaking. Open the practice panel to do exercises together while the tutor follows along.
 - **Sprigo gets to know you:** after a conversation it keeps a few facts about you (interests, goals, what you find hard) and uses them in later lessons. You can see, edit or forget them, or turn memory off.
@@ -45,7 +45,7 @@
 - **Gamification:** XP, coins, drops, daily quests, a shop, friends and a local league.
 - **Use it on your phone:** turn on **Settings → Use on your phone** and scan the code to open Sprigo in your phone's browser over [Tailscale](https://tailscale.com). Your data, speech recognition and Ollama stay on the computer.
 - **Private by default:** your progress stays in a local SQLite database with daily backups, and API keys are kept in the system keychain. You can move the data folder (for example to a synced folder), or export and import it. Several profiles can share one computer, optionally with a PIN.
-- Reminders, light and dark themes, and an interface in English, Turkish, German, French or Spanish.
+- Reminders, light and dark themes, and an interface in English, Turkish, German, French, Spanish or Hungarian.
 - Automatic in-app updates.
 
 ## Install
@@ -76,7 +76,7 @@ On first launch, Sprigo looks for a local model server:
 
 - **[Ollama](https://ollama.com/download)** (recommended): install and start it. If no model is installed yet, Sprigo offers to download `qwen3:8b` (about 5.2 GB) for you. Smaller models run but write noticeably weaker lessons, so Sprigo warns when you pick one under 8B.
 - **[LM Studio](https://lmstudio.ai):** start its local server and load a model.
-- **Cloud:** you can also use OpenAI, Anthropic, Gemini or OpenRouter with your own API key. Pick one in **Settings → Advanced → AI provider**; each option has a short note on what it is good at.
+- **Cloud:** you can also use OpenAI, Anthropic, Gemini or OpenRouter with your own API key. Pick one in **Settings → AI & voice → AI provider**; each option has a short note on what it is good at.
 
 Model sizes, hardware and the cloud options are explained in [AI Model Setup](https://github.com/ozerozdas/sprigo/wiki/AI-Model-Setup).
 

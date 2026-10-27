@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import type { Course } from "./course.ts";
 import type { Item } from "./activities.ts";
 import {
-  accepts, answer, begin, currentItem, describePractice, findTopic, next, openPractice, practiceSchema, practiceTopics, toPracticeSet,
+  accepts, answer, begin, currentItem, describePractice, findTopic, needsJudge, next, openPractice, practiceSchema, practiceTopics, toPracticeSet,
   type PracticeSet,
 } from "./practice.ts";
 
@@ -43,7 +43,7 @@ const raw = {
 
 test("the model's output parses and maps to a practice set", () => {
   assert.ok(practiceSchema.safeParse(raw).success);
-  const set = toPracticeSet(raw);
+  const set = toPracticeSet(raw, ["en", "tr"]);
   assert.deepEqual(set.warmup.map((i) => i.kind), ["choice", "choice", "bank"]);
   assert.deepEqual(set.reading, { title: "Breakfast", text: "Tom eats bread every morning." });
   assert.equal(set.comprehension.length, 1);
@@ -86,6 +86,15 @@ test("accepts: an option's text or number for choices, any sentence for word til
   assert.ok(!accepts(choice, "I think so"));
   assert.ok(accepts(bank, "I like tea"));
   assert.ok(!accepts(bank, " "));
+});
+
+test("word tiles in another order go to the AI, whose verdict grades them", () => {
+  assert.ok(!needsJudge(bank, "I like tea."));
+  assert.ok(needsJudge(bank, "tea. I like"));
+  assert.ok(!needsJudge(choice, "likes"));
+  const st = next(answer(begin(openPractice(), set), "1"));
+  assert.equal(answer(st, "tea. I like", true).last?.correct, true);
+  assert.equal(answer(st, "tea. I like", false).last?.correct, false);
 });
 
 test("an option's text wins over its number: clicking \"3\" in a numbers unit", () => {

@@ -26,7 +26,7 @@ const ttsName = (p: TtsProvider) => `settings.tts${p[0].toUpperCase()}${p.slice(
 const HELLO: Record<string, string> = {
   en: "Hello! Nice to meet you. How are you today?", tr: "Merhaba! Tanıştığıma memnun oldum. Bugün nasılsın?",
   de: "Hallo! Schön, dich kennenzulernen. Wie geht es dir heute?", fr: "Bonjour ! Ravi de te rencontrer. Comment vas-tu aujourd'hui ?",
-  es: "¡Hola! Encantado de conocerte. ¿Cómo estás hoy?",
+  es: "¡Hola! Encantado de conocerte. ¿Cómo estás hoy?", hu: "Szia! Örülök, hogy megismerhetlek. Hogy vagy ma?",
 };
 
 /** Voice quality as signal bars: more bars, more natural. */
@@ -277,12 +277,17 @@ function LocalTtsSheet({ onSaved, onCancel }: { onSaved: () => void; onCancel: (
 
 export function SttRow() {
   const { t } = useTranslation();
-  const { openSheet } = useApp();
+  const { openSheet, course } = useApp();
+  const langName = useLangName();
   const [v, setV] = useState<SttProvider>("whisper");
-  useEffect(() => { sttProvider().then(setV); }, []);
+  const [model, setModel] = useState<WhisperModel | null>(null);
+  useEffect(() => { sttProvider().then(setV); if (isTauri) whisperModels().then(([c]) => setModel(c)).catch(() => {}); }, []);
+  const better = course && WHISPER_FOR[course.iso];
   return (
     <div className="card od-row" style={gap("12px")}>
-      <span className="od-field od-fill"><b>{t("settings.stt")}</b><span className="muted small">{t(v === "deepgram" ? "settings.sttDeepgram" : "settings.sttWhisper")}</span></span>
+      <span className="od-field od-fill"><b>{t("settings.stt")}</b><span className="muted small">{t(v === "deepgram" ? "settings.sttDeepgram" : "settings.sttWhisper")}</span>
+        {v === "whisper" && better && model && model !== better &&
+          <span className="small" style={{ color: "var(--orange)" }}>{t("voice.whisperFor", { lang: langName(course.iso), name: t(`voice.whisper${cap(better)}`) })}</span>}</span>
       <HelpButton topic="mic" />
       <button className="btn btn-ghost" onClick={() => openSheet(<SttSheet initial={v} onChange={setV} />)}>{t("settings.change")}</button>
     </div>
@@ -338,11 +343,16 @@ function SttSheet({ initial, onChange }: { initial: SttProvider; onChange: (v: S
 
 const WHISPER: WhisperModel[] = ["base", "small", "turbo"];
 const cap = (x: string) => x[0].toUpperCase() + x.slice(1);
+// Course languages the bundled base model hears poorly. Hungarian course sentences (macOS voice) passed the speech
+// check 6/18 with base, 8/18 with small and 15/18 with turbo. ponytail: add a language once it is measured.
+const WHISPER_FOR: Record<string, WhisperModel> = { hu: "turbo" };
 
 /** Whisper model: the bundled one or a bigger download. Picking one downloads it if needed, then uses it. */
 function WhisperSheet({ onBack }: { onBack: () => void }) {
   const { t } = useTranslation();
-  const { toast } = useApp();
+  const { toast, course } = useApp();
+  const langName = useLangName();
+  const better = course && WHISPER_FOR[course.iso];
   const [cur, setCur] = useState<WhisperModel>("base");
   const [have, setHave] = useState<WhisperModel[]>([]);
   const [busy, setBusy] = useState<{ m: WhisperModel; pct: number } | null>(null);
@@ -381,6 +391,7 @@ function WhisperSheet({ onBack }: { onBack: () => void }) {
     <div className="od-stack" style={sheet}>
       <h3 style={{ textAlign: "center" }}>{t("voice.whisperModel")}</h3>
       <p className="small">{t("voice.whisperModelDesc")}</p>
+      {better && cur !== better && <p className="small" style={{ color: "var(--orange)" }}>{t("voice.whisperFor", { lang: langName(course.iso), name: t(`voice.whisper${cap(better)}`) })}</p>}
       <div className="od-stack" style={gap("8px")} role="radiogroup" aria-label={t("voice.whisperModel")}>
         {WHISPER.map((m, i) => (
           <Fragment key={m}>

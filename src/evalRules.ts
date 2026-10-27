@@ -1,8 +1,8 @@
 // Rule checks for `pnpm eval` (#21): what a generated exercise must get right beyond its JSON shape.
 // Pure module (no Vite/Tauri imports), tested by src/evalRules.test.ts.
-import { givesAway, normalize, REGISTRY } from "./activities.ts";
+import { givesAway, normalize, REGISTRY, strayScript } from "./activities.ts";
 
-export const LANGS = ["en", "de", "es", "fr", "tr"] as const;
+export const LANGS = ["en", "de", "es", "fr", "tr", "hu", "pl"] as const;
 export type Lang = (typeof LANGS)[number];
 export const RULES = ["answer_in_options", "distinct_options", "no_leak", "target_lang", "native_lang", "one_blank", "dropped"] as const;
 export type Rule = (typeof RULES)[number];
@@ -16,14 +16,18 @@ const n = (t: string) => normalize(t.toLowerCase());
 const STOP: Record<Lang, Set<string>> = {
   en: new Set("the a an is are was were i you he she it we they to of and in on at for with my your this that do does not have has".split(" ")),
   de: new Set("der die das ein eine ist sind ich du er sie es wir ihr und nicht zu mit von den dem bin hast hat auf für".split(" ")),
-  es: new Set("el la los las un una es son yo tú él ella y no de en con por para que mi tu soy estoy está muy".split(" ")),
+  es: new Set("el la los las un una es son yo tú él ella y no de en con por para que mi tu soy estoy está muy del lo más qué cómo dónde cuándo también aquí sí hay pero como este esta esto eso tiene tengo voy vas hace".split(" ")),
   fr: new Set("le la les un une est sont je tu il elle nous vous et ne pas de en avec pour que mon ton suis c'est très".split(" ")),
   tr: new Set("bir ve bu şu ben sen o biz siz onlar değil mi mı mu mü ne çok için ile da de var yok".split(" ")),
+  hu: new Set("a az egy és nem van vannak vagyok vagy vagyunk volt voltam lesz hogy ez ezt azt én ő ők meg már még csak itt ott igen nagyon nincs mert sok jó kell lehet mint sem fel tegnap holnap nekem neked neki ha amikor aki ami amit ahol hol kérem köszönöm minden ezért azért nap jól úr".split(" ")),
+  pl: new Set("w z na nie się jest że jak co ale tak czy ten ta jestem mam masz bardzo dla od po przez który która które jeśli bo już też tylko kiedy gdzie dlaczego zdanie słowo".split(" ")),
 };
-// Letters only one of the five languages uses (ö, ü and ç are shared by German, French and Turkish).
-const MARK: Record<Lang, RegExp> = { en: /(?!)/, de: /[ßä]/, es: /[ñáíóú]/, fr: /[èêœàâùû]/, tr: /[ışğ]/ };
+// Letters only one of these languages uses (ö and ü are shared by German, Turkish and Hungarian, ç by French and Turkish,
+// á, í, ó and ú by Spanish, Hungarian and Polish); Hungarian's sz, zs, gy and cs are letters of its alphabet, and sz is a
+// Polish one too, so it counts for both and their own letters and stopwords decide.
+const MARK: Record<Lang, RegExp> = { en: /(?!)/, de: /[ßä]/, es: /ñ/, fr: /[èêœàâùû]/, tr: /[ışğ]/, hu: /[őű]|sz|zs|gy|cs/, pl: /[ąćęłńśźż]|cz|sz/ };
 
-/** The likeliest of the five course languages, or null for under 3 words or no clear winner. */
+/** The likeliest of LANGS (the course languages and Polish), or null for under 3 words or no clear winner. */
 export function guessLang(text: string): Lang | null {
   const words = n(text).split(" ").filter(Boolean);
   if (words.length < 3) return null;
@@ -72,7 +76,7 @@ const wrongLang = (texts: string[], want: Lang) => texts.some((t) => { const l =
 /** The rules a schema-valid raw item fails, in RULES order. */
 export function checkItem(type: string, g: any, ctx: { target: Lang; native: Lang }): Rule[] {
   const bad = new Set<Rule>();
-  if (REGISTRY[type]!.toItem(g) === null) bad.add("dropped");
+  if (REGISTRY[type]!.toItem(g) === null || strayScript([ctx.target, ctx.native])(g)) bad.add("dropped");
   if (Array.isArray(g.options)) {
     const ok = Number.isInteger(g.answer_index) && g.answer_index >= 0 && g.answer_index < g.options.length;
     if (!ok) bad.add("answer_in_options");

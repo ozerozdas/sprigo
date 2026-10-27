@@ -322,7 +322,7 @@
   },
   "coach": {
     "title": "Ton expression orale",
-    "off": "L'analyse vocale est désactivée. Active-la dans Paramètres > Avancé pour voir comment ton expression évolue.",
+    "off": "L'analyse vocale est désactivée. Active-la dans Réglages > Confidentialité et données pour voir comment ton expression évolue.",
     "empty": "Après quelques leçons orales avec un tuteur, tu verras tes progrès ici.",
     "steady": "Ton expression est restée stable lors de tes derniers appels.",
     "trend": {
@@ -781,6 +781,7 @@
     "whisperSmallGood": "190 Mo · plus précis, un peu plus lent",
     "whisperTurbo": "Le meilleur (large-v3 turbo)",
     "whisperTurboGood": "574 Mo · le plus précis ; demande un ordinateur puissant",
+    "whisperFor": "Pour {{lang}}, {{name}} comprend bien mieux.",
     "whisperRemove": "Supprimer le modèle {{name}}",
     "whisperRemoveAsk": "Supprimer le modèle {{name}} ? Tu pourras le retélécharger.",
     "whisperRemoved": "Modèle supprimé",

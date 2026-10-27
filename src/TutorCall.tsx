@@ -13,14 +13,14 @@ import { FREE_CONTEXT, RECENT, baselineOf, learnerState, nextHint, summarize, ty
 import { Face, type FaceState } from "./face/Face";
 import { Avatar } from "./screens/Profiles";
 import { CHARACTERS, type CharacterId } from "./characters";
-import { learnerFacts, loadPractice, rememberSession, tutorTurn } from "./lessons";
+import { judge, learnerFacts, loadPractice, rememberSession, tutorTurn } from "./lessons";
 import { warmUp } from "./ai";
 import { FILLER_MS, NOTES_MAX, currentUnit, filler, isNoise, mergeInput, partialSay, sentences, silenceDelay, type TutorEvent, type TutorMsg, type TutorReply } from "./tutor";
 import { recordSession, today, xpMult } from "./progress";
 import * as db from "./db";
 import { PracticePanel } from "./PracticePanel";
 import { Words } from "./Words";
-import { PRACTICE_XP, answer, begin, currentItem, describePractice, findTopic, next, openPractice, practiceTopics, type PracticeState, type Topic } from "./practice";
+import { PRACTICE_XP, answer, begin, currentItem, describePractice, expected, findTopic, needsJudge, next, openPractice, practiceTopics, type PracticeState, type Topic } from "./practice";
 import { Done, Failed, Shell, useQuit, usePrewarm, type Result } from "./Talk";
 
 const BONUS_MS = 5 * 60_000; // a call this long earns +20 XP
@@ -34,6 +34,7 @@ type Call = {
   cut: (() => void) | null; // stops the reply being spoken, when the learner talks over it (SPR-17)
   speaking: boolean; micStarting: boolean; camStarting: boolean; // the tutor is talking; a device start is in flight
   pr: PracticeState | null; pending: TutorEvent | null; pxp: number; // practice panel state; a practice event waiting for the tutor; practice XP
+  judging: boolean; // the AI is checking word tiles in another order
   speech: Utterance[]; silences: number; // speech signals and silence nudges, saved as one row at the end (SPR-25)
   mood: { state: LearnerState; turns: number }; // the learner's state at the last turn, so its hint isn't repeated every turn (SPR-26)
 };
@@ -50,7 +51,7 @@ export function TutorCall({ who }: { who: CharacterId }) {
   const about = useMemo(() => (profile ? learnerFacts(profile.id) : Promise.resolve([])), [profile?.id]); // loaded once per call
   const usual = useMemo(() => (profile ? db.speechBaseline(profile.id).catch(() => null) : Promise.resolve(null)), [profile?.id]);
 
-  const c = useRef<Call>({ hist: [], notes: "", last: null, queue: [], fixes: [], nudges: 0, fills: 0, running: false, over: false, opened: false, micOn: false, failed: null, cut: null, speaking: false, micStarting: false, camStarting: false, pr: null, pending: null, pxp: 0, speech: [], silences: 0, mood: { state: "neutral", turns: 0 } }).current;
+  const c = useRef<Call>({ hist: [], notes: "", last: null, queue: [], fixes: [], nudges: 0, fills: 0, running: false, over: false, opened: false, micOn: false, failed: null, cut: null, speaking: false, micStarting: false, camStarting: false, pr: null, pending: null, pxp: 0, judging: false, speech: [], silences: 0, mood: { state: "neutral", turns: 0 } }).current;
   const mic = useRef<Listener | null>(null);
   const cam = useRef<MediaStream | null>(null);
   const ring = useRef<HTMLElement>(null);
@@ -231,10 +232,19 @@ export function TutorCall({ who }: { who: CharacterId }) {
   };
   const retryTopic = () => { const tp = prTopic.current; prTopic.current = null; if (tp) void chooseTopic(tp); };
   /** A click or a spoken answer on the exercise on screen; answers that match no option are ignored. */
-  const submit = (given: string) => {
+  const submit = async (given: string) => {
     const st = c.pr, it = st && currentItem(st);
-    if (!st || !it) return;
-    const after = answer(st, given);
+    if (!st || !it || c.judging) return;
+    let judged: boolean | undefined;
+    if (it.kind === "bank" && needsJudge(it, given) && course && profile) {
+      c.judging = true;
+      // A failed AI call is not a wrong answer: nothing is graded, the learner just answers again.
+      try { judged = (await judge({ course, level: prTopic.current?.level ?? enrollment?.level ?? "A1", native: profile.native_lang }, it.prompt, expected(it), given)).correct; }
+      catch (e) { console.warn("judge", e); toast(t("lesson.checkFailed")); return; }
+      finally { c.judging = false; }
+      if (c.pr !== st) return; // the panel moved on meanwhile
+    }
+    const after = answer(st, given, judged);
     if (!after.last || after === st) return;
     setPractice(after); c.nudges = 0;
     if (after.last.correct) c.pxp += PRACTICE_XP;
@@ -255,7 +265,7 @@ export function TutorCall({ who }: { who: CharacterId }) {
     const st = c.pr!;
     if (st.stage === "topics") { const tp = findTopic(topics, a); if (tp) void chooseTopic(tp); }
     else if (a.toLowerCase() === "next") { if (st.stage === "reading" || st.stage === "discussion") advance(); }
-    else submit(a);
+    else void submit(a);
   };
 
   const micStart = async (announce: boolean) => {

@@ -231,19 +231,16 @@ export function Lesson({ id }: { id: string }) {
   const check = async () => {
     if (!it) return;
     if (it.kind === "choice") return grade(sel === it.answer, it.options[it.answer], sel === null ? "" : it.options[sel]);
-    if (it.kind === "bank") {
-      const given = bankSel.map((j) => it.bank[j]).join(" ");
-      return grade(normalize(given) === normalize(it.answer.join(" ")), it.answer.join(" "), given);
-    }
-    if (it.kind === "input") {
-      if (matchesAnswer(text, it)) return grade(true, it.answer, text);
-      if (!ctx) return grade(false, it.answer, text);
-      setChecking(true); // C4: string match failed, let the AI judge meaning
-      // A failed AI call is not a wrong answer: no heart lost, the learner just checks again.
-      try { const r = await judge(ctx, questionOf(it), it.answer, text); grade(r.correct, it.answer, text, r.feedback, true); }
-      catch (e) { console.warn("judge", e); toast(t("lesson.checkFailed")); }
-      finally { setChecking(false); }
-    }
+    if (it.kind !== "bank" && it.kind !== "input") return;
+    // Tiles too: "A nevem Anna" and "Anna a nevem" are both right, and the model gives only one order.
+    const [given, expected] = it.kind === "bank" ? [bankSel.map((j) => it.bank[j]).join(" "), it.answer.join(" ")] : [text, it.answer];
+    if (it.kind === "bank" ? normalize(given) === normalize(expected) : matchesAnswer(text, it)) return grade(true, expected, given);
+    if (!ctx) return grade(false, expected, given);
+    setChecking(true); // C4: string match failed, let the AI judge meaning
+    // A failed AI call is not a wrong answer: no heart lost, the learner just checks again.
+    try { const r = await judge(ctx, questionOf(it), expected, given); grade(r.correct, expected, given, r.feedback, true); }
+    catch (e) { console.warn("judge", e); toast(t("lesson.checkFailed")); }
+    finally { setChecking(false); }
   };
 
   const matchCols = useMemo(() => it?.kind === "match"

@@ -104,10 +104,12 @@ export async function listModels(c: AiConfig, key: string | null): Promise<strin
 // Ollama models get "none": even "low" thinks 400–3500 tokens per tutor turn (pnpm bench, M4). First sentence with "none":
 // gemma4:e2b 5 s → 0.4 s, qwen3.5:4b 2 min → 0.9 s, kimi-k2.6:cloud 31 s → 1.4 s, deepseek-v4-pro:cloud 3.1 s → 0.5 s.
 // Except glm-5.3-flash:cloud: with "none" it writes its reasoning into the reply itself (SPR-14, 213 tokens vs 44; 2.2 s vs 0.5 s).
-// ponytail: one named exception; a per-model setting if more models behave like glm-5.3-flash. LM Studio not measured, keeps "low".
+// LM Studio gets "none" too: with any other effort, or none sent, qwen3.8 there puts the whole structured reply in
+// reasoning_content and leaves the answer empty, so every lesson failed. gpt-oss, which has no off level, accepts it too.
+// ponytail: one named exception; a per-model setting if more models behave like glm-5.3-flash.
 const reasoning = (c: AiConfig) =>
   c.provider === "ollama" ? (c.model.startsWith("glm-5.3-flash") ? "low" as const : "none" as const)
-  : c.provider === "lmstudio" ? "low" as const : undefined;
+  : c.provider === "lmstudio" ? "none" as const : undefined;
 
 type Active = { cfg: AiConfig; key: string | null };
 let active: Active | null = null, backup: Active | null = null;
@@ -140,11 +142,12 @@ export function extractJson(text: string): unknown {
 }
 
 /** Structured generation with the active provider. `loose` parses replies the strict `schema` rejected
- *  (e.g. fills a field the model left out); the schema sent to the provider stays strict for OpenAI's strict mode. */
-export async function generate<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg = active, loose: z.ZodType = schema): Promise<z.infer<S>> {
-  return viaBackup(cfg, (c) => generateWith(schema, system, prompt, c, loose));
+ *  (e.g. fills a field the model left out); the schema sent to the provider stays strict for OpenAI's strict mode.
+ *  `seconds`: a call the caller can do without (the second look at a lesson) gets one try, no backup, and that long. */
+export async function generate<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg = active, loose: z.ZodType = schema, seconds?: number): Promise<z.infer<S>> {
+  return viaBackup(cfg, (c) => generateWith(schema, system, prompt, c, loose, seconds), seconds ? () => false : undefined);
 }
-async function generateWith<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg: Active, loose: z.ZodType): Promise<z.infer<S>> {
+async function generateWith<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg: Active, loose: z.ZodType, seconds?: number): Promise<z.infer<S>> {
   // Some servers ignore response_format (e.g. Ollama cloud models), so the schema is in the prompt too.
   system += `\n\nJSON schema of the reply:\n${JSON.stringify(z.toJSONSchema(schema))}`;
   const once = async () => {
@@ -152,7 +155,7 @@ async function generateWith<S extends z.ZodType>(schema: S, system: string, prom
       const r = await generateText({
         model: model(cfg.cfg, cfg.key), reasoning: reasoning(cfg.cfg), system, prompt, maxRetries: 1,
         output: Output.object({ schema }),
-        abortSignal: AbortSignal.timeout(180_000),
+        abortSignal: AbortSignal.timeout((seconds ?? 180) * 1000),
       });
       return r.output as z.infer<S>;
     } catch (e) {
@@ -162,7 +165,7 @@ async function generateWith<S extends z.ZodType>(schema: S, system: string, prom
   };
   // Models sometimes drop a field or break the JSON; ask again. Network, auth and timeouts fail at once.
   // ponytail: fixed 3 tries; per-provider setting if a slow model makes this too long
-  return retry(once, badReply);
+  return retry(once, badReply, seconds ? 1 : 3);
 }
 
 /** `generate`, streamed (SPR-13): `onText` sees the raw reply as it grows and returns true once it acted on it

@@ -1,6 +1,6 @@
 // Lesson quality eval (#21): generates fixed step lessons with the app's real prompts (src/activities.ts) on Ollama,
 // checks every exercise (src/evalRules.ts) and, with JUDGE set, has a judge model score it. Reports go to eval/ (gitignored).
-// pnpm eval [model…]   (default: every model Ollama lists; JUDGE=<model> adds the judge; OLLAMA=<url>)
+// pnpm eval [model…]   (default: every model Ollama lists; JUDGE=<model> adds the judge; OLLAMA=<url>, e.g. http://localhost:1234 for LM Studio with named models)
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { z } from "zod";
@@ -21,6 +21,7 @@ const CASES: { course: Lang; step: string; native: Lang }[] = [
   { course: "en", step: "present-perfect-vs-past-simple", native: "tr" }, // B1: fill_blank, error_correct, multiple_choice
   { course: "en", step: "conditional-inversion", native: "tr" }, // C1: fill_blank, word_bank, translate
   { course: "tr", step: "how-old", native: "en" }, // Turkish as the target: word_bank, translate, error_correct
+  { course: "hu", step: "likes-dislikes", native: "en" }, // Hungarian as the target: definite conjugation in word_bank, error_correct, translate
 ];
 
 /** Normal steps only: the part of stepContext (src/lessons.ts, which imports the database) the cases need. */

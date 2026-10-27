@@ -16,6 +16,7 @@ export const NAMES: Record<string, string[]> = {
   de: ["Lena", "Jonas", "Felix", "Hannah", "Lukas", "Marie", "Paul", "Clara", "Finn", "Greta"],
   es: ["Sofía", "Mateo", "Lucía", "Diego", "Valeria", "Pablo", "Carmen", "Javier", "Elena", "Alba"],
   fr: ["Léa", "Hugo", "Manon", "Louis", "Camille", "Jules", "Inès", "Arthur", "Zoé", "Théo"],
+  hu: ["Zsófi", "Bence", "Réka", "Máté", "Eszter", "Levente", "Dóra", "Bálint", "Noémi", "Ádám"],
 };
 const COLORS = ["#e91e63", "#4c6ef5", "#12b886", "#b07cf0", "#f4862a", "#00b8a9", "#8d6e63", "#5c6bc0", "#ef5350", "#f5b014"];
 

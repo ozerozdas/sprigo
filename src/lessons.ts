@@ -1,9 +1,9 @@
 // Lesson generation (DECISIONS C2, C3): cache → one call for the whole step → per-activity fallback.
-import { crossChecked, formsPrompt, formsSchema, pickAsks } from "./conjugation";
+import { crossChecked, formsPrompt, formsSchema, fromTable, pickAsks } from "./conjugation";
 import { z } from "zod";
 import { generate, generatePlain, generateStream } from "./ai";
 import { applyMemoryOps, cachedGuides, enrollmentProfile, getCached, listMemories, listMistakes, markMemoriesUsed, memoryOn, putCached } from "./db";
-import { REGISTRY, givesAway, langEn, lessonPrompt, mistakeLine, lessonSchema, plannedActivities, shuffleAnswer, systemPrompt, toItems, type Item, type LessonContext } from "./activities";
+import { REGISTRY, givesAway, langEn, lessonPrompt, mistakeLine, lessonSchema, plannedActivities, checkPrompt, checkSchema, rejected, reviewSystem, shuffleAnswer, solvePrompt, solveSchema, solveSystem, systemPrompt, toItems, type Item, type LessonContext } from "./activities";
 import { CHARACTERS, CHAT_MAX_TURNS, CHAT_MIN_TURNS, FREE_GOAL, type CharacterId } from "./characters";
 import { CEFR, levelsOf, storyId, type Course, type CourseLevel, type Cefr } from "./course";
 import { looseTutor, tutorPrompt, tutorSchema, tutorSystem, type TutorEvent, type TutorMsg } from "./tutor";
@@ -98,10 +98,10 @@ export const MISTAKES_IN_PROMPT = 8; // ponytail: most recent only, rank by freq
 async function generateItems(c: LessonContext, mistakes: string[], about: string[]): Promise<Item[]> {
   const acts = plannedActivities(c.step.activities);
   if (!acts.length) throw new Error("This step has no activities that can be generated yet.");
-  const system = systemPrompt(c);
+  const system = systemPrompt(c), langs = [c.course.iso, c.native];
   try {
-    const items = toItems(acts, await generate(lessonSchema(acts), system, lessonPrompt(c, acts, mistakes, about)) as Record<string, unknown[]>);
-    if (items.length) return items;
+    const items = toItems(acts, await generate(lessonSchema(acts), system, lessonPrompt(c, acts, mistakes, about)) as Record<string, unknown[]>, langs);
+    if (items.length) return reviewed(c, items);
   } catch (e) { console.warn("Whole-lesson generation failed, falling back to per-activity calls", e); }
   // Fallback for small local models that struggle with the full schema.
   const items: Item[] = [];
@@ -109,11 +109,31 @@ async function generateItems(c: LessonContext, mistakes: string[], about: string
   for (const a of acts) {
     try {
       const out = await generate(z.object({ items: z.array(REGISTRY[a.type]!.schema).min(1).max(a.count) }), system, lessonPrompt(c, [{ ...a, key: "items" }], mistakes, about));
-      items.push(...toItems([{ ...a, key: "items" }], out as Record<string, unknown[]>));
+      items.push(...toItems([{ ...a, key: "items" }], out as Record<string, unknown[]>, langs));
     } catch (e) { lastError = e; }
   }
   if (!items.length) throw lastError ?? new Error("The model returned no usable exercises.");
-  return items;
+  return reviewed(c, items);
+}
+
+// Gemma takes 5–10 s; in tests about 1 request in 60 hung for 5 minutes, which must not hold a lesson back.
+const SECOND_LOOK_S = 30;
+
+/** Indexes of the exercises a second look calls wrong (both checks run at once); a check that fails flags nothing. */
+async function flagged(c: Parameters<typeof checkPrompt>[0], items: Item[], text = ""): Promise<Set<number>> {
+  const quiet = <T>(p: Promise<T>) => p.catch((e) => { console.warn("Second look failed, keeping the exercises as written", e); return null; });
+  const solve = solvePrompt(c, items, text);
+  const [checked, solved] = await Promise.all([
+    quiet(generate(checkSchema, reviewSystem, checkPrompt(c, items, text), undefined, undefined, SECOND_LOOK_S)),
+    solve ? quiet(generate(solveSchema, solveSystem(c.course.name), solve, undefined, undefined, SECOND_LOOK_S)) : null,
+  ]);
+  return rejected(items, checked, solved);
+}
+
+/** The lesson without the exercises a second look calls wrong, unless that would leave nothing. */
+async function reviewed(c: LessonContext, items: Item[]): Promise<Item[]> {
+  const bad = await flagged(c, items), kept = items.filter((_, i) => !bad.has(i));
+  return kept.length ? kept : items;
 }
 
 const inflight = new Map<string, Promise<Item[]>>();
@@ -144,7 +164,7 @@ export function prefetchNext(enrollmentId: number, course: Course, level: Cefr, 
 
 // ---- Answer judging (C4) and explanations (C5) ----
 
-export async function judge(c: LessonContext, question: string, expected: string, given: string) {
+export async function judge(c: Base, question: string, expected: string, given: string) {
   // ponytail: one retry covers the occasional malformed JSON; the caller reports a second failure
   const run = () => generate(
     z.object({ feedback: z.string(), correct: z.boolean() }), // feedback first: the model reasons before it decides
@@ -222,9 +242,12 @@ export async function loadWritingTask(enrollmentId: number, c: Base, unit: Unit,
   await putCached(enrollmentId, key, task);
   return task;
 }
-/** Conjugation drill (#30): the same forms asked twice, blind; only the ones both answers agree on are kept. Never cached. */
+/** Conjugation drill (#30): the same forms asked twice, blind; only the ones both answers agree on are kept. Never cached.
+ *  A language with bundled tables is asked from them, without the AI. */
 export async function loadConjugation(c: Base, prompt: string): Promise<Item[]> {
   const asks = pickAsks(c.course.iso, c.level);
+  const bundled = fromTable(c.course.iso, asks, prompt);
+  if (bundled) return bundled;
   const ask = (xs: typeof asks) => generate(formsSchema(xs.length), systemPrompt(c), formsPrompt(c.course.name, xs)).then((r) => r.forms);
   // The second answer gets the list reversed: a different prompt, so a deterministic model isn't simply asked twice.
   const [a, b] = await Promise.all([ask(asks), ask([...asks].reverse()).then((f) => f.reverse())]);
@@ -388,7 +411,9 @@ export async function loadPractice(enrollmentId: number, c: Base, unit: Unit): P
   const cached = await getCached<PracticeSet>(enrollmentId, key);
   if (cached) return cached;
   const out = await generate(practiceSchema, systemPrompt(c), practicePrompt(unit.title, unitWords(unit), unitGrammar(unit)));
-  const set = toPracticeSet(out as Record<string, unknown>);
+  const raw = toPracticeSet(out as Record<string, unknown>, [c.course.iso, c.native]), all = [...raw.warmup, ...raw.comprehension];
+  const bad = await flagged({ ...c, step: unit }, all, raw.reading.text), ok = (it: Item) => !bad.has(all.indexOf(it));
+  const set = { ...raw, warmup: raw.warmup.filter(ok), comprehension: raw.comprehension.filter(ok) };
   if (!set.warmup.length && !set.comprehension.length && !set.discussion.length) throw new Error("The model returned no usable exercises.");
   await putCached(enrollmentId, key, set);
   return set;

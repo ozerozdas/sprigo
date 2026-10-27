@@ -322,7 +322,7 @@
   },
   "coach": {
     "title": "Tu forma de hablar",
-    "off": "El análisis de voz está desactivado. Actívalo en Ajustes > Avanzado para ver cómo cambia tu forma de hablar.",
+    "off": "El análisis de voz está desactivado. Actívalo en Ajustes > Privacidad y datos para ver cómo cambia tu forma de hablar.",
     "empty": "Después de algunas lecciones habladas con un tutor, verás aquí tu progreso.",
     "steady": "Tu forma de hablar se ha mantenido estable en tus últimas llamadas.",
     "trend": {
@@ -781,6 +781,7 @@
     "whisperSmallGood": "190 MB · más preciso, algo más lento",
     "whisperTurbo": "El mejor (large-v3 turbo)",
     "whisperTurboGood": "574 MB · el más preciso; necesita un ordenador potente",
+    "whisperFor": "Para {{lang}}, {{name}} entiende mucho mejor.",
     "whisperRemove": "Eliminar el modelo {{name}}",
     "whisperRemoveAsk": "¿Eliminar el modelo {{name}}? Puedes volver a descargarlo.",
     "whisperRemoved": "Modelo eliminado",

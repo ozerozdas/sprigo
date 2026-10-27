@@ -60,12 +60,13 @@ export function practicePrompt(unit: string, words: string[], grammar: string[])
 
 export type PracticeSet = { warmup: Item[]; reading: { title: string; text: string }; comprehension: Item[]; discussion: string[] };
 
-export function toPracticeSet(out: Record<string, unknown>): PracticeSet {
+/** `langs`: the course and native languages (see toItems). */
+export function toPracticeSet(out: Record<string, unknown>, langs: string[]): PracticeSet {
   const lists = out as Record<string, unknown[]>;
   return {
-    warmup: toItems(WARMUP, lists),
+    warmup: toItems(WARMUP, lists, langs),
     reading: { title: String(out.reading_title ?? ""), text: String(out.reading_text ?? "") },
-    comprehension: toItems(COMPREHENSION, lists),
+    comprehension: toItems(COMPREHENSION, lists, langs),
     discussion: ((out.discussion as string[] | undefined) ?? []).map((q) => q.trim()).filter(Boolean),
   };
 }
@@ -115,12 +116,15 @@ function optionIndex(it: Extract<Item, { kind: "choice" }>, given: string) {
 /** Whether the app can grade this answer: one of a choice's options, or any sentence for word tiles. */
 export const accepts = (it: Item, given: string) => (it.kind === "choice" ? optionIndex(it, given) >= 0 : it.kind === "bank" && !!normalize(given));
 
-/** Grades the item on screen once; answers that are not gradable, or come after the first, change nothing. */
-export function answer(st: PracticeState, given: string): PracticeState {
+/** Word tiles in an order other than the expected one: the AI decides whether it is right too (DECISIONS C4). */
+export const needsJudge = (it: Item, given: string) => it.kind === "bank" && accepts(it, given) && normalize(given) !== normalize(expected(it));
+
+/** Grades the item on screen once; answers that are not gradable, or come after the first, change nothing. `judged`: the AI's verdict (needsJudge). */
+export function answer(st: PracticeState, given: string, judged?: boolean): PracticeState {
   const it = currentItem(st);
   if (!it || st.last || !accepts(it, given)) return st;
   const k = it.kind === "choice" ? optionIndex(it, given) : -1;
-  const correct = it.kind === "choice" ? k === it.answer : normalize(given) === normalize(expected(it));
+  const correct = it.kind === "choice" ? k === it.answer : judged ?? normalize(given) === normalize(expected(it));
   const last = { correct, given: it.kind === "choice" ? it.options[k] : given.trim(), expected: expected(it) };
   return { ...st, score: st.score + (correct ? 1 : 0), total: st.total + 1, last };
 }

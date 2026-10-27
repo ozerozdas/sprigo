@@ -10,7 +10,7 @@ import { levelRange, type Course } from "../course";
 
 const COLORS = ["#12b886", "#4c6ef5", "#b07cf0", "#f4862a", "#e91e63", "#00b8a9", "#f5b014", "#5c6bc0"];
 // ponytail: fixed list of native languages the AI can translate into; extend when someone asks.
-export const NATIVE = ["en", "tr", "de", "fr", "es", "it", "pt", "ru", "ar", "ja", "ko", "zh"];
+export const NATIVE = ["en", "tr", "de", "fr", "es", "hu", "pl", "it", "pt", "ru", "ar", "ja", "ko", "zh"];
 const gap = (g: string) => ({ "--od-gap": g }) as React.CSSProperties;
 
 export function useLangName() {

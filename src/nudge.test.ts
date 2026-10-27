@@ -48,7 +48,7 @@ test("nudgeMessage: roots only with a streak, evening last call, no repeats in a
 });
 
 test("every locale has exactly NUDGES messages per group, each with a title and body", () => {
-  for (const l of ["en", "tr", "de", "es", "fr"]) {
+  for (const l of ["en", "tr", "de", "es", "fr", "hu"]) {
     const n = JSON.parse(readFileSync(new URL(`./locales/${l}.json`, import.meta.url), "utf8")).nudges;
     for (const [g, count] of Object.entries(NUDGES)) {
       assert.equal(n[g].length, count, `${l} ${g}`);

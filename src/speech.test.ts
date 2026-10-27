@@ -31,6 +31,7 @@ test("fillers and native words are counted, not taken for target words", () => {
   assert.equal(nativeCount(["e", "que"], "es", "pt"), 0); // shared small words are not a switch
   assert.equal(nativeCount(["я", "не", "know"], "ru", "en"), 2);
   assert.equal(nativeCount(["ve"], "tr", "tr"), 0);
+  assert.equal(nativeCount(["nie", "wiem", "hogy", "mam"], "pl", "hu"), 2);
 });
 
 test("silence gives zeros, not NaN", () => {

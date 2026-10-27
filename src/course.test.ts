@@ -61,7 +61,7 @@ test("broken YAML fails with file, path and reason", () => {
 
 // Smaller courses: every level has the same shape as en.yml's A1, so the path, chests and checkpoint work unchanged.
 // Add a level here when a course grows (#4–#6: fr, de, tr A2).
-const LEVELS: Record<string, string[]> = { es: ["A1", "A2", "B1", "B2", "C1", "C2"], fr: ["A1", "A2", "B1", "B2", "C1", "C2"], de: ["A1", "A2", "B1", "B2", "C1", "C2"], tr: ["A1", "A2", "B1", "B2", "C1", "C2"] };
+const LEVELS: Record<string, string[]> = { es: ["A1", "A2", "B1", "B2", "C1", "C2"], fr: ["A1", "A2", "B1", "B2", "C1", "C2"], de: ["A1", "A2", "B1", "B2", "C1", "C2"], tr: ["A1", "A2", "B1", "B2", "C1", "C2"], hu: ["A1", "A2", "B1", "B2", "C1", "C2"] };
 for (const [iso, levels] of Object.entries(LEVELS)) test(`courses/${iso}.yml has ${levels.join(", ")}: 10 units × 4 steps and a checkpoint each`, () => {
   const c = parseCourse(readFileSync(new URL(`../courses/${iso}.yml`, import.meta.url), "utf8"), `${iso}.yml`);
   assert.equal(c.iso, iso);
