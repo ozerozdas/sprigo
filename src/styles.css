@@ -311,6 +311,9 @@ html[data-theme="dark"] .biome-scene .sky{fill:transparent}
 .lesson-progress i{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .35s ease}
 .icon-btn{width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:var(--r);color:var(--text-faint)}
 .icon-btn:hover{background:var(--surface)}
+.bookmark-btn[aria-pressed="true"]{color:var(--gold-dark)}
+.unit-head .bookmark-btn{color:var(--on-accent);background:rgba(255,255,255,.18)}
+.unit-head .bookmark-btn:hover{background:rgba(255,255,255,.28)}
 .hearts-box{display:flex;align-items:center;gap:4px;font-weight:900;color:var(--blue);font-size:16px}
 .lesson-body{flex:1;overflow-y:auto;display:flex;justify-content:center;padding:20px}
 .lesson-inner{width:100%;max-width:600px;display:flex;flex-direction:column}

@@ -42,6 +42,15 @@
     "soonScreen": "Cet écran est un aperçu. Les données affichées sont des exemples.",
     "soonToast": "Bientôt"
   },
+  "bookmark": {
+    "add": "Enregistrer {{item}}",
+    "saved": "Enregistré",
+    "removed": "Retiré des enregistrements",
+    "failed": "Impossible d'enregistrer le marque-page",
+    "unit": "Unité",
+    "guide": "Guide",
+    "story": "Histoire"
+  },
   "learn": {
     "kicker": "{{level}} · Unité {{unit}}",
     "start": "Commencer",
@@ -162,7 +171,9 @@
     "wordsError_translation": "pas de traduction",
     "wordsError_schedule": "données de révision invalides",
     "wordsExported_many": "{{count}} mots exportés",
-    "wordsSkipped_many": "{{count}} lignes ignorées :"
+    "wordsSkipped_many": "{{count}} lignes ignorées :",
+    "saved": "Enregistrés",
+    "savedEmpty": "Touche le marque-page d'une unité, d'un guide ou d'une histoire pour le garder ici."
   },
   "league": {
     "title": "Ligue {{name}}",

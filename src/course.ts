@@ -81,6 +81,12 @@ export function parseStoryId(id: string): { level: Cefr; unit: string } | null {
   const m = /^story:([A-C][12]):(.+)$/.exec(id);
   return m ? { level: m[1] as Cefr, unit: m[2] } : null;
 }
+/** A unit's bookmark ref (#45): `level:unit`, because unit ids may repeat across levels like story ids. */
+export const unitRef = (level: Cefr, unit: string) => `${level}:${unit}`;
+export function parseUnitRef(ref: string): { level: Cefr; unit: string } | null {
+  const m = /^([A-C][12]):(.+)$/.exec(ref);
+  return m ? { level: m[1] as Cefr, unit: m[2] } : null;
+}
 /** "A1" or "A1–C1": shown in the course picker so an A1-only course says so up front. */
 export const levelRange = (c: Course) => { const l = levelsOf(c); return l.length > 1 ? `${l[0]}–${l[l.length - 1]}` : l[0]; };
 
