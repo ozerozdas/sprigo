@@ -26,6 +26,7 @@ test("no pre-garden wording in user-visible text", () => {
     es: /\b(corazón|corazones|racha|cofre)\b/i,
     fr: /\b(cœur|cœurs|série|coffre)\b/i,
     hu: /\bszív(ek|et)?\b|sorozat|láda|fagyaszt/i,
+    ru: /сердц|сери[яию]|сундук|заморо/i,
   };
   for (const l of others) if (words[l]) assert.deepEqual(bad(flat(load(l)), words[l]), [], l);
 });
