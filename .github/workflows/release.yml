@@ -79,6 +79,13 @@ jobs:
         shell: bash
         run: echo "GGML_NATIVE=OFF" >> "$GITHUB_ENV"
 
+      # RPM refuses the '-' in pre-release versions (1.12.0-1): betas ship .deb and AppImage only on Linux.
+      - name: Linux pre-release bundles
+        if: matrix.platform == 'ubuntu-22.04'
+        shell: bash
+        run: |
+          if grep -q '"version": "[^"]*-' src-tauri/tauri.conf.json; then echo "BUNDLE_ARGS=--bundles deb,appimage" >> "$GITHUB_ENV"; fi
+
       - uses: swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
@@ -98,4 +105,4 @@ jobs:
         with:
           releaseId: ${{ needs.release.outputs.id }} # empty on manual runs: build only
           # ponytail: each job merges latest.json as it finishes; two finishing in the same second could drop a platform. Check it before publishing.
-          args: ${{ matrix.args }}
+          args: ${{ matrix.args }} ${{ env.BUNDLE_ARGS }}
