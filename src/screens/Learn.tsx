@@ -6,10 +6,11 @@ import { useStartLesson } from "../Lesson";
 import { LEGEND_PASS, LEGEND_PRICE, UNIT_TEST_PASS, loadGuide, unitGrammar, unitWords, type Guide } from "../lessons";
 import { prewarm } from "../tts";
 import { SpeakButton } from "../SpeakButton";
+import { BookmarkButton } from "../BookmarkButton";
 import { AiSheet } from "./Settings";
 import { LiveButton } from "./Screens";
 import { BIOMES, biomeScene, biomeVars } from "../biomes";
-import { buildPath, checkpointId, levelsOf, type Cefr, type PathNode, type PathUnit } from "../course";
+import { buildPath, checkpointId, levelsOf, unitRef, type Cefr, type PathNode, type PathUnit } from "../course";
 
 const CHEST_GEMS = 20;
 
@@ -91,11 +92,14 @@ function UnitSection({ u, level }: { u: PathUnit; level: Cefr }) {
   const here = u.nodes.some((n) => n.kind === "step" && n.state === "current"); // the unit being worked on
   const later = u.nodes.every((n) => n.state === "locked");
   return (
-    <section className={`unit${later ? " later" : ""}`} aria-label={u.title}>
+    <section className={`unit${later ? " later" : ""}`} aria-label={u.title} data-unit={u.id}>
       <div className="unit-head">
         <div className="uh-row">
           <div><span className="uh-kicker">{t("learn.kicker", { level, unit: u.index })}</span><h2>{u.title}</h2></div>
-          <button className="guidebook" onClick={() => openSheet(<GuideSheet unitId={u.id} level={level} />)}><Icon name="book" /><span>{t("learn.guidebook")}</span></button>
+          <div className="od-row" style={{ "--od-gap": "8px" } as React.CSSProperties}>
+            <BookmarkButton kind="unit" target={unitRef(level, u.id)} title={u.title} />
+            <button className="guidebook" onClick={() => openSheet(<GuideSheet unitId={u.id} level={level} />)}><Icon name="book" /><span>{t("learn.guidebook")}</span></button>
+          </div>
         </div>
         {here && <button className="unit-skip" onClick={() => start(`unit-test:${u.id}`)}><Icon name="bolt" />{t("learn.skipUnit", { score: UNIT_TEST_PASS })}</button>}
       </div>
@@ -127,7 +131,7 @@ function UnitSection({ u, level }: { u: PathUnit; level: Cefr }) {
   );
 }
 
-function GuideSheet({ unitId, level }: { unitId: string; level: Cefr }) {
+export function GuideSheet({ unitId, level }: { unitId: string; level: Cefr }) {
   const { t } = useTranslation();
   const { course, enrollment, profile, ai, closeSheet } = useApp();
   const unit = course!.levels[level]!.units.find((u) => u.id === unitId)!;
@@ -142,7 +146,10 @@ function GuideSheet({ unitId, level }: { unitId: string; level: Cefr }) {
   const words = guide?.vocabulary ?? unitWords(unit).map((word) => ({ word, translation: "", example: "", example_translation: "" }));
   const grammar = guide?.grammar ?? unitGrammar(unit).map((pattern) => ({ pattern, explanation: "", example: "" }));
   return <div className="guide">
-    <h3>{t("learn.guidebook")} · {unit.title}</h3>
+    <div className="od-row" style={{ "--od-gap": "8px" } as React.CSSProperties}>
+      <h3 className="od-fill">{t("learn.guidebook")} · {unit.title}</h3>
+      <BookmarkButton kind="guide" target={unitRef(level, unitId)} title={`${t("learn.guidebook")} · ${unit.title}`} />
+    </div>
     {!guide && (
       <div className={`guide-status ${err ? "bad" : ""}`} role={err ? "alert" : "status"}>
         <span className={`guide-status-ico ${ai && !err ? "gen-pulse" : ""}`}><Icon name={err ? "x" : "spark"} /></span>
@@ -243,6 +250,9 @@ function ScrollButtons() {
 }
 
 let setupOffered = false;
+/** A unit to open Learn on instead of the next lesson (Saved list, #45).
+ *  ponytail: valid for a second rather than cleared on use, StrictMode runs the layout effect twice. */
+export const jumpTo = { unit: "", until: 0 };
 
 export function Learn() {
   const { t } = useTranslation();
@@ -250,7 +260,8 @@ export function Learn() {
   const shownLevel = viewLevel ?? enrollment?.level;
   // The path grows upward, so open on the lesson to do next instead of the page top.
   useLayoutEffect(() => {
-    const target = document.querySelector(".node.current") ?? document.querySelector(".node.locked") ?? [...document.querySelectorAll(".node")].pop();
+    const saved = Date.now() < jumpTo.until ? document.querySelector(`[data-unit="${jumpTo.unit}"]`) : null;
+    const target = saved ?? document.querySelector(".node.current") ?? document.querySelector(".node.locked") ?? [...document.querySelectorAll(".node")].pop();
     target?.scrollIntoView({ block: "center" });
   }, [enrollment?.id, shownLevel, course, done]); // also after a profile switch, the async course load and a finished lesson
   // First run (DECISIONS C6): offer setup once per launch; the banner stays until a provider is saved.

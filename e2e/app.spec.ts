@@ -88,8 +88,8 @@ test("a story opens from Stories, marks known words and can be finished", async 
   await onboard(page);
   await page.getByRole("button", { name: "Learn" }).click();
   await runLesson(page, /Basic Greetings/); // puts "hola" in the word list
-  await page.getByRole("button", { name: "Stories" }).click();
-  await page.getByRole("button", { name: /Greetings & Introductions/ }).click();
+  await page.getByRole("button", { name: "Stories", exact: true }).click();
+  await page.getByRole("button", { name: /^Greetings & Introductions/ }).click();
   const story = page.getByRole("dialog", { name: "ok" }); // the mock's story title
   await expect(story.locator(".tap-word.known", { hasText: "Hola" }).first()).toBeVisible();
   for (let i = 0; !(await story.getByText("Story complete!").isVisible()); i++) {
@@ -111,7 +111,7 @@ test("Stories lists earlier levels once the learner moves up", async ({ page }) 
   await expect(exam.getByText("A1 complete!")).toBeVisible();
   await exam.getByRole("button", { name: "Done" }).click();
 
-  await page.getByRole("button", { name: "Stories" }).click();
+  await page.getByRole("button", { name: "Stories", exact: true }).click();
   const level = page.getByLabel("Levels");
   await expect(level).toHaveValue("A2");
   await level.selectOption("A1");

@@ -7,8 +7,9 @@ import { createGoogle } from "@ai-sdk/google";
 import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 import { invoke } from "@tauri-apps/api/core";
 import { z } from "zod";
-import { isTauri, isCompanion, getSetting, setSetting } from "./db";
+import { isTauri, isCompanion, addAiUsage, getSetting, setSetting } from "./db";
 import { retry, withBackup } from "./retry";
+import type { AiFeature } from "./usage";
 
 export type ProviderId = "ollama" | "lmstudio" | "openai" | "anthropic" | "gemini" | "openrouter";
 export const PROVIDERS: Record<ProviderId, { label: string; baseURL: string; needsKey: boolean }> = {
@@ -141,24 +142,34 @@ export function extractJson(text: string): unknown {
   return JSON.parse(text.slice(a, b + 1));
 }
 
+/** Records one call for Settings (#48). Callers don't await it: storage (a network hop on the phone) must not slow or break the AI call. */
+async function recordUsage(cfg: AiConfig, feature: AiFeature, usage?: { inputTokens?: number | null; outputTokens?: number | null }) {
+  try { await addAiUsage(cfg.provider, cfg.model, feature, usage?.inputTokens ?? 0, usage?.outputTokens ?? 0); }
+  catch (e) { console.warn("AI usage not recorded", e); }
+}
+
 /** Structured generation with the active provider. `loose` parses replies the strict `schema` rejected
  *  (e.g. fills a field the model left out); the schema sent to the provider stays strict for OpenAI's strict mode.
  *  `seconds`: a call the caller can do without (the second look at a lesson) gets one try, no backup, and that long. */
-export async function generate<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg = active, loose: z.ZodType = schema, seconds?: number): Promise<z.infer<S>> {
-  return viaBackup(cfg, (c) => generateWith(schema, system, prompt, c, loose, seconds), seconds ? () => false : undefined);
+export async function generate<S extends z.ZodType>(schema: S, system: string, prompt: string, feature: AiFeature, cfg = active, loose: z.ZodType = schema, seconds?: number): Promise<z.infer<S>> {
+  const track = !!active && cfg === active; // explicit configs (bench, eval, tests) are not the app's, so never touch its database
+  return viaBackup(cfg, (c) => generateWith(schema, system, prompt, feature, track, c, loose, seconds), seconds ? () => false : undefined);
 }
-async function generateWith<S extends z.ZodType>(schema: S, system: string, prompt: string, cfg: Active, loose: z.ZodType, seconds?: number): Promise<z.infer<S>> {
+async function generateWith<S extends z.ZodType>(schema: S, system: string, prompt: string, feature: AiFeature, track: boolean, cfg: Active, loose: z.ZodType, seconds?: number): Promise<z.infer<S>> {
   // Some servers ignore response_format (e.g. Ollama cloud models), so the schema is in the prompt too.
   system += `\n\nJSON schema of the reply:\n${JSON.stringify(z.toJSONSchema(schema))}`;
   const once = async () => {
+    let recorded = false;
     try {
       const r = await generateText({
         model: model(cfg.cfg, cfg.key), reasoning: reasoning(cfg.cfg), system, prompt, maxRetries: 1,
         output: Output.object({ schema }),
         abortSignal: AbortSignal.timeout((seconds ?? 180) * 1000),
       });
+      if (track) { void recordUsage(cfg.cfg, feature, r.usage); recorded = true; }
       return r.output as z.infer<S>;
     } catch (e) {
+      if (track && !recorded && NoObjectGeneratedError.isInstance(e) && e.usage) void recordUsage(cfg.cfg, feature, e.usage);
       if (!NoObjectGeneratedError.isInstance(e) || !e.text) throw e;
       return loose.parse(extractJson(e.text)) as z.infer<S>; // lenient retry on fenced / chatty replies
     }
@@ -170,13 +181,14 @@ async function generateWith<S extends z.ZodType>(schema: S, system: string, prom
 
 /** `generate`, streamed (SPR-13): `onText` sees the raw reply as it grows and returns true once it acted on it
  *  (e.g. started speaking). After that a broken reply is not asked again: `loose` fills what it can from `{}`. */
-export async function generateStream<S extends z.ZodType>(schema: S, system: string, prompt: string, onText: (raw: string) => boolean,
+export async function generateStream<S extends z.ZodType>(schema: S, system: string, prompt: string, feature: AiFeature, onText: (raw: string) => boolean,
   loose: z.ZodType = schema, cfg = active): Promise<z.infer<S>> {
   let spoke = false; // once a reply was acted on, a second provider would say it all again
-  return viaBackup(cfg, (c) => streamWith(schema, system, prompt, (raw) => onText(raw) && (spoke = true), loose, c), () => !spoke);
+  const track = !!active && cfg === active;
+  return viaBackup(cfg, (c) => streamWith(schema, system, prompt, feature, track, (raw) => onText(raw) && (spoke = true), loose, c), () => !spoke);
 }
-async function streamWith<S extends z.ZodType>(schema: S, system: string, prompt: string, onText: (raw: string) => boolean,
-  loose: z.ZodType, cfg: Active): Promise<z.infer<S>> {
+async function streamWith<S extends z.ZodType>(schema: S, system: string, prompt: string, feature: AiFeature, track: boolean,
+  onText: (raw: string) => boolean, loose: z.ZodType, cfg: Active): Promise<z.infer<S>> {
   system += `\n\nJSON schema of the reply:\n${JSON.stringify(z.toJSONSchema(schema))}`;
   let used = false;
   const once = async () => {
@@ -188,6 +200,8 @@ async function streamWith<S extends z.ZodType>(schema: S, system: string, prompt
       onError: ({ error }) => { failed = error; },
     });
     for await (const d of r.textStream) { text += d; if (onText(text)) used = true; }
+    // Before the error check: a stream that broke halfway was still billed. No counts (it never started): nothing to record.
+    if (track) Promise.resolve(r.usage).then((u) => recordUsage(cfg.cfg, feature, u), () => {});
     if (failed) throw failed;
     try {
       return (await r.output) as z.infer<S>;
@@ -202,9 +216,10 @@ async function streamWith<S extends z.ZodType>(schema: S, system: string, prompt
 const badReply = (e: unknown) => NoObjectGeneratedError.isInstance(e) || e instanceof z.ZodError || e instanceof SyntaxError ||
   (e instanceof Error && e.message === "no JSON object in the reply");
 
-export function generatePlain(system: string, prompt: string) {
+export function generatePlain(system: string, prompt: string, feature: AiFeature) {
   return viaBackup(active, async (c) => {
     const r = await generateText({ model: model(c.cfg, c.key), reasoning: reasoning(c.cfg), system, prompt, maxRetries: 1, abortSignal: AbortSignal.timeout(60_000) });
+    void recordUsage(c.cfg, feature, r.usage);
     return r.text.trim();
   });
 }

@@ -42,6 +42,15 @@
     "soonScreen": "Esta pantalla es una vista previa. Los datos mostrados son de ejemplo.",
     "soonToast": "Próximamente"
   },
+  "bookmark": {
+    "add": "Guardar {{item}}",
+    "saved": "Guardado",
+    "removed": "Quitado de guardados",
+    "failed": "No se pudo guardar el marcador",
+    "unit": "Unidad",
+    "guide": "Guía",
+    "story": "Historia"
+  },
   "learn": {
     "kicker": "{{level}} · Unidad {{unit}}",
     "start": "Empezar",
@@ -162,7 +171,9 @@
     "wordsError_translation": "sin traducción",
     "wordsError_schedule": "datos de repaso no válidos",
     "wordsExported_many": "{{count}} palabras exportadas",
-    "wordsSkipped_many": "Se omitieron {{count}} filas:"
+    "wordsSkipped_many": "Se omitieron {{count}} filas:",
+    "saved": "Guardados",
+    "savedEmpty": "Toca el marcador de una unidad, una guía o una historia para guardarla aquí."
   },
   "league": {
     "title": "Liga {{name}}",
@@ -562,7 +573,30 @@
     "profileDesc": "Nombre, color y PIN",
     "edit": "Editar",
     "betaUpdates": "Actualizaciones beta",
-    "betaUpdatesDesc": "Recibe las versiones de prueba antes que nadie. Pueden tener errores; también sigues recibiendo todas las versiones normales."
+    "betaUpdatesDesc": "Recibe las versiones de prueba antes que nadie. Pueden tener errores; también sigues recibiendo todas las versiones normales.",
+    "usage": {
+      "title": "Uso de tokens",
+      "desc": "Lo que ha respondido tu proveedor de IA, estimado con los precios de lista.",
+      "month": "Mes",
+      "empty": "Aún no hay uso de IA este mes.",
+      "total": "Todas las funciones",
+      "tokens": "{{input}} tokens de entrada · {{output}} tokens de salida",
+      "estimate": "Coste estimado",
+      "note": "Una estimación según los precios de lista del proveedor, no tu factura. Los modelos sin precio conocido solo cuentan como tokens (marcados con *).",
+      "noPrice": "Sin precio",
+      "features": {
+        "lesson": "Lecciones",
+        "check": "Correcciones y explicaciones",
+        "guide": "Guías",
+        "story": "Historias",
+        "writing": "Escritura",
+        "practice": "Práctica",
+        "tutor": "Tutor y rol",
+        "lookup": "Búsquedas de palabras",
+        "memory": "Memoria",
+        "garden": "Notas del jardín"
+      }
+    }
   },
   "rail": {
     "label": "Progreso",
