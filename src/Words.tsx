@@ -23,7 +23,7 @@ export function Words({ text, lang, off, missed }: { text: string; lang: string;
   const open = (e: React.SyntheticEvent<HTMLElement>, word: string) => { e.stopPropagation(); e.preventDefault(); setAt({ word, el: e.currentTarget }); };
   const tks = tokens(text, lang), miss = [...missed ?? []], marked = tks.map(() => false);
   // speechMisses words → tokens; a token like "2.99" normalizes to several words. ponytail: repeats mark their last copies, the transcript can't say which copy was said
-  for (let i = tks.length - 1; i >= 0; i--) if (tks[i].word) for (const w of normalize(tks[i].text).split(" ")) {
+  for (let i = tks.length - 1; i >= 0; i--) if (tks[i].word) for (const w of normalize(tks[i].text, lang).split(" ")) {
     const k = miss.indexOf(w); if (k >= 0) { miss.splice(k, 1); marked[i] = true; }
   }
   return <>

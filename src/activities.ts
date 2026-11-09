@@ -212,12 +212,13 @@ export function rejected(items: Item[], checked: z.infer<typeof checkSchema> | n
 
 // ---- Answer checking (DECISIONS C4: normalized string match first, AI only if that fails) ----
 
-export const normalize = (t: string) =>
-  t.normalize("NFKC").toLocaleLowerCase().replace(/[’`]/g, "'").replace(/[\p{P}\p{S}]/gu, (ch) => (ch === "'" ? ch : " ")).replace(/\s+/g, " ").trim();
+export const normalize = (t: string, lang?: string) =>
+  (lang?.toLowerCase().split("-")[0] === "ro" ? t.normalize("NFKC").toLocaleLowerCase().replace(/ş/g, "ș").replace(/ţ/g, "ț") : t.normalize("NFKC").toLocaleLowerCase())
+    .replace(/[’`]/g, "'").replace(/[\p{P}\p{S}]/gu, (ch) => (ch === "'" ? ch : " ")).replace(/\s+/g, " ").trim();
 
 /** Whether `given` has exactly the words of `answer`, in any order: only then can word tiles in another order be right. */
-export const sameWords = (given: string, answer: string) => {
-  const words = (s: string) => normalize(s).split(" ").filter(Boolean).sort().join(" ");
+export const sameWords = (given: string, answer: string, lang?: string) => {
+  const words = (s: string) => normalize(s, lang).split(" ").filter(Boolean).sort().join(" ");
   return words(given) === words(answer);
 };
 
@@ -232,14 +233,14 @@ export function hideAnswer(prompt: string, answer: string) {
   return m ? m[1].trim() : rest;
 }
 
-export const matchesAnswer = (given: string, item: { answer: string; accepted: string[] }) =>
-  [item.answer, ...item.accepted].some((a) => normalize(a) === normalize(given));
+export const matchesAnswer = (given: string, item: { answer: string; accepted: string[] }, lang?: string) =>
+  [item.answer, ...item.accepted].some((a) => normalize(a, lang) === normalize(given, lang));
 
 /** Expected words (normalized) the transcript doesn't contain (order-free, each heard word used once). Shown as "not caught" (#33). */
-export function speechMisses(expected: string, heard: string) {
-  const want = normalize(expected).split(" ").filter(Boolean);
+export function speechMisses(expected: string, heard: string, lang?: string) {
+  const want = normalize(expected, lang).split(" ").filter(Boolean);
   // Whisper sometimes writes neighbouring words as one ("jónapot" for "jó napot"): such a word counts as the words it joins.
-  const got = normalize(heard).split(" ").flatMap((h) => {
+  const got = normalize(heard, lang).split(" ").flatMap((h) => {
     if (want.includes(h)) return [h];
     for (let i = 0; i < want.length; i++) for (let j = i + 2; j <= Math.min(want.length, i + 3); j++)
       if (want.slice(i, j).join("") === h) return want.slice(i, j);
@@ -248,9 +249,9 @@ export function speechMisses(expected: string, heard: string) {
   return want.filter((w) => { const k = got.indexOf(w); if (k >= 0) got.splice(k, 1); return k < 0; });
 }
 /** Speaking check: share of the expected words the transcript contains. */
-export function speechScore(expected: string, heard: string) {
-  const want = normalize(expected).split(" ").filter(Boolean).length;
-  return want ? 1 - speechMisses(expected, heard).length / want : 0;
+export function speechScore(expected: string, heard: string, lang?: string) {
+  const want = normalize(expected, lang).split(" ").filter(Boolean).length;
+  return want ? 1 - speechMisses(expected, heard, lang).length / want : 0;
 }
 export const SPEECH_PASS = 0.75; // ponytail: word overlap, not phoneme scoring; whisper already forgives accents
 

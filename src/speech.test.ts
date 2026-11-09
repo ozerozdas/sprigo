@@ -109,3 +109,9 @@ test("coach: no progress means no trends; the tip follows the weakest spot", () 
   assert.equal(same({ long_pauses: 6 }).tip, "pauses");
   assert.deepEqual(coach([row({ latency_ms: null }), row({}), row({})])!.trends, []); // a call with no latency doesn't break it
 });
+
+test("Romanian discourse words remain words, not automatic fillers", () => {
+  const m = speechMetrics(signal([[1000, true]]), RATE, "Deci este la școală", { latencyMs: null }, "en", "ro");
+  assert.equal(m.words, 4);
+  assert.equal(m.fillers, 0);
+});

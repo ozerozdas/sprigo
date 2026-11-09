@@ -236,7 +236,7 @@ export function TutorCall({ who }: { who: CharacterId }) {
     const st = c.pr, it = st && currentItem(st);
     if (!st || !it || c.judging) return;
     let judged: boolean | undefined;
-    if (it.kind === "bank" && needsJudge(it, given) && course && profile) {
+    if (it.kind === "bank" && needsJudge(it, given, course?.iso) && course && profile) {
       c.judging = true;
       // A failed AI call is not a wrong answer: nothing is graded, the learner just answers again.
       try { judged = (await judge({ course, level: prTopic.current?.level ?? enrollment?.level ?? "A1", native: profile.native_lang }, it.prompt, expected(it), given)).correct; }
@@ -244,7 +244,7 @@ export function TutorCall({ who }: { who: CharacterId }) {
       finally { c.judging = false; }
       if (c.pr !== st) return; // the panel moved on meanwhile
     }
-    const after = answer(st, given, judged);
+    const after = answer(st, given, judged, course?.iso);
     if (!after.last || after === st) return;
     setPractice(after); c.nudges = 0;
     if (after.last.correct) c.pxp += PRACTICE_XP;

@@ -1,0 +1,622 @@
+# Romanian course. Hierarchy: levels (CEFR) > units > steps > activities.
+# Activities name only a type (+ optional count and hints like scenario/goal); the AI writes the content
+# from the step's title, description, vocabulary, grammar and the level. Types: see src/course.ts.
+name: Romanian
+native_name: Română
+iso: ro
+flag: 🇷🇴
+
+# Step and unit ids are ASCII-only transliterations (regex in src/course.ts); they key user
+# progress and must never be renamed once shipped.
+levels:
+  A1:
+    title: Beginner
+    description: >
+      Understand and use familiar everyday expressions and very basic phrases
+      about yourself, your family and your surroundings.
+
+    units:
+      - id: salutari
+        title: Greetings & Introductions
+        description: Meet people and introduce yourself.
+        icon: 👋
+        steps:
+          - id: ro-basic-greetings
+            title: Basic Greetings
+            description: Common greetings and farewells for different times of day.
+            vocabulary: [bună, "bună ziua", salut, "noapte bună", "la revedere", pa, "ne vedem"]
+            grammar:
+              - pattern: "Bună ziua!"
+              - pattern: "Salut! Ce mai faci?"
+              - pattern: "La revedere! Ne vedem mâine."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: ro-introduce-yourself
+            title: Introduce Yourself
+            description: Tell someone your name and ask theirs.
+            vocabulary: ["mă cheamă", numele, "eu sunt", "Îmi pare bine.", "încântat", "încântată", "de unde"]
+            grammar:
+              - pattern: "Cum te cheamă?"
+              - pattern: "Mă cheamă {name}. Eu sunt {name}."
+              - pattern: "Îmi pare bine."
+              - pattern: "De unde ești? Sunt din România."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: meeting_someone
+                goal: Greet the person, introduce yourself, say where you are from and ask their name.
+          - id: ro-how-are-you
+            title: How Are You?
+            description: Ask and answer how someone is, using tu informally and dumneavoastră politely.
+            vocabulary: [bine, "foarte bine", obosit, obosită, mulțumesc, "Și tu?", "Și dumneavoastră?"]
+            grammar:
+              - pattern: "Ce mai faci?"
+              - pattern: "Ce mai faceți?"
+              - pattern: "Bine, mulțumesc. Și tu?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: friend_on_the_street
+          - id: ro-polite-words
+            title: Please & Thank You
+            description: Be polite in everyday situations, from casual to formal.
+            vocabulary: ["vă rog", mulțumesc, "cu plăcere", "scuză-mă", "scuzați-mă", "nu-i nimic"]
+            grammar:
+              - pattern: "Vă rog!"
+              - pattern: "Mulțumesc mult!"
+              - pattern: "Scuzați-mă, unde este…?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+
+      - id: alfabet-sunete
+        title: Alphabet & Sounds
+        description: Spell your name and learn the sounds of Romanian.
+        icon: 🔤
+        steps:
+          - id: ro-se-scrie
+            title: Spelling Your Name
+            description: Spell names out letter by letter.
+            vocabulary: [nume, prenume, literă, alfabet, "se scrie", "cu majuscule", "numele tău"]
+            grammar:
+              - pattern: "Cum se scrie numele tău?"
+              - pattern: "Se scrie A-N-A."
+              - pattern: "Prenumele meu este…"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: ro-sunete
+            title: The Five Diacritics
+            description: The letters ă, â, î, ș and ț, and how they sound.
+            vocabulary: [masă, casă, pâine, înger, școală, țară, ceas]
+            grammar:
+              - pattern: "În cuvântul «masă» este ă."
+              - pattern: "«Pâine» are â, iar «înger» are î."
+              - pattern: "«Școală» începe cu ș, «țară» începe cu ț."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: multiple_choice, count: 2 }
+              - { type: speak }
+          - id: ro-intrebari
+            title: First Question Words
+            description: Who, what, where, when, how — ask your first questions.
+            vocabulary: [cine, ce, unde, când, cum, "de ce", câți]
+            grammar:
+              - pattern: "Cine este?"
+              - pattern: "Ce este asta?"
+              - pattern: "Unde locuiești?"
+              - pattern: "Când vine Ana?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: ro-lectura
+            title: Reading Simple Words
+            description: Read short words out loud using Romanian sounds.
+            vocabulary: [lapte, caiet, femeie, cafea, seara, stație, prieten]
+            grammar:
+              - pattern: "«Femeie» și «prieten» au ie."
+              - pattern: "«Cafea» și «seara» au ea."
+              - pattern: "Citește cu voce tare: lapte, seara, stație."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select }
+
+      - id: numere-culori
+        title: Numbers & Colors
+        description: Count, say your age and name colors.
+        icon: 🔢
+        steps:
+          - id: ro-numere-1-10
+            title: Numbers 1–10
+            vocabulary: [unu, doi, trei, patru, cinci, șase, șapte, opt, nouă, zece]
+            grammar:
+              - pattern: "unu, doi, trei…"
+              - pattern: "un măr — două mere"
+              - pattern: "un băiat — doi băieți, o fată — două fete"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: listen_type }
+          - id: ro-numere-11-100
+            title: Numbers 11–100
+            vocabulary: [unsprezece, doisprezece, douăzeci, treizeci, "treizeci și unu", cincizeci, "o sută"]
+            grammar:
+              - pattern: "douăzeci și cinci"
+              - pattern: "Numărul meu este…"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: match }
+          - id: ro-cati-ani
+            title: How Old Are You?
+            description: Say your age with am … ani (not a fi).
+            vocabulary: [ani, copil, adult, am, ai, are, "câți"]
+            grammar:
+              - pattern: "Câți ani ai?"
+              - pattern: "Am douăzeci de ani."
+              - pattern: "Fratele meu are șapte ani."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
+          - id: ro-culori
+            title: Colors & Agreement
+            description: Colors and how the adjective agrees with the noun.
+            vocabulary: [alb, negru, roșu, verde, albastru, galben, "culoarea"]
+            grammar:
+              - pattern: "Pantoful e negru, fusta e neagră."
+              - pattern: "Mașina e roșie."
+              - pattern: "Ce culoare are?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank }
+
+      - id: tara-noua
+        title: Countries, Languages & Occupations
+        description: Say where you are from, what languages you speak and what you do.
+        icon: 🌍
+        steps:
+          - id: ro-tari
+            title: Countries
+            description: Name countries and say where you live.
+            vocabulary: [România, "Republica Moldova", Spania, Franța, Germania, Italia, oraș, țară]
+            grammar:
+              - pattern: "De unde ești?"
+              - pattern: "Sunt din România."
+              - pattern: "Locuiesc în Spania, dar sunt din Moldova."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: ro-nationalitati
+            title: Nationalities
+            description: Nationality nouns change with the person's gender.
+            vocabulary: [român, româncă, italian, italiană, american, americană, spaniol, spaniolă]
+            grammar:
+              - pattern: "El e român, ea e româncă."
+              - pattern: "Eu sunt american."
+              - pattern: "El e spaniol, ea e spaniolă."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - type: error_correct
+                hint: Ea e român → Ea e româncă
+          - id: ro-limbi
+            title: Languages
+            description: Languages you speak and how to ask about a word.
+            vocabulary: [limba, vorbesc, vorbești, română, engleză, franceză, germană, puțin]
+            grammar:
+              - pattern: "Ce limbi vorbești?"
+              - pattern: "Vorbesc puțin română."
+              - pattern: "Vorbești engleză?"
+              - pattern: "Cum se spune «mulțumesc» în engleză?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+              - { type: fill_blank }
+          - id: ro-profesii
+            title: Occupations
+            description: Talk about what people do for a living.
+            vocabulary: [student, studentă, profesor, profesoară, medic, inginer, avocat, "meseria"]
+            grammar:
+              - pattern: "Ce meserie ai?"
+              - pattern: "Eu sunt student."
+              - pattern: "Ea e medic."
+              - pattern: "Lucrez la o școală."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: match }
+
+      - id: familia-oamenii
+        title: Family, Articles & Core Verbs
+        description: Talk about your family while learning a fi, a avea and the definite article.
+        icon: 👨‍👩‍👧
+        steps:
+          - id: ro-familie
+            title: Family Members
+            vocabulary: [mamă, tată, frate, soră, bunic, bunică, copil]
+            grammar:
+              - pattern: "Am un frate și o soră."
+              - pattern: "Aceasta e mama mea."
+              - pattern: "Au doi copii."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: ro-articol-definit
+            title: The Article Comes Last
+            description: Romanian marks "the" at the end of the word, not the start.
+            vocabulary: [băiat, băiatul, fată, fata, băieți, băieții, fete, fetele]
+            grammar:
+              - pattern: "băiat → băiatul, fată → fata"
+              - pattern: "băieți → băieții, fete → fetele"
+              - pattern: "casă → casa, măr → mărul"
+              - pattern: "Băiatul e aici. Fata e acolo."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: ro-fi-avea
+            title: I Am, I Have
+            description: Conjugate a fi and a avea in the present.
+            vocabulary: [sunt, ești, este, suntem, sunteți, am, ai, are, avem, aveți, au]
+            grammar:
+              - pattern: "Eu sunt, tu ești, el/ea este."
+              - pattern: "Noi suntem, voi sunteți, ei/ele sunt."
+              - pattern: "Eu am un cățel. Ea are doi căței."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank }
+          - id: ro-prieteni
+            title: Friends & Descriptions
+            description: Describe friends and how they feel.
+            vocabulary: [prieten, prietenă, coleg, colegă, vesel, trist, oameni]
+            grammar:
+              - pattern: "Colegul meu e vesel."
+              - pattern: "Am o prietenă veselă."
+              - pattern: "Ea e tristă azi."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete }
+
+      - id: mancare-bauturi
+        title: Food, Drink & Requests
+        description: Order food and drinks and say what you like.
+        icon: 🍎
+        steps:
+          - id: ro-mancare
+            title: Food Basics
+            vocabulary: [pâine, lapte, supă, carne, ou, măr, brânză]
+            grammar:
+              - pattern: "La prânz mănânc supă."
+              - pattern: "Îmi place pâinea."
+              - pattern: "Nu-mi place carnea."
+              - pattern: "un ou — două ouă"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: ro-bauturi
+            title: Drinks
+            description: Order a drink politely.
+            vocabulary: [apă, cafea, ceai, vin, bere, suc, pahar]
+            grammar:
+              - pattern: "O apă, vă rog."
+              - pattern: "Vreau o cafea cu lapte."
+              - pattern: "Un ceai, vă rog."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: ro-vreau-pot
+            title: I Want / I Can
+            description: Say what you want and what you can do with vreau and pot.
+            vocabulary: [vreau, vrei, vrea, pot, "vreau să", "pot să", card]
+            grammar:
+              - pattern: "Vreau o cafea, vă rog."
+              - pattern: "Pot să plătesc cu cardul?"
+              - pattern: "Vreau să plec acum."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: ro-la-cafe
+            title: At the Café
+            description: A short visit to a café, ordering and paying.
+            vocabulary: [cafenea, meniu, chelner, "nota de plată", desert, "foarte bun", "foarte bună"]
+            grammar:
+              - pattern: "Ce doriți?"
+              - pattern: "O cafea cu lapte, vă rog."
+              - pattern: "Nota de plată, vă rog."
+              - pattern: "Mulțumesc, era foarte bună."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: cafe_order
+                goal: Order a drink and a snack, then ask for the bill.
+
+      - id: ziua-ora
+        title: Time, Days & Weather
+        description: Tell the time, talk about days, seasons and the weather.
+        icon: ⏰
+        steps:
+          - id: ro-ceas
+            title: Telling Time
+            description: Ask and say the time.
+            vocabulary: [ora, minutul, ceas, "la ce oră", azi, mâine, ieri]
+            grammar:
+              - pattern: "Ce oră e?"
+              - pattern: "Este ora trei."
+              - pattern: "La ce oră? La ora șase."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+          - id: ro-zile
+            title: Days of the Week
+            vocabulary: [luni, marți, miercuri, joi, vineri, sâmbătă, duminică]
+            grammar:
+              - pattern: "Luni merg la muncă."
+              - pattern: "Sâmbătă am timp."
+              - pattern: "Duminică nu lucrez."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: ro-anotimpuri
+            title: Seasons & Weather
+            description: The four seasons and everyday weather talk.
+            vocabulary: [primăvara, vara, toamna, iarna, plouă, ninge, "e frig", "e cald"]
+            grammar:
+              - pattern: "E cald azi."
+              - pattern: "Iarna e frig și ninge."
+              - pattern: "Afară plouă."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: ro-prezent
+            title: Everyday Habits
+            description: Simple present sentences about your routine.
+            vocabulary: [lucrez, studiez, citesc, dorm, "mă trezesc", "dimineața", "seara"]
+            grammar:
+              - pattern: "Lucrez de luni până vineri."
+              - pattern: "Dimineața mă trezesc la ora șapte."
+              - pattern: "Seara citesc."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: speak }
+
+      - id: orasul-transportul
+        title: Around Town
+        description: Find your way, use transport and ask prices.
+        icon: 🏙️
+        steps:
+          - id: ro-locuri
+            title: Places in Town
+            description: Name city places (their definite article comes at the end).
+            vocabulary: [piață, parc, stație, școală, spital, teatru, centru]
+            grammar:
+              - pattern: "Unde e piața?"
+              - pattern: "Piața e la centru."
+              - pattern: "Spitalul e aproape."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: ro-indicatii
+            title: Directions
+            description: Give and follow simple directions.
+            vocabulary: [înainte, "la stânga", "la dreapta", aici, acolo, aproape, departe]
+            grammar:
+              - pattern: "Mergi înainte, apoi la stânga."
+              - pattern: "E aproape?"
+              - pattern: "E departe de aici."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: ro-transport
+            title: Transport
+            description: Buses, trains, taxis and how you travel.
+            vocabulary: [autobuz, tramvai, taxi, tren, mașină, bicicletă, bilet]
+            grammar:
+              - pattern: "Iau autobuzul."
+              - pattern: "Biletul costă trei lei."
+              - pattern: "Merg cu taxiul."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type }
+          - id: ro-preturi
+            title: Prices & Money
+            description: Ask what things cost and talk about money.
+            vocabulary: [leu, lei, bani, costă, scump, ieftin]
+            grammar:
+              - pattern: "Cât costă?"
+              - pattern: "Costă zece lei."
+              - pattern: "E prea scump."
+              - pattern: "E ieftin."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: buying_ticket
+                goal: Ask how much the ticket to the center is and buy it.
+
+      - id: locuinta
+        title: Home & Objects
+        description: Describe your home and say where things are.
+        icon: 🏠
+        steps:
+          - id: ro-camere
+            title: Rooms & Home
+            vocabulary: [apartament, casă, cameră, bucătărie, baie, hol, balcon]
+            grammar:
+              - pattern: "Locuiesc într-un apartament mic."
+              - pattern: "Apartamentul are două camere."
+              - pattern: "Bucătăria e mică."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: ro-mobila
+            title: Furniture & Objects
+            vocabulary: [pat, masă, scaun, dulap, canapea, pernă, ușă]
+            grammar:
+              - pattern: "Perna e pe pat."
+              - pattern: "Scaunul e lângă masă."
+              - pattern: "Ușa e mare."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: ro-prepozitii
+            title: Where Things Are
+            description: Locate objects with în, pe, sub and lângă.
+            vocabulary: [în, pe, sub, lângă, sus, jos, la]
+            grammar:
+              - pattern: "Pisica e pe pat."
+              - pattern: "Cartea e sub masă."
+              - pattern: "Cheia e în dulap."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: ro-zilnic
+            title: Everyday Things
+            description: Common household objects and where they are.
+            vocabulary: [fereastră, cheie, telefon, televizor, lampă, oală, perete]
+            grammar:
+              - pattern: "Telefonul e pe masă."
+              - pattern: "Lampa e lângă fereastră."
+              - pattern: "Cheia e în ușă."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: word_select }
+
+      - id: ieri-maine
+        title: Yesterday & Tomorrow
+        description: Talk about yesterday and your plans for tomorrow.
+        icon: 📅
+        steps:
+          - id: ro-ieri-fi
+            title: Where I Was
+            description: Say where you were with am fost, ai fost, a fost.
+            vocabulary: [ieri, "am fost", "ai fost", "a fost", "la mare", "la muncă", "acasă"]
+            grammar:
+              - pattern: "Ieri am fost acasă."
+              - pattern: "Unde ai fost?"
+              - pattern: "El a fost la muncă."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: ro-ieri-facut
+            title: What I Did
+            description: A few very common past forms you can reuse everywhere.
+            vocabulary: ["am făcut", "am mers", "am văzut", "am mâncat", "am vorbit", "cu prietenii", "foarte bine"]
+            grammar:
+              - pattern: "Am vorbit cu prietenii."
+              - pattern: "Am mâncat la restaurant."
+              - pattern: "Ce ai făcut? — Am mers la mare."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: ro-planuri
+            title: Tomorrow's Plans
+            description: Present tense for plans, vreau să for wishes.
+            vocabulary: [mâine, poimâine, universitate, film, "devreme", "vreau să", "trebuie să"]
+            grammar:
+              - pattern: "Mâine merg la universitate."
+              - pattern: "Vreau să văd filmul."
+              - pattern: "Trebuie să plec devreme."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+          - id: ro-weekend
+            title: Last Weekend
+            description: Put it together in a short conversation about the past.
+            vocabulary: ["săptămâna trecută", "la munte", drumeție, minunat, fotografii, "foarte frumos"]
+            grammar:
+              - pattern: "Săptămâna trecută am fost la munte."
+              - pattern: "A fost minunat."
+              - pattern: "Am făcut multe fotografii."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: weekend_catchup
+                goal: Tell a friend what you did last weekend and ask what they did.
+
+    checkpoint:
+      title: A1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }

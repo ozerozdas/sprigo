@@ -117,15 +117,15 @@ function optionIndex(it: Extract<Item, { kind: "choice" }>, given: string) {
 export const accepts = (it: Item, given: string) => (it.kind === "choice" ? optionIndex(it, given) >= 0 : it.kind === "bank" && !!normalize(given));
 
 /** Word tiles in an order other than the expected one: the AI decides whether it is right too (DECISIONS C4). */
-export const needsJudge = (it: Item, given: string) =>
-  it.kind === "bank" && accepts(it, given) && normalize(given) !== normalize(expected(it)) && sameWords(given, expected(it));
+export const needsJudge = (it: Item, given: string, lang?: string) =>
+  it.kind === "bank" && accepts(it, given) && normalize(given, lang) !== normalize(expected(it), lang) && sameWords(given, expected(it), lang);
 
 /** Grades the item on screen once; answers that are not gradable, or come after the first, change nothing. `judged`: the AI's verdict (needsJudge). */
-export function answer(st: PracticeState, given: string, judged?: boolean): PracticeState {
+export function answer(st: PracticeState, given: string, judged?: boolean, lang?: string): PracticeState {
   const it = currentItem(st);
   if (!it || st.last || !accepts(it, given)) return st;
   const k = it.kind === "choice" ? optionIndex(it, given) : -1;
-  const correct = it.kind === "choice" ? k === it.answer : judged ?? normalize(given) === normalize(expected(it));
+  const correct = it.kind === "choice" ? k === it.answer : judged ?? normalize(given, lang) === normalize(expected(it), lang);
   const last = { correct, given: it.kind === "choice" ? it.options[k] : given.trim(), expected: expected(it) };
   return { ...st, score: st.score + (correct ? 1 : 0), total: st.total + 1, last };
 }

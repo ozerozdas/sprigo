@@ -18,7 +18,11 @@ export const MIN_PAUSE_MS = 250; // the usual silent-pause cut-off in fluency re
 export const LONG_PAUSE_MS = 1000;
 
 // ponytail: common fillers and small native-word lists; whisper drops many fillers, so counts are a floor, not a total.
-const FILLERS = new Set(["um", "umm", "uh", "uhh", "er", "erm", "hmm", "mm", "eh", "ee", "eee", "ıı", "ııı", "şey", "äh", "ähm", "öh", "euh", "bah", "este", "pues", "ehm", "cioè", "tipo", "né", "ö", "öö", "ööö", "izé"]);
+const FILLERS = new Set(["um", "umm", "uh", "uhh", "er", "erm", "hmm", "mm", "eh", "ee", "eee", "ıı", "ııı", "şey", "äh", "ähm", "öh", "euh", "bah", "pues", "ehm", "cioè", "tipo", "né", "ö", "öö", "ööö", "izé"]);
+const LANGUAGE_FILLERS: Record<string, Set<string>> = {
+  ro: new Set(["păi", "ă", "ăă", "ăăă", "ăh"]),
+  es: new Set(["este"]),
+};
 const COMMON: Record<string, string[]> = {
   en: ["the", "and", "is", "are", "i", "you", "it", "what", "how", "yes", "no", "not", "this", "that", "my", "with", "but", "know"],
   tr: ["ve", "bir", "bu", "ne", "evet", "hayır", "ben", "sen", "değil", "var", "yok", "için", "ama", "nasıl", "çok", "da", "de", "mi", "bilmiyorum"],
@@ -29,6 +33,7 @@ const COMMON: Record<string, string[]> = {
   pt: ["e", "que", "é", "não", "sim", "eu", "o", "a", "como", "mas", "com", "para", "muito", "sei", "você"],
   hu: ["és", "egy", "nem", "igen", "van", "hogy", "én", "ez", "is", "meg", "mit", "nagyon", "csak", "már", "tudom"],
   pl: ["jest", "że", "się", "jak", "ale", "tak", "czy", "mam", "wiem", "bardzo", "jestem", "też", "więc", "dlaczego", "kiedy", "gdzie"],
+  ro: ["e", "nu", "sunt", "am", "și", "la", "de", "ce", "dar", "cu", "în", "da", "este", "mulțumesc", "bine"],
 };
 // Natives without Latin letters: any word in their script counts.
 const SCRIPT: Record<string, RegExp> = { ru: /\p{Script=Cyrillic}/u, ar: /\p{Script=Arabic}/u, ja: /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u, ko: /\p{Script=Hangul}/u, zh: /\p{Script=Han}/u };
@@ -61,7 +66,7 @@ export function speechMetrics(samples: Float32Array, rate: number, transcript: s
     run = 0;
   }
   const speechMs = first < 0 ? 0 : (last - first + 1) * WIN_MS;
-  const all = tokens(transcript), fillers = all.filter((w) => FILLERS.has(w)).length, words = all.length - fillers;
+  const all = tokens(transcript), fillers = all.filter((w) => FILLERS.has(w) || LANGUAGE_FILLERS[target.split("-")[0]]?.has(w)).length, words = all.length - fillers;
   return {
     latencyMs: timing.latencyMs, speechMs, words,
     wpm: speechMs ? Math.round(words / (speechMs / 60000)) : 0,

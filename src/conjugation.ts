@@ -67,6 +67,12 @@ export const LANGS: Record<string, Lang> = {
       B2: ["past perfect", "present perfect continuous"], C1: ["future perfect"],
     },
   },
+  ro: {
+    persons: ["eu", "tu", "el/ea", "noi", "voi", "ei/ele"],
+    verbs: ["fi", "avea", "face", "merge", "putea", "spune", "vrea", "ști", "veni", "vorbi", "mânca", "locui",
+      "lucra", "studia", "bea", "scrie", "deschide", "dormi", "cere", "aștepta", "vedea", "aduce", "pleca", "plăcea", "înțelege"],
+    tenses: { A1: ["prezent"], A2: ["perfect compus", "imperfect"], B1: ["futur standard", "condițional-optativ"], B2: ["conjunctiv"], C1: ["mai mult ca perfect"] },
+  },
 };
 
 /** Every tense up to and including `level`; empty when the course has no drill. */

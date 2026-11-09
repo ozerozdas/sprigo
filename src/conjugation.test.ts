@@ -7,7 +7,7 @@ test("a level drills its own tenses and every earlier one", () => {
   assert.deepEqual(tensesFor("es", "A2"), ["presente", "pretérito indefinido", "pretérito imperfecto"]);
   assert.equal(tensesFor("es", "C2").length, tensesFor("es", "C1").length); // C2 adds nothing new
   assert.deepEqual(tensesFor("xx", "A1"), []);
-  for (const iso of ["es", "fr", "de", "tr", "hu", "en"]) assert.ok(LANGS[iso].tenses.A1?.length, iso);
+  for (const iso of ["es", "fr", "de", "tr", "hu", "en", "ro"]) assert.ok(LANGS[iso].tenses.A1?.length, iso);
 });
 
 test("picks are distinct and within the level", () => {
