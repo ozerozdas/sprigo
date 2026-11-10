@@ -42,6 +42,15 @@
     "soonScreen": "Ez a képernyő csak előnézet. A látható adatok mintaadatok.",
     "soonToast": "Hamarosan"
   },
+  "bookmark": {
+    "add": "{{item}} mentése",
+    "saved": "Mentve",
+    "removed": "Eltávolítva a mentettek közül",
+    "failed": "A könyvjelzőt nem sikerült menteni",
+    "unit": "Egység",
+    "guide": "Útmutató",
+    "story": "Történet"
+  },
   "learn": {
     "kicker": "{{level}} · {{unit}}. egység",
     "start": "Kezdés",
@@ -152,7 +161,9 @@
     "wordsError_columns": "kell egy szó- és egy fordításoszlop",
     "wordsError_word": "nincs szó",
     "wordsError_translation": "nincs fordítás",
-    "wordsError_schedule": "az ismétlési adatok érvénytelenek"
+    "wordsError_schedule": "az ismétlési adatok érvénytelenek",
+    "saved": "Mentett elemek",
+    "savedEmpty": "Koppints egy egység, egy útmutató vagy egy történet könyvjelzőjére, hogy itt tartsd."
   },
   "league": {
     "title": "{{name}} liga",
@@ -536,7 +547,30 @@
     "profileDesc": "Név, szín és PIN-kód",
     "edit": "Szerkesztés",
     "betaUpdates": "Bétafrissítések",
-    "betaUpdatesDesc": "Mindenki más előtt megkapod a tesztverziókat. Lehetnek bennük hibák; a rendes kiadásokat továbbra is megkapod."
+    "betaUpdatesDesc": "Mindenki más előtt megkapod a tesztverziókat. Lehetnek bennük hibák; a rendes kiadásokat továbbra is megkapod.",
+    "usage": {
+      "title": "Tokenhasználat",
+      "desc": "Amit az AI-szolgáltatód válaszolt, listaárakból becsülve.",
+      "month": "Hónap",
+      "empty": "Ebben a hónapban még nincs AI-használat.",
+      "total": "Minden funkció",
+      "tokens": "{{input}} token be · {{output}} token ki",
+      "estimate": "Becsült költség",
+      "note": "Becslés a szolgáltató listaárai alapján, nem a számlád. Az ismeretlen árú modellek csak tokenben számítanak (*-gal jelölve).",
+      "noPrice": "Nincs ár",
+      "features": {
+        "lesson": "Leckék",
+        "check": "Ellenőrzések és magyarázatok",
+        "guide": "Útmutatók",
+        "story": "Történetek",
+        "writing": "Írás",
+        "practice": "Gyakorlás",
+        "tutor": "Tutor és szerepjáték",
+        "lookup": "Szókeresés",
+        "memory": "Memória",
+        "garden": "Kertjegyzetek"
+      }
+    }
   },
   "rail": {
     "label": "Haladás",

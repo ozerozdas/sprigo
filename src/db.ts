@@ -14,6 +14,7 @@ import type { Baseline, Conditions, SessionRow, SpeechSummary } from "./speech";
 import { remoteDb, serveCompanion } from "./companion";
 import { evictIds, type Memory, type MemoryOps, type MemorySource } from "./memory";
 import { grade, newCard, review, strengthOf, type Grade, type WordCard } from "./srs";
+import { USAGE_SQL, type AiFeature, type UsageRow } from "./usage";
 export { NEW_STATS, type Stats };
 
 type Row = Record<string, any>;
@@ -145,6 +146,43 @@ export async function markLegendary(enrollmentId: number, stepId: string) {
 }
 export async function markDone(enrollmentId: number, stepId: string) {
   await (await db()).execute("INSERT INTO step_progress(enrollment_id, step_id, state) VALUES ($1, $2, 'done') ON CONFLICT DO UPDATE SET state = 'done'", [enrollmentId, stepId]);
+}
+
+// ---- Bookmarks (#45; per enrollment, targets resolved against the course at render time) ----
+
+export type BookmarkKind = "unit" | "guide" | "story";
+export type Bookmark = { kind: BookmarkKind; ref: string };
+
+export async function listBookmarks(enrollmentId: number) {
+  return (await db()).select<Bookmark>("SELECT kind, ref FROM bookmarks WHERE enrollment_id = $1 ORDER BY created_at DESC, kind, ref", [enrollmentId]);
+}
+export async function isBookmarked(enrollmentId: number, kind: BookmarkKind, ref: string) {
+  return (await (await db()).select("SELECT 1 FROM bookmarks WHERE enrollment_id = $1 AND kind = $2 AND ref = $3", [enrollmentId, kind, ref])).length > 0;
+}
+/** Saves or removes the bookmark; returns its new state. */
+export async function toggleBookmark(enrollmentId: number, kind: BookmarkKind, ref: string) {
+  const d = await db();
+  if (await isBookmarked(enrollmentId, kind, ref)) {
+    await d.execute("DELETE FROM bookmarks WHERE enrollment_id = $1 AND kind = $2 AND ref = $3", [enrollmentId, kind, ref]);
+    return false;
+  }
+  await d.execute("INSERT INTO bookmarks(enrollment_id, kind, ref) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING", [enrollmentId, kind, ref]);
+  return true;
+}
+
+// ---- AI usage (#48; global like the AI config, cost is estimated in src/usage.ts) ----
+
+export async function addAiUsage(provider: string, model: string, feature: AiFeature, input: number, output: number) {
+  await (await db()).execute("INSERT INTO ai_usage(provider, model, feature, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5)", [provider, model, feature, input, output]);
+}
+/** Local months that have usage, newest first. */
+export async function aiUsageMonths() {
+  const r = await (await db()).select<{ month: string }>("SELECT DISTINCT strftime('%Y-%m', created_at, 'localtime') AS month FROM ai_usage ORDER BY month DESC");
+  return r.map((x) => x.month);
+}
+/** Usage grouped by month, feature, provider and model. */
+export async function aiUsage() {
+  return (await db()).select<UsageRow>(USAGE_SQL);
 }
 
 // ---- Generated lesson cache (DECISIONS C3; per enrollment because it will be personalised by mistakes) ----

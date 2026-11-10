@@ -100,7 +100,7 @@ async function generateItems(c: LessonContext, mistakes: string[], about: string
   if (!acts.length) throw new Error("This step has no activities that can be generated yet.");
   const system = systemPrompt(c), langs = [c.course.iso, c.native];
   try {
-    const items = toItems(acts, await generate(lessonSchema(acts), system, lessonPrompt(c, acts, mistakes, about)) as Record<string, unknown[]>, langs);
+    const items = toItems(acts, await generate(lessonSchema(acts), system, lessonPrompt(c, acts, mistakes, about), "lesson") as Record<string, unknown[]>, langs);
     if (items.length) return reviewed(c, items);
   } catch (e) { console.warn("Whole-lesson generation failed, falling back to per-activity calls", e); }
   // Fallback for small local models that struggle with the full schema.
@@ -108,7 +108,7 @@ async function generateItems(c: LessonContext, mistakes: string[], about: string
   let lastError: unknown;
   for (const a of acts) {
     try {
-      const out = await generate(z.object({ items: z.array(REGISTRY[a.type]!.schema).min(1).max(a.count) }), system, lessonPrompt(c, [{ ...a, key: "items" }], mistakes, about));
+      const out = await generate(z.object({ items: z.array(REGISTRY[a.type]!.schema).min(1).max(a.count) }), system, lessonPrompt(c, [{ ...a, key: "items" }], mistakes, about), "lesson");
       items.push(...toItems([{ ...a, key: "items" }], out as Record<string, unknown[]>, langs));
     } catch (e) { lastError = e; }
   }
@@ -124,8 +124,8 @@ async function flagged(c: Parameters<typeof checkPrompt>[0], items: Item[], text
   const quiet = <T>(p: Promise<T>) => p.catch((e) => { console.warn("Second look failed, keeping the exercises as written", e); return null; });
   const solve = solvePrompt(c, items, text);
   const [checked, solved] = await Promise.all([
-    quiet(generate(checkSchema, reviewSystem, checkPrompt(c, items, text), undefined, undefined, SECOND_LOOK_S)),
-    solve ? quiet(generate(solveSchema, solveSystem(c.course.name), solve, undefined, undefined, SECOND_LOOK_S)) : null,
+    quiet(generate(checkSchema, reviewSystem, checkPrompt(c, items, text), "check", undefined, undefined, SECOND_LOOK_S)),
+    solve ? quiet(generate(solveSchema, solveSystem(c.course.name), solve, "check", undefined, undefined, SECOND_LOOK_S)) : null,
   ]);
   const bad = rejected(items, checked, solved);
   // ponytail: a look that rejects most of a set is more likely wrong than the set; trusted only up to half, tune once measured.
@@ -176,6 +176,7 @@ export async function judge(c: Base, question: string, expected: string, given: 
       "the expected answer is only one example. British and American usage are both correct. " +
       "Capitalization and punctuation (including a missing final period) never make an answer wrong; accept a single-letter typo but mention it. " +
       "`feedback`: one short sentence.",
+    "check",
   );
   return run().catch(run);
 }
@@ -189,13 +190,14 @@ export async function appeal(c: LessonContext, question: string, expected: strin
       "Be fair but not a pushover: accept only if the learner's answer is genuinely correct or acceptable for this exercise " +
       "(same meaning, grammatical, natural); reject if it is wrong, off-topic, or the argument is merely persuasive. " +
       `\`reason\`: one sentence in ${langEn(c.native)} explaining the decision.`,
+    "check",
   );
   return run().catch(run);
 }
 
 export function explain(c: LessonContext, question: string, correct: string, given: string) {
   return generatePlain(systemPrompt(c).replace("Respond only with JSON matching the schema.", ""),
-    `Exercise: ${question}\nCorrect answer: ${correct}\nLearner answered: ${given || "(skipped)"}\nExplain in at most 3 short sentences why the correct answer is right${given ? " and what was wrong with the learner's answer" : ""}. Plain text, no markdown.`);
+    `Exercise: ${question}\nCorrect answer: ${correct}\nLearner answered: ${given || "(skipped)"}\nExplain in at most 3 short sentences why the correct answer is right${given ? " and what was wrong with the learner's answer" : ""}. Plain text, no markdown.`, "check");
 }
 
 // ---- Stories (one per unit) and roleplay chat (Faz 4) ----
@@ -223,7 +225,7 @@ export async function loadStory(enrollmentId: number, c: Base, unit: Unit, fresh
     "`title` and every line's `text` are in the target language; `translation` is the line in the learner's language. 8–12 lines with a small plot.",
     "`questions`: 2–3 comprehension questions (prompt in the learner's language, options in the target language), exactly one correct, `answer` is its 0-based index. " +
       "`after_line` is the 0-based index of the line after which it is asked; the question must be answerable from the lines up to there.",
-  ].join("\n"));
+  ].join("\n"), "story");
   const last = g.lines.length - 1;
   const story: Story = {
     ...g,
@@ -240,7 +242,7 @@ export async function loadWritingTask(enrollmentId: number, c: Base, unit: Unit,
   const cached = fresh ? null : await getCached<WritingTask>(enrollmentId, key);
   if (cached) return cached;
   const task = await generate(taskSchema, systemPrompt(c),
-    taskPrompt(unit.title, unit.description ?? "", [...new Set(unit.steps.flatMap((s) => s.vocabulary))]));
+    taskPrompt(unit.title, unit.description ?? "", [...new Set(unit.steps.flatMap((s) => s.vocabulary))]), "writing");
   await putCached(enrollmentId, key, task);
   return task;
 }
@@ -250,7 +252,7 @@ export async function loadConjugation(c: Base, prompt: string): Promise<Item[]> 
   const asks = pickAsks(c.course.iso, c.level);
   const bundled = fromTable(c.course.iso, asks, prompt);
   if (bundled) return bundled;
-  const ask = (xs: typeof asks) => generate(formsSchema(xs.length), systemPrompt(c), formsPrompt(c.course.name, xs)).then((r) => r.forms);
+  const ask = (xs: typeof asks) => generate(formsSchema(xs.length), systemPrompt(c), formsPrompt(c.course.name, xs), "practice").then((r) => r.forms);
   // The second answer gets the list reversed: a different prompt, so a deterministic model isn't simply asked twice.
   const [a, b] = await Promise.all([ask(asks), ask([...asks].reverse()).then((f) => f.reverse())]);
   const items = crossChecked(asks, a, b, prompt);
@@ -258,7 +260,7 @@ export async function loadConjugation(c: Base, prompt: string): Promise<Item[]> 
   return items;
 }
 export const checkWriting = (c: Base, task: string, text: string) =>
-  generate(feedbackSchema, systemPrompt(c), feedbackPrompt(task, text), undefined, looseFeedback);
+  generate(feedbackSchema, systemPrompt(c), feedbackPrompt(task, text), "writing", undefined, looseFeedback);
 
 export type ChatMsg = { from: "ai" | "me"; text: string; translation?: string; correction?: string };
 
@@ -296,7 +298,7 @@ export function chatTurn(c: Base & { about?: string[] }, who: CharacterId, topic
       `Check only this last learner message for \`correction\` (earlier ones were already corrected): "${last.text}"\nThen write ${ch.name}'s next turn.`
     : free ? "Open the chat: a short, friendly greeting and a first question about the topic."
     : "Open the scene: a short greeting that leads straight into the goal and invites the learner to start.";
-  return generate(turnSchema, system, prompt, undefined, looseTurn);
+  return generate(turnSchema, system, prompt, "tutor", undefined, looseTurn);
 }
 
 /** Rehearsal: the next in-role turn as `brief.who`. No correction, no goal, and no learner facts: the brief is the whole context. */
@@ -305,16 +307,16 @@ export function rehearseTurn(c: Base, brief: RehearsalBrief, history: ChatMsg[])
   const prompt = history.length
     ? `Conversation so far:\n${history.map((m) => `${m.from === "ai" ? who : "Learner"}: ${m.text}`).join("\n")}\n\nWrite ${who}'s next turn.`
     : "Open the conversation the way it would really start.";
-  return generate(roleTurnSchema, rehearsalSystem(c, brief), prompt, undefined, looseRoleTurn);
+  return generate(roleTurnSchema, rehearsalSystem(c, brief), prompt, "tutor", undefined, looseRoleTurn);
 }
 
 /** Structure drill (#43): asks whether the learner attempted `goal` in their spoken turns. */
 export const avoidancePass = (c: Base, goal: string, learnerTurns: string[]) =>
-  generate(avoidanceSchema, systemPrompt(c), avoidancePrompt(c.course.name, goal, learnerTurns), undefined, looseAvoidance);
+  generate(avoidanceSchema, systemPrompt(c), avoidancePrompt(c.course.name, goal, learnerTurns), "tutor", undefined, looseAvoidance);
 
 /** One call after the learner steps out of role; entries that point at no turn are dropped. */
 export async function debrief(c: Base, brief: RehearsalBrief, learnerTurns: string[]) {
-  const d = await generate(debriefSchema, debriefSystem(c), debriefPrompt(c, brief, learnerTurns), undefined, looseDebrief);
+  const d = await generate(debriefSchema, debriefSystem(c), debriefPrompt(c, brief, learnerTurns), "tutor", undefined, looseDebrief);
   return cleanDebrief(d, learnerTurns.length);
 }
 
@@ -336,7 +338,7 @@ export async function loadGuide(enrollmentId: number, c: Base, unit: Unit): Prom
     `Write a study guide for the unit "${unit.title}".`,
     `vocabulary: one entry per word, in this order: ${unitWords(unit).join(", ")}. \`translation\` in the learner's language; \`example\` a short ${c.level} sentence using it, with \`example_translation\`.`,
     `grammar: one entry per pattern, in this order: ${unitGrammar(unit).join(" | ")}. \`explanation\`: 1–2 plain sentences in the learner's language; \`example\`: one target-language sentence.`,
-  ].join("\n"));
+  ].join("\n"), "guide");
   await putCached(enrollmentId, key, g);
   return g;
 }
@@ -357,7 +359,7 @@ export function lessonWord(enrollmentId: number, c: Base, word: string, sentence
         `The learner tapped the word "${word}" in: "${sentence}".`,
         `lemma: its dictionary form. translation: its meaning in this sentence, in ${langEn(c.native)}, 1–4 words. pos: its part of speech, in ${langEn(c.native)}.`,
         `example: a short new ${c.level} sentence using it, with example_translation.`,
-      ].join("\n"));
+      ].join("\n"), "lookup");
       await putCached(enrollmentId, key, r);
       return r;
     })();
@@ -378,7 +380,7 @@ export function tutorTurn(c: Base & { about?: string[]; coach?: string }, who: C
     unit: unit.title, words: unitWords(unit), grammar: unitGrammar(unit), about: c.about ?? [],
   });
   const prompt = tutorPrompt(ch.name, history, notes, event, screen, c.coach);
-  return onText ? generateStream(tutorSchema, system, prompt, onText, looseTutor) : generate(tutorSchema, system, prompt, undefined, looseTutor);
+  return onText ? generateStream(tutorSchema, system, prompt, "tutor", onText, looseTutor) : generate(tutorSchema, system, prompt, "tutor", undefined, looseTutor);
 }
 
 // ---- Profile memory (SPR-22): after a conversation, keep what is worth knowing about the learner ----
@@ -399,7 +401,7 @@ export async function rememberSession(profileId: number, native: string, source:
   try {
     if (!lines.some((l) => l.from === "me") || !(await memoryOn(profileId))) return 0;
     const saved = await listMemories(profileId);
-    const raw = await generate(memorySchema, memorySystem(langEn(native)), memoryPrompt(saved, lines, otherName), undefined, looseMemory);
+    const raw = await generate(memorySchema, memorySystem(langEn(native)), memoryPrompt(saved, lines, otherName), "memory", undefined, looseMemory);
     const ops = cleanOps(saved, raw);
     await applyMemoryOps(profileId, source, ops);
     return ops.add.length;
@@ -412,7 +414,7 @@ export async function loadPractice(enrollmentId: number, c: Base, unit: Unit): P
   const key = `practice:${unit.id}`;
   const cached = await getCached<PracticeSet>(enrollmentId, key);
   if (cached) return cached;
-  const out = await generate(practiceSchema, systemPrompt(c), practicePrompt(unit.title, unitWords(unit), unitGrammar(unit)));
+  const out = await generate(practiceSchema, systemPrompt(c), practicePrompt(unit.title, unitWords(unit), unitGrammar(unit)), "practice");
   const raw = toPracticeSet(out as Record<string, unknown>, [c.course.iso, c.native]), all = [...raw.warmup, ...raw.comprehension];
   const bad = await flagged({ ...c, step: unit }, all, raw.reading.text), ok = (it: Item) => !bad.has(all.indexOf(it));
   const set = { ...raw, warmup: raw.warmup.filter(ok), comprehension: raw.comprehension.filter(ok) };
@@ -426,7 +428,7 @@ export async function loadPractice(enrollmentId: number, c: Base, unit: Unit): P
 export async function loadGardenNote(enrollmentId: number, profileId: number, lang: string, info: NoteInfo, day: string): Promise<string> {
   const cached = await getCached<GardenNote>(enrollmentId, NOTE_KEY);
   if (noteFresh(cached, day, info.mood, lang)) return cached!.text;
-  const text = cleanNote(await generatePlain(noteSystem(langEn(lang)), notePrompt(info, await learnerFacts(profileId))));
+  const text = cleanNote(await generatePlain(noteSystem(langEn(lang)), notePrompt(info, await learnerFacts(profileId)), "garden"));
   if (!text) throw new Error("empty garden note");
   await putCached(enrollmentId, NOTE_KEY, noteFor(text, day, info.mood, lang));
   return text;

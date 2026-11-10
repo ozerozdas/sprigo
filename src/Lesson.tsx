@@ -234,8 +234,8 @@ export function Lesson({ id }: { id: string }) {
     if (it.kind !== "bank" && it.kind !== "input") return;
     // Tiles too: "A nevem Anna" and "Anna a nevem" are both right, and the model gives only one order.
     const [given, expected] = it.kind === "bank" ? [bankSel.map((j) => it.bank[j]).join(" "), it.answer.join(" ")] : [text, it.answer];
-    if (it.kind === "bank" ? normalize(given) === normalize(expected) : matchesAnswer(text, it)) return grade(true, expected, given);
-    if (!ctx || (it.kind === "bank" && !sameWords(given, expected))) return grade(false, expected, given); // other tiles: wrong, no AI needed
+    if (it.kind === "bank" ? normalize(given, lang) === normalize(expected, lang) : matchesAnswer(text, it, lang)) return grade(true, expected, given);
+    if (!ctx || (it.kind === "bank" && !sameWords(given, expected, lang))) return grade(false, expected, given); // other tiles: wrong, no AI needed
     setChecking(true); // C4: string match failed, let the AI judge meaning
     // A failed AI call is not a wrong answer: no heart lost, the learner just checks again.
     try { const r = await judge(ctx, questionOf(it), expected, given); grade(r.correct, expected, given, r.feedback, true); }
@@ -376,14 +376,14 @@ export function Lesson({ id }: { id: string }) {
       <h2 className="ex-title">{t("lesson.speakTitle")}</h2>
       <p className="ex-sub">{t("lesson.speakSub")}</p>
       <div className="card" style={{ textAlign: "center", padding: 22 }}>
-        <p lang={lang} style={{ fontSize: 26, fontWeight: 900 }}><Words text={it.phrase} lang={lang} missed={heard ? speechMisses(it.phrase, heard) : undefined} /></p>
+        <p lang={lang} style={{ fontSize: 26, fontWeight: 900 }}><Words text={it.phrase} lang={lang} missed={heard ? speechMisses(it.phrase, heard, lang) : undefined} /></p>
         <p className="muted" style={{ fontWeight: 700, margin: "4px 0 12px" }}>{it.translation}</p>
         {listenBtn(it.phrase)}
       </div>
       <MicButton lang={lang} disabled={!!fb} trigger={micPress} onText={(txt) => {
         setHeard(txt);
-        const miss = speechMisses(it.phrase, txt);
-        if (txt) grade(speechScore(it.phrase, txt) >= SPEECH_PASS, it.phrase, txt,
+        const miss = speechMisses(it.phrase, txt, lang);
+        if (txt) grade(speechScore(it.phrase, txt, lang) >= SPEECH_PASS, it.phrase, txt,
           [t("lesson.heard", { text: txt }), miss.length ? t("lesson.missed", { words: miss.join(", ") }) : ""].filter(Boolean).join(" · "));
       }} />
       {heard === "" && <p className="small" role="alert" style={{ textAlign: "center", color: "var(--orange)", fontWeight: 800 }}>{t("lesson.heardNothing")}</p>}

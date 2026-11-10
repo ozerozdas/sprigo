@@ -24,9 +24,9 @@ export function practiceTopics(course: Course, level: Cefr, done: Set<string>): 
 }
 
 /** The topic a spoken reply names: its exact title first, else a sentence containing it. */
-export function findTopic(topics: Topic[], said: string) {
-  const g = normalize(said);
-  return topics.find((t) => normalize(t.unit.title) === g) ?? topics.find((t) => g.includes(normalize(t.unit.title)));
+export function findTopic(topics: Topic[], said: string, lang?: string) {
+  const g = normalize(said, lang);
+  return topics.find((t) => normalize(t.unit.title, lang) === g) ?? topics.find((t) => g.includes(normalize(t.unit.title, lang)));
 }
 
 // ---- Content: one model call per unit, cached as `practice:<unitId>` ----
@@ -107,25 +107,25 @@ export function currentItem(st: PracticeState): Item | null {
 export const expected = (it: Item) => (it.kind === "choice" ? it.options[it.answer] : it.kind === "bank" ? it.answer.join(" ") : "");
 
 /** Which option an answer means: its text, else its number as shown on screen ("2"). -1 for none. */
-function optionIndex(it: Extract<Item, { kind: "choice" }>, given: string) {
-  const g = normalize(given), n = Number(g), k = it.options.findIndex((o) => normalize(o) === g);
+function optionIndex(it: Extract<Item, { kind: "choice" }>, given: string, lang?: string) {
+  const g = normalize(given, lang), n = Number(g), k = it.options.findIndex((o) => normalize(o, lang) === g);
   if (k >= 0 || !g) return k; // text first: in a numbers unit a clicked "3" may be option 1
   return Number.isInteger(n) && n >= 1 && n <= it.options.length ? n - 1 : -1;
 }
 
 /** Whether the app can grade this answer: one of a choice's options, or any sentence for word tiles. */
-export const accepts = (it: Item, given: string) => (it.kind === "choice" ? optionIndex(it, given) >= 0 : it.kind === "bank" && !!normalize(given));
+export const accepts = (it: Item, given: string, lang?: string) => (it.kind === "choice" ? optionIndex(it, given, lang) >= 0 : it.kind === "bank" && !!normalize(given, lang));
 
 /** Word tiles in an order other than the expected one: the AI decides whether it is right too (DECISIONS C4). */
-export const needsJudge = (it: Item, given: string) =>
-  it.kind === "bank" && accepts(it, given) && normalize(given) !== normalize(expected(it)) && sameWords(given, expected(it));
+export const needsJudge = (it: Item, given: string, lang?: string) =>
+  it.kind === "bank" && accepts(it, given, lang) && normalize(given, lang) !== normalize(expected(it), lang) && sameWords(given, expected(it), lang);
 
 /** Grades the item on screen once; answers that are not gradable, or come after the first, change nothing. `judged`: the AI's verdict (needsJudge). */
-export function answer(st: PracticeState, given: string, judged?: boolean): PracticeState {
+export function answer(st: PracticeState, given: string, judged?: boolean, lang?: string): PracticeState {
   const it = currentItem(st);
-  if (!it || st.last || !accepts(it, given)) return st;
-  const k = it.kind === "choice" ? optionIndex(it, given) : -1;
-  const correct = it.kind === "choice" ? k === it.answer : judged ?? normalize(given) === normalize(expected(it));
+  if (!it || st.last || !accepts(it, given, lang)) return st;
+  const k = it.kind === "choice" ? optionIndex(it, given, lang) : -1;
+  const correct = it.kind === "choice" ? k === it.answer : judged ?? normalize(given, lang) === normalize(expected(it), lang);
   const last = { correct, given: it.kind === "choice" ? it.options[k] : given.trim(), expected: expected(it) };
   return { ...st, score: st.score + (correct ? 1 : 0), total: st.total + 1, last };
 }
