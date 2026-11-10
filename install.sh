@@ -1,7 +1,7 @@
 #!/bin/sh
 # Installs the latest Sprigo release:
 #   curl -fsSL https://raw.githubusercontent.com/ozerozdas/sprigo/master/install.sh | sh
-# macOS: Sprigo.app into /Applications. Linux (x86_64): the AppImage as ~/.local/bin/sprigo.
+# macOS: Sprigo.app into /Applications. Linux (x86_64, aarch64): the AppImage as ~/.local/bin/sprigo.
 set -eu
 
 repo="https://github.com/ozerozdas/sprigo"
@@ -27,11 +27,11 @@ Darwin)
   echo "Installed /Applications/Sprigo.app"
   ;;
 Linux)
-  [ "$(uname -m)" = x86_64 ] || { echo "Sprigo for Linux is only built for x86_64." >&2; exit 1; }
+  case "$(uname -m)" in x86_64) arch=amd64 ;; aarch64|arm64) arch=aarch64 ;; *) echo "Sprigo for Linux is built for x86_64 and aarch64." >&2; exit 1 ;; esac
   dir="$HOME/.local/bin"
   mkdir -p "$dir"
   echo "Downloading Sprigo $version..."
-  curl -fL --progress-bar -o "$tmp/sprigo" "$repo/releases/download/$tag/Sprigo_${version}_amd64.AppImage"
+  curl -fL --progress-bar -o "$tmp/sprigo" "$repo/releases/download/$tag/Sprigo_${version}_${arch}.AppImage"
   chmod +x "$tmp/sprigo"
   mv "$tmp/sprigo" "$dir/sprigo"
   echo "Installed $dir/sprigo (run: sprigo). The AppImage needs FUSE 2 (libfuse2)."

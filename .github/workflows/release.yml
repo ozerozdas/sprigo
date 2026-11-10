@@ -48,14 +48,18 @@ jobs:
             args: --target x86_64-apple-darwin
           - platform: ubuntu-22.04
             args: ""
+          - platform: ubuntu-22.04-arm # Raspberry Pi 5, Asahi (#40)
+            args: ""
           - platform: windows-latest
+            args: ""
+          - platform: windows-11-arm # Windows on ARM laptops (#40)
             args: ""
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v7
 
       - name: Linux dependencies
-        if: matrix.platform == 'ubuntu-22.04'
+        if: startsWith(matrix.platform, 'ubuntu')
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils libdbus-1-dev pkg-config
@@ -72,18 +76,32 @@ jobs:
         with:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
       # ggml defaults to -march=native: the runner's AVX-512 ended up in the Windows build and crashed
-      # CPUs without it (#120). OFF keeps AVX2/FMA/F16C, no AVX-512. Not on macOS: Intel is cross-built
-      # (already portable) and Apple silicon wants its native ARM flags.
-      - name: Portable x86 build
+      # CPUs without it (#120). OFF keeps AVX2/FMA/F16C, no AVX-512; on ARM Linux/Windows it builds for plain
+      # armv8-a. Not on macOS: Intel is cross-built (already portable) and Apple silicon wants its native ARM flags.
+      # ponytail: armv8-a baseline; GGML_CPU_ARM_ARCH=armv8.2-a+dotprod if whisper is too slow on a Pi 5.
+      - name: Portable CPU build
         if: matrix.platform != 'macos-latest'
         shell: bash
         run: echo "GGML_NATIVE=OFF" >> "$GITHUB_ENV"
+
+      # ggml refuses MSVC on ARM ("use clang"): build whisper.cpp with clang-cl through Ninja there.
+      - name: Windows ARM compiler
+        if: matrix.platform == 'windows-11-arm'
+        shell: bash
+        run: printf 'CMAKE_GENERATOR=Ninja\nCC=clang-cl\nCXX=clang-cl\nCXXFLAGS=/EHsc\n' >> "$GITHUB_ENV" # cc's flags replace CMake's defaults, /EHsc included
+
+      # RPM refuses the '-' in pre-release versions (1.12.0-1): betas ship .deb and AppImage only on Linux.
+      - name: Linux pre-release bundles
+        if: startsWith(matrix.platform, 'ubuntu')
+        shell: bash
+        run: |
+          if grep -q '"version": "[^"]*-' src-tauri/tauri.conf.json; then echo "BUNDLE_ARGS=--bundles deb,appimage" >> "$GITHUB_ENV"; fi
 
       - uses: swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
           # whisper-rs-sys doesn't rerun its build script when GGML_* changes: the suffix drops the native cache.
-          key: ${{ matrix.args }}-portable
+          key: ${{ matrix.platform }}${{ matrix.args }}-portable
 
       - run: pnpm install --frozen-lockfile
       - name: Whisper model
@@ -98,4 +116,4 @@ jobs:
         with:
           releaseId: ${{ needs.release.outputs.id }} # empty on manual runs: build only
           # ponytail: each job merges latest.json as it finishes; two finishing in the same second could drop a platform. Check it before publishing.
-          args: ${{ matrix.args }}
+          args: ${{ matrix.args }} ${{ env.BUNDLE_ARGS }}
