@@ -48,6 +48,7 @@ test("help answers setup questions in the app, also from a setting's ?", async (
 async function answer(lesson: ReturnType<Page["getByRole"]>) {
   const button = (name: string) => lesson.getByRole("button", { name, exact: true });
   const opt = (text: string) => lesson.locator(".opt", { hasText: new RegExp(`^\\d?${text}$`) });
+  await expect(lesson.locator('.result-wrap[role="status"]')).toBeHidden({ timeout: 15_000 }); // still generating is not "over"
   if (await lesson.locator(".result-wrap").isVisible()) return false;
   for (const name of ["Continue", "Finish", "Can't speak now"]) if (await button(name).isVisible()) return button(name).click().then(() => true);
   if (await lesson.getByRole("heading", { name: "Match the pairs" }).isVisible()) {
