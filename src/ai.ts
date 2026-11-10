@@ -159,17 +159,16 @@ async function generateWith<S extends z.ZodType>(schema: S, system: string, prom
   // Some servers ignore response_format (e.g. Ollama cloud models), so the schema is in the prompt too.
   system += `\n\nJSON schema of the reply:\n${JSON.stringify(z.toJSONSchema(schema))}`;
   const once = async () => {
-    let recorded = false;
     try {
       const r = await generateText({
         model: model(cfg.cfg, cfg.key), reasoning: reasoning(cfg.cfg), system, prompt, maxRetries: 1,
         output: Output.object({ schema }),
         abortSignal: AbortSignal.timeout((seconds ?? 180) * 1000),
       });
-      if (track) { void recordUsage(cfg.cfg, feature, r.usage); recorded = true; }
+      if (track) void recordUsage(cfg.cfg, feature, r.usage);
       return r.output as z.infer<S>;
     } catch (e) {
-      if (track && !recorded && NoObjectGeneratedError.isInstance(e) && e.usage) void recordUsage(cfg.cfg, feature, e.usage);
+      if (track && NoObjectGeneratedError.isInstance(e) && e.usage) void recordUsage(cfg.cfg, feature, e.usage);
       if (!NoObjectGeneratedError.isInstance(e) || !e.text) throw e;
       return loose.parse(extractJson(e.text)) as z.infer<S>; // lenient retry on fenced / chatty replies
     }
@@ -199,9 +198,10 @@ async function streamWith<S extends z.ZodType>(schema: S, system: string, prompt
       abortSignal: AbortSignal.timeout(180_000),
       onError: ({ error }) => { failed = error; },
     });
-    for await (const d of r.textStream) { text += d; if (onText(text)) used = true; }
-    // Before the error check: a stream that broke halfway was still billed. No counts (it never started): nothing to record.
-    if (track) Promise.resolve(r.usage).then((u) => recordUsage(cfg.cfg, feature, u), () => {});
+    try { for await (const d of r.textStream) { text += d; if (onText(text)) used = true; } }
+    // finally: a stream that broke halfway (textStream throws) was still billed. The SDK has no counts then, so the
+    // call is recorded with 0 tokens: it shows up, its cost can't. ponytail: undercounts broken streams.
+    finally { if (track) Promise.resolve(r.usage).then((u) => recordUsage(cfg.cfg, feature, u), () => recordUsage(cfg.cfg, feature)); }
     if (failed) throw failed;
     try {
       return (await r.output) as z.infer<S>;
