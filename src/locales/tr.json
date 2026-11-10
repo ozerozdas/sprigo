@@ -543,7 +543,30 @@
     "profileDesc": "Ad, renk ve PIN",
     "edit": "Düzenle",
     "betaUpdates": "Beta güncellemeleri",
-    "betaUpdatesDesc": "Test sürümlerini herkesten önce al. Hata içerebilirler; normal sürümleri de almaya devam edersin."
+    "betaUpdatesDesc": "Test sürümlerini herkesten önce al. Hata içerebilirler; normal sürümleri de almaya devam edersin.",
+    "usage": {
+      "title": "Token kullanımı",
+      "desc": "AI sağlayıcının yanıtladıkları, liste fiyatlarından tahmini.",
+      "month": "Ay",
+      "empty": "Bu ay henüz AI kullanımı yok.",
+      "total": "Tüm özellikler",
+      "tokens": "{{input}} token giriş · {{output}} token çıkış",
+      "estimate": "Tahmini maliyet",
+      "note": "Sağlayıcının liste fiyatlarından bir tahmindir, faturan değil. Fiyatı bilinmeyen modeller yalnızca token olarak sayılır (* ile işaretli).",
+      "noPrice": "Fiyat yok",
+      "features": {
+        "lesson": "Dersler",
+        "check": "Kontroller ve açıklamalar",
+        "guide": "Kılavuzlar",
+        "story": "Hikâyeler",
+        "writing": "Yazma",
+        "practice": "Alıştırma",
+        "tutor": "Öğretmen ve rol yapma",
+        "lookup": "Kelime aramaları",
+        "memory": "Hafıza",
+        "garden": "Bahçe notları"
+      }
+    }
   },
   "rail": {
     "label": "İlerleme",

@@ -547,7 +547,30 @@
     "profileDesc": "Name, color and PIN",
     "edit": "Edit",
     "betaUpdates": "Beta updates",
-    "betaUpdatesDesc": "Get test versions before everyone else. They can have bugs; you also keep getting every regular release."
+    "betaUpdatesDesc": "Get test versions before everyone else. They can have bugs; you also keep getting every regular release.",
+    "usage": {
+      "title": "Token usage",
+      "desc": "What your AI provider has answered, estimated from list prices.",
+      "month": "Month",
+      "empty": "No AI usage this month yet.",
+      "total": "All features",
+      "tokens": "{{input}} tokens in · {{output}} tokens out",
+      "estimate": "Estimated cost",
+      "note": "An estimate from the provider's list prices, not your bill. Models without a known price count in tokens only (marked *).",
+      "noPrice": "No price",
+      "features": {
+        "lesson": "Lessons",
+        "check": "Checks & explanations",
+        "guide": "Guidebooks",
+        "story": "Stories",
+        "writing": "Writing",
+        "practice": "Practice",
+        "tutor": "Tutor & roleplay",
+        "lookup": "Word lookups",
+        "memory": "Memory",
+        "garden": "Garden notes"
+      }
+    }
   },
   "rail": {
     "label": "Progress",

@@ -5,7 +5,8 @@ import { languages } from "../i18n";
 import type { ThemePref } from "../theme";
 import { SMALL_MODEL_B, isSmallModel } from "../modelSize";
 import { PROVIDERS, RECOMMENDED_OLLAMA, detectLocal, getKey, listModels, pullOllama, setKey, type AiConfig, type ProviderId } from "../ai";
-import { getSetting, isCompanion, isTauri, setSetting } from "../db";
+import { aiUsage, aiUsageMonths, getSetting, isCompanion, isTauri, setSetting } from "../db";
+import { monthOf, summarize, type UsageRow } from "../usage";
 import { setCompanion, tailscaleStatus, type TailscaleStatus } from "../companion";
 import { CourseFlag, CourseSheet, NATIVE, ProfileForm, useLangName } from "./Profiles";
 import { notifyAllowed } from "../notify";
@@ -191,6 +192,58 @@ const AI_ROWS: { p: ProviderId; icon: IconName; color: string }[] = [
   { p: "gemini", icon: "spark", color: "var(--purple)" },
   { p: "openrouter", icon: "spark", color: "var(--red)" },
 ];
+
+/** #48: what the learner's own key has cost, this month and earlier ones with usage, split by feature and model. */
+function UsageCard() {
+  const { t, i18n } = useTranslation();
+  const [rows, setRows] = useState<UsageRow[]>([]);
+  const [month, setMonth] = useState<string>(() => monthOf());
+  const [months, setMonths] = useState<string[]>(() => [monthOf()]);
+  useEffect(() => {
+    Promise.all([aiUsage(), aiUsageMonths()]).then(([r, ms]) => {
+      setRows(r);
+      const now = monthOf();
+      setMonths([now, ...ms.filter((m) => m !== now)]);
+    }).catch((e) => console.warn("usage", e)); // a missing reading must not break Settings
+  }, []);
+  const lang = i18n.resolvedLanguage ?? "en";
+  const num = (v: number) => new Intl.NumberFormat(lang).format(v);
+  const usd = (v: number) => new Intl.NumberFormat(lang, { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: v > 0 && v < 1 ? 4 : 2 }).format(v);
+  const monthName = (m: string) => new Intl.DateTimeFormat(lang, { month: "long", year: "numeric" }).format(new Date(+m.slice(0, 4), +m.slice(5, 7) - 1, 1));
+  const data = summarize(rows, month);
+  const cost = (priced: boolean, unpriced: boolean, v: number) => priced ? `${usd(v)}${unpriced ? "*" : ""}` : t("settings.usage.noPrice");
+  return (
+    <div className="card od-stack" style={gap("10px")}>
+      <div className="od-row" style={gap("8px")}>
+        <span className="od-field od-fill"><b>{t("settings.usage.title")}</b><span className="muted small">{t("settings.usage.desc")}</span></span>
+        <select className="select" aria-label={t("settings.usage.month")} value={month} onChange={(e) => setMonth(e.target.value)}>
+          {months.map((m) => <option key={m} value={m}>{monthName(m)}</option>)}
+        </select>
+      </div>
+      {!data.features.length
+        ? <p className="muted small">{t("settings.usage.empty")}</p>
+        : <>
+            <div className="od-row" style={gap("12px")}>
+              <span className="od-field od-fill"><b>{t("settings.usage.total")}</b>
+                <span className="muted small">{t("settings.usage.tokens", { input: num(data.input), output: num(data.output) })}</span></span>
+              <span className="od-field" style={{ textAlign: "end" }}><b>{cost(data.priced, data.unpriced, data.usd)}</b>
+                <span className="muted small">{t("settings.usage.estimate")}</span></span>
+            </div>
+            {data.features.map((f) => (
+              <div key={f.feature} className="od-row" style={gap("12px")}>
+                <span className="od-field od-fill"><b>{t(`settings.usage.features.${f.feature}`)}</b>
+                  <span className="muted small">{t("settings.usage.tokens", { input: num(f.input), output: num(f.output) })}</span>
+                  <span className="muted small" style={{ overflowWrap: "anywhere" }}>
+                    {f.models.map((m) => `${PROVIDERS[m.provider as ProviderId]?.label ?? m.provider} · ${m.model}`).join(", ")}
+                  </span></span>
+                <b className="small">{cost(f.priced, f.unpriced, f.usd)}</b>
+              </div>
+            ))}
+            <p className="muted small">{t("settings.usage.note")}</p>
+          </>}
+    </div>
+  );
+}
 
 /** DECISIONS C1/C6: device-wide provider, key in the OS keychain. One row per provider; picking one opens its settings. */
 export function AiSheet() {
@@ -408,6 +461,7 @@ export function Settings() {
                 : <span className="small" style={{ color: "var(--orange)", fontWeight: 800 }}>{t("ai.notSet")}</span>}</span>
             <button className={`btn ${ai ? "btn-ghost" : "btn-primary"}`} onClick={() => openSheet(<AiSheet />)}>{t(ai ? "settings.change" : "ai.setUp")}</button>
           </div>
+          <UsageCard />
           <TtsRow />
           <SttRow />
         </>}

@@ -86,4 +86,12 @@ CREATE TABLE bookmarks(
   kind TEXT NOT NULL, ref TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(enrollment_id, kind, ref))`,
   },
+  {
+    v: 8, // #48: tokens per AI call and feature, for the estimated cost in Settings. Global like the AI config (E6), so no profile.
+    sql: `
+CREATE TABLE ai_usage(
+  id INTEGER PRIMARY KEY, provider TEXT NOT NULL, model TEXT NOT NULL, feature TEXT NOT NULL,
+  input_tokens INTEGER NOT NULL, output_tokens INTEGER NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX ai_usage_created ON ai_usage(created_at)`,
+  },
 ];

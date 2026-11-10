@@ -547,7 +547,30 @@
     "profileDesc": "Név, szín és PIN-kód",
     "edit": "Szerkesztés",
     "betaUpdates": "Bétafrissítések",
-    "betaUpdatesDesc": "Mindenki más előtt megkapod a tesztverziókat. Lehetnek bennük hibák; a rendes kiadásokat továbbra is megkapod."
+    "betaUpdatesDesc": "Mindenki más előtt megkapod a tesztverziókat. Lehetnek bennük hibák; a rendes kiadásokat továbbra is megkapod.",
+    "usage": {
+      "title": "Tokenhasználat",
+      "desc": "Amit az AI-szolgáltatód válaszolt, listaárakból becsülve.",
+      "month": "Hónap",
+      "empty": "Ebben a hónapban még nincs AI-használat.",
+      "total": "Minden funkció",
+      "tokens": "{{input}} token be · {{output}} token ki",
+      "estimate": "Becsült költség",
+      "note": "Becslés a szolgáltató listaárai alapján, nem a számlád. Az ismeretlen árú modellek csak tokenben számítanak (*-gal jelölve).",
+      "noPrice": "Nincs ár",
+      "features": {
+        "lesson": "Leckék",
+        "check": "Ellenőrzések és magyarázatok",
+        "guide": "Útmutatók",
+        "story": "Történetek",
+        "writing": "Írás",
+        "practice": "Gyakorlás",
+        "tutor": "Tutor és szerepjáték",
+        "lookup": "Szókeresés",
+        "memory": "Memória",
+        "garden": "Kertjegyzetek"
+      }
+    }
   },
   "rail": {
     "label": "Haladás",

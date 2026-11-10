@@ -573,7 +573,30 @@
     "profileDesc": "Nom, couleur et PIN",
     "edit": "Modifier",
     "betaUpdates": "Mises à jour bêta",
-    "betaUpdatesDesc": "Recevez les versions de test avant tout le monde. Elles peuvent contenir des bugs ; vous recevez aussi toutes les versions normales."
+    "betaUpdatesDesc": "Recevez les versions de test avant tout le monde. Elles peuvent contenir des bugs ; vous recevez aussi toutes les versions normales.",
+    "usage": {
+      "title": "Utilisation des tokens",
+      "desc": "Ce que ton fournisseur d'IA a répondu, estimé d'après les prix publics.",
+      "month": "Mois",
+      "empty": "Pas encore d'utilisation de l'IA ce mois-ci.",
+      "total": "Toutes les fonctions",
+      "tokens": "{{input}} tokens en entrée · {{output}} tokens en sortie",
+      "estimate": "Coût estimé",
+      "note": "Une estimation d'après les prix publics du fournisseur, pas ta facture. Les modèles sans prix connu comptent uniquement en tokens (marqués d’un *).",
+      "noPrice": "Prix inconnu",
+      "features": {
+        "lesson": "Leçons",
+        "check": "Contrôles et explications",
+        "guide": "Guides",
+        "story": "Histoires",
+        "writing": "Écriture",
+        "practice": "Entraînement",
+        "tutor": "Tuteur et jeu de rôle",
+        "lookup": "Recherches de mots",
+        "memory": "Mémoire",
+        "garden": "Notes du jardin"
+      }
+    }
   },
   "rail": {
     "label": "Progression",

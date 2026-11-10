@@ -547,7 +547,30 @@
     "profileDesc": "Name, Farbe und PIN",
     "edit": "Bearbeiten",
     "betaUpdates": "Beta-Updates",
-    "betaUpdatesDesc": "Testversionen vor allen anderen erhalten. Sie können Fehler haben; reguläre Versionen bekommst du weiterhin."
+    "betaUpdatesDesc": "Testversionen vor allen anderen erhalten. Sie können Fehler haben; reguläre Versionen bekommst du weiterhin.",
+    "usage": {
+      "title": "Token-Nutzung",
+      "desc": "Was dein KI-Anbieter geantwortet hat, geschätzt aus Listenpreisen.",
+      "month": "Monat",
+      "empty": "Diesen Monat noch keine KI-Nutzung.",
+      "total": "Alle Funktionen",
+      "tokens": "{{input}} Tokens ein · {{output}} Tokens aus",
+      "estimate": "Geschätzte Kosten",
+      "note": "Eine Schätzung nach den Listenpreisen des Anbieters, nicht deine Rechnung. Modelle ohne bekannten Preis zählen nur als Tokens (mit * markiert).",
+      "noPrice": "Kein Preis",
+      "features": {
+        "lesson": "Lektionen",
+        "check": "Prüfungen & Erklärungen",
+        "guide": "Leitfäden",
+        "story": "Geschichten",
+        "writing": "Schreiben",
+        "practice": "Übung",
+        "tutor": "Tutor & Rollenspiel",
+        "lookup": "Wortsuche",
+        "memory": "Gedächtnis",
+        "garden": "Garten-Notizen"
+      }
+    }
   },
   "rail": {
     "label": "Fortschritt",

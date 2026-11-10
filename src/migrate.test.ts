@@ -4,13 +4,14 @@ import initSqlJs from "sql.js";
 import { FutureSchemaError, runMigrations, schemaVersion, type Migration } from "./migrate.ts";
 import { MIGRATIONS } from "./migrations.ts";
 import { wrapSqlJs } from "./sqljs.ts";
+import { USAGE_SQL } from "./usage.ts";
 
 const SQL = await initSqlJs();
 const fresh = () => wrapSqlJs(new SQL.Database());
 const tables = async (db: ReturnType<typeof fresh>) =>
   (await db.select<{ name: string }>("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name")).map((r) => r.name);
 
-const TABLES = ["bookmarks", "content_cache", "device_settings", "enrollments", "memories", "mistakes", "profiles", "speech_sessions", "step_progress", "words"];
+const TABLES = ["ai_usage", "bookmarks", "content_cache", "device_settings", "enrollments", "memories", "mistakes", "profiles", "speech_sessions", "step_progress", "words"];
 
 test("empty database migrates to the latest version", async () => {
   const db = fresh();
@@ -105,6 +106,24 @@ test("v7: bookmarks are one row per enrollment, kind and ref", async () => {
   assert.deepEqual(await db.select("SELECT kind, ref FROM bookmarks ORDER BY kind"), [{ kind: "guide", ref: "A1:greetings" }, { kind: "unit", ref: "A1:greetings" }]);
   await db.execute("DELETE FROM bookmarks WHERE enrollment_id = 1 AND kind = 'unit' AND ref = 'A1:greetings'");
   assert.deepEqual(await db.select("SELECT kind FROM bookmarks"), [{ kind: "guide" }]);
+});
+
+test("v8: ai_usage defaults created_at and rolls up by local month, feature and model", async () => {
+  const db = fresh();
+  await runMigrations(db, MIGRATIONS);
+  await db.execute(`INSERT INTO ai_usage(provider, model, feature, input_tokens, output_tokens, created_at) VALUES
+    ('openai', 'gpt-4o-mini', 'lesson', 100, 20, '2026-01-15 12:00:00'),
+    ('openai', 'gpt-4o-mini', 'lesson', 50, 10, '2026-01-16 12:00:00'),
+    ('ollama', 'qwen3:8b', 'check', 7, 3, '2026-02-01 12:00:00'),
+    ('anthropic', 'claude-sonnet-4.5', 'tutor', 1, 2, '2026-02-01 12:00:00')`);
+  await db.execute("INSERT INTO ai_usage(provider, model, feature, input_tokens, output_tokens) VALUES ('gemini', 'gemini-2.5-flash', 'guide', 1, 1)");
+  const rows = await db.select<{ month: string; feature: string; provider: string; model: string; input_tokens: number; output_tokens: number }>(USAGE_SQL);
+  assert.deepEqual(rows.filter((r) => r.month === "2026-01"), [
+    { month: "2026-01", feature: "lesson", provider: "openai", model: "gpt-4o-mini", input_tokens: 150, output_tokens: 30 },
+  ]);
+  assert.deepEqual(rows.filter((r) => r.month === "2026-02").map((r) => r.feature).sort(), ["check", "tutor"]);
+  const [now] = await db.select<{ created_at: string }>("SELECT created_at FROM ai_usage WHERE feature = 'guide'");
+  assert.match(now.created_at, /^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/);
 });
 
 test("v5 seeds FSRS state from word strength and keeps every word", async () => {
