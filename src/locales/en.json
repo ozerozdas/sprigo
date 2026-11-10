@@ -42,6 +42,15 @@
     "soonScreen": "This screen is a preview. The data shown is sample data.",
     "soonToast": "Coming soon"
   },
+  "bookmark": {
+    "add": "Save {{item}}",
+    "saved": "Saved",
+    "removed": "Removed from saved",
+    "failed": "Couldn't save the bookmark",
+    "unit": "Unit",
+    "guide": "Guidebook",
+    "story": "Story"
+  },
   "learn": {
     "kicker": "{{level}} · Unit {{unit}}",
     "start": "Start",
@@ -152,7 +161,9 @@
     "wordsError_columns": "needs a word and a translation column",
     "wordsError_word": "no word",
     "wordsError_translation": "no translation",
-    "wordsError_schedule": "review data isn't valid"
+    "wordsError_schedule": "review data isn't valid",
+    "saved": "Saved",
+    "savedEmpty": "Tap the bookmark on a unit, guidebook or story to keep it here."
   },
   "league": {
     "title": "{{name}} League",

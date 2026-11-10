@@ -10,7 +10,7 @@ const fresh = () => wrapSqlJs(new SQL.Database());
 const tables = async (db: ReturnType<typeof fresh>) =>
   (await db.select<{ name: string }>("SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name")).map((r) => r.name);
 
-const TABLES = ["content_cache", "device_settings", "enrollments", "memories", "mistakes", "profiles", "speech_sessions", "step_progress", "words"];
+const TABLES = ["bookmarks", "content_cache", "device_settings", "enrollments", "memories", "mistakes", "profiles", "speech_sessions", "step_progress", "words"];
 
 test("empty database migrates to the latest version", async () => {
   const db = fresh();
@@ -91,6 +91,20 @@ test("v4: speech_sessions has nullable conditions and avoided", async () => {
   await runMigrations(db, MIGRATIONS);
   const cols = await db.select<{ name: string; notnull: number }>("PRAGMA table_info(speech_sessions)");
   for (const c of ["conditions", "avoided"]) assert.equal(cols.find((x) => x.name === c)?.notnull, 0, c);
+});
+
+test("v7: bookmarks are one row per enrollment, kind and ref", async () => {
+  const db = fresh();
+  await runMigrations(db, MIGRATIONS);
+  await db.execute("INSERT INTO profiles(id, name, color, ui_lang, native_lang, stats) VALUES (1, 'a', 'green', 'en', 'en', '{}')");
+  await db.execute("INSERT INTO enrollments(id, profile_id, course_iso, level) VALUES (1, 1, 'es', 'A1')");
+  const insert = "INSERT INTO bookmarks(enrollment_id, kind, ref) VALUES (1, $1, $2) ON CONFLICT DO NOTHING";
+  await db.execute(insert, ["unit", "A1:greetings"]);
+  await db.execute(insert, ["unit", "A1:greetings"]);
+  await db.execute(insert, ["guide", "A1:greetings"]);
+  assert.deepEqual(await db.select("SELECT kind, ref FROM bookmarks ORDER BY kind"), [{ kind: "guide", ref: "A1:greetings" }, { kind: "unit", ref: "A1:greetings" }]);
+  await db.execute("DELETE FROM bookmarks WHERE enrollment_id = 1 AND kind = 'unit' AND ref = 'A1:greetings'");
+  assert.deepEqual(await db.select("SELECT kind FROM bookmarks"), [{ kind: "guide" }]);
 });
 
 test("v5 seeds FSRS state from word strength and keeps every word", async () => {

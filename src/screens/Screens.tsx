@@ -23,7 +23,9 @@ import { Face } from "../face/Face";
 import { MemoryCard } from "./Memory";
 import { CoachCard } from "./Coach";
 import { achievements, nearest, roman, type Achievement } from "../achievements";
-import { levelsOf, storyId, type Cefr } from "../course";
+import { levelsOf, parseStoryId, parseUnitRef, storyId, type Cefr } from "../course";
+import { BOOKMARKS_CHANGED, BookmarkButton } from "../BookmarkButton";
+import { GuideSheet, jumpTo } from "./Learn";
 
 const iconBox = (bg: string, fg: string, size = 48, radius: number | string = 12): React.CSSProperties => ({
   width: size, height: size, flex: "none", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: radius, background: bg, color: fg,
@@ -92,17 +94,24 @@ export function useBuy() {
 
 export function Practice() {
   const { t } = useTranslation();
-  const { toast, enrollment, lessonId, openSheet, course } = useApp();
+  const { toast, enrollment, lessonId, openSheet, course, go, setViewLevel } = useApp();
   const start = useStartLesson();
-  const [data, setData] = useState<{ mistakes: number; words: db.Word[]; timed: number }>({ mistakes: 0, words: [], timed: 0 });
+  const [data, setData] = useState<{ mistakes: number; words: db.Word[]; timed: number; saved: db.Bookmark[] }>({ mistakes: 0, words: [], timed: 0, saved: [] });
   const [loaded, reload] = useState(0);
   // Reloads when a practice session closes (lessonId → null) or words were imported.
   useEffect(() => {
     if (!enrollment || lessonId) return;
-    Promise.all([db.listMistakes(enrollment.id), db.listWords(enrollment.id), db.cachedLessonItems(enrollment.id)])
-      .then(([m, words, cached]) => setData({ mistakes: m.length, words, timed: cached.length }));
+    Promise.all([db.listMistakes(enrollment.id), db.listWords(enrollment.id), db.cachedLessonItems(enrollment.id), db.listBookmarks(enrollment.id)])
+      .then(([m, words, cached, saved]) => setData({ mistakes: m.length, words, timed: cached.length, saved }));
   }, [enrollment?.id, lessonId, loaded]);
-  const { mistakes, words, timed } = data;
+  useEffect(() => { const r = () => reload((n) => n + 1); addEventListener(BOOKMARKS_CHANGED, r); return () => removeEventListener(BOOKMARKS_CHANGED, r); }, []);
+  const { mistakes, words, timed, saved } = data;
+  // Bookmarked targets are ids only; one whose unit no longer exists is not shown.
+  const savedItems = saved.flatMap((b) => {
+    const at = b.kind === "story" ? parseStoryId(b.ref) : parseUnitRef(b.ref);
+    const unit = at && course?.levels[at.level]?.units.find((u) => u.id === at.unit);
+    return at && unit ? [{ key: `${b.kind}:${b.ref}`, kind: b.kind, ref: b.ref, level: at.level, unitId: unit.id, title: unit.title }] : [];
+  });
   const due = dueToday(words, new Date()).length;
   const speakBlock = useSpeakBlock();
   const conjTenses = course && enrollment ? tensesFor(course.iso, enrollment.level) : [];
@@ -139,6 +148,23 @@ export function Practice() {
           "bolt", "var(--gold-tint)", "var(--gold-dark)", t("league.matchName"), words.length >= MADNESS_MIN_WORDS ? t("practice.madnessDesc") : t("practice.needWords", { count: MADNESS_MIN_WORDS }))}
         {card(() => timed ? start("practice-timed") : toast(t("practice.needLesson")),
           "clock", "var(--red-tint)", "var(--orange)", t("practice.timed"), timed ? t("practice.timedDesc") : t("practice.needLesson"))}
+      </div>
+      <h2 className="section-title">{t("practice.saved")} <span className="muted small" style={{ fontWeight: 700 }}>({savedItems.length})</span></h2>
+      {!savedItems.length && <p className="muted small">{t("practice.savedEmpty")}</p>}
+      <div className="od-stack" style={{ "--od-gap": "10px" } as React.CSSProperties}>
+        {savedItems.map((x) => (
+          <div className="card row-item" key={x.key}>
+            <button className="od-row od-fill" style={{ "--od-gap": "12px", textAlign: "left" } as React.CSSProperties} onClick={() => {
+              if (x.kind === "story") return start(x.ref);
+              if (x.kind === "guide") return openSheet(<GuideSheet unitId={x.unitId} level={x.level} />);
+              Object.assign(jumpTo, { unit: x.unitId, until: Date.now() + 1000 }); setViewLevel(x.level); go("learn");
+            }}>
+              <span style={iconBox("var(--gold-tint)", "var(--gold-dark)", 40, 10)}><Icon name={x.kind === "story" ? "story" : x.kind === "guide" ? "book" : "star"} /></span>
+              <span className="od-field od-fill"><b>{x.title}</b><span className="muted small">{x.level} · {t(`bookmark.${x.kind}`)}</span></span>
+            </button>
+            <BookmarkButton kind={x.kind} target={x.ref} title={x.title} />
+          </div>
+        ))}
       </div>
       <h2 className="section-title">{t("practice.myWords")} <span className="muted small" style={{ fontWeight: 700 }}>({words.length})</span></h2>
       {enrollment && <WordsFile enrollment={enrollment} words={words} onImported={() => reload((n) => n + 1)} />}
@@ -438,11 +464,14 @@ export function Stories() {
           const id = storyId(lv!, u.id);
           const read = done.has(id) || (lv === enrollment!.level && done.has(`story:${u.id}`)); // pre-1.9 id
           return (
-            <button className="card row-item" key={u.id} onClick={() => open ? start(id) : toast(t("stories.lockedToast", { unit: ui }))}>
-              <span style={iconBox(open ? "var(--sky)" : "var(--surface)", open ? "var(--blue)" : "var(--text-faint)")}><Icon name={read ? "check" : open ? "story" : "lock"} /></span>
-              <span className="od-field od-fill"><b>{u.title}</b><span className="muted small">{t("learn.kicker", { level: lv, unit: ui + 1 })}{u.description ? ` · ${u.description}` : ""}</span></span>
-              {open && <span className="btn btn-ghost" style={{ pointerEvents: "none" }}>{t(read ? "stories.again" : "stories.read")}</span>}
-            </button>
+            <div className="card row-item" key={u.id}>
+              <button className="od-row od-fill" style={{ "--od-gap": "12px", textAlign: "left" } as React.CSSProperties} onClick={() => open ? start(id) : toast(t("stories.lockedToast", { unit: ui }))}>
+                <span style={iconBox(open ? "var(--sky)" : "var(--surface)", open ? "var(--blue)" : "var(--text-faint)")}><Icon name={read ? "check" : open ? "story" : "lock"} /></span>
+                <span className="od-field od-fill"><b>{u.title}</b><span className="muted small">{t("learn.kicker", { level: lv, unit: ui + 1 })}{u.description ? ` · ${u.description}` : ""}</span></span>
+                {open && <span className="btn btn-ghost" style={{ pointerEvents: "none" }}>{t(read ? "stories.again" : "stories.read")}</span>}
+              </button>
+              {open && <BookmarkButton kind="story" target={id} title={u.title} />}
+            </div>
           );
         })}
       </div>

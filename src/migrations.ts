@@ -78,4 +78,12 @@ UPDATE words SET
     sql: `ALTER TABLE words ADD COLUMN created_at TEXT;
 UPDATE words SET created_at = COALESCE(last_review, updated_at)`,
   },
+  {
+    v: 7, // #45: saved units, guidebooks and stories. Kind is "unit" | "guide" | "story"; ref is the target id (a unit ref carries its level).
+    sql: `
+CREATE TABLE bookmarks(
+  enrollment_id INTEGER NOT NULL REFERENCES enrollments(id) ON DELETE CASCADE,
+  kind TEXT NOT NULL, ref TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(enrollment_id, kind, ref))`,
+  },
 ];

@@ -42,6 +42,15 @@
     "soonScreen": "Esta pantalla es una vista previa. Los datos mostrados son de ejemplo.",
     "soonToast": "Próximamente"
   },
+  "bookmark": {
+    "add": "Guardar {{item}}",
+    "saved": "Guardado",
+    "removed": "Quitado de guardados",
+    "failed": "No se pudo guardar el marcador",
+    "unit": "Unidad",
+    "guide": "Guía",
+    "story": "Historia"
+  },
   "learn": {
     "kicker": "{{level}} · Unidad {{unit}}",
     "start": "Empezar",
@@ -162,7 +171,9 @@
     "wordsError_translation": "sin traducción",
     "wordsError_schedule": "datos de repaso no válidos",
     "wordsExported_many": "{{count}} palabras exportadas",
-    "wordsSkipped_many": "Se omitieron {{count}} filas:"
+    "wordsSkipped_many": "Se omitieron {{count}} filas:",
+    "saved": "Guardados",
+    "savedEmpty": "Toca el marcador de una unidad, una guía o una historia para guardarla aquí."
   },
   "league": {
     "title": "Liga {{name}}",

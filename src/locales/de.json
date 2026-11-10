@@ -42,6 +42,15 @@
     "soonScreen": "Dieser Bildschirm ist eine Vorschau. Die angezeigten Daten sind Beispieldaten.",
     "soonToast": "Bald verfügbar"
   },
+  "bookmark": {
+    "add": "{{item}} speichern",
+    "saved": "Gespeichert",
+    "removed": "Aus Gespeichertem entfernt",
+    "failed": "Lesezeichen konnte nicht gespeichert werden",
+    "unit": "Einheit",
+    "guide": "Lernführer",
+    "story": "Geschichte"
+  },
   "learn": {
     "kicker": "{{level}} · Einheit {{unit}}",
     "start": "Start",
@@ -152,7 +161,9 @@
     "wordsError_columns": "braucht eine Wort- und eine Übersetzungsspalte",
     "wordsError_word": "kein Wort",
     "wordsError_translation": "keine Übersetzung",
-    "wordsError_schedule": "Wiederholungsdaten ungültig"
+    "wordsError_schedule": "Wiederholungsdaten ungültig",
+    "saved": "Gespeichert",
+    "savedEmpty": "Tippe auf das Lesezeichen bei einer Einheit, einem Lernführer oder einer Geschichte, um sie hier zu behalten."
   },
   "league": {
     "title": "{{name}}-Liga",
