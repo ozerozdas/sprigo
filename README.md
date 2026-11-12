@@ -40,12 +40,12 @@
 - **Speaking:** speech recognition runs inside the app (whisper.cpp), with no extra service to install. Deepgram is an optional cloud alternative, and **Try it** lets you check it with your own voice.
 - **Natural voices:** besides the system voice, Piper (fast, local) and Kokoro (most natural, English only) run on your machine and are downloaded on first use.
 - **Stories and roleplay:** chat or call characters in real-life scenes, and get corrections as you go.
-- **Practice hub:** fix your mistakes, speaking and listening practice, your word list, Match Madness and a timed challenge.
+- **Practice hub:** fix your mistakes, speaking and listening practice, your word list, Match Madness, a timed challenge, and the units, guidebooks and stories you saved.
 - **Your garden:** a tree that grows with your lessons, stays green while you keep your streak (days of roots) and grows a fruit for every level you pass. Each level has its own landscape, from meadow to summit.
 - **Gamification:** XP, coins, drops, daily quests, a shop, friends and a local league.
 - **Use it on your phone:** turn on **Settings → Use on your phone** and scan the code to open Sprigo in your phone's browser over [Tailscale](https://tailscale.com). Your data, speech recognition and Ollama stay on the computer.
-- **Private by default:** your progress stays in a local SQLite database with daily backups, and API keys are kept in the system keychain. You can move the data folder (for example to a synced folder), or export and import it. Several profiles can share one computer, optionally with a PIN.
-- Reminders, light and dark themes, and an interface in English, Turkish, German, French, Spanish or Hungarian.
+- **Private by default:** your progress stays in a local SQLite database with daily backups, and API keys are kept in the system keychain. You can move the data folder (for example to a synced folder), or export and import it. Several profiles can share one computer, optionally with a PIN. With a cloud AI provider, Settings shows the tokens used per month.
+- Reminders, light and dark themes, and an interface in English, Turkish, German, French, Spanish, Hungarian or Russian.
 - Automatic in-app updates.
 
 ## Install
@@ -56,13 +56,13 @@ macOS, with [Homebrew](https://brew.sh):
 brew install --cask ozerozdas/tap/sprigo
 ```
 
-macOS or Linux (x86_64), without Homebrew:
+macOS or Linux (x86_64 or ARM), without Homebrew:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ozerozdas/sprigo/master/install.sh | sh
 ```
 
-Both install the latest release and handle the macOS quarantine flag for you. Windows installers and the other packages (`.deb`, `.rpm`) are on the [Releases](https://github.com/ozerozdas/sprigo/releases/latest) page. Step-by-step instructions per system are in the [wiki](https://github.com/ozerozdas/sprigo/wiki/Installation).
+Both install the latest release and handle the macOS quarantine flag for you. Windows installers (x64 and ARM) and the other packages (`.deb`, `.rpm`) are on the [Releases](https://github.com/ozerozdas/sprigo/releases/latest) page. Step-by-step instructions per system are in the [wiki](https://github.com/ozerozdas/sprigo/wiki/Installation).
 
 If you install the `.dmg` by hand: the app is not notarized yet, so macOS blocks it the first time. Remove the quarantine flag once:
 
