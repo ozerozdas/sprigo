@@ -40,7 +40,7 @@ How the app fits together is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); de
 
 ### Workflow
 
-1. Branch from `master` (`feature/…`, `fix/…`, `chore/…`).
+1. Branch from `test` (`feature/…`, `fix/…`, `chore/…`), the branch your pull request goes into.
 2. Keep changes small and focused. One pull request per topic.
 3. Run the same checks as CI before pushing:
    ```bash
@@ -60,6 +60,6 @@ Run it when you change a lesson prompt (`src/activities.ts`), add a course level
 ### Conventions
 
 - Commit messages start with the area, then a short sentence: `Drills: avoidance pass for goal drills`.
-- New UI text goes into all six locales in [`src/locales/`](src/locales/) (en, tr, de, es, fr, hu). A test fails if a key is missing. If you can't translate, copy the English text and say so in the pull request.
+- New UI text goes into every locale in [`src/locales/`](src/locales/). A test fails if a key is missing. If you can't translate, copy the English text and say so in the pull request.
 - Add a test next to the module (`src/foo.test.ts`) for new logic.
 - Screenshots help reviews of UI changes.

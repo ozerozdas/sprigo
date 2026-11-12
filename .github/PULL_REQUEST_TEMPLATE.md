@@ -8,5 +8,5 @@ Closes #
 
 - [ ] The pull request targets `test`, not `master`
 - [ ] `pnpm build` and `pnpm test` pass
-- [ ] New UI text is added to all five locales in `src/locales/`
+- [ ] New UI text is added to every locale in `src/locales/`
 - [ ] Screenshots for UI changes

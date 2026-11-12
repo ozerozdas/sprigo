@@ -58,6 +58,8 @@ jobs:
             target: x86_64-unknown-linux-gnu
           - platform: windows-latest
             target: x86_64-pc-windows-msvc
+          - platform: windows-11-arm # only caught at release time before (#40)
+            target: aarch64-pc-windows-msvc
     runs-on: ${{ matrix.platform }}
     env:
       # ponytail: mirrors bundle.macOS.minimumSystemVersion (tauri build sets it from there); keep in sync
@@ -79,5 +81,10 @@ jobs:
         shell: bash
         # cargo check only needs these paths to exist, not their contents
         run: mkdir -p dist && echo '<!doctype html>' > dist/index.html && touch src-tauri/resources/ggml-base-q5_1.bin
+      # Same as release.yml: ggml refuses MSVC on ARM, so whisper.cpp builds with clang-cl through Ninja.
+      - name: Windows ARM compiler
+        if: matrix.platform == 'windows-11-arm'
+        shell: bash
+        run: printf 'CMAKE_GENERATOR=Ninja\nCC=clang-cl\nCXX=clang-cl\nCXXFLAGS=/EHsc\n' >> "$GITHUB_ENV"
       - run: cargo check --locked --target ${{ matrix.target }}
         working-directory: src-tauri
