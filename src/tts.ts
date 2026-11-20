@@ -224,6 +224,21 @@ const audioCtx = async (mine: number) => {
   return mine === seq ? ctx : null; // null: cut while waiting; `next` belongs to the newer speak now
 };
 
+/** Unlocks Web Audio from a user activation on iOS. */
+function unlockAudio() {
+  const ctx = (actx ??= new AudioContext());
+  void ctx.resume().then(() => {
+    if (ctx.state === "running") {
+      document.removeEventListener("pointerup", unlockAudio);
+      document.removeEventListener("touchend", unlockAudio);
+    }
+  }).catch(() => {});
+}
+if (typeof document !== "undefined") {
+  document.addEventListener("pointerup", unlockAudio);
+  document.addEventListener("touchend", unlockAudio);
+}
+
 /** Plays local-engine audio for `text`; resolves once the first sentence plays, throws before that to fall back. */
 async function viaWorker(e: Engine, text: string, voice: string, mine: number, done: () => void, speed: number) {
   const key = `${e}:${voice}:${speed}\n${text}`;

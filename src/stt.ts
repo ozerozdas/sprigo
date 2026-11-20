@@ -58,6 +58,7 @@ export const MAX_RECORD_S = 15;
 export async function startRecording(lang: string, onAutoStop?: () => void, native?: string) {
   const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } });
   const ctx = new AudioContext();
+  void ctx.resume().catch(() => {}); // iOS Safari: the context starts suspended until a user gesture resumes it
   const src = ctx.createMediaStreamSource(stream);
   // ponytail: ScriptProcessor is deprecated but works everywhere without a worklet file
   const proc = ctx.createScriptProcessor(4096, 1, 1);
@@ -107,7 +108,7 @@ const STRICT = { ...VAD, threshold: VAD.threshold * 3, startMs: 300 };
 export async function listen(lang: string, on: { utterance: (text: string, m?: Utterance) => void; speech?: () => void; level?: (rms: number) => void; error?: (e: Error) => void }, native?: string): Promise<Listener> {
   const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } });
   const ctx = new AudioContext();
-  void ctx.resume(); // created after an await, so it may start suspended
+  void ctx.resume().catch(() => {}); // created after an await, so it may start suspended
   const src = ctx.createMediaStreamSource(stream);
   const proc = ctx.createScriptProcessor(4096, 1, 1); // ponytail: same deprecated node as startRecording
   let v = VAD_IDLE, e: VadEvent, paused = false, strict = false, stopped = false, pre: Float32Array[] = [], chunks: Float32Array[] = [];
