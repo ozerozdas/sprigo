@@ -768,6 +768,7 @@
   },
   "stt": {
     "idle": "Touche pour parler",
+    "starting": "Getting ready…",
     "rec": "J'écoute… touche à nouveau quand tu as fini",
     "busy": "Transcription…",
     "record": "Enregistrer",
@@ -775,7 +776,8 @@
     "noMic": "Pas d'accès au micro. Autorise-le dans Réglages Système → Confidentialité et sécurité → Micro.",
     "failed": "La reconnaissance vocale a échoué",
     "unavailable": "L'oral nécessite l'app de bureau avec le modèle vocal.",
-    "off": "Les exercices oraux sont désactivés dans les Réglages."
+    "off": "Les exercices oraux sont désactivés dans les Réglages.",
+    "playback": "Play my recording"
   },
   "update": {
     "section": "Mises à jour",

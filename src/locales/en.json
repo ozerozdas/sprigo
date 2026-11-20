@@ -740,6 +740,7 @@
   },
   "stt": {
     "idle": "Tap to speak",
+    "starting": "Getting ready…",
     "rec": "Listening… tap again when you're done",
     "busy": "Transcribing…",
     "record": "Record",
@@ -747,7 +748,8 @@
     "noMic": "No microphone access. Allow it in System Settings → Privacy → Microphone.",
     "failed": "Speech recognition failed",
     "unavailable": "Speaking needs the desktop app with the speech model.",
-    "off": "Speaking exercises are off in Settings."
+    "off": "Speaking exercises are off in Settings.",
+    "playback": "Play my recording"
   },
   "update": {
     "section": "Updates",

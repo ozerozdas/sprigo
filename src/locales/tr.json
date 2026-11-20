@@ -734,6 +734,7 @@
   },
   "stt": {
     "idle": "Konuşmak için dokun",
+    "starting": "Getting ready…",
     "rec": "Dinleniyor… bitince tekrar dokun",
     "busy": "Yazıya dökülüyor…",
     "record": "Kaydet",
@@ -741,7 +742,8 @@
     "noMic": "Mikrofon izni yok. Sistem Ayarları → Gizlilik → Mikrofon'dan izin ver.",
     "failed": "Ses tanıma başarısız",
     "unavailable": "Konuşma, ses modeli olan masaüstü uygulamasında çalışır.",
-    "off": "Konuşma egzersizleri Ayarlar'da kapalı."
+    "off": "Konuşma egzersizleri Ayarlar'da kapalı.",
+    "playback": "Play my recording"
   },
   "update": {
     "section": "Güncellemeler",

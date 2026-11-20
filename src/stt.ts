@@ -52,11 +52,23 @@ export const sttReady = () => (ready ??= (async () => {
 export const resetSttReady = () => { ready = undefined; };
 
 export const MAX_RECORD_S = 15;
+const WARMUP_MS = 800; // mic start-up: two loud thumps between digital zeros in the first 0.5 s (measured); dropped before "Listening…"
+const TAIL_S = 0.2; // the tap that stops the recording, cut off the end
+const FADE_S = 0.015;
+/** Drops the stop tap and fades both ends, so neither click lands in the take. */
+function trimTake(x: Float32Array, rate: number): Float32Array {
+  const y = x.slice(0, Math.max(0, x.length - Math.round(TAIL_S * rate)));
+  const f = Math.min(Math.round(FADE_S * rate), Math.floor(y.length / 2));
+  for (let i = 0; i < f; i++) { const g = i / f; y[i] *= g; y[y.length - 1 - i] *= g; }
+  return y;
+}
 
 /** Starts recording; `stop()` returns the transcript (`stop(false)` just releases the mic). Auto-stops after MAX_RECORD_S (onAutoStop fires).
  *  With `native` the transcript also gets its speech signals; there is no tutor turn to time, so `latencyMs` is null. */
 export async function startRecording(lang: string, onAutoStop?: () => void, native?: string) {
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } });
+  // No echo cancellation / noise suppression here: macOS voice processing squashed a learner's voice to -56 dB peak
+  // (whisper heard "***"). Nothing is playing while an exercise records, so there is no echo to cancel.
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
   const ctx = new AudioContext();
   const src = ctx.createMediaStreamSource(stream);
   // ponytail: ScriptProcessor is deprecated but works everywhere without a worklet file
@@ -65,10 +77,13 @@ export async function startRecording(lang: string, onAutoStop?: () => void, nati
   proc.onaudioprocess = (e) => chunks.push(new Float32Array(e.inputBuffer.getChannelData(0)));
   src.connect(proc);
   proc.connect(ctx.destination);
+  // Warm-up: the first moments after the mic opens are unstable (and hold the tap on the button); drop them.
+  await new Promise((r) => setTimeout(r, WARMUP_MS));
+  chunks.length = 0;
   const timer = setTimeout(() => onAutoStop?.(), MAX_RECORD_S * 1000);
   let stopped = false;
   return {
-    async stop(transcribe = true): Promise<{ text: string; m?: Utterance }> {
+    async stop(transcribe = true): Promise<{ text: string; m?: Utterance; audio?: string }> {
       if (stopped) return { text: "" };
       stopped = true;
       clearTimeout(timer);
@@ -77,16 +92,27 @@ export async function startRecording(lang: string, onAutoStop?: () => void, nati
       const rate = ctx.sampleRate;
       await ctx.close();
       if (!transcribe) return { text: "" };
-      const all = concat(chunks), text = await transcribeSamples(all, rate, lang);
-      return { text, m: native && text ? speechMetrics(all, rate, text, { latencyMs: null }, native, lang) : undefined };
+      const all = trimTake(concat(chunks), rate);
+      // The learner's own take, to play back next to the model voice (blob URL; the caller revokes it).
+      const audio = all.length ? URL.createObjectURL(new Blob([wav16(normalize(resample(all, rate))) as BlobPart], { type: "audio/wav" })) : undefined;
+      const text = await transcribeSamples(all, rate, lang);
+      return { text, m: native && text ? speechMetrics(all, rate, text, { latencyMs: null }, native, lang) : undefined, audio };
     },
   };
 }
 export type Recording = Awaited<ReturnType<typeof startRecording>>;
 
 /** Transcript of raw mic samples at `rate` Hz; under 0.3 s counts as nothing said. */
+/** Quiet recordings raised so the peak sits at about -3 dB (at most ×100); loud ones are left alone. */
+function normalize(x: Float32Array): Float32Array {
+  let peak = 0;
+  for (const v of x) peak = Math.max(peak, Math.abs(v));
+  const gain = peak > 0 ? Math.min(0.7 / peak, 100) : 1;
+  return gain <= 1 ? x : x.map((v) => v * gain);
+}
 async function transcribeSamples(all: Float32Array, rate: number, lang: string): Promise<string> {
   if (all.length < rate * 0.3) return "";
+  all = normalize(all);
   if ((await sttProvider()) === "deepgram") return deepgramTranscribe(wav16(resample(all, rate)), lang);
   if (isCompanion) { // phone: the desktop's whisper (src-tauri/src/companion.rs), raw f32 samples
     const r = await fetch(`/transcribe?lang=${encodeURIComponent(lang)}`, { method: "POST", headers: { "X-Sprigo": "1" }, body: resample(all, rate) as BodyInit });
