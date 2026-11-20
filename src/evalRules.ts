@@ -2,7 +2,7 @@
 // Pure module (no Vite/Tauri imports), tested by src/evalRules.test.ts.
 import { givesAway, normalize, REGISTRY, strayScript } from "./activities.ts";
 
-export const LANGS = ["en", "de", "es", "fr", "tr", "hu", "pl", "ro"] as const;
+export const LANGS = ["en", "de", "es", "fr", "tr", "hu", "pl", "ro", "nl"] as const;
 export type Lang = (typeof LANGS)[number];
 export const RULES = ["answer_in_options", "distinct_options", "no_leak", "target_lang", "native_lang", "one_blank", "dropped"] as const;
 export type Rule = (typeof RULES)[number];
@@ -21,13 +21,14 @@ const STOP: Record<Lang, Set<string>> = {
   tr: new Set("bir ve bu şu ben sen o biz siz onlar değil mi mı mu mü ne çok için ile da de var yok".split(" ")),
   hu: new Set("a az egy és nem van vannak vagyok vagy vagyunk volt voltam lesz hogy ez ezt azt én ő ők meg már még csak itt ott igen nagyon nincs mert sok jó kell lehet mint sem fel tegnap holnap nekem neked neki ha amikor aki ami amit ahol hol kérem köszönöm minden ezért azért nap jól úr".split(" ")),
   ro: new Set("și este sunt ai avem aveți au eu tu el ea noi voi ei ele în un la de cu din pentru mulțumesc bine".split(" ")),
+  nl: new Set("de het een is zijn ben bent was waren ik jij je hij zij ze wij we jullie en niet geen van met voor op naar dat dit die wat hoe waar ook maar nog heel goed dank graag heb heeft welke welk betekent woord zin zeg zegt hoor als iemand".split(" ")),
   pl: new Set("w z na nie się jest że jak co ale tak czy ten ta jestem mam masz bardzo dla od po przez który która które jeśli bo już też tylko kiedy gdzie dlaczego zdanie słowo".split(" ")),
 };
 // Letters only one of these languages uses (ö and ü are shared by German, Turkish and Hungarian, ç by French and Turkish,
 // á, í, ó and ú by Spanish, Hungarian and Polish); Hungarian's sz and zs are letters of its alphabet, and sz is a
 // Polish one too, so it counts for both and their own letters and stopwords decide. Not gy or cs: English has them too
 // (energy, physics).
-const MARK: Record<Lang, RegExp> = { en: /(?!)/, de: /[ßä]/, es: /ñ/, fr: /[èêœàâùû]/, tr: /[ışğ]/, hu: /[őű]|sz|zs/, pl: /[ąćęłńśźż]|cz|sz/, ro: /[ăîșț]/ };
+const MARK: Record<Lang, RegExp> = { en: /(?!)/, de: /[ßä]/, es: /ñ/, fr: /[èêœàâùû]/, tr: /[ışğ]/, hu: /[őű]|sz|zs/, pl: /[ąćęłńśźż]|cz|sz/, ro: /[ăîșț]/, nl: /ij/ };
 
 /** The likeliest of LANGS (the course languages and Polish), or null for under 3 words or no clear winner. */
 export function guessLang(text: string): Lang | null {

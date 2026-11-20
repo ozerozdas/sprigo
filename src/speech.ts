@@ -21,6 +21,7 @@ export const LONG_PAUSE_MS = 1000;
 const FILLERS = new Set(["um", "umm", "uh", "uhh", "er", "erm", "hmm", "mm", "eh", "ee", "eee", "ıı", "ııı", "şey", "äh", "ähm", "öh", "euh", "bah", "pues", "ehm", "cioè", "tipo", "né", "ö", "öö", "ööö", "izé"]);
 const LANGUAGE_FILLERS: Record<string, Set<string>> = {
   ro: new Set(["păi", "ă", "ăă", "ăăă", "ăh"]),
+  nl: new Set(["eh", "ehm", "uh", "uhm", "nou"]),
   es: new Set(["este"]),
 };
 const COMMON: Record<string, string[]> = {
@@ -34,6 +35,7 @@ const COMMON: Record<string, string[]> = {
   hu: ["és", "egy", "nem", "igen", "van", "hogy", "én", "ez", "is", "meg", "mit", "nagyon", "csak", "már", "tudom"],
   pl: ["jest", "że", "się", "jak", "ale", "tak", "czy", "mam", "wiem", "bardzo", "jestem", "też", "więc", "dlaczego", "kiedy", "gdzie"],
   ro: ["e", "nu", "sunt", "am", "și", "la", "de", "ce", "dar", "cu", "în", "da", "este", "mulțumesc", "bine"],
+  nl: ["en", "ik", "is", "niet", "het", "een", "ja", "nee", "wat", "hoe", "jij", "maar", "met", "weet", "dank", "goed"],
 };
 // Natives without Latin letters: any word in their script counts.
 const SCRIPT: Record<string, RegExp> = { ru: /\p{Script=Cyrillic}/u, ar: /\p{Script=Arabic}/u, ja: /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u, ko: /\p{Script=Hangul}/u, zh: /\p{Script=Han}/u };

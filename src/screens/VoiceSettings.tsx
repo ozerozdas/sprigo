@@ -25,6 +25,7 @@ const TTS = [
 const ttsName = (p: TtsProvider) => `settings.tts${p[0].toUpperCase()}${p.slice(1)}`;
 const HELLO: Record<string, string> = {
   ro: "Bună! Îmi pare bine să te cunosc. Ce mai faci?",
+  nl: "Hallo! Leuk je te ontmoeten. Hoe gaat het vandaag met je?",
   en: "Hello! Nice to meet you. How are you today?", tr: "Merhaba! Tanıştığıma memnun oldum. Bugün nasılsın?",
   de: "Hallo! Schön, dich kennenzulernen. Wie geht es dir heute?", fr: "Bonjour ! Ravi de te rencontrer. Comment vas-tu aujourd'hui ?",
   es: "¡Hola! Encantado de conocerte. ¿Cómo estás hoy?", hu: "Szia! Örülök, hogy megismerhetlek. Hogy vagy ma?",

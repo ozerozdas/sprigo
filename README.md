@@ -34,7 +34,7 @@
 
 ## Features
 
-- **Structured courses:** English, Spanish, French, German, Turkish and Hungarian, A1 → C2, plus Romanian A1. 50+ steps per level, a harvest basket at the end of each unit and a checkpoint at the end of each level. Each unit has a guidebook in your own language, and a unit or level test lets you skip ahead.
+- **Structured courses:** English, Spanish, French, German, Turkish and Hungarian, A1 → C2, plus Romanian A1 and Dutch A1 → B1. 50+ steps per level, a harvest basket at the end of each unit and a checkpoint at the end of each level. Each unit has a guidebook in your own language, and a unit or level test lets you skip ahead.
 - **AI-generated lessons:** translate, fill in the blank, match, listen, word bank, error correction and more. Lessons adapt to your recent mistakes, and a harder Mastery version turns a finished lesson gold.
 - **Live lesson:** a video-call style lesson with one of six animated tutors who talks with you, with live captions. You can cut in while the tutor is speaking. Open the practice panel to do exercises together while the tutor follows along.
 - **Sprigo gets to know you:** after a conversation it keeps a few facts about you (interests, goals, what you find hard) and uses them in later lessons. You can see, edit or forget them, or turn memory off.

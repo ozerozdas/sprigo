@@ -1,0 +1,2070 @@
+# Dutch course (Netherlands standard Dutch). Hierarchy: levels (CEFR) > units > steps > activities.
+# Activities name only a type (+ optional count and hints like scenario/goal); the AI writes the content
+# from the step's title, description, vocabulary and grammar and the level. Types: see src/course.ts.
+# A1–B1 follow the NT2 progression: A1 ≈ Basisexamen Inburgering Buitenland, A2 ≈ inburgeringsexamen,
+# B1 ≈ Staatsexamen NT2 Programma I (the B1 route of the 2021 civic integration law).
+name: Dutch
+native_name: Nederlands
+iso: nl
+flag: 🇳🇱
+
+# Step and unit ids are ASCII-only (regex in src/course.ts); they key user progress and must never be
+# renamed once shipped.
+levels:
+  A1:
+    title: Beginner
+    description: >
+      Understand and use familiar everyday expressions and very basic phrases
+      about yourself, your family, your home and your town in the Netherlands.
+
+    units:
+      - id: nl-a1-kennismaken
+        title: Greetings & Introductions
+        description: Say hello, choose between je and u, and introduce yourself.
+        icon: 👋
+        steps:
+          - id: nl-a1-begroeten
+            title: Hello & Goodbye
+            description: Common greetings and farewells for different times of day, formal and informal.
+            vocabulary: [hallo, hoi, goedemorgen, goedemiddag, goedenavond, dag, doei, "tot ziens"]
+            grammar:
+              - pattern: "Goedemorgen! Hoe gaat het?"
+              - pattern: "Goed, dank je. En met jou?"
+              - pattern: "Dag! Tot ziens."
+              - pattern: "Doei! Tot morgen!"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: nl-a1-je-of-u
+            title: Je or U?
+            description: Use informal je/jij with friends and polite u with strangers, older people and officials.
+            vocabulary: [je, jij, u, meneer, mevrouw, "dank je wel", "dank u wel", "hoe gaat het met u"]
+            grammar:
+              - pattern: "Hoe gaat het met je?"
+              - pattern: "Hoe gaat het met u, mevrouw {name}?"
+              - pattern: "Dank u wel, meneer."
+              - pattern: "Bent u meneer {name}?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+              - { type: translate, count: 2 }
+          - id: nl-a1-jezelf-voorstellen
+            title: Introduce Yourself
+            description: Say your name, where you come from and where you live, and ask the same.
+            vocabulary: ["ik heet", "de naam", "ik kom uit", "ik woon in", "het land", aangenaam, "leuk je te ontmoeten"]
+            grammar:
+              - pattern: "Hoe heet je? Ik heet {name}."
+              - pattern: "Mijn naam is {name}."
+              - pattern: "Waar kom je vandaan? Ik kom uit Spanje."
+              - pattern: "Ik woon in Utrecht. Aangenaam!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - { type: speak }
+          - id: nl-a1-beleefdheid
+            title: Please, Thanks & Sorry
+            description: Polite words for everyday situations, then a first conversation with a new neighbour.
+            vocabulary: [alsjeblieft, alstublieft, bedankt, "graag gedaan", sorry, pardon, "het spijt me", "geen probleem"]
+            grammar:
+              - pattern: "Een koffie, alstublieft."
+              - pattern: "Bedankt! – Graag gedaan."
+              - pattern: "Sorry, het spijt me. – Geen probleem."
+              - pattern: "Pardon, bent u de buurvrouw?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: meeting_a_new_neighbour
+                goal: Greet your new neighbour politely with u, introduce yourself, say where you are from and where you live.
+
+      - id: nl-a1-klanken
+        title: Alphabet & Dutch Sounds
+        description: Spell your name and master the typical Dutch vowels and consonants.
+        icon: 🔤
+        steps:
+          - id: nl-a1-alfabet
+            title: The Alphabet & Spelling
+            description: Learn the Dutch alphabet and spell names letter by letter.
+            vocabulary: ["het alfabet", "de letter", spellen, "de voornaam", "de achternaam", "de hoofdletter", "de klinker"]
+            grammar:
+              - pattern: "Hoe spel je dat?"
+              - pattern: "Mijn achternaam is De Vries: d-e, v-r-i-e-s."
+              - pattern: "Kunt u dat spellen, alstublieft?"
+              - pattern: "Met een hoofdletter."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: listen_type, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: nl-a1-lange-korte-klinkers
+            title: Long & Short Vowels
+            description: Hear and spell the difference between a/aa, e/ee, o/oo and u/uu.
+            vocabulary: ["de man", "de maan", "het bed", "het been", "de pot", "de boot", "de bus", "het vuur"]
+            grammar:
+              - pattern: "De man kijkt naar de maan."
+              - pattern: "De boot is groot."
+              - pattern: "Ik neem de bus."
+              - pattern: "Een raam, twee ramen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: speak }
+          - id: nl-a1-tweeklanken
+            title: "Typical Sounds: ui, ij/ei, oe, eu, ou"
+            description: Practise the diphthongs and vowel sounds that are special to Dutch.
+            vocabulary: ["het huis", "de tuin", "de trein", "het ijs", "het boek", "de deur", "de vrouw", koud]
+            grammar:
+              - pattern: "Mijn huis heeft een tuin."
+              - pattern: "De trein is laat."
+              - pattern: "Het boek ligt op tafel."
+              - pattern: "De vrouw doet de deur dicht."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 3 }
+              - { type: match }
+              - { type: listen_type, count: 2 }
+              - { type: speak, count: 2 }
+          - id: nl-a1-g-en-ch
+            title: "G, Ch & Sch"
+            description: Pronounce the Dutch g, ch and sch, then spell your name and street at a front desk.
+            vocabulary: [goed, graag, "de gracht", lachen, acht, "de school", "het gezicht", "de straat"]
+            grammar:
+              - pattern: "Goedemorgen! Graag gedaan."
+              - pattern: "Ik woon aan de gracht."
+              - pattern: "De kinderen gaan naar school."
+              - pattern: "Ik woon op nummer acht."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: speak, count: 2 }
+              - type: dialogue
+                scenario: front_desk_registration
+                goal: Give your first name and surname, spell both letter by letter, and spell your street name.
+
+      - id: nl-a1-getallen
+        title: Numbers, Prices & Time
+        description: Count, pay and tell the time the Dutch way.
+        icon: 🔢
+        steps:
+          - id: nl-a1-getallen-tot-twintig
+            title: Numbers 0–20
+            description: Count from zero to twenty and say your age and house number.
+            vocabulary: [nul, één, twee, drie, vijf, elf, twaalf, twintig]
+            grammar:
+              - pattern: "Hoe oud ben je? Ik ben negentien."
+              - pattern: "Wat is je huisnummer? Nummer elf."
+              - pattern: "Eén, twee, drie, vier, vijf."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: listen_type, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+          - id: nl-a1-getallen-tot-honderd
+            title: Numbers 21–100
+            description: "Learn the tens and the Dutch back-to-front order: eenentwintig = one-and-twenty."
+            vocabulary: [dertig, veertig, vijftig, zestig, zeventig, tachtig, negentig, honderd]
+            grammar:
+              - pattern: "Eenentwintig, tweeëntwintig, drieëntwintig."
+              - pattern: "Mijn oma is vierentachtig jaar."
+              - pattern: "Ik neem bus achtenveertig."
+              - pattern: "Het is vijfenveertig minuten lopen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: speak }
+          - id: nl-a1-prijzen
+            title: Prices & Paying
+            description: Ask what something costs and pay by card or in cash.
+            vocabulary: ["de euro", "de cent", kosten, duur, goedkoop, pinnen, contant, "de bon"]
+            grammar:
+              - pattern: "Wat kost dat?"
+              - pattern: "Dat is drie euro vijftig."
+              - pattern: "Kan ik pinnen? – Ja, natuurlijk."
+              - pattern: "Dat is te duur."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: speak }
+          - id: nl-a1-hoe-laat
+            title: What Time Is It?
+            description: Tell the time with half, kwart, over and voor, then shop at a market stall.
+            vocabulary: ["het uur", "de minuut", half, kwart, over, voor, "hoe laat", "'s ochtends"]
+            grammar:
+              - pattern: "Hoe laat is het?"
+              - pattern: "Het is half drie."
+              - pattern: "Het is kwart over vier."
+              - pattern: "Het is tien voor half zes."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - type: roleplay
+                scenario: market_stall
+                goal: Buy fruit at the weekly market, ask the prices, pay, and ask what time the market closes.
+
+      - id: nl-a1-ik-en-jij
+        title: Me & You
+        description: Personal pronouns, zijn and hebben, regular verbs and asking questions.
+        icon: 🙋
+        steps:
+          - id: nl-a1-zijn
+            title: Pronouns & To Be
+            description: Personal pronouns and the present tense of zijn (ik ben, jij bent, hij is).
+            vocabulary: [ik, "jij / je", u, hij, "zij / ze", wij, jullie, zijn]
+            grammar:
+              - pattern: "Ik ben student."
+              - pattern: "Jij bent aardig. Bent u docent?"
+              - pattern: "Hij is arts. Zij is verpleegkundige."
+              - pattern: "Wij zijn in Amsterdam. Zijn jullie moe?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: listen_type }
+          - id: nl-a1-hebben
+            title: To Have
+            description: The present tense of hebben, including the fixed expressions honger hebben and dorst hebben.
+            vocabulary: [hebben, "de fiets", "de auto", "de hond", "de kat", "de tijd", "de honger", "de dorst"]
+            grammar:
+              - pattern: "Ik heb een fiets."
+              - pattern: "Heb jij een hond?"
+              - pattern: "Zij heeft een kat."
+              - pattern: "Wij hebben honger. Hebben jullie dorst?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak }
+          - id: nl-a1-regelmatige-werkwoorden
+            title: Regular Verbs in the Present
+            description: "Form the present tense from the stem: ik werk, jij werkt, hij werkt, wij werken – and drop the t in 'werk jij?'."
+            vocabulary: [werken, wonen, leren, spelen, maken, koken, drinken, fietsen]
+            grammar:
+              - pattern: "Ik werk in Rotterdam."
+              - pattern: "Jij werkt veel. Werk jij vandaag?"
+              - pattern: "Hij woont in Den Haag."
+              - pattern: "Wij leren Nederlands."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+          - id: nl-a1-vraagwoorden
+            title: Asking Questions
+            description: Question words and verb-first yes/no questions, then chat with a classmate.
+            vocabulary: [wie, wat, waar, wanneer, hoe, waarom, welke, hoeveel]
+            grammar:
+              - pattern: "Waar woon je?"
+              - pattern: "Wat doe je? Ik ben kok."
+              - pattern: "Wie is dat? Dat is {name}."
+              - pattern: "Werk je of studeer je?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: language_cafe
+                goal: Ask a new classmate where they live, what they do and whether they work or study, and answer their questions too.
+
+      - id: nl-a1-de-en-het
+        title: Things Around Me
+        description: De and het, dit/dat/deze/die, plurals and er is / er zijn.
+        icon: 🪑
+        steps:
+          - id: nl-a1-de-het
+            title: De or Het?
+            description: Learn every noun with its article; diminutives (-je) always take het.
+            vocabulary: ["de tafel", "de stoel", "de lamp", "de kast", "het raam", "het bed", "het glas", "het meisje"]
+            grammar:
+              - pattern: "De tafel is groot."
+              - pattern: "Het raam is open."
+              - pattern: "Ik heb een stoel. De stoel is nieuw."
+              - pattern: "Het meisje drinkt een glas water."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: multiple_choice, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a1-dit-dat-deze-die
+            title: This & That
+            description: Use deze/die with de-words and dit/dat with het-words.
+            vocabulary: [dit, dat, deze, die, "de tas", "de pen", "het kopje", "het huis"]
+            grammar:
+              - pattern: "Wat is dit? Dit is een pen."
+              - pattern: "Deze stoel is nieuw, die stoel is oud."
+              - pattern: "Dit huis is klein, dat huis is groot."
+              - pattern: "Is die tas van jou?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: image_select }
+              - { type: error_correct }
+          - id: nl-a1-meervoud
+            title: Plurals
+            description: "Make plurals with -en or -s; every plural takes de."
+            vocabulary: ["de boeken", "de stoelen", "de tafels", "de auto's", "de huizen", "de fietsen", "de katten", "de kinderen"]
+            grammar:
+              - pattern: "Eén boek, twee boeken."
+              - pattern: "Eén tafel, drie tafels."
+              - pattern: "Eén auto, twee auto's."
+              - pattern: "De kinderen spelen buiten."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: match }
+              - { type: listen_type }
+          - id: nl-a1-er-is-er-zijn
+            title: There Is & There Are
+            description: Say what there is in a room with er is and er zijn, on your first day at language school.
+            vocabulary: ["de klas", "het lokaal", "de docent", "de cursist", "het bord", "de computer", "het woordenboek", "de koffieautomaat"]
+            grammar:
+              - pattern: "Er is een computer in het lokaal."
+              - pattern: "Er zijn twaalf cursisten in de klas."
+              - pattern: "Is er koffie? Ja, er is een koffieautomaat."
+              - pattern: "Hoeveel cursisten zijn er?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select, count: 2 }
+              - type: dialogue
+                scenario: first_day_at_language_school
+                goal: Ask the receptionist what there is in the building, where your classroom is and how many students are in the class.
+
+      - id: nl-a1-familie
+        title: Family & Friends
+        description: Talk about your family, use possessives and celebrate a Dutch birthday.
+        icon: 👨‍👩‍👧
+        steps:
+          - id: nl-a1-gezin
+            title: My Family
+            description: Name family members and say who is in your family.
+            vocabulary: ["de vader", "de moeder", "de ouders", "de broer", "de zus", "de zoon", "de dochter", "het kind"]
+            grammar:
+              - pattern: "Dit is mijn vader."
+              - pattern: "Ik heb een broer en twee zussen."
+              - pattern: "Heb je kinderen? Ja, een zoon en een dochter."
+              - pattern: "Mijn ouders wonen in Groningen."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: image_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: speak }
+          - id: nl-a1-bezittelijk
+            title: Mine, Yours, Ours
+            description: Possessive pronouns, including ons with het-words and onze with de-words and plurals.
+            vocabulary: [mijn, jouw, uw, zijn, haar, ons, onze, hun]
+            grammar:
+              - pattern: "Is dat jouw fiets? Ja, dat is mijn fiets."
+              - pattern: "Zijn zus woont in Leiden. Haar broer woont in Delft."
+              - pattern: "Ons huis is klein, maar onze tuin is groot."
+              - pattern: "Hoe heet uw dochter?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+          - id: nl-a1-mensen-beschrijven
+            title: Describing People
+            description: Describe what people look like and what they are like.
+            vocabulary: [lang, klein, jong, oud, aardig, grappig, "het haar", "de ogen"]
+            grammar:
+              - pattern: "Mijn moeder is klein en aardig."
+              - pattern: "Hij heeft blond haar en blauwe ogen."
+              - pattern: "Mijn opa is oud, maar hij fietst elke dag."
+              - pattern: "Hoe ziet je zus eruit?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: story }
+              - { type: speak }
+          - id: nl-a1-verjaardag
+            title: A Dutch Birthday
+            description: Congratulate everyone at a gezellige Dutch birthday party, where you also congratulate the family.
+            vocabulary: ["de verjaardag", jarig, gefeliciteerd, "het cadeau", "de taart", gezellig, "de oom", "de tante"]
+            grammar:
+              - pattern: "Gefeliciteerd met je verjaardag!"
+              - pattern: "Gefeliciteerd met je zoon!"
+              - pattern: "Wanneer ben je jarig? Ik ben in mei jarig."
+              - pattern: "Wat gezellig! Wil je een stuk taart?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: dutch_birthday_party
+                goal: Congratulate the host and the relatives in the circle, introduce yourself and talk a little about your own family.
+
+      - id: nl-a1-eten-en-drinken
+        title: Food & Drink
+        description: Everyday food, ordering in a café and saying no with niet and geen.
+        icon: 🧀
+        steps:
+          - id: nl-a1-eten
+            title: Everyday Food
+            description: Talk about what you eat, including a typical Dutch breakfast and lunch.
+            vocabulary: ["het brood", "de kaas", "de boter", "het ei", "de appel", "de groente", "het vlees", "de hagelslag"]
+            grammar:
+              - pattern: "Ik eet brood met kaas."
+              - pattern: "Eet jij vlees?"
+              - pattern: "Ik vind appels lekker."
+              - pattern: "Wat eet je bij het ontbijt?"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+          - id: nl-a1-bestellen
+            title: Ordering Drinks
+            description: Order politely with ik wil graag and mag ik, and ask for the bill.
+            vocabulary: ["de koffie", "de thee", "het water", "het biertje", "de appeltaart", "de slagroom", "de rekening", "de tosti"]
+            grammar:
+              - pattern: "Ik wil graag een koffie."
+              - pattern: "Mag ik een appeltaart met slagroom?"
+              - pattern: "Voor mij een thee, alstublieft."
+              - pattern: "Mag ik afrekenen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: speak }
+          - id: nl-a1-niet-geen
+            title: "Niet or Geen?"
+            description: Use geen before nouns without a definite article and niet for everything else.
+            vocabulary: [niet, geen, "de soep", "de melk", "de suiker", warm, koud, vegetarisch]
+            grammar:
+              - pattern: "Ik drink geen koffie."
+              - pattern: "Ik heb geen honger."
+              - pattern: "De soep is niet warm."
+              - pattern: "Ik eet geen vlees, ik ben vegetarisch."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: translate }
+          - id: nl-a1-op-het-terras
+            title: On the Terrace
+            description: Find a table, order drinks and snacks on a café terrace, and pay.
+            vocabulary: ["het terras", "de kaart", bestellen, "de bitterballen", lekker, "eet smakelijk", pinnen, "de fooi"]
+            grammar:
+              - pattern: "Is deze tafel vrij?"
+              - pattern: "Mogen wij de kaart?"
+              - pattern: "We willen graag bitterballen bestellen."
+              - pattern: "Eet smakelijk!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete }
+              - type: roleplay
+                scenario: cafe_terrace
+                goal: Ask for a free table, order drinks and a snack, react when something is not available (geen), and pay by card.
+
+      - id: nl-a1-dagelijks-leven
+        title: Daily Life
+        description: Days of the week, your daily routine, free time and plans with gaan.
+        icon: ⏰
+        steps:
+          - id: nl-a1-dagen
+            title: Days of the Week
+            description: Name the days and say when you work and when you are free.
+            vocabulary: [maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag, zondag, "het weekend"]
+            grammar:
+              - pattern: "Welke dag is het vandaag? Het is maandag."
+              - pattern: "Ik werk van maandag tot en met vrijdag."
+              - pattern: "In het weekend ben ik vrij."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_type, count: 2 }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a1-dagindeling
+            title: My Daily Routine
+            description: "Describe your day and put the verb second after a time expression: Om acht uur ontbijt ik."
+            vocabulary: [opstaan, ontbijten, douchen, lunchen, "het avondeten", "naar bed gaan", daarna, "'s avonds"]
+            grammar:
+              - pattern: "Ik sta om zeven uur op."
+              - pattern: "Om acht uur ontbijt ik."
+              - pattern: "Daarna fiets ik naar mijn werk."
+              - pattern: "'s Avonds kook ik en om elf uur ga ik naar bed."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: story }
+              - { type: speak }
+          - id: nl-a1-vrije-tijd
+            title: Free Time
+            description: Say what you like doing with graag and niet graag.
+            vocabulary: [sporten, zwemmen, lezen, wandelen, voetballen, "de film", "de muziek", graag]
+            grammar:
+              - pattern: "Ik lees graag."
+              - pattern: "Hij zwemt niet graag."
+              - pattern: "Wat doe je in je vrije tijd?"
+              - pattern: "Op zaterdag voetbal ik met vrienden."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - { type: translate, count: 2 }
+          - id: nl-a1-plannen-maken
+            title: Making Plans
+            description: Talk about the near future with gaan + infinitive and make an appointment with a friend.
+            vocabulary: [gaan, morgen, vanavond, "volgende week", "de afspraak", samen, "zin hebben in", "het plan"]
+            grammar:
+              - pattern: "Morgen ga ik naar de markt."
+              - pattern: "Wat ga je dit weekend doen?"
+              - pattern: "Vanavond gaan we samen koken."
+              - pattern: "Heb je zin in een film?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - type: dialogue
+                scenario: making_weekend_plans
+                goal: Invite a friend to do something this weekend, agree on a day and a time, and say what you are going to do.
+
+      - id: nl-a1-de-stad
+        title: Around Town
+        description: Places in town, asking the way, modal verbs, bikes and public transport.
+        icon: 🚲
+        steps:
+          - id: nl-a1-in-de-stad
+            title: Places in Town
+            description: Name places in town and say where they are.
+            vocabulary: ["het station", "de supermarkt", "de bakker", "de apotheek", "de bibliotheek", "het gemeentehuis", "de markt", "het plein"]
+            grammar:
+              - pattern: "Waar is het station?"
+              - pattern: "De bibliotheek is naast het station."
+              - pattern: "De bakker is tegenover de supermarkt."
+              - pattern: "Er is een markt op het plein."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select }
+          - id: nl-a1-de-weg-vragen
+            title: Asking the Way
+            description: Ask for and follow simple directions.
+            vocabulary: [rechtdoor, linksaf, rechtsaf, "de straat", "de hoek", "het stoplicht", "de brug", ver]
+            grammar:
+              - pattern: "Pardon, hoe kom ik bij het station?"
+              - pattern: "Ga rechtdoor en neem de tweede straat links."
+              - pattern: "Bij het stoplicht gaat u rechtsaf."
+              - pattern: "Is het ver? Nee, het is vijf minuten lopen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - { type: speak }
+          - id: nl-a1-modale-werkwoorden
+            title: Can, Want, Must, May
+            description: Use kunnen, willen, moeten and mogen with an infinitive at the end, with tips for cycling in the Netherlands.
+            vocabulary: [kunnen, willen, moeten, mogen, "het fietspad", "de fietsenstalling", "het slot", parkeren]
+            grammar:
+              - pattern: "Ik kan goed fietsen."
+              - pattern: "Wil jij met de fiets gaan?"
+              - pattern: "Je moet je fiets op slot zetten."
+              - pattern: "Hier mag je niet parkeren."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: translate, count: 2 }
+          - id: nl-a1-openbaar-vervoer
+            title: Train, Bus & Tram
+            description: Buy a ticket, check in and out, and find your platform at an NS station.
+            vocabulary: ["de trein", "de bus", "het perron", "het kaartje", "de OV-chipkaart", inchecken, uitchecken, overstappen]
+            grammar:
+              - pattern: "Een kaartje naar Utrecht, alstublieft."
+              - pattern: "Van welk spoor vertrekt de trein naar Amsterdam?"
+              - pattern: "Je moet inchecken en uitchecken."
+              - pattern: "Moet ik overstappen? Ja, in Utrecht."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete }
+              - type: roleplay
+                scenario: train_station_ticket_desk
+                goal: Buy a ticket to another city, ask which platform and what time the train leaves, and whether you have to change trains.
+
+      - id: nl-a1-wonen-en-winkelen
+        title: Home, Shopping & Health
+        description: Your home, grocery shopping, visiting the GP and your first past tense.
+        icon: 🏠
+        steps:
+          - id: nl-a1-wonen
+            title: Where I Live
+            description: Describe your house or flat, its rooms and the rent.
+            vocabulary: ["het appartement", "de woonkamer", "de slaapkamer", "de keuken", "de badkamer", "de huur", "de buren", "de verdieping"]
+            grammar:
+              - pattern: "Ik woon in een appartement op de tweede verdieping."
+              - pattern: "Het huis heeft twee slaapkamers."
+              - pattern: "De huur is negenhonderd euro per maand."
+              - pattern: "Mijn buren zijn erg aardig."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: story }
+              - { type: speak }
+          - id: nl-a1-boodschappen
+            title: Grocery Shopping
+            description: Do your boodschappen at the supermarket and answer the cashier's questions.
+            vocabulary: ["de boodschappen", "de kassa", "het mandje", "de aanbieding", "de kilo", "het pak", "de tas", "het bonnetje"]
+            grammar:
+              - pattern: "Ik doe boodschappen bij de Albert Heijn."
+              - pattern: "Ik wil graag een kilo appels."
+              - pattern: "Een pak melk en een brood, alstublieft."
+              - pattern: "Wilt u het bonnetje? Nee, dank u."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: speak }
+          - id: nl-a1-huisarts
+            title: At the GP
+            description: Make an appointment with the huisarts and say what hurts.
+            vocabulary: ["de huisarts", "de afspraak", ziek, "de pijn", "het hoofd", "de buik", "de keel", "het medicijn"]
+            grammar:
+              - pattern: "Ik wil graag een afspraak maken met de huisarts."
+              - pattern: "Ik ben ziek. Ik heb hoofdpijn en keelpijn."
+              - pattern: "Wat zijn uw klachten?"
+              - pattern: "Ik heb pijn in mijn buik."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: calling_the_gp
+                goal: Call the doctor's assistant, describe your symptoms and make an appointment for tomorrow.
+          - id: nl-a1-perfectum
+            title: What Did You Do?
+            description: "A first look at the perfectum with hebben + ge-…-t/d: talk about last weekend."
+            vocabulary: [gisteren, "vorige week", "afgelopen weekend", gewerkt, gekookt, gefietst, gespeeld, gewoond]
+            grammar:
+              - pattern: "Ik heb gisteren gewerkt."
+              - pattern: "Wat heb je afgelopen weekend gedaan?"
+              - pattern: "We hebben samen gekookt."
+              - pattern: "Ik heb twee jaar in Spanje gewoond."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: monday_coffee_at_work
+                goal: Tell a colleague what you did last weekend using hebben + past participle, and ask what they did.
+
+    checkpoint:
+      title: A1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
+
+  A2:
+    title: Elementary
+    description: >
+      Handle routine situations in Dutch society: work and job hunting, the doctor,
+      housing, the gemeente, school and shopping. Tell stories about the past,
+      give reasons, compare things and make plans, at the level of the A2
+      inburgeringsexamen.
+
+    units:
+      - id: nl-a2-perfectum
+        title: "Looking Back: The Perfect Tense"
+        description: Say what you have done, choosing hebben or zijn and the right past participle.
+        icon: 📅
+        steps:
+          - id: nl-a2-perfectum-regelmatig
+            title: Regular Past Participles
+            description: "Form regular participles with ge- + stem + -t or -d, using 't kofschip to choose, and drop ge- after be-, ge-, her-, ont- and ver-."
+            vocabulary: [werken, maken, koken, wonen, betalen, fietsen, "het weekend", "de boodschappen"]
+            grammar:
+              - pattern: "Ik heb gisteren lang gewerkt."
+              - pattern: "Wij hebben samen gekookt."
+              - pattern: "Ze heeft tien jaar in Utrecht gewoond."
+              - pattern: "Heb je de rekening al betaald?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+              - { type: error_correct }
+          - id: nl-a2-sterke-werkwoorden
+            title: Irregular Past Participles
+            description: Learn the most common irregular participles such as gegeten, gedronken, gelezen, geschreven, gezien and gekregen.
+            vocabulary: [eten, drinken, lezen, schrijven, zien, krijgen, "de krant", "de brief"]
+            grammar:
+              - pattern: "Ik heb de krant al gelezen."
+              - pattern: "Wat heb je gisteren gegeten?"
+              - pattern: "Ze heeft een brief aan de gemeente geschreven."
+              - pattern: "We hebben een mooie film gezien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+          - id: nl-a2-perfectum-zijn
+            title: Hebben or Zijn?
+            description: Use zijn with movement to a place and change of state (gaan, komen, blijven, worden, verhuizen) and hebben with most other verbs.
+            vocabulary: [gaan, komen, vertrekken, aankomen, blijven, worden, verhuizen, "het station"]
+            grammar:
+              - pattern: "Ik ben gisteren naar Amsterdam gegaan."
+              - pattern: "Hij is om tien uur thuisgekomen."
+              - pattern: "We zijn vorig jaar verhuisd."
+              - pattern: "Ik heb een uur gefietst. Ik ben naar mijn werk gefietst."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+          - id: nl-a2-mijn-weekend
+            title: My Weekend
+            description: Tell someone what you did last weekend, mixing hebben and zijn with past time words.
+            vocabulary: ["afgelopen weekend", gisteren, eergisteren, "het feest", "de markt", "het museum", "op bezoek gaan", "de schoonmoeder"]
+            grammar:
+              - pattern: "Wat heb je afgelopen weekend gedaan?"
+              - pattern: "Zaterdag ben ik naar de markt gegaan."
+              - pattern: "Zondag hebben we bij mijn schoonmoeder gegeten."
+              - pattern: "Daarna zijn we lekker thuisgebleven."
+            activities:
+              - { type: learn }
+              - { type: story }
+              - { type: listen_type }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: monday_morning_coffee
+                goal: Tell a colleague at the coffee machine what you did last weekend and ask about theirs.
+
+      - id: nl-a2-werk
+        title: Work & Job Hunting
+        description: Talk about your job, find vacancies, apply and get through a job interview.
+        icon: 💼
+        steps:
+          - id: nl-a2-beroepen-werkplek
+            title: Jobs & the Workplace
+            description: Say what you do, where you work and for how long, using werken als, werken bij and al … jaar.
+            vocabulary: ["de werkgever", "de werknemer", "de collega", "de baan", "het bedrijf", "de afdeling", "het contract", parttime]
+            grammar:
+              - pattern: "Wat voor werk doe je?"
+              - pattern: "Ik werk als verpleegkundige in een ziekenhuis."
+              - pattern: "Mijn zus werkt bij een groot bedrijf."
+              - pattern: "Ik werk hier al drie jaar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: nl-a2-scheidbare-werkwoorden
+            title: Separable Verbs at Work
+            description: Split separable verbs like opbellen, meenemen and afspreken in main clauses, and keep them together after a modal or as a participle (opgebeld).
+            vocabulary: [opbellen, terugbellen, meenemen, afspreken, invullen, opstaan, "de vergadering", "de pauze"]
+            grammar:
+              - pattern: "Ik bel de klant morgen op."
+              - pattern: "Kun je je cv meenemen?"
+              - pattern: "Ik heb de werkgever gisteren opgebeld."
+              - pattern: "We hebben om tien uur afgesproken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: nl-a2-vacature-solliciteren
+            title: Vacancies & Applying
+            description: Read a vacancy, apply for a job and say what you want to do with om … te + infinitive.
+            vocabulary: ["de vacature", "de sollicitatiebrief", "het cv", "het uitzendbureau", "de ervaring", "het diploma", "het salaris", solliciteren]
+            grammar:
+              - pattern: "Met deze brief solliciteer ik naar de vacature van magazijnmedewerker."
+              - pattern: "Ik ga naar het uitzendbureau om werk te zoeken."
+              - pattern: "Het is belangrijk om op tijd te komen."
+              - pattern: "Ik probeer elke dag Nederlands te spreken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice }
+              - { type: story }
+              - { type: error_correct }
+          - id: nl-a2-sollicitatiegesprek
+            title: The Job Interview
+            description: Answer questions about your experience and skills, and ask about working hours and the trial period.
+            vocabulary: ["het sollicitatiegesprek", "de werktijden", "het rijbewijs", "de proeftijd", flexibel, betrouwbaar, "in een team werken"]
+            grammar:
+              - pattern: "Ik heb vijf jaar als chauffeur gewerkt."
+              - pattern: "Ik kan goed in een team werken."
+              - pattern: "Hoeveel uur per week moet ik werken?"
+              - pattern: "Wanneer kan ik beginnen?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: job_interview
+                goal: Answer the interviewer's questions about your work experience and strengths, then ask about the working hours and when you can start.
+
+      - id: nl-a2-gezondheid
+        title: Health & the Doctor
+        description: Say how you feel, call the huisarts, follow the pharmacist's instructions and understand health insurance.
+        icon: 🩺
+        steps:
+          - id: nl-a2-zich-voelen
+            title: How Do You Feel?
+            description: Describe how you feel with reflexive verbs like zich voelen, zich vergissen and zich aankleden, and the pronouns me, je, zich, ons.
+            vocabulary: ["zich voelen", "zich vergissen", "zich aankleden", "zich haasten", "zich zorgen maken", moe, duizelig, misselijk]
+            grammar:
+              - pattern: "Ik voel me niet zo lekker."
+              - pattern: "Hij voelt zich vandaag weer beter."
+              - pattern: "Sorry, ik heb me vergist."
+              - pattern: "De kinderen kleden zich snel aan."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-a2-afspraak-huisarts
+            title: Calling the GP
+            description: Phone the doctor's assistant to make an appointment with the huisarts and describe your symptoms.
+            vocabulary: ["de huisarts", "de doktersassistente", "de afspraak", "de klacht", "de koorts", "de hoofdpijn", "het spreekuur", hoesten]
+            grammar:
+              - pattern: "Ik wil graag een afspraak maken bij de huisarts."
+              - pattern: "Sinds wanneer heeft u last van uw keel?"
+              - pattern: "Ik heb al drie dagen koorts."
+              - pattern: "Kunt u morgen om tien over half negen komen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
+              - type: roleplay
+                scenario: calling_the_doctors_assistant
+                goal: Explain your symptoms and how long you have had them, and agree on an appointment time.
+          - id: nl-a2-apotheek
+            title: At the Pharmacy
+            description: Pick up medicine at the apotheek and understand instructions given in the imperative.
+            vocabulary: ["de apotheek", "het recept", "het medicijn", "de pil", "de bijwerking", "de zalf", innemen, "twee keer per dag"]
+            grammar:
+              - pattern: "Neem deze pillen drie keer per dag in."
+              - pattern: "Drink veel water en blijf een paar dagen thuis."
+              - pattern: "Moet ik de pillen voor of na het eten innemen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: word_bank, count: 2 }
+          - id: nl-a2-zorgverzekering
+            title: Insurance & Out-of-Hours Care
+            description: Talk about the zorgverzekering and eigen risico, and know when to call the huisartsenpost or 112.
+            vocabulary: ["de zorgverzekering", "het eigen risico", "de premie", "de zorgpas", "de huisartsenpost", "de spoedeisende hulp", "de tandarts", "het noodgeval"]
+            grammar:
+              - pattern: "In Nederland moet iedereen een zorgverzekering hebben."
+              - pattern: "'s Avonds en in het weekend bel je de huisartsenpost."
+              - pattern: "Voor volwassenen vergoedt de basisverzekering de tandarts niet."
+              - pattern: "Bij een noodgeval bel je 112."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: story }
+              - { type: error_correct }
+              - type: roleplay
+                scenario: calling_the_huisartsenpost
+                goal: On a Saturday night, explain that your child has had a high fever since this afternoon and understand the advice you get.
+
+      - id: nl-a2-wonen
+        title: Housing & Neighbours
+        description: Describe homes, rent a place, talk about where you live and deal with the landlord and neighbours.
+        icon: 🏠
+        steps:
+          - id: nl-a2-woning-beschrijven
+            title: Describing a Home
+            description: "Describe homes with adjectives: add -e after de, het and deze, and with een + de-word, but not with een + het-word (een groot huis, het grote huis)."
+            vocabulary: ["de woning", "het appartement", "de tuin", "het balkon", "de buurt", ruim, licht, gezellig]
+            grammar:
+              - pattern: "Wij hebben een groot huis met een kleine tuin."
+              - pattern: "Het grote huis staat in een rustige buurt."
+              - pattern: "Het appartement heeft een ruim balkon."
+              - pattern: "Ik zoek een lichte woning met twee slaapkamers."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: nl-a2-huren
+            title: Renting a Place
+            description: Ask a landlord or housing corporation about the rent, extra costs, the deposit and the contract.
+            vocabulary: ["de huur", "de huisbaas", "de woningcorporatie", "de borg", "het huurcontract", "de servicekosten", "de huurtoeslag", gemeubileerd]
+            grammar:
+              - pattern: "Hoeveel is de huur per maand?"
+              - pattern: "Zijn gas, water en licht inbegrepen?"
+              - pattern: "Is het appartement gemeubileerd?"
+              - pattern: "U moet één maand huur als borg betalen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: nl-a2-er-wonen
+            title: "Er: There, Here and How Many"
+            description: Use er for 'there is/are', to replace a place you already named (ik woon er al) and with numbers (ik heb er twee).
+            vocabulary: ["de verdieping", "de lift", "de slaapkamer", "de berging", "de wasmachine", "de buurman", "de buurvrouw", sinds]
+            grammar:
+              - pattern: "Er is geen lift in het gebouw."
+              - pattern: "Woon je in Rotterdam? Ja, ik woon er al vijf jaar."
+              - pattern: "Hoeveel slaapkamers heeft het huis? Het heeft er drie."
+              - pattern: "Er staan twee fietsen in de berging."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-a2-verhuizen-buren
+            title: Moving & the Neighbours
+            description: Introduce yourself to new neighbours, report a repair to the landlord and complain politely about noise.
+            vocabulary: ["de verhuizing", "de verhuisdoos", "de lekkage", "de verwarming", "de overlast", "het lawaai", repareren, klagen]
+            grammar:
+              - pattern: "Hallo, ik ben uw nieuwe buurvrouw. Ik woon op nummer 12."
+              - pattern: "De verwarming is kapot. Kunt u iemand sturen?"
+              - pattern: "Er is een lekkage in de badkamer."
+              - pattern: "Mijn buren maken 's nachts veel lawaai."
+            activities:
+              - { type: learn }
+              - { type: story }
+              - { type: listen_type }
+              - { type: sentence_complete, count: 2 }
+              - type: roleplay
+                scenario: calling_the_landlord
+                goal: Report that the heating has been broken for two days, describe the problem and agree on a day for the repair.
+
+      - id: nl-a2-gemeente
+        title: The Gemeente & Official Letters
+        description: Register at the municipality, make polite requests, understand official letters and everyday rules.
+        icon: 🏛️
+        steps:
+          - id: nl-a2-inschrijven-gemeente
+            title: Registering at the Gemeente
+            description: Register your address at the gemeente and understand what the burgerservicenummer (BSN) is for.
+            vocabulary: ["de gemeente", "het gemeentehuis", "het loket", "het burgerservicenummer", "het identiteitsbewijs", "de verblijfsvergunning", "zich inschrijven", "de geboorteakte"]
+            grammar:
+              - pattern: "Ik wil me inschrijven bij de gemeente."
+              - pattern: "U moet eerst een afspraak maken via de website."
+              - pattern: "Neemt u uw paspoort en uw huurcontract mee."
+              - pattern: "Na de inschrijving krijgt u een BSN."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a2-beleefd-vragen
+            title: Polite Requests
+            description: "Make polite requests with zou u … kunnen, kunt u … and mag ik …, and soften the imperative with even and maar."
+            vocabulary: [alstublieft, even, "het formulier", "de handtekening", "de balie", "de wachtkamer", "het volgnummer", ondertekenen]
+            grammar:
+              - pattern: "Zou u dit formulier kunnen invullen?"
+              - pattern: "Kunt u dat nog een keer zeggen?"
+              - pattern: "Mag ik even uw identiteitsbewijs zien?"
+              - pattern: "Zet hier maar uw handtekening."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+              - { type: speak }
+          - id: nl-a2-officiele-brief
+            title: Official Letters & DigiD
+            description: Find the key information in an official letter and use online services with DigiD and MijnOverheid.
+            vocabulary: ["de afzender", "het onderwerp", "de belasting", "de boete", "de DigiD", "de berichtenbox", "het wachtwoord", inloggen]
+            grammar:
+              - pattern: "Geachte heer, mevrouw,"
+              - pattern: "U moet dit bedrag binnen vier weken betalen."
+              - pattern: "Log in met uw DigiD op MijnOverheid."
+              - pattern: "Ik begrijp deze brief niet. Kunt u mij helpen?"
+            activities:
+              - { type: learn }
+              - { type: story }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: nl-a2-regels-samenleving
+            title: Everyday Rules & Services
+            description: Talk about everyday rules and local services such as sorting rubbish, bulky waste collection, parking and the library.
+            vocabulary: ["het afval", "de container", "het grofvuil", "de bibliotheek", "de wijk", "de regel", "de verkiezingen", stemmen]
+            grammar:
+              - pattern: "Papier en glas moet je apart weggooien."
+              - pattern: "Wanneer halen ze het afval op?"
+              - pattern: "Je kunt grofvuil laten ophalen door de gemeente."
+              - pattern: "Je mag hier niet parkeren."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: error_correct }
+              - { type: translate }
+              - type: roleplay
+                scenario: gemeente_desk
+                goal: Tell the official at the counter that you have moved, politely ask which documents you need, and check the date your new address takes effect.
+
+      - id: nl-a2-vroeger
+        title: "When I Was Young: The Simple Past"
+        description: Describe your past and tell stories with the imperfectum and toen.
+        icon: 🕰️
+        steps:
+          - id: nl-a2-was-had
+            title: Was, Waren, Had
+            description: Describe past situations with the simple past of zijn and hebben, was/waren and had/hadden.
+            vocabulary: [vroeger, "de jeugd", "het dorp", "de buurjongen", klein, verlegen, rijk, arm]
+            grammar:
+              - pattern: "Vroeger was ik erg verlegen."
+              - pattern: "Mijn ouders waren niet rijk."
+              - pattern: "We hadden een hond en twee katten."
+              - pattern: "Had jij vroeger een fiets?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+          - id: nl-a2-imperfectum-regelmatig
+            title: "Regular Simple Past: -te and -de"
+            description: "Form the regular simple past with -te(n) or -de(n), using 't kofschip again (werkte, woonde)."
+            vocabulary: [werken, wonen, spelen, fietsen, leren, "de fabriek", "het speelgoed", buiten]
+            grammar:
+              - pattern: "Ik woonde vroeger in een klein dorp."
+              - pattern: "Mijn vader werkte in een fabriek."
+              - pattern: "We speelden elke dag buiten."
+              - pattern: "Ze fietste elke dag naar school."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+              - { type: listen_select }
+          - id: nl-a2-imperfectum-onregelmatig
+            title: Irregular Simple Past
+            description: Learn the most common irregular past forms such as ging, kwam, zag, deed, at, dronk, nam and kreeg.
+            vocabulary: [gaan, komen, zien, doen, eten, drinken, nemen, krijgen]
+            grammar:
+              - pattern: "Ik ging de deur uit en zag de bus wegrijden."
+              - pattern: "Om acht uur kwam mijn broer thuis."
+              - pattern: "We aten patat en dronken cola."
+              - pattern: "Ik kreeg een fiets voor mijn verjaardag."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: nl-a2-toen-verhaal
+            title: Telling a Story with Toen
+            description: "Tell a short story about your past with toen as 'when' (verb at the end) and as 'then' (inversion), using the perfectum for single facts."
+            vocabulary: [toen, eerst, daarna, plotseling, uiteindelijk, "de herinnering", "het vaderland", "de oom"]
+            grammar:
+              - pattern: "Toen ik twintig was, kwam ik naar Nederland."
+              - pattern: "Eerst woonde ik bij mijn oom. Toen vond ik een eigen kamer."
+              - pattern: "Plotseling ging de telefoon."
+              - pattern: "Ik ben in 2019 naar Nederland gekomen."
+            activities:
+              - { type: learn }
+              - { type: story, count: 2 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: neighbour_asks_about_your_past
+                goal: Tell a neighbour where you grew up, what life was like then and when and why you came to the Netherlands.
+
+      - id: nl-a2-school-redenen
+        title: School, Children & Reasons
+        description: Talk about your children's school and link ideas with want, maar, dus, omdat, dat, als, wanneer and toen.
+        icon: 🎒
+        steps:
+          - id: nl-a2-school-kinderen
+            title: School & Children
+            description: Talk about Dutch primary school life — groups, teachers, report cards and parent meetings.
+            vocabulary: ["de basisschool", "de groep", "de leerkracht", "de juf", "de meester", "het rapport", "het oudergesprek", "de naschoolse opvang"]
+            grammar:
+              - pattern: "Mijn dochter zit in groep vijf."
+              - pattern: "De school begint om half negen."
+              - pattern: "Ik heb volgende week een oudergesprek met de juf."
+              - pattern: "Hij neemt elke dag zijn lunch mee."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a2-want-maar-dus
+            title: Want, Maar, Dus
+            description: Join two main clauses with want, maar, dus, en and of — normal word order after the connector, no inversion.
+            vocabulary: [want, maar, dus, of, ziek, "de griep", "de leerplicht", "het verlof"]
+            grammar:
+              - pattern: "Mijn zoon blijft thuis, want hij is ziek."
+              - pattern: "Ik wil graag helpen, maar ik heb geen tijd."
+              - pattern: "Het regent, dus we gaan met de auto."
+              - pattern: "Gaan we lopen of nemen we de fiets?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct, count: 2 }
+          - id: nl-a2-omdat-dat
+            title: "Omdat & Dat: Verb to the End"
+            description: Give reasons with omdat and report what people say or think with dat, sending the conjugated verb to the end.
+            vocabulary: [omdat, dat, denken, zeggen, hopen, "de reden", "het huiswerk", "de leerplichtambtenaar"]
+            grammar:
+              - pattern: "Mijn zoon is niet op school, omdat hij koorts heeft."
+              - pattern: "De juf zegt dat hij goed kan rekenen."
+              - pattern: "Ik denk dat het morgen gaat regenen."
+              - pattern: "Omdat ik moest werken, kon ik niet komen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+          - id: nl-a2-als-wanneer-toen
+            title: Als, Wanneer & Toen
+            description: Talk about conditions and times with als and wanneer (now, future, repeated) and toen (one moment in the past).
+            vocabulary: [als, wanneer, toen, "de ouderavond", "de schoolreis", "de gymles", "de toestemming", "de klassenouder"]
+            grammar:
+              - pattern: "Als het mooi weer is, gaan we naar het park."
+              - pattern: "Wanneer mijn dochter uit school komt, drinken we thee."
+              - pattern: "Toen mijn zoon vier werd, ging hij naar school."
+              - pattern: "Bel de school als je kind ziek is."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete }
+              - { type: story }
+              - type: roleplay
+                scenario: calling_school_sick_child
+                goal: Call the school to say your child is sick and will stay home, explain why, and ask what homework they should do.
+
+      - id: nl-a2-winkelen
+        title: Shopping, Comparing & Returns
+        description: Compare products and prices, buy clothes, use object pronouns and return something that is broken.
+        icon: 🛍️
+        steps:
+          - id: nl-a2-vergelijken
+            title: Comparing Things
+            description: Compare with -er dan and the superlative het -st, including goed/beter/best, veel/meer/meest and graag/liever/liefst.
+            vocabulary: [goedkoop, duur, groot, klein, beter, meer, liever, "de aanbieding"]
+            grammar:
+              - pattern: "Deze jas is goedkoper dan die jas."
+              - pattern: "Op de markt is het fruit het goedkoopst."
+              - pattern: "Deze supermarkt is groter, maar die is beter."
+              - pattern: "Ik drink liever thee dan koffie, maar het liefst drink ik water."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: image_select }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+          - id: nl-a2-kleding-kopen
+            title: Buying Clothes
+            description: Ask for sizes and colours and describe clothes with inflected adjectives (een zwarte broek, een wit overhemd).
+            vocabulary: ["de maat", "de kleur", "de paskamer", "de broek", "de jas", "het overhemd", "de trui", passen]
+            grammar:
+              - pattern: "Heeft u deze trui ook in maat M?"
+              - pattern: "Ik zoek een zwarte broek en een wit overhemd."
+              - pattern: "Mag ik deze jas even passen?"
+              - pattern: "De blauwe trui is te klein."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: nl-a2-objectpronomen
+            title: Him, Her, It, Them
+            description: Replace objects with me, je, hem, haar, het, ons, jullie and ze; a de-word thing becomes hem, a het-word thing becomes het.
+            vocabulary: [me, je, hem, haar, het, ons, jullie, ze]
+            grammar:
+              - pattern: "Ik vind die jas mooi. Ik neem hem."
+              - pattern: "Waar is het boek? Ik heb het niet gezien."
+              - pattern: "Deze schoenen zijn te duur. Ik koop ze niet."
+              - pattern: "Kun je me morgen helpen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-a2-ruilen-terugbrengen
+            title: Returns & Exchanges
+            description: Return or exchange a product with the receipt, using object pronouns and er with numbers.
+            vocabulary: ["de kassabon", "de tegoedbon", "de garantie", "de klantenservice", ruilen, terugbrengen, kapot, terugkrijgen]
+            grammar:
+              - pattern: "Ik wil deze lamp graag ruilen, want hij is kapot."
+              - pattern: "Ik heb hem vorige week gekocht. Hier is de kassabon."
+              - pattern: "Ik heb twee bekers gekocht, maar er is er één kapot."
+              - pattern: "Kan ik mijn geld terugkrijgen?"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: returning_a_broken_product
+                goal: Explain what is wrong with the kettle you bought, show your receipt and ask for your money back or a new one.
+
+      - id: nl-a2-trein-plannen
+        title: Trains, Plans & Phone Calls
+        description: Travel by train with the NS, deal with delays, make plans with zullen and handle appointments by phone.
+        icon: 🚆
+        steps:
+          - id: nl-a2-met-de-trein
+            title: Taking the Train
+            description: Buy a ticket, check in and out, and find the right platform at the station.
+            vocabulary: ["het perron", "het spoor", "de ov-chipkaart", "de enkele reis", "het retour", inchecken, uitchecken, "de conducteur"]
+            grammar:
+              - pattern: "Een retour Utrecht, alstublieft."
+              - pattern: "Van welk spoor vertrekt de trein naar Groningen?"
+              - pattern: "De trein naar Amsterdam Centraal vertrekt van spoor 5b."
+              - pattern: "Vergeet niet in en uit te checken!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a2-vertraging-overstappen
+            title: Delays & Changing Trains
+            description: Understand station announcements about delays, disruptions and cancellations, and ask where to change trains.
+            vocabulary: ["de vertraging", "de storing", "de aansluiting", "de reisplanner", "de intercity", "de sprinter", overstappen, uitvallen]
+            grammar:
+              - pattern: "De trein naar Den Haag heeft tien minuten vertraging."
+              - pattern: "Door een storing rijden er minder treinen."
+              - pattern: "U moet in Utrecht Centraal overstappen."
+              - pattern: "Mijn trein is uitgevallen, dus ik kom te laat."
+            activities:
+              - { type: learn }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: asking_at_the_ns_service_desk
+                goal: Ask a station employee how to reach your destination now that your train has been cancelled.
+          - id: nl-a2-zullen-plannen
+            title: Plans with Zullen
+            description: Make suggestions and promises with zullen, and place plans in time with binnenkort, over een week and volgend jaar.
+            vocabulary: [zullen, binnenkort, "over een week", "volgend jaar", "de toekomst", "het plan", misschien, waarschijnlijk]
+            grammar:
+              - pattern: "Zullen we zaterdag naar Utrecht gaan?"
+              - pattern: "Ik zal je morgen bellen."
+              - pattern: "Volgend jaar zal ik het examen doen."
+              - pattern: "Over twee weken begin ik met een nieuwe cursus."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate }
+          - id: nl-a2-telefoneren
+            title: Phone Calls & Appointments
+            description: Make, move and cancel an appointment by phone, ask to be put through and leave a message.
+            vocabulary: ["het telefoonnummer", "de voicemail", "het bericht", verzetten, afzeggen, doorverbinden, bereikbaar, "even wachten"]
+            grammar:
+              - pattern: "Met Sara de Vries, goedemorgen."
+              - pattern: "Ik bel om mijn afspraak te verzetten."
+              - pattern: "Kunt u me doorverbinden met de klantenservice?"
+              - pattern: "Ik ben morgen de hele dag bereikbaar."
+            activities:
+              - { type: learn }
+              - { type: listen_type }
+              - { type: sentence_complete }
+              - type: roleplay
+                scenario: moving_an_appointment_by_phone
+                goal: Call the dentist's office, give your name and date of birth, explain you cannot come on Tuesday and agree on a new time.
+
+      - id: nl-a2-weer-feesten
+        title: Weather, Seasons & Celebrations
+        description: Talk about the weather, use diminutives and take part in Dutch holidays and birthdays.
+        icon: 🎉
+        steps:
+          - id: nl-a2-weer-seizoenen
+            title: Weather & Seasons
+            description: Talk about the weather and the seasons with het regent, het waait and comparatives like warmer and kouder.
+            vocabulary: ["het weer", "de lente", "de zomer", "de herfst", "de winter", "de bui", "de wind", "de weersverwachting"]
+            grammar:
+              - pattern: "Het regent al de hele dag."
+              - pattern: "Morgen wordt het warmer en zonniger."
+              - pattern: "In de herfst waait het vaak hard."
+              - pattern: "Er komt vanmiddag een flinke bui."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: listen_type }
+              - { type: fill_blank, count: 2 }
+          - id: nl-a2-verkleinwoorden
+            title: Diminutives
+            description: Make diminutives with -je, -tje, -pje and -etje for small or cosy things; every diminutive is a het-word.
+            vocabulary: ["het kopje", "het broodje", "het biertje", "het boompje", "het balletje", "het huisje", "het momentje", "het weekendje"]
+            grammar:
+              - pattern: "Zullen we een kopje koffie drinken?"
+              - pattern: "Ik neem een broodje kaas."
+              - pattern: "Een momentje, alstublieft."
+              - pattern: "Ze wonen in een klein huisje aan het water."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+          - id: nl-a2-feestdagen
+            title: Dutch Celebrations
+            description: Learn what people do on Koningsdag, Sinterklaas, Christmas and New Year's Eve.
+            vocabulary: ["de feestdag", Koningsdag, Sinterklaas, "de pakjesavond", "de vrijmarkt", "de oliebol", "het vuurwerk", "het gedicht"]
+            grammar:
+              - pattern: "Op Koningsdag dragen veel mensen oranje."
+              - pattern: "Sinterklaas komt elk jaar in november met de boot aan."
+              - pattern: "Op 5 december is het pakjesavond."
+              - pattern: "Met oud en nieuw eten we oliebollen en kijken we naar het vuurwerk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: story }
+              - { type: multiple_choice }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+          - id: nl-a2-verjaardag
+            title: A Dutch Birthday
+            description: Join a birthday party in the circle, congratulating the host and the whole family, making small talk and saying goodbye.
+            vocabulary: ["de verjaardag", "de kring", "het cadeau", "de taart", feliciteren, gefeliciteerd, jarig, "de visite"]
+            grammar:
+              - pattern: "Gefeliciteerd met je verjaardag!"
+              - pattern: "Gefeliciteerd met je moeder!"
+              - pattern: "Wie is er vandaag jarig?"
+              - pattern: "Hoe oud ben je geworden?"
+            activities:
+              - { type: learn }
+              - { type: listen_type }
+              - { type: error_correct }
+              - type: roleplay
+                scenario: birthday_in_the_circle
+                goal: Arrive at a colleague's birthday, congratulate the host and their relatives in the circle, make small talk about the weather and your weekend, and say goodbye.
+
+    checkpoint:
+      title: A2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 3 }
+        - { type: sentence_complete, count: 2 }
+        - { type: listen_type, count: 2 }
+        - { type: translate, count: 2 }
+        - { type: roleplay }
+
+  B1:
+    title: Intermediate
+    description: >
+      Handle most situations at work, with the gemeente and in daily Dutch life: tell stories about the past,
+      give and defend opinions with nuance, write formal emails and complaints, and follow the news.
+      This is the level of the Staatsexamen NT2 Programma I and the inburgering B1 requirement.
+
+    units:
+      - id: nl-b1-verhalen
+        title: Telling Stories
+        description: Narrate past events and experiences with the imperfectum, the plusquamperfectum and time clauses.
+        icon: 📖
+        steps:
+          - id: nl-b1-verhalen-verleden
+            title: Narrating in the Past
+            description: "Open and close a story in the perfectum, and tell what happened in the imperfectum."
+            vocabulary: [vroeger, destijds, "de jeugd", "het dorp", "de herinnering", plotseling, "op een dag", uiteindelijk]
+            grammar:
+              - pattern: "Vroeger woonden we in een klein dorp in Brabant."
+              - pattern: "Op een dag stond er een vreemde man voor de deur."
+              - pattern: "Ik heb gisteren iets geks meegemaakt: ik zat in de trein en ineens viel de stroom uit."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: translate }
+              - { type: story }
+          - id: nl-b1-plusquamperfectum
+            title: The Past Perfect
+            description: "Use had/was + participle (plusquamperfectum) for something that happened before another past event."
+            vocabulary: [vergeten, kwijtraken, "de sleutel", "de portemonnee", "het perron", "de vertraging", "net op tijd", al]
+            grammar:
+              - pattern: "Toen ik op het station aankwam, was de trein al vertrokken."
+              - pattern: "Hij was zijn portemonnee kwijtgeraakt, dus hij kon niet betalen."
+              - pattern: "We hadden nog nooit zoveel sneeuw gezien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: listen_type }
+              - { type: translate }
+          - id: nl-b1-tijdsvolgorde
+            title: Linking Events in Time
+            description: "Order events with nadat, voordat, zodra, terwijl and toen, with the verb at the end of the subclause."
+            vocabulary: [nadat, voordat, zodra, terwijl, toen, daarna, ondertussen, intussen]
+            grammar:
+              - pattern: "Nadat we hadden gegeten, gingen we wandelen."
+              - pattern: "Bel me even zodra je thuis bent."
+              - pattern: "Terwijl ik aan het koken was, ging de telefoon."
+              - pattern: "Voordat je vertrekt, moet je de deur op slot doen."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-b1-ervaring-delen
+            title: Sharing an Experience
+            description: Tell a friend about something that happened to you and react with interest to their story.
+            vocabulary: ["Wat erg!", "Wat leuk voor je!", "Dat meen je niet!", "Echt waar?", "het avontuur", "de pech", meemaken, overkomen]
+            grammar:
+              - pattern: "Je raadt nooit wat me vorige week is overkomen."
+              - pattern: "Wat is er toen gebeurd?"
+              - pattern: "Dat meen je niet! En wat deed je toen?"
+            activities:
+              - { type: story }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+              - type: video_call
+                scenario: catching_up_with_a_friend
+                goal: Tell a friend what went wrong on your last trip using the imperfectum and plusquamperfectum, then react to their story.
+
+      - id: nl-b1-werk
+        title: Working Life
+        description: Contracts, calling in sick, verbs with fixed prepositions and the performance review.
+        icon: 💼
+        steps:
+          - id: nl-b1-arbeidscontract
+            title: Contracts and Conditions
+            description: Talk about your employment contract, probation period, notice period and leave days.
+            vocabulary: ["het arbeidscontract", "het vaste contract", "het tijdelijke contract", "de proeftijd", "de opzegtermijn", "het salaris", "de vakantiedag", "de cao"]
+            grammar:
+              - pattern: "Ik heb een tijdelijk contract voor een jaar, met een proeftijd van een maand."
+              - pattern: "Volgens de cao heb ik recht op vijfentwintig vakantiedagen."
+              - pattern: "Mijn contract wordt waarschijnlijk verlengd."
+              - pattern: "Hoe lang is de opzegtermijn?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: fill_blank }
+              - { type: translate }
+          - id: nl-b1-ziekmelden
+            title: Calling in Sick
+            description: Report sick and back to work, and talk about the company doctor.
+            vocabulary: ["zich ziek melden", "zich beter melden", "de bedrijfsarts", "de leidinggevende", "het verzuim", herstellen, "de arbodienst"]
+            grammar:
+              - pattern: "Ik wil me ziek melden, want ik heb hoge koorts."
+              - pattern: "Ik verwacht dat ik maandag weer kan komen werken."
+              - pattern: "Wie langer ziek is, krijgt een afspraak met de bedrijfsarts."
+              - pattern: "Ik heb me vanochtend beter gemeld."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: listen_select }
+              - type: roleplay
+                scenario: phoning_your_manager
+                goal: Call your leidinggevende to report sick, say how long you expect to be away and what should happen with your tasks.
+          - id: nl-b1-voorzetselwerkwoorden
+            title: Verbs with Fixed Prepositions
+            description: "Learn verbs that always take the same preposition, and replace the object with eraan, erop or erover."
+            vocabulary: ["wachten op", "denken aan", "zich ergeren aan", "houden van", "praten over", "zorgen voor", "rekenen op", "zich bezighouden met"]
+            grammar:
+              - pattern: "Ik wacht al twee weken op een reactie van HR."
+              - pattern: "Ik erger me aan collega's die altijd te laat komen."
+              - pattern: "Denk je aan de deadline? — Ja, ik denk eraan."
+              - pattern: "We hebben het er in de vergadering uitgebreid over gehad."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-b1-functioneringsgesprek
+            title: The Performance Review
+            description: Discuss your work, workload and ambitions in a functioneringsgesprek and in team meetings.
+            vocabulary: ["het functioneringsgesprek", "de vergadering", "de agenda", "het doel", "de feedback", "de cursus", "de verantwoordelijkheid", "de werkdruk"]
+            grammar:
+              - pattern: "Ik ben tevreden over mijn werk, maar de werkdruk is erg hoog."
+              - pattern: "Ik zou graag een cursus projectmanagement willen volgen."
+              - pattern: "Waar wil je het in het gesprek over hebben?"
+              - pattern: "Daar ben ik het niet helemaal mee eens."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: sentence_complete, count: 2 }
+              - { type: speak }
+              - type: video_call
+                scenario: performance_review
+                goal: In a performance review with your manager, say what went well, mention the high workload and ask to follow a training course.
+
+      - id: nl-b1-studie
+        title: Studying & Training
+        description: The Dutch education system, the inburgering route and infinitive constructions with and without te.
+        icon: 🎓
+        steps:
+          - id: nl-b1-onderwijssysteem
+            title: The Dutch Education System
+            description: Understand the difference between mbo, hbo and wo and talk about diplomas and internships.
+            vocabulary: ["het mbo", "het hbo", "het wo", "de opleiding", "het diploma", "de studiefinanciering", "de stage", "de universiteit"]
+            grammar:
+              - pattern: "Na het vmbo ging mijn dochter naar het mbo."
+              - pattern: "Een hbo-opleiding duurt meestal vier jaar."
+              - pattern: "Wetenschappelijk onderwijs volg je aan een universiteit."
+              - pattern: "Ik wil mijn buitenlandse diploma laten waarderen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: listen_select }
+              - { type: translate }
+          - id: nl-b1-te-infinitief
+            title: Infinitives with te
+            description: Use te + infinitive after verbs like proberen, beginnen, vergeten, hopen and van plan zijn.
+            vocabulary: ["proberen te", "van plan zijn om te", "besluiten te", "hopen te", "vergeten te", "beginnen te", "het examen", "zich inschrijven"]
+            grammar:
+              - pattern: "Ik probeer elke dag een uur Nederlands te studeren."
+              - pattern: "Ik ben van plan om volgend jaar een hbo-opleiding te beginnen."
+              - pattern: "Ze is vergeten zich in te schrijven voor het examen."
+              - pattern: "Ik hoop dit jaar mijn inburgeringsexamen te halen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank }
+              - { type: error_correct }
+          - id: nl-b1-staan-blijven-laten
+            title: Staan te, Blijven and Laten
+            description: "Describe ongoing actions with zitten/staan/liggen te, and use blijven and laten with a bare infinitive."
+            vocabulary: ["staan te wachten", "zitten te leren", "liggen te slapen", "blijven praten", "laten zien", "laten nakijken", "het huiswerk", "de docent"]
+            grammar:
+              - pattern: "Ik zat de hele avond voor mijn examen te leren."
+              - pattern: "We stonden twintig minuten op de bus te wachten."
+              - pattern: "Hij bleef maar praten tijdens de les."
+              - pattern: "Ik laat mijn brief door de docent nakijken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete }
+              - { type: error_correct }
+              - { type: listen_type }
+              - { type: translate }
+          - id: nl-b1-inburgeringscursus
+            title: Your Inburgering Route
+            description: Talk with the gemeente about your learning route, exams and exemptions.
+            vocabulary: ["de inburgeringsplicht", "de leerroute", "het taalniveau", "het examenonderdeel", "de taalschool", "de klantmanager", "de vrijstelling"]
+            grammar:
+              - pattern: "Ik moet voor alle examenonderdelen slagen om aan mijn inburgeringsplicht te voldoen."
+              - pattern: "Volgens mijn klantmanager is de B1-route het beste voor mij."
+              - pattern: "Ik vraag me af of ik een vrijstelling kan krijgen."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: story }
+              - { type: speak }
+              - type: roleplay
+                scenario: meeting_the_gemeente_klantmanager
+                goal: Discuss your leerroute with the klantmanager at the gemeente, explain your education and goals, and ask how long you have to finish the exams.
+
+      - id: nl-b1-wonen
+        title: Housing Problems & Complaints
+        description: Report repairs, use the passive voice and write a formal complaint to the woningcorporatie.
+        icon: 🏠
+        steps:
+          - id: nl-b1-passief-worden
+            title: The Passive with worden
+            description: "Say what is being done with worden + participle, and who does it with door."
+            vocabulary: ["de woningcorporatie", "de huurder", "de verhuurder", "de reparatie", "de lekkage", "de monteur", repareren, vervangen]
+            grammar:
+              - pattern: "De cv-ketel wordt morgen gerepareerd."
+              - pattern: "Het lek in het dak werd pas na drie weken gerepareerd."
+              - pattern: "De kozijnen worden door de woningcorporatie vervangen."
+              - pattern: "Wanneer wordt de lift eindelijk gerepareerd?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: translate }
+          - id: nl-b1-passief-zijn
+            title: The Passive with zijn and er
+            description: "Use zijn + participle for a finished result and er + worden for an action without a subject."
+            vocabulary: ["de schimmel", "de vochtplek", "de huurverhoging", "de geluidsoverlast", "het huurcontract", "de buurman", "het portiek"]
+            grammar:
+              - pattern: "De verwarming is nog steeds niet gerepareerd."
+              - pattern: "De brief is gisteren door de verhuurder verstuurd."
+              - pattern: "Er wordt 's nachts veel lawaai gemaakt in het portiek."
+              - pattern: "Er is nog niets aan de schimmel gedaan."
+            activities:
+              - { type: learn }
+              - { type: fill_blank }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select }
+              - { type: sentence_complete }
+          - id: nl-b1-formele-email
+            title: Writing a Formal Email
+            description: "Open, structure and close a formal email with Geachte…, u and Met vriendelijke groet."
+            vocabulary: ["Geachte heer/mevrouw", "Met vriendelijke groet", "het onderwerp", "de bijlage", "naar aanleiding van", "het verzoek", "bij voorbaat dank"]
+            grammar:
+              - pattern: "Geachte heer De Vries,"
+              - pattern: "Naar aanleiding van uw brief van 3 maart wil ik u het volgende laten weten."
+              - pattern: "Ik verzoek u vriendelijk om de reparatie zo snel mogelijk uit te voeren."
+              - pattern: "In de bijlage vindt u een foto van de schade."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank }
+              - { type: error_correct }
+              - { type: sentence_complete }
+              - { type: translate }
+          - id: nl-b1-klacht-indienen
+            title: Filing a Complaint
+            description: Complain politely but firmly about a repair that has not been done and agree on a solution.
+            vocabulary: ["een klacht indienen", "de Huurcommissie", "de termijn", "reageren op", "ontevreden", "de oplossing", "een afspraak nakomen"]
+            grammar:
+              - pattern: "Ik heb al drie keer gebeld, maar er is nog steeds niets gebeurd."
+              - pattern: "Als het probleem niet binnen twee weken wordt opgelost, stap ik naar de Huurcommissie."
+              - pattern: "Kunt u mij laten weten wanneer de monteur komt?"
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: story }
+              - { type: speak }
+              - type: roleplay
+                scenario: complaint_to_housing_corporation
+                goal: Phone the woningcorporatie about mould and a leak you reported weeks ago, stay polite but firm, and get a concrete date for the repair.
+
+      - id: nl-b1-zorg
+        title: The Healthcare System
+        description: Health insurance, the eigen risico, referrals and relative clauses.
+        icon: 🏥
+        steps:
+          - id: nl-b1-zorgverzekering
+            title: Health Insurance
+            description: "Understand the basisverzekering, the eigen risico and extra cover, using relative clauses with die and dat."
+            vocabulary: ["de zorgverzekering", "de basisverzekering", "de aanvullende verzekering", "het eigen risico", "de premie", "de zorgverzekeraar", vergoeden, "de zorgtoeslag"]
+            grammar:
+              - pattern: "Iedereen die in Nederland woont of werkt, moet een basisverzekering hebben."
+              - pattern: "Het eigen risico is het bedrag dat je zelf moet betalen."
+              - pattern: "Ik zoek een aanvullende verzekering die de tandarts vergoedt."
+              - pattern: "De huisarts valt niet onder het eigen risico."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank }
+              - { type: multiple_choice }
+              - { type: translate }
+          - id: nl-b1-verwijzing
+            title: Referral to a Specialist
+            description: "Talk about referrals and waiting lists with relative clauses using waar + preposition and met wie."
+            vocabulary: ["de verwijzing", "de specialist", "het ziekenhuis", "de wachtlijst", "de doktersassistent", "het consult", "de huisartsenpost", doorverwijzen]
+            grammar:
+              - pattern: "Zonder verwijzing van de huisarts kun je niet naar de specialist."
+              - pattern: "Het ziekenhuis waar ik naartoe ben verwezen, heeft een lange wachtlijst."
+              - pattern: "De arts met wie ik sprak, was erg vriendelijk."
+              - pattern: "Het formulier waarmee je je aanmeldt, staat op de website."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: listen_select }
+              - { type: translate }
+          - id: nl-b1-relatief-wat-wie
+            title: Relative wat and wie
+            description: "Use wat after alles, iets, het enige and whole clauses, and wie for 'whoever'."
+            vocabulary: ["de apotheek", "het recept", "de bijwerking", "de dosering", "het medicijn", voorschrijven, "de bijsluiter", innemen]
+            grammar:
+              - pattern: "Alles wat de dokter zei, heb ik opgeschreven."
+              - pattern: "Het enige wat helpt, is rust."
+              - pattern: "Wie koorts heeft, kan beter thuisblijven."
+              - pattern: "Ik moet twee keer per dag een tablet innemen, wat best lastig is."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete }
+              - { type: error_correct }
+              - { type: match }
+              - { type: speak }
+          - id: nl-b1-gesprek-huisarts
+            title: Explaining Symptoms to the GP
+            description: Describe symptoms and their duration clearly and ask the right questions about tests and costs.
+            vocabulary: ["de klacht", "de pijn", "last hebben van", "het onderzoek", "de uitslag", "de triage", "zich zorgen maken over", sinds]
+            grammar:
+              - pattern: "Ik heb al twee weken last van mijn rug."
+              - pattern: "De pijn die ik 's nachts heb, wordt steeds erger."
+              - pattern: "Ik maak me zorgen over de uitslag van het onderzoek."
+            activities:
+              - { type: learn }
+              - { type: listen_type }
+              - { type: story }
+              - { type: multiple_choice }
+              - type: video_call
+                scenario: video_consult_with_gp
+                goal: In a video consultation, describe your symptoms and how long you have had them, ask whether you need a referral and whether it falls under the eigen risico.
+
+      - id: nl-b1-geldzaken
+        title: Money & Administration
+        description: Tax returns, allowances and banking, with verb clusters in subclauses.
+        icon: 💶
+        steps:
+          - id: nl-b1-belastingaangifte
+            title: The Tax Return
+            description: "Talk about filing your tax return and use verb clusters such as had moeten doen in subclauses."
+            vocabulary: ["de belastingaangifte", "de Belastingdienst", "de DigiD", "het inkomen", "de aftrekpost", "de teruggave", "de aanslag", invullen]
+            grammar:
+              - pattern: "Je moet vóór 1 mei aangifte doen."
+              - pattern: "Ik wist niet dat ik aangifte had moeten doen."
+              - pattern: "Ze zegt dat ze haar aangifte al heeft ingevuld."
+              - pattern: "Ik denk dat ik geld terug zal krijgen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-b1-toeslagen
+            title: Allowances
+            description: "Understand toeslagen and advance payments, and link ideas with zodat and tenzij."
+            vocabulary: ["de toeslag", "de huurtoeslag", "de zorgtoeslag", "de kinderopvangtoeslag", "het voorschot", terugbetalen, "de wijziging", doorgeven]
+            grammar:
+              - pattern: "Geef wijzigingen in je inkomen snel door, zodat je later niets hoeft terug te betalen."
+              - pattern: "Je krijgt geen zorgtoeslag, tenzij je inkomen laag genoeg is."
+              - pattern: "Ik had de wijziging eerder moeten doorgeven."
+              - pattern: "Het voorschot wordt elke maand op je rekening gestort."
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_select }
+          - id: nl-b1-bankzaken
+            title: Banking and Bills
+            description: Handle transfers, direct debits and a blocked debit card.
+            vocabulary: ["de bankrekening", "de pinpas", "de automatische incasso", "het rekeningnummer", "de rekening", "de aanmaning", overmaken, terugboeken]
+            grammar:
+              - pattern: "Ik heb het bedrag gisteren overgemaakt."
+              - pattern: "Ik had niet gezien dat de rekening nog niet betaald was."
+              - pattern: "Ik heb mijn pinpas laten blokkeren, omdat ik hem kwijt was."
+              - pattern: "Je kunt een incasso binnen acht weken laten terugboeken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: word_bank }
+              - { type: translate }
+          - id: nl-b1-betalingsregeling
+            title: Payment Problems
+            description: Explain a payment problem and arrange to pay in instalments.
+            vocabulary: ["de betalingsregeling", "de schuldhulpverlening", "het budget", "de vaste lasten", "de achterstand", afbetalen, "de schuld", bezuinigen]
+            grammar:
+              - pattern: "Kan ik een betalingsregeling treffen?"
+              - pattern: "Ik zou het bedrag graag in drie termijnen willen afbetalen."
+              - pattern: "Hoewel ik weinig verdien, lukt het me om elke maand iets te sparen."
+              - pattern: "Bovendien heb ik mijn abonnementen opgezegd om te bezuinigen."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: story }
+              - { type: speak }
+              - type: roleplay
+                scenario: payment_arrangement_call
+                goal: Call the energy company about a late bill, explain why you could not pay on time and agree on a payment plan in monthly instalments.
+
+      - id: nl-b1-samenleving
+        title: Dutch Society
+        description: Politics, norms and values for the KNM exam, and every use of er.
+        icon: 🏛️
+        steps:
+          - id: nl-b1-politiek
+            title: Parliament and Elections
+            description: "Learn how the Tweede Kamer, the gemeenteraad and elections work, with existential and passive er."
+            vocabulary: ["de Tweede Kamer", "de Eerste Kamer", "de gemeenteraad", "de verkiezingen", "de politieke partij", "de minister-president", "het kabinet", stemmen]
+            grammar:
+              - pattern: "Er zijn in Nederland veel politieke partijen."
+              - pattern: "De Tweede Kamer wordt in principe elke vier jaar gekozen."
+              - pattern: "Bij de gemeenteraadsverkiezingen mogen ook veel inwoners zonder Nederlandse nationaliteit stemmen."
+              - pattern: "Er wordt in de Tweede Kamer veel gedebatteerd over wonen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: listen_select }
+              - { type: translate }
+          - id: nl-b1-er-plaats-hoeveelheid
+            title: Er for Place and Quantity
+            description: "Use er to refer back to a place and with numbers (ik heb er drie)."
+            vocabulary: ["de gemeente", "de inwoner", "de provincie", "het gemeentehuis", "de wijk", "de buurt", "het aantal", ongeveer]
+            grammar:
+              - pattern: "Woon je al lang in Utrecht? — Ja, ik woon er al tien jaar."
+              - pattern: "Hoeveel provincies zijn er? — Er zijn er twaalf."
+              - pattern: "Ik ben er nog nooit geweest."
+              - pattern: "Er wonen ongeveer achttien miljoen mensen in Nederland."
+            activities:
+              - { type: learn }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-b1-normen-waarden
+            title: Norms and Values
+            description: Discuss directness, appointments, equality and freedom of speech in Dutch society.
+            vocabulary: ["de normen en waarden", "de gelijkheid", "de vrijheid van meningsuiting", direct, "de afspraak", "op tijd", "de Grondwet", "de discriminatie"]
+            grammar:
+              - pattern: "Nederlanders zeggen vaak direct wat ze ervan vinden."
+              - pattern: "Het is hier gebruikelijk dat je een afspraak maakt voordat je langskomt."
+              - pattern: "Volgens artikel 1 van de Grondwet mag niemand gediscrimineerd worden."
+              - pattern: "Als je te laat komt, wordt dat niet altijd gewaardeerd."
+            activities:
+              - { type: learn }
+              - { type: story }
+              - { type: multiple_choice }
+              - { type: sentence_complete }
+              - { type: translate }
+          - id: nl-b1-er-overzicht
+            title: Er in All Its Uses
+            description: "Recognise and combine existential, place, partitive, prepositional and passive er in local politics."
+            vocabulary: ["de inspraakavond", "de buurtvereniging", "het bestemmingsplan", "de wethouder", "de burgemeester", "het voorstel", meepraten, "de bewoner"]
+            grammar:
+              - pattern: "Er staat een fiets voor de deur."
+              - pattern: "Koekjes? Nee, dank je, ik heb er al drie gehad."
+              - pattern: "Veel bewoners zijn er niet tevreden over."
+              - pattern: "Er wordt op de inspraakavond over het voorstel gestemd."
+            activities:
+              - { type: learn }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: neighbourhood_inspraakavond
+                goal: At an inspraakavond of the gemeente, give your opinion about a plan for a new apartment block in your street and ask the wethouder a question about it.
+
+      - id: nl-b1-nieuws
+        title: News & Opinions
+        description: Report what others said, ask indirect questions and give opinions with nuance.
+        icon: 📰
+        steps:
+          - id: nl-b1-indirecte-rede
+            title: Reporting the News
+            description: "Report what someone said with dat + subclause, shifting the tense where needed."
+            vocabulary: ["het nieuws", "de krant", "het artikel", "de kop", "het journaal", "de bron", "het onderzoek", volgens]
+            grammar:
+              - pattern: "Volgens het journaal komt er morgen een storm."
+              - pattern: "De minister zei dat de belastingen omhoog zouden gaan."
+              - pattern: "In de krant staat dat de huizenprijzen weer zijn gestegen."
+              - pattern: "Hij vertelde dat hij het artikel al had gelezen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank }
+              - { type: listen_select }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-b1-indirecte-vragen
+            title: Indirect Questions
+            description: "Ask politely and wonder aloud with of, wat, waarom and wanneer + subclause word order."
+            vocabulary: ["zich afvragen", "de vraag", "het antwoord", "de reden", duidelijk, onduidelijk, navragen, "de staking"]
+            grammar:
+              - pattern: "Weet jij of de staking morgen doorgaat?"
+              - pattern: "Ik vraag me af waarom de treinen zo vaak vertraging hebben."
+              - pattern: "Kunt u mij vertellen wat de nieuwe regels precies zijn?"
+              - pattern: "Het is nog onduidelijk wanneer het besluit wordt genomen."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-b1-mening-geven
+            title: Giving Opinions with Nuance
+            description: "Agree, disagree and weigh arguments with hoewel, bovendien, echter, toch and daarom."
+            vocabulary: ["volgens mij", "het eens zijn met", "het oneens zijn met", "aan de ene kant", "aan de andere kant", "het argument", "het standpunt", overtuigd]
+            grammar:
+              - pattern: "Hoewel ik het niet helemaal met je eens ben, begrijp ik je standpunt."
+              - pattern: "Het plan is duur en bovendien lost het niets op. Daarom ben ik ertegen."
+              - pattern: "De regering wil bezuinigen; de oppositie is het daar echter niet mee eens."
+              - pattern: "Het is een duur plan, maar toch ben ik ervoor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: sentence_complete }
+              - { type: error_correct }
+              - { type: translate }
+          - id: nl-b1-nieuws-bespreken
+            title: Discussing a News Item
+            description: "Summarise an article using nouns made from verbs (de verhoging, het invoeren) and discuss it."
+            vocabulary: ["de discussie", "de verhoging", "de invoering", "het besluit", "de stijging", "de daling", "de kritiek", "leiden tot"]
+            grammar:
+              - pattern: "De verhoging van de huren leidt tot veel kritiek."
+              - pattern: "Het invoeren van een rookverbod op terrassen zorgt voor veel discussie."
+              - pattern: "Na de stijging van de energieprijzen gingen veel mensen zuiniger stoken."
+            activities:
+              - { type: learn }
+              - { type: multiple_choice }
+              - { type: story }
+              - { type: listen_type }
+              - type: video_call
+                scenario: discussing_the_news
+                goal: Discuss a news item about rising rents with a friend, summarise what the article said, give your opinion with arguments and react with nuance to theirs.
+
+      - id: nl-b1-duurzaamheid
+        title: Environment & Sustainability
+        description: Cycling, energy, waste and climate, with zou/zouden and hypothetical if-clauses.
+        icon: 🚲
+        steps:
+          - id: nl-b1-fietsland
+            title: The Cycling Country
+            description: "Talk about cycling in the Netherlands and make polite requests and wishes with zou/zouden."
+            vocabulary: ["het fietspad", "de fietsenstalling", "de ov-fiets", "de e-bike", "de voorrang", "het verkeer", "de fietsverlichting", "de fietsbel"]
+            grammar:
+              - pattern: "Zou u uw fiets in de stalling willen zetten?"
+              - pattern: "Als ik dichter bij mijn werk woonde, zou ik elke dag fietsen."
+              - pattern: "In het donker moet je verlichting op je fiets hebben."
+              - pattern: "Wij zouden graag meer fietsenstallingen bij het station zien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank }
+              - { type: listen_select }
+              - { type: translate }
+          - id: nl-b1-irrealis
+            title: If Only
+            description: "Talk about unreal situations in the present and past: als ik … had, zou ik …; als ik … had gedaan, zou …"
+            vocabulary: ["de zonnepanelen", "de warmtepomp", "het energielabel", isoleren, "de energierekening", besparen, "de subsidie", "het gas"]
+            grammar:
+              - pattern: "Als ik een eigen huis had, zou ik zonnepanelen nemen."
+              - pattern: "Als we het huis beter hadden geïsoleerd, zou de energierekening lager zijn geweest."
+              - pattern: "Als ik jou was, zou ik subsidie aanvragen."
+              - pattern: "Had ik dat maar eerder geweten!"
+            activities:
+              - { type: learn }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-b1-afval-scheiden
+            title: Separating Waste
+            description: Understand how waste is collected and recycled in your gemeente.
+            vocabulary: ["het afval", "het plastic", "het gft", "de glasbak", "het statiegeld", "de container", scheiden, hergebruiken]
+            grammar:
+              - pattern: "Afval wordt in onze gemeente gescheiden opgehaald."
+              - pattern: "Op blikjes zit tegenwoordig ook statiegeld."
+              - pattern: "Weet je of dit bij het plastic mag?"
+              - pattern: "Er wordt steeds meer afval gerecycled."
+            activities:
+              - { type: learn }
+              - { type: image_select }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-b1-klimaatdebat
+            title: The Climate Debate
+            description: Weigh up climate measures and say what the government and citizens should do.
+            vocabulary: ["het klimaat", "de klimaatverandering", "de uitstoot", "de overheid", "de maatregel", "de zeespiegel", "de dijk", verantwoordelijk]
+            grammar:
+              - pattern: "De overheid zou meer moeten doen tegen klimaatverandering."
+              - pattern: "Als de zeespiegel blijft stijgen, moeten de dijken nog hoger worden gemaakt."
+              - pattern: "Ik vind dat iedereen er een steentje aan moet bijdragen."
+            activities:
+              - { type: learn }
+              - { type: listen_select }
+              - { type: multiple_choice }
+              - { type: speak }
+              - type: roleplay
+                scenario: debating_a_car_free_centre
+                goal: With a colleague, discuss whether the gemeente should make the city centre car-free, give arguments for and against using zou/zouden, and reach a nuanced conclusion.
+
+      - id: nl-b1-sociaal-leven
+        title: Social Life & Relationships
+        description: Birthdays, invitations and cancellations, relationships, and choosing the right register in writing.
+        icon: 🎉
+        steps:
+          - id: nl-b1-verjaardag
+            title: The Dutch Birthday Party
+            description: Know what to expect at a Dutch verjaardag and congratulate everyone the right way.
+            vocabulary: ["de verjaardag", "de jarige", feliciteren, gefeliciteerd, "de kring", "het cadeau", "het feestje", "de taart"]
+            grammar:
+              - pattern: "Gefeliciteerd met je verjaardag!"
+              - pattern: "Gefeliciteerd met je zus!"
+              - pattern: "Iedereen zat in een kring en kreeg eerst koffie met taart."
+              - pattern: "Hij had niet verwacht dat er zoveel mensen zouden komen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: listen_select }
+              - { type: translate }
+          - id: nl-b1-uitnodigen-afzeggen
+            title: Inviting and Cancelling
+            description: Invite people, accept, cancel politely and suggest a new date.
+            vocabulary: [uitnodigen, "de uitnodiging", afzeggen, verzetten, toezeggen, "het etentje", jammer, inhalen]
+            grammar:
+              - pattern: "Heb je zin om zaterdag bij ons te komen eten?"
+              - pattern: "Sorry, ik moet helaas afzeggen, want mijn zoon is ziek."
+              - pattern: "Zullen we het etentje naar volgende week verzetten?"
+              - pattern: "Ik had het je eerder moeten laten weten."
+            activities:
+              - { type: learn }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-b1-register
+            title: Formal and Informal Writing
+            description: "Choose between je and u, Hoi, Beste and Geachte, and Groetjes or Met vriendelijke groet."
+            vocabulary: [Hoi, Beste, Geachte, Groetjes, "Met vriendelijke groet", hierbij, u, jij]
+            grammar:
+              - pattern: "Hoi Sanne, leuk dat je zaterdag komt! Groetjes, Ahmed"
+              - pattern: "Beste collega's, hierbij nodig ik jullie uit voor de afscheidsborrel van Peter."
+              - pattern: "Geachte mevrouw Jansen, hierbij bevestig ik onze afspraak van 12 mei."
+              - pattern: "Kunt u mij laten weten of dit schikt? Met vriendelijke groet, A. Haddad"
+            activities:
+              - { type: learn }
+              - { type: match }
+              - { type: error_correct }
+              - { type: sentence_complete }
+              - { type: translate }
+          - id: nl-b1-relaties
+            title: Relationships
+            description: Talk about partners, in-laws and friendships, combining relative clauses and conditionals.
+            vocabulary: ["de relatie", samenwonen, trouwen, "het geregistreerd partnerschap", "de schoonfamilie", "de vriendschap", "het contact", "uit elkaar gaan"]
+            grammar:
+              - pattern: "We wonen sinds vorig jaar samen."
+              - pattern: "Mijn schoonouders, die in Groningen wonen, zien we niet zo vaak."
+              - pattern: "Als we hadden geweten hoe duur een bruiloft is, zouden we het kleiner hebben gevierd."
+              - pattern: "Ik vind het belangrijk om contact te houden met mijn familie in het buitenland."
+            activities:
+              - { type: learn }
+              - { type: story }
+              - { type: listen_type }
+              - { type: multiple_choice }
+              - type: video_call
+                scenario: video_call_with_a_dutch_friend
+                goal: Video-call a Dutch friend, congratulate them on moving in with their partner, apologise for cancelling last week's dinner and suggest a new date.
+
+    checkpoint:
+      title: B1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 2 }
+        - { type: translate, count: 3 }
+        - { type: story }
+        - type: roleplay
+          scenario: formal_phone_call
+          goal: Phone a government office or landlord about a problem, explain what happened, ask indirect questions and agree on next steps politely.
