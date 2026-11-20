@@ -781,6 +781,8 @@
     "whisperSmallGood": "190 MB · daha doğru, biraz yavaş",
     "whisperTurbo": "En iyi (large-v3 turbo)",
     "whisperTurboGood": "574 MB · en doğru; güçlü bir bilgisayar ister",
+    "whisperLarge": "Most accurate (large-v3)",
+    "whisperLargeGood": "1.1 GB · best for harder languages; slower, needs a strong computer",
     "whisperFor": "{{lang}} için {{name}} çok daha iyi anlar.",
     "whisperRemove": "{{name}} modelini sil",
     "whisperRemoveAsk": "{{name}} modeli silinsin mi? Gerekirse yeniden indirebilirsin.",

@@ -31,7 +31,7 @@ export async function deepgramTranscribe(wav: Uint8Array, lang: string, key?: st
 }
 
 /** Whisper model sizes (src-tauri/src/lib.rs `stt_file`): "base" ships with the app, the others are downloaded on demand. */
-export type WhisperModel = "base" | "small" | "turbo";
+export type WhisperModel = "base" | "small" | "turbo" | "large";
 /** [model in use, downloaded models] */
 export const whisperModels = () => invoke<[WhisperModel, WhisperModel[]]>("stt_models");
 export const pickWhisper = (name: WhisperModel) => invoke("stt_use", { name });
