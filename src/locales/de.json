@@ -740,6 +740,7 @@
   },
   "stt": {
     "idle": "Zum Sprechen tippen",
+    "starting": "Getting ready…",
     "rec": "Ich höre zu… tippe erneut, wenn du fertig bist",
     "busy": "Wird transkribiert…",
     "record": "Aufnehmen",
@@ -747,7 +748,8 @@
     "noMic": "Kein Zugriff auf das Mikrofon. Erlaube ihn unter Systemeinstellungen → Datenschutz → Mikrofon.",
     "failed": "Spracherkennung fehlgeschlagen",
     "unavailable": "Sprechen benötigt die Desktop-App mit dem Sprachmodell.",
-    "off": "Sprechübungen sind in den Einstellungen ausgeschaltet."
+    "off": "Sprechübungen sind in den Einstellungen ausgeschaltet.",
+    "playback": "Play my recording"
   },
   "update": {
     "section": "Updates",

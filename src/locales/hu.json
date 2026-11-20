@@ -740,6 +740,7 @@
   },
   "stt": {
     "idle": "Koppints, és beszélj",
+    "starting": "Getting ready…",
     "rec": "Figyelek… koppints újra, ha végeztél",
     "busy": "Szöveggé alakítás…",
     "record": "Felvétel",
@@ -747,7 +748,8 @@
     "noMic": "Nincs hozzáférés a mikrofonhoz. Engedélyezd itt: Rendszerbeállítások → Adatvédelem → Mikrofon.",
     "failed": "A beszédfelismerés nem sikerült",
     "unavailable": "A beszédgyakorláshoz az asztali alkalmazás és a beszédmodell kell.",
-    "off": "A beszédgyakorlatok ki vannak kapcsolva a Beállításokban."
+    "off": "A beszédgyakorlatok ki vannak kapcsolva a Beállításokban.",
+    "playback": "Play my recording"
   },
   "update": {
     "section": "Frissítések",
