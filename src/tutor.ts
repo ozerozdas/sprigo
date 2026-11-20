@@ -126,6 +126,7 @@ const FILLERS: Record<string, string[]> = {
   en: ["Hmm…", "Let me see…", "Okay…"], tr: ["Hmm…", "Bir bakayım…", "Peki…"], de: ["Hmm…", "Mal sehen…", "Also…"],
   fr: ["Hmm…", "Voyons…", "Bon…"], es: ["Mmm…", "A ver…", "Bueno…"], it: ["Mmm…", "Vediamo…", "Allora…"], pt: ["Hmm…", "Deixa ver…", "Bem…"],
   hu: ["Hmm…", "Lássuk csak…", "Nos…"], ro: ["Hmm…", "Să vedem…", "Bine…"],
+  nl: ["Hmm…", "Even kijken…", "Nou…"],
 };
 /** The n-th filler for the course language, in turn so the same one never plays twice in a row. */
 export const filler = (lang: string, n: number) => { const f = FILLERS[lang.split("-")[0]] ?? ["Hmm…"]; return f[n % f.length]; };

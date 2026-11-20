@@ -73,6 +73,15 @@ export const LANGS: Record<string, Lang> = {
       "lucra", "studia", "bea", "scrie", "deschide", "dormi", "cere", "aștepta", "vedea", "aduce", "pleca", "plăcea", "înțelege"],
     tenses: { A1: ["prezent"], A2: ["perfect compus", "imperfect"], B1: ["viitor", "condițional-optativ"], B2: ["conjunctiv"], C1: ["mai mult ca perfect"] },
   },
+  nl: {
+    persons: ["ik", "jij", "hij/zij", "wij", "jullie", "zij"],
+    verbs: ["zijn", "hebben", "gaan", "komen", "doen", "maken", "kunnen", "willen", "moeten", "mogen", "zien", "weten",
+      "werken", "wonen", "spelen", "leren", "praten", "eten", "drinken", "lezen", "schrijven", "kopen", "fietsen", "denken", "brengen"],
+    tenses: {
+      A1: ["onvoltooid tegenwoordige tijd"], A2: ["voltooid tegenwoordige tijd", "onvoltooid verleden tijd"],
+      B1: ["voltooid verleden tijd", "onvoltooid verleden toekomende tijd"],
+    },
+  },
 };
 
 /** Every tense up to and including `level`; empty when the course has no drill. */

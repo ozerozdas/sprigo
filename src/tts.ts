@@ -45,6 +45,8 @@ const PIPER: Record<string, Record<"f" | "m", string>> = {
   tr: { f: "tr_TR-dfki-medium", m: "tr_TR-fahrettin-medium" },
   hu: { f: "hu_HU-anna-medium", m: "hu_HU-imre-medium" },
   ro: { f: "ro_RO-mihai-medium", m: "ro_RO-mihai-medium" },
+  // Flemish voices: Piper's nl_NL (MLS) voices are widely reported as hard to understand
+  nl: { f: "nl_BE-nathalie-medium", m: "nl_BE-rdh-medium" },
 };
 // Accents (#35): where an engine has a voice for one, it is used; elsewhere the language's default voice speaks.
 const PIPER_ACCENT: Record<string, Record<"f" | "m", string>> = { "en-GB": { f: "en_GB-cori-medium", m: "en_GB-alan-medium" } };
