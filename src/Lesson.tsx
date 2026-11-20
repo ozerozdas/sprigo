@@ -228,9 +228,9 @@ export function Lesson({ id }: { id: string }) {
   const openExplain = () => { if (it && ctx && fb) openSheet(<ExplainSheet run={() => explain(ctx, questionOf(it), fb.correct, fb.given)} />); };
   const openAppeal = () => openSheet(<AppealSheet onSend={submitAppeal} />);
 
-  const check = async () => {
-    if (!it) return;
-    if (it.kind === "choice") return grade(sel === it.answer, it.options[it.answer], sel === null ? "" : it.options[sel]);
+  const check = async (choice = sel) => {
+    if (!it || fb || checking) return;
+    if (it.kind === "choice") return grade(choice === it.answer, it.options[it.answer], choice === null ? "" : it.options[choice]);
     if (it.kind !== "bank" && it.kind !== "input") return;
     // Tiles too: "A nevem Anna" and "Anna a nevem" are both right, and the model gives only one order.
     const [given, expected] = it.kind === "bank" ? [bankSel.map((j) => it.bank[j]).join(" "), it.answer.join(" ")] : [text, it.answer];
@@ -400,7 +400,8 @@ export function Lesson({ id }: { id: string }) {
         {it.options.map((o, oi) => {
           const state = fb ? (oi === it.answer ? "correct" : oi === sel ? "wrong" : "") : oi === sel ? "sel" : "";
           return (
-            <button className={`opt ${state}`} key={oi} disabled={!!fb} onClick={() => setSel(oi)}>
+            <button className={`opt ${state}`} key={oi} disabled={!!fb && oi !== sel} onClick={() => { if (!fb) setSel(oi); }}
+              onDoubleClick={() => { if (fb) next(); else { setSel(oi); void check(oi); } }}>
               <span className="opt-num">{oi + 1}</span><span>{o}</span>
             </button>
           );
@@ -493,7 +494,7 @@ export function Lesson({ id }: { id: string }) {
             ) : (
               <>
                 <button className="btn btn-ghost" onClick={next}>{t(it.kind === "speak" ? "lesson.cantSpeak" : "lesson.skip")}</button>
-                {it.kind !== "match" && it.kind !== "speak" && <button className="btn btn-primary" disabled={!canCheck} onClick={check}>{t(checking ? "lesson.checking" : "lesson.check")}</button>}
+                {it.kind !== "match" && it.kind !== "speak" && <button className="btn btn-primary" disabled={!canCheck} onClick={() => void check()}>{t(checking ? "lesson.checking" : "lesson.check")}</button>}
               </>
             )}
           </div>

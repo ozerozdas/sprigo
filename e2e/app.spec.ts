@@ -85,6 +85,46 @@ test("first lessons run every exercise type", async ({ page }) => {
   await runLesson(page, /Introduce Yourself/);
 });
 
+test("double-click checks a choice and a second double-click advances after feedback", async ({ page }) => {
+  await onboard(page);
+  await page.getByRole("button", { name: "Learn" }).click();
+  await page.getByRole("button", { name: /Basic Greetings/ }).click();
+  const lesson = page.getByRole("dialog", { name: "Lesson" });
+  const option = lesson.locator(".opt", { hasText: /^\d?hola$/ });
+  for (let i = 0; !(await option.isVisible()); i++) {
+    expect(i).toBeLessThan(10);
+    await lesson.getByRole("button", { name: "Continue", exact: true }).click();
+  }
+  await option.click();
+  await expect(lesson.getByText("Correct!")).toBeHidden();
+  await option.dblclick();
+  await expect(lesson.getByText("Correct!")).toBeVisible();
+  await expect(option).toHaveClass(/correct/);
+  await option.dblclick();
+  await expect(lesson.getByText("Correct!")).toBeHidden();
+});
+
+test("double-click keeps wrong-answer feedback available before advancing", async ({ page }) => {
+  await onboard(page);
+  await page.getByRole("button", { name: "Learn" }).click();
+  await page.getByRole("button", { name: /Basic Greetings/ }).click();
+  const lesson = page.getByRole("dialog", { name: "Lesson" });
+  const wrong = lesson.locator(".opt", { hasText: /^\d?adiós$/ });
+  for (let i = 0; !(await wrong.isVisible()); i++) {
+    expect(i).toBeLessThan(10);
+    await lesson.getByRole("button", { name: "Continue", exact: true }).click();
+  }
+  await expect(lesson.locator(".hearts-box")).toHaveText("5");
+  await wrong.dblclick();
+  await expect(lesson.locator(".hearts-box")).toHaveText("4");
+  await expect(lesson.locator(".fb.bad")).toBeVisible();
+  await expect(wrong).toHaveClass(/wrong/);
+  await expect(lesson.locator(".opt.correct")).toBeVisible();
+  await wrong.dblclick();
+  await expect(lesson.locator(".fb.bad")).toBeHidden();
+  await expect(lesson.locator(".hearts-box")).toHaveText("4");
+});
+
 test("a story opens from Stories, marks known words and can be finished", async ({ page }) => {
   await onboard(page);
   await page.getByRole("button", { name: "Learn" }).click();
@@ -96,7 +136,11 @@ test("a story opens from Stories, marks known words and can be finished", async 
   for (let i = 0; !(await story.getByText("Story complete!").isVisible()); i++) {
     expect(i).toBeLessThan(40);
     const opt = story.locator(".opt", { hasText: /^\d?hola$/ });
-    if (await opt.isVisible() && await opt.isEnabled()) { await opt.click(); await story.getByRole("button", { name: "Check" }).click(); }
+    if (await opt.isVisible() && await opt.isEnabled()) {
+      await opt.dblclick();
+      await expect(story.getByText("Correct!")).toBeVisible();
+      await opt.dblclick();
+    }
     else await story.getByRole("button", { name: /^(Continue|Finish)$/ }).click();
   }
   await story.getByRole("button", { name: "Done" }).click();

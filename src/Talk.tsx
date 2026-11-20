@@ -167,7 +167,10 @@ export function Story({ level, unit: unitId }: { level: Cefr; unit: string }) {
     sfx("done");
     setResult({ xp, gems });
   };
-  const check = () => { setChecked(true); sfx(sel === q!.answer ? "ok" : "bad"); if (sel === q!.answer) setCorrect((c) => c + 1); };
+  const check = (choice = sel) => {
+    if (checked || !q || choice === null) return;
+    setChecked(true); sfx(choice === q.answer ? "ok" : "bad"); if (choice === q.answer) setCorrect((c) => c + 1);
+  };
 
   // Keyboard: digits pick an answer, Enter is the footer button, Space replays the line. Esc stays in useQuit.
   const keyState: KeyState = {
@@ -218,7 +221,8 @@ export function Story({ level, unit: unitId }: { level: Cefr; unit: string }) {
         <h3 style={{ fontWeight: 900, marginBottom: 12 }}>{q.prompt}</h3>
         <div className="opt-grid">
           {q.options.map((o, oi) => (
-            <button key={oi} disabled={checked} onClick={() => setSel(oi)}
+            <button key={oi} disabled={checked && oi !== sel} onClick={() => { if (!checked) setSel(oi); }}
+              onDoubleClick={() => { if (checked) next(); else { setSel(oi); check(oi); } }}
               className={`opt ${checked ? (oi === q.answer ? "correct" : oi === sel ? "wrong" : "") : oi === sel ? "sel" : ""}`}>
               <span className="opt-num">{oi + 1}</span><span lang={lang}>{o}</span>
             </button>
@@ -228,7 +232,7 @@ export function Story({ level, unit: unitId }: { level: Cefr; unit: string }) {
       <div ref={endRef} />
     </>;
     footer = q && !checked
-      ? <><span className="muted small">{t("stories.tapHint")}</span><button className="btn btn-primary" disabled={sel === null} onClick={check}>{t("lesson.check")}</button></>
+      ? <><span className="muted small">{t("stories.tapHint")}</span><button className="btn btn-primary" disabled={sel === null} onClick={() => check()}>{t("lesson.check")}</button></>
       : <>
         {q ? <span className={`fb ${sel === q.answer ? "good" : "bad"}`}>{t(sel === q.answer ? "lesson.correct" : "lesson.wrong")}</span> : <span className="muted small">{t("stories.tapHint")}</span>}
         <button className="btn btn-primary" onClick={next}>{t(p + 1 < seq.length ? "lesson.continue" : "lesson.finish")}</button>
