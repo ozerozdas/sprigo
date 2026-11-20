@@ -2,7 +2,8 @@
 # Activities name only a type (+ optional count and hints like scenario/goal); the AI writes the content
 # from the step's title, description, vocabulary and grammar and the level. Types: see src/course.ts.
 # A1–B1 follow the NT2 progression: A1 ≈ Basisexamen Inburgering Buitenland, A2 ≈ inburgeringsexamen,
-# B1 ≈ Staatsexamen NT2 Programma I (the B1 route of the 2021 civic integration law).
+# B1 ≈ Staatsexamen NT2 Programma I (the B1 route of the 2021 civic integration law), B2 ≈ Staatsexamen NT2
+# Programma II and CNaVT STRT/PROF, C1 ≈ CNaVT EDUP (Nederlands op niveau / naar perfectie progression).
 name: Dutch
 native_name: Nederlands
 iso: nl
@@ -38,6 +39,7 @@ levels:
               - { type: match }
               - { type: listen_select, count: 2 }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-je-of-u
             title: Je or U?
             description: Use informal je/jij with friends and polite u with strangers, older people and officials.
@@ -53,6 +55,7 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: listen_type }
               - { type: translate, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-jezelf-voorstellen
             title: Introduce Yourself
             description: Say your name, where you come from and where you live, and ask the same.
@@ -68,6 +71,8 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: listen_select }
               - { type: speak }
+              - { type: match, count: 2 }
+              - { type: fill_blank }
           - id: nl-a1-beleefdheid
             title: Please, Thanks & Sorry
             description: Polite words for everyday situations, then a first conversation with a new neighbour.
@@ -84,6 +89,9 @@ levels:
               - type: dialogue
                 scenario: meeting_a_new_neighbour
                 goal: Greet your new neighbour politely with u, introduce yourself, say where you are from and where you live.
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
 
       - id: nl-a1-klanken
         title: Alphabet & Dutch Sounds
@@ -104,6 +112,7 @@ levels:
               - { type: listen_type, count: 3 }
               - { type: listen_select, count: 2 }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-lange-korte-klinkers
             title: Long & Short Vowels
             description: Hear and spell the difference between a/aa, e/ee, o/oo and u/uu.
@@ -119,6 +128,7 @@ levels:
               - { type: word_select, count: 2 }
               - { type: listen_type, count: 2 }
               - { type: speak }
+              - { type: word_bank }
           - id: nl-a1-tweeklanken
             title: "Typical Sounds: ui, ij/ei, oe, eu, ou"
             description: Practise the diphthongs and vowel sounds that are special to Dutch.
@@ -134,6 +144,7 @@ levels:
               - { type: match }
               - { type: listen_type, count: 2 }
               - { type: speak, count: 2 }
+              - { type: word_bank }
           - id: nl-a1-g-en-ch
             title: "G, Ch & Sch"
             description: Pronounce the Dutch g, ch and sch, then spell your name and street at a front desk.
@@ -150,6 +161,8 @@ levels:
               - type: dialogue
                 scenario: front_desk_registration
                 goal: Give your first name and surname, spell both letter by letter, and spell your street name.
+              - { type: word_bank, count: 2 }
+              - { type: match, count: 2 }
 
       - id: nl-a1-getallen
         title: Numbers, Prices & Time
@@ -169,6 +182,7 @@ levels:
               - { type: listen_type, count: 3 }
               - { type: match }
               - { type: listen_select, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-getallen-tot-honderd
             title: Numbers 21–100
             description: "Learn the tens and the Dutch back-to-front order: eenentwintig = one-and-twenty."
@@ -184,6 +198,7 @@ levels:
               - { type: listen_select, count: 2 }
               - { type: multiple_choice, count: 2 }
               - { type: speak }
+              - { type: word_bank }
           - id: nl-a1-prijzen
             title: Prices & Paying
             description: Ask what something costs and pay by card or in cash.
@@ -199,6 +214,7 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: translate, count: 2 }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-hoe-laat
             title: What Time Is It?
             description: Tell the time with half, kwart, over and voor, then shop at a market stall.
@@ -215,6 +231,8 @@ levels:
               - type: roleplay
                 scenario: market_stall
                 goal: Buy fruit at the weekly market, ask the prices, pay, and ask what time the market closes.
+              - { type: word_bank, count: 2 }
+              - { type: match }
 
       - id: nl-a1-ik-en-jij
         title: Me & You
@@ -236,6 +254,7 @@ levels:
               - { type: word_select, count: 2 }
               - { type: translate, count: 2 }
               - { type: listen_type }
+              - { type: word_bank }
           - id: nl-a1-hebben
             title: To Have
             description: The present tense of hebben, including the fixed expressions honger hebben and dorst hebben.
@@ -251,6 +270,7 @@ levels:
               - { type: match }
               - { type: sentence_complete, count: 2 }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-regelmatige-werkwoorden
             title: Regular Verbs in the Present
             description: "Form the present tense from the stem: ik werk, jij werkt, hij werkt, wij werken – and drop the t in 'werk jij?'."
@@ -283,6 +303,8 @@ levels:
               - type: dialogue
                 scenario: language_cafe
                 goal: Ask a new classmate where they live, what they do and whether they work or study, and answer their questions too.
+              - { type: match, count: 2 }
+              - { type: fill_blank }
 
       - id: nl-a1-de-en-het
         title: Things Around Me
@@ -303,6 +325,7 @@ levels:
               - { type: multiple_choice, count: 3 }
               - { type: image_select, count: 2 }
               - { type: fill_blank, count: 2 }
+              - { type: word_bank }
           - id: nl-a1-dit-dat-deze-die
             title: This & That
             description: Use deze/die with de-words and dit/dat with het-words.
@@ -318,6 +341,7 @@ levels:
               - { type: multiple_choice, count: 2 }
               - { type: image_select }
               - { type: error_correct }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-meervoud
             title: Plurals
             description: "Make plurals with -en or -s; every plural takes de."
@@ -333,6 +357,7 @@ levels:
               - { type: fill_blank, count: 3 }
               - { type: match }
               - { type: listen_type }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-er-is-er-zijn
             title: There Is & There Are
             description: Say what there is in a room with er is and er zijn, on your first day at language school.
@@ -349,6 +374,8 @@ levels:
               - type: dialogue
                 scenario: first_day_at_language_school
                 goal: Ask the receptionist what there is in the building, where your classroom is and how many students are in the class.
+              - { type: word_bank, count: 2 }
+              - { type: match, count: 2 }
 
       - id: nl-a1-familie
         title: Family & Friends
@@ -370,6 +397,7 @@ levels:
               - { type: image_select, count: 2 }
               - { type: translate, count: 2 }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-bezittelijk
             title: Mine, Yours, Ours
             description: Possessive pronouns, including ons with het-words and onze with de-words and plurals.
@@ -385,6 +413,7 @@ levels:
               - { type: multiple_choice, count: 2 }
               - { type: error_correct }
               - { type: word_bank }
+              - { type: listen_select, count: 2 }
           - id: nl-a1-mensen-beschrijven
             title: Describing People
             description: Describe what people look like and what they are like.
@@ -400,6 +429,8 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: story }
               - { type: speak }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
           - id: nl-a1-verjaardag
             title: A Dutch Birthday
             description: Congratulate everyone at a gezellige Dutch birthday party, where you also congratulate the family.
@@ -416,6 +447,9 @@ levels:
               - type: dialogue
                 scenario: dutch_birthday_party
                 goal: Congratulate the host and the relatives in the circle, introduce yourself and talk a little about your own family.
+              - { type: match, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
 
       - id: nl-a1-eten-en-drinken
         title: Food & Drink
@@ -436,6 +470,7 @@ levels:
               - { type: image_select, count: 2 }
               - { type: word_select, count: 2 }
               - { type: translate, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-bestellen
             title: Ordering Drinks
             description: Order politely with ik wil graag and mag ik, and ask for the bill.
@@ -451,6 +486,7 @@ levels:
               - { type: listen_select, count: 2 }
               - { type: fill_blank, count: 2 }
               - { type: speak }
+              - { type: match, count: 2 }
           - id: nl-a1-niet-geen
             title: "Niet or Geen?"
             description: Use geen before nouns without a definite article and niet for everything else.
@@ -466,6 +502,7 @@ levels:
               - { type: error_correct, count: 2 }
               - { type: multiple_choice, count: 2 }
               - { type: translate }
+              - { type: word_bank }
           - id: nl-a1-op-het-terras
             title: On the Terrace
             description: Find a table, order drinks and snacks on a café terrace, and pay.
@@ -482,6 +519,9 @@ levels:
               - type: roleplay
                 scenario: cafe_terrace
                 goal: Ask for a free table, order drinks and a snack, react when something is not available (geen), and pay by card.
+              - { type: word_bank, count: 2 }
+              - { type: match, count: 2 }
+              - { type: fill_blank }
 
       - id: nl-a1-dagelijks-leven
         title: Daily Life
@@ -501,6 +541,8 @@ levels:
               - { type: match }
               - { type: listen_type, count: 2 }
               - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select, count: 2 }
           - id: nl-a1-dagindeling
             title: My Daily Routine
             description: "Describe your day and put the verb second after a time expression: Om acht uur ontbijt ik."
@@ -516,6 +558,7 @@ levels:
               - { type: error_correct, count: 2 }
               - { type: story }
               - { type: speak }
+              - { type: listen_select, count: 2 }
           - id: nl-a1-vrije-tijd
             title: Free Time
             description: Say what you like doing with graag and niet graag.
@@ -531,6 +574,7 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: listen_select }
               - { type: translate, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-plannen-maken
             title: Making Plans
             description: Talk about the near future with gaan + infinitive and make an appointment with a friend.
@@ -547,6 +591,8 @@ levels:
               - type: dialogue
                 scenario: making_weekend_plans
                 goal: Invite a friend to do something this weekend, agree on a day and a time, and say what you are going to do.
+              - { type: listen_select, count: 2 }
+              - { type: match, count: 2 }
 
       - id: nl-a1-de-stad
         title: Around Town
@@ -567,9 +613,11 @@ levels:
               - { type: image_select, count: 2 }
               - { type: multiple_choice, count: 2 }
               - { type: listen_select }
+              - { type: word_bank, count: 2 }
+              - { type: match }
           - id: nl-a1-de-weg-vragen
             title: Asking the Way
-            description: Ask for and follow simple directions.
+            description: "Ask for and follow directions, and give instructions with the imperative: Ga rechtdoor! Neem de tweede straat links."
             vocabulary: [rechtdoor, linksaf, rechtsaf, "de straat", "de hoek", "het stoplicht", "de brug", ver]
             grammar:
               - pattern: "Pardon, hoe kom ik bij het station?"
@@ -582,6 +630,7 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: listen_type }
               - { type: speak }
+              - { type: match, count: 2 }
           - id: nl-a1-modale-werkwoorden
             title: Can, Want, Must, May
             description: Use kunnen, willen, moeten and mogen with an infinitive at the end, with tips for cycling in the Netherlands.
@@ -597,6 +646,7 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: error_correct }
               - { type: translate, count: 2 }
+              - { type: listen_select }
           - id: nl-a1-openbaar-vervoer
             title: Train, Bus & Tram
             description: Buy a ticket, check in and out, and find your platform at an NS station.
@@ -613,6 +663,9 @@ levels:
               - type: roleplay
                 scenario: train_station_ticket_desk
                 goal: Buy a ticket to another city, ask which platform and what time the train leaves, and whether you have to change trains.
+              - { type: word_bank, count: 2 }
+              - { type: match, count: 2 }
+              - { type: fill_blank }
 
       - id: nl-a1-wonen-en-winkelen
         title: Home, Shopping & Health
@@ -634,6 +687,7 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: story }
               - { type: speak }
+              - { type: word_bank, count: 2 }
           - id: nl-a1-boodschappen
             title: Grocery Shopping
             description: Do your boodschappen at the supermarket and answer the cashier's questions.
@@ -648,6 +702,23 @@ levels:
               - { type: listen_select, count: 2 }
               - { type: word_bank, count: 2 }
               - { type: multiple_choice, count: 2 }
+              - { type: speak }
+              - { type: match, count: 2 }
+          - id: nl-a1-kleuren-kleding
+            title: Colours & Clothes
+            description: "Name colours and clothes, and put -e on an adjective before a noun: een rode jas, de rode jas, but een rood shirt."
+            vocabulary: [rood, blauw, groen, zwart, wit, "de jas", "de broek", "het shirt", "de schoenen"]
+            grammar:
+              - pattern: "Ik zoek een zwarte jas."
+              - pattern: "De blauwe broek is te klein."
+              - pattern: "Ik draag een wit shirt."
+              - pattern: "Welke kleur vind je mooi? Ik vind groen mooi."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
               - { type: speak }
           - id: nl-a1-huisarts
             title: At the GP
@@ -666,22 +737,8 @@ levels:
               - type: roleplay
                 scenario: calling_the_gp
                 goal: Call the doctor's assistant, describe your symptoms and make an appointment for tomorrow.
-          - id: nl-a1-perfectum
-            title: What Did You Do?
-            description: "A first look at the perfectum with hebben + ge-…-t/d: talk about last weekend."
-            vocabulary: [gisteren, "vorige week", "afgelopen weekend", gewerkt, gekookt, gefietst, gespeeld, gewoond]
-            grammar:
-              - pattern: "Ik heb gisteren gewerkt."
-              - pattern: "Wat heb je afgelopen weekend gedaan?"
-              - pattern: "We hebben samen gekookt."
-              - pattern: "Ik heb twee jaar in Spanje gewoond."
-            activities:
-              - { type: learn, count: 2 }
-              - { type: fill_blank, count: 3 }
               - { type: word_bank, count: 2 }
-              - type: dialogue
-                scenario: monday_coffee_at_work
-                goal: Tell a colleague what you did last weekend using hebben + past participle, and ask what they did.
+              - { type: listen_select }
 
     checkpoint:
       title: A1 Checkpoint
@@ -722,6 +779,8 @@ levels:
               - { type: multiple_choice, count: 2 }
               - { type: listen_type }
               - { type: error_correct }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
           - id: nl-a2-sterke-werkwoorden
             title: Irregular Past Participles
             description: Learn the most common irregular participles such as gegeten, gedronken, gelezen, geschreven, gezien and gekregen.
@@ -737,6 +796,8 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: sentence_complete, count: 2 }
               - { type: error_correct }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
           - id: nl-a2-perfectum-zijn
             title: Hebben or Zijn?
             description: Use zijn with movement to a place and change of state (gaan, komen, blijven, worden, verhuizen) and hebben with most other verbs.
@@ -752,6 +813,7 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: error_correct, count: 2 }
               - { type: listen_select }
+              - { type: fill_blank, count: 2 }
           - id: nl-a2-mijn-weekend
             title: My Weekend
             description: Tell someone what you did last weekend, mixing hebben and zijn with past time words.
@@ -769,6 +831,9 @@ levels:
               - type: dialogue
                 scenario: monday_morning_coffee
                 goal: Tell a colleague at the coffee machine what you did last weekend and ask about theirs.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
 
       - id: nl-a2-werk
         title: Work & Job Hunting
@@ -789,6 +854,8 @@ levels:
               - { type: image_select, count: 2 }
               - { type: fill_blank, count: 2 }
               - { type: listen_select }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-scheidbare-werkwoorden
             title: Separable Verbs at Work
             description: Split separable verbs like opbellen, meenemen and afspreken in main clauses, and keep them together after a modal or as a participle (opgebeld).
@@ -804,6 +871,7 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: error_correct, count: 2 }
               - { type: listen_type }
+              - { type: translate, count: 2 }
           - id: nl-a2-vacature-solliciteren
             title: Vacancies & Applying
             description: Read a vacancy, apply for a job and say what you want to do with om … te + infinitive.
@@ -819,6 +887,8 @@ levels:
               - { type: multiple_choice }
               - { type: story }
               - { type: error_correct }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-a2-sollicitatiegesprek
             title: The Job Interview
             description: Answer questions about your experience and skills, and ask about working hours and the trial period.
@@ -835,6 +905,9 @@ levels:
               - type: roleplay
                 scenario: job_interview
                 goal: Answer the interviewer's questions about your work experience and strengths, then ask about the working hours and when you can start.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
 
       - id: nl-a2-gezondheid
         title: Health & the Doctor
@@ -856,6 +929,8 @@ levels:
               - { type: multiple_choice, count: 2 }
               - { type: error_correct }
               - { type: speak }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
           - id: nl-a2-afspraak-huisarts
             title: Calling the GP
             description: Phone the doctor's assistant to make an appointment with the huisarts and describe your symptoms.
@@ -872,6 +947,9 @@ levels:
               - type: roleplay
                 scenario: calling_the_doctors_assistant
                 goal: Explain your symptoms and how long you have had them, and agree on an appointment time.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
           - id: nl-a2-apotheek
             title: At the Pharmacy
             description: Pick up medicine at the apotheek and understand instructions given in the imperative.
@@ -885,23 +963,27 @@ levels:
               - { type: match }
               - { type: listen_select, count: 2 }
               - { type: word_bank, count: 2 }
-          - id: nl-a2-zorgverzekering
-            title: Insurance & Out-of-Hours Care
-            description: Talk about the zorgverzekering and eigen risico, and know when to call the huisartsenpost or 112.
-            vocabulary: ["de zorgverzekering", "het eigen risico", "de premie", "de zorgpas", "de huisartsenpost", "de spoedeisende hulp", "de tandarts", "het noodgeval"]
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+          - id: nl-a2-noodgeval
+            title: Emergencies, Police & After-Hours Care
+            description: Know when to call 112, the huisartsenpost or the police on 0900-8844, and report a stolen bike.
+            vocabulary: ["het noodgeval", "de huisartsenpost", "de spoedeisende hulp", "de politie", "de ambulance", "aangifte doen", gestolen, "het ongeluk"]
             grammar:
-              - pattern: "In Nederland moet iedereen een zorgverzekering hebben."
-              - pattern: "'s Avonds en in het weekend bel je de huisartsenpost."
-              - pattern: "Voor volwassenen vergoedt de basisverzekering de tandarts niet."
               - pattern: "Bij een noodgeval bel je 112."
+              - pattern: "'s Avonds en in het weekend bel je de huisartsenpost."
+              - pattern: "Mijn fiets is gestolen. Ik wil aangifte doen."
+              - pattern: "Er is een ongeluk gebeurd op de Stationsweg."
             activities:
-              - { type: learn }
+              - { type: learn, count: 2 }
               - { type: multiple_choice, count: 2 }
-              - { type: story }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
               - { type: error_correct }
               - type: roleplay
                 scenario: calling_the_huisartsenpost
                 goal: On a Saturday night, explain that your child has had a high fever since this afternoon and understand the advice you get.
+              - { type: listen_type }
 
       - id: nl-a2-wonen
         title: Housing & Neighbours
@@ -923,6 +1005,7 @@ levels:
               - { type: image_select, count: 2 }
               - { type: error_correct, count: 2 }
               - { type: listen_type }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-huren
             title: Renting a Place
             description: Ask a landlord or housing corporation about the rent, extra costs, the deposit and the contract.
@@ -937,6 +1020,8 @@ levels:
               - { type: match }
               - { type: listen_select, count: 2 }
               - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-a2-er-wonen
             title: "Er: There, Here and How Many"
             description: Use er for 'there is/are', to replace a place you already named (ik woon er al) and with numbers (ik heb er twee).
@@ -952,6 +1037,8 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: error_correct }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
           - id: nl-a2-verhuizen-buren
             title: Moving & the Neighbours
             description: Introduce yourself to new neighbours, report a repair to the landlord and complain politely about noise.
@@ -969,6 +1056,9 @@ levels:
               - type: roleplay
                 scenario: calling_the_landlord
                 goal: Report that the heating has been broken for two days, describe the problem and agree on a day for the repair.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
 
       - id: nl-a2-gemeente
         title: The Gemeente & Official Letters
@@ -989,6 +1079,8 @@ levels:
               - { type: match }
               - { type: listen_select, count: 2 }
               - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-beleefd-vragen
             title: Polite Requests
             description: "Make polite requests with zou u … kunnen, kunt u … and mag ik …, and soften the imperative with even and maar."
@@ -1004,6 +1096,8 @@ levels:
               - { type: error_correct }
               - { type: listen_type }
               - { type: speak }
+              - { type: fill_blank, count: 2 }
+              - { type: translate, count: 2 }
           - id: nl-a2-officiele-brief
             title: Official Letters & DigiD
             description: Find the key information in an official letter and use online services with DigiD and MijnOverheid.
@@ -1018,6 +1112,9 @@ levels:
               - { type: story }
               - { type: multiple_choice, count: 2 }
               - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
           - id: nl-a2-regels-samenleving
             title: Everyday Rules & Services
             description: Talk about everyday rules and local services such as sorting rubbish, bulky waste collection, parking and the library.
@@ -1035,6 +1132,9 @@ levels:
               - type: roleplay
                 scenario: gemeente_desk
                 goal: Tell the official at the counter that you have moved, politely ask which documents you need, and check the date your new address takes effect.
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
 
       - id: nl-a2-vroeger
         title: "When I Was Young: The Simple Past"
@@ -1055,6 +1155,8 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: multiple_choice, count: 2 }
               - { type: listen_type }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
           - id: nl-a2-imperfectum-regelmatig
             title: "Regular Simple Past: -te and -de"
             description: "Form the regular simple past with -te(n) or -de(n), using 't kofschip again (werkte, woonde)."
@@ -1070,6 +1172,8 @@ levels:
               - { type: error_correct, count: 2 }
               - { type: word_bank }
               - { type: listen_select }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
           - id: nl-a2-imperfectum-onregelmatig
             title: Irregular Simple Past
             description: Learn the most common irregular past forms such as ging, kwam, zag, deed, at, dronk, nam and kreeg.
@@ -1085,6 +1189,8 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: error_correct }
               - { type: listen_type }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-toen-verhaal
             title: Telling a Story with Toen
             description: "Tell a short story about your past with toen as 'when' (verb at the end) and as 'then' (inversion), using the perfectum for single facts."
@@ -1101,6 +1207,9 @@ levels:
               - type: dialogue
                 scenario: neighbour_asks_about_your_past
                 goal: Tell a neighbour where you grew up, what life was like then and when and why you came to the Netherlands.
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
 
       - id: nl-a2-school-redenen
         title: School, Children & Reasons
@@ -1121,6 +1230,8 @@ levels:
               - { type: image_select }
               - { type: listen_select, count: 2 }
               - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-want-maar-dus
             title: Want, Maar, Dus
             description: Join two main clauses with want, maar, dus, en and of — normal word order after the connector, no inversion.
@@ -1135,6 +1246,8 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: multiple_choice }
               - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-a2-omdat-dat
             title: "Omdat & Dat: Verb to the End"
             description: Give reasons with omdat and report what people say or think with dat, sending the conjugated verb to the end.
@@ -1150,6 +1263,8 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: error_correct }
               - { type: listen_type }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
           - id: nl-a2-als-wanneer-toen
             title: Als, Wanneer & Toen
             description: Talk about conditions and times with als and wanneer (now, future, repeated) and toen (one moment in the past).
@@ -1167,6 +1282,9 @@ levels:
               - type: roleplay
                 scenario: calling_school_sick_child
                 goal: Call the school to say your child is sick and will stay home, explain why, and ask what homework they should do.
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
 
       - id: nl-a2-winkelen
         title: Shopping, Comparing & Returns
@@ -1188,6 +1306,8 @@ levels:
               - { type: image_select }
               - { type: error_correct, count: 2 }
               - { type: listen_type }
+              - { type: word_bank, count: 2 }
+              - { type: translate }
           - id: nl-a2-kleding-kopen
             title: Buying Clothes
             description: Ask for sizes and colours and describe clothes with inflected adjectives (een zwarte broek, een wit overhemd).
@@ -1202,6 +1322,8 @@ levels:
               - { type: image_select, count: 2 }
               - { type: word_bank, count: 2 }
               - { type: listen_select }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-a2-objectpronomen
             title: Him, Her, It, Them
             description: Replace objects with me, je, hem, haar, het, ons, jullie and ze; a de-word thing becomes hem, a het-word thing becomes het.
@@ -1217,6 +1339,8 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: error_correct }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
           - id: nl-a2-ruilen-terugbrengen
             title: Returns & Exchanges
             description: Return or exchange a product with the receipt, using object pronouns and er with numbers.
@@ -1233,6 +1357,9 @@ levels:
               - type: roleplay
                 scenario: returning_a_broken_product
                 goal: Explain what is wrong with the kettle you bought, show your receipt and ask for your money back or a new one.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
 
       - id: nl-a2-trein-plannen
         title: Trains, Plans & Phone Calls
@@ -1253,6 +1380,8 @@ levels:
               - { type: match }
               - { type: listen_select, count: 2 }
               - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-vertraging-overstappen
             title: Delays & Changing Trains
             description: Understand station announcements about delays, disruptions and cancellations, and ask where to change trains.
@@ -1270,6 +1399,8 @@ levels:
               - type: dialogue
                 scenario: asking_at_the_ns_service_desk
                 goal: Ask a station employee how to reach your destination now that your train has been cancelled.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-zullen-plannen
             title: Plans with Zullen
             description: Make suggestions and promises with zullen, and place plans in time with binnenkort, over een week and volgend jaar.
@@ -1284,6 +1415,8 @@ levels:
               - { type: word_bank, count: 2 }
               - { type: sentence_complete, count: 2 }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-a2-telefoneren
             title: Phone Calls & Appointments
             description: Make, move and cancel an appointment by phone, ask to be put through and leave a message.
@@ -1300,6 +1433,10 @@ levels:
               - type: roleplay
                 scenario: moving_an_appointment_by_phone
                 goal: Call the dentist's office, give your name and date of birth, explain you cannot come on Tuesday and agree on a new time.
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
 
       - id: nl-a2-weer-feesten
         title: Weather, Seasons & Celebrations
@@ -1320,6 +1457,8 @@ levels:
               - { type: image_select, count: 2 }
               - { type: listen_type }
               - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
           - id: nl-a2-verkleinwoorden
             title: Diminutives
             description: Make diminutives with -je, -tje, -pje and -etje for small or cosy things; every diminutive is a het-word.
@@ -1334,6 +1473,8 @@ levels:
               - { type: multiple_choice, count: 2 }
               - { type: fill_blank, count: 2 }
               - { type: error_correct }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank, count: 2 }
           - id: nl-a2-feestdagen
             title: Dutch Celebrations
             description: Learn what people do on Koningsdag, Sinterklaas, Christmas and New Year's Eve.
@@ -1349,22 +1490,24 @@ levels:
               - { type: multiple_choice }
               - { type: sentence_complete, count: 2 }
               - { type: listen_select }
-          - id: nl-a2-verjaardag
-            title: A Dutch Birthday
-            description: Join a birthday party in the circle, congratulating the host and the whole family, making small talk and saying goodbye.
-            vocabulary: ["de verjaardag", "de kring", "het cadeau", "de taart", feliciteren, gefeliciteerd, jarig, "de visite"]
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+          - id: nl-a2-datums
+            title: Months, Dates & Ordinals
+            description: "Say dates with ordinal numbers (de eerste, de derde, de twintigste), the months, and when something happens."
+            vocabulary: [januari, maart, mei, juli, september, december, "de eerste", "de derde", "de datum"]
             grammar:
-              - pattern: "Gefeliciteerd met je verjaardag!"
-              - pattern: "Gefeliciteerd met je moeder!"
-              - pattern: "Wie is er vandaag jarig?"
-              - pattern: "Hoe oud ben je geworden?"
+              - pattern: "Welke datum is het vandaag? Het is vijf mei."
+              - pattern: "Mijn verjaardag is op twaalf maart."
+              - pattern: "De afspraak is op de eenentwintigste."
+              - pattern: "In juli en augustus zijn de scholen dicht."
             activities:
-              - { type: learn }
-              - { type: listen_type }
-              - { type: error_correct }
-              - type: roleplay
-                scenario: birthday_in_the_circle
-                goal: Arrive at a colleague's birthday, congratulate the host and their relatives in the circle, make small talk about the weather and your weekend, and say goodbye.
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
 
     checkpoint:
       title: A2 Checkpoint
@@ -1404,6 +1547,8 @@ levels:
               - { type: match }
               - { type: translate }
               - { type: story }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-plusquamperfectum
             title: The Past Perfect
             description: "Use had/was + participle (plusquamperfectum) for something that happened before another past event."
@@ -1418,6 +1563,7 @@ levels:
               - { type: error_correct }
               - { type: listen_type }
               - { type: translate }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-tijdsvolgorde
             title: Linking Events in Time
             description: "Order events with nadat, voordat, zodra, terwijl and toen, with the verb at the end of the subclause."
@@ -1433,6 +1579,8 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: error_correct }
               - { type: speak }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
           - id: nl-b1-ervaring-delen
             title: Sharing an Experience
             description: Tell a friend about something that happened to you and react with interest to their story.
@@ -1448,6 +1596,9 @@ levels:
               - type: video_call
                 scenario: catching_up_with_a_friend
                 goal: Tell a friend what went wrong on your last trip using the imperfectum and plusquamperfectum, then react to their story.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-werk
         title: Working Life
@@ -1469,6 +1620,9 @@ levels:
               - { type: multiple_choice }
               - { type: fill_blank }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-ziekmelden
             title: Calling in Sick
             description: Report sick and back to work, and talk about the company doctor.
@@ -1486,6 +1640,9 @@ levels:
               - type: roleplay
                 scenario: phoning_your_manager
                 goal: Call your leidinggevende to report sick, say how long you expect to be away and what should happen with your tasks.
+              - { type: translate, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-voorzetselwerkwoorden
             title: Verbs with Fixed Prepositions
             description: "Learn verbs that always take the same preposition, and replace the object with eraan, erop or erover."
@@ -1501,6 +1658,8 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: error_correct }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-functioneringsgesprek
             title: The Performance Review
             description: Discuss your work, workload and ambitions in a functioneringsgesprek and in team meetings.
@@ -1518,6 +1677,9 @@ levels:
               - type: video_call
                 scenario: performance_review
                 goal: In a performance review with your manager, say what went well, mention the high workload and ask to follow a training course.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank }
 
       - id: nl-b1-studie
         title: Studying & Training
@@ -1539,6 +1701,9 @@ levels:
               - { type: multiple_choice }
               - { type: listen_select }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
           - id: nl-b1-te-infinitief
             title: Infinitives with te
             description: Use te + infinitive after verbs like proberen, beginnen, vergeten, hopen and van plan zijn.
@@ -1553,6 +1718,9 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: word_bank }
               - { type: error_correct }
+              - { type: translate, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-staan-blijven-laten
             title: Staan te, Blijven and Laten
             description: "Describe ongoing actions with zitten/staan/liggen te, and use blijven and laten with a bare infinitive."
@@ -1568,6 +1736,7 @@ levels:
               - { type: error_correct }
               - { type: listen_type }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
           - id: nl-b1-inburgeringscursus
             title: Your Inburgering Route
             description: Talk with the gemeente about your learning route, exams and exemptions.
@@ -1584,6 +1753,9 @@ levels:
               - type: roleplay
                 scenario: meeting_the_gemeente_klantmanager
                 goal: Discuss your leerroute with the klantmanager at the gemeente, explain your education and goals, and ask how long you have to finish the exams.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-wonen
         title: Housing Problems & Complaints
@@ -1604,6 +1776,9 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: match }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-passief-zijn
             title: The Passive with zijn and er
             description: "Use zijn + participle for a finished result and er + worden for an action without a subject."
@@ -1619,6 +1794,8 @@ levels:
               - { type: error_correct, count: 2 }
               - { type: listen_select }
               - { type: sentence_complete }
+              - { type: translate, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-formele-email
             title: Writing a Formal Email
             description: "Open, structure and close a formal email with Geachte…, u and Met vriendelijke groet."
@@ -1634,6 +1811,8 @@ levels:
               - { type: error_correct }
               - { type: sentence_complete }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-klacht-indienen
             title: Filing a Complaint
             description: Complain politely but firmly about a repair that has not been done and agree on a solution.
@@ -1650,6 +1829,9 @@ levels:
               - type: roleplay
                 scenario: complaint_to_housing_corporation
                 goal: Phone the woningcorporatie about mould and a leak you reported weeks ago, stay polite but firm, and get a concrete date for the repair.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-zorg
         title: The Healthcare System
@@ -1671,6 +1853,9 @@ levels:
               - { type: fill_blank }
               - { type: multiple_choice }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-verwijzing
             title: Referral to a Specialist
             description: "Talk about referrals and waiting lists with relative clauses using waar + preposition and met wie."
@@ -1686,6 +1871,8 @@ levels:
               - { type: error_correct }
               - { type: listen_select }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-relatief-wat-wie
             title: Relative wat and wie
             description: "Use wat after alles, iets, het enige and whole clauses, and wie for 'whoever'."
@@ -1701,6 +1888,9 @@ levels:
               - { type: error_correct }
               - { type: match }
               - { type: speak }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
           - id: nl-b1-gesprek-huisarts
             title: Explaining Symptoms to the GP
             description: Describe symptoms and their duration clearly and ask the right questions about tests and costs.
@@ -1717,6 +1907,9 @@ levels:
               - type: video_call
                 scenario: video_consult_with_gp
                 goal: In a video consultation, describe your symptoms and how long you have had them, ask whether you need a referral and whether it falls under the eigen risico.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-geldzaken
         title: Money & Administration
@@ -1737,6 +1930,8 @@ levels:
               - { type: fill_blank, count: 2 }
               - { type: error_correct }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-toeslagen
             title: Allowances
             description: "Understand toeslagen and advance payments, and link ideas with zodat and tenzij."
@@ -1752,6 +1947,9 @@ levels:
               - { type: sentence_complete, count: 2 }
               - { type: multiple_choice }
               - { type: listen_select }
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank }
           - id: nl-b1-bankzaken
             title: Banking and Bills
             description: Handle transfers, direct debits and a blocked debit card.
@@ -1767,6 +1965,8 @@ levels:
               - { type: error_correct }
               - { type: word_bank }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-betalingsregeling
             title: Payment Problems
             description: Explain a payment problem and arrange to pay in instalments.
@@ -1784,6 +1984,9 @@ levels:
               - type: roleplay
                 scenario: payment_arrangement_call
                 goal: Call the energy company about a late bill, explain why you could not pay on time and agree on a payment plan in monthly instalments.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-samenleving
         title: Dutch Society
@@ -1805,21 +2008,25 @@ levels:
               - { type: multiple_choice }
               - { type: listen_select }
               - { type: translate }
-          - id: nl-b1-er-plaats-hoeveelheid
-            title: Er for Place and Quantity
-            description: "Use er to refer back to a place and with numbers (ik heb er drie)."
-            vocabulary: ["de gemeente", "de inwoner", "de provincie", "het gemeentehuis", "de wijk", "de buurt", "het aantal", ongeveer]
-            grammar:
-              - pattern: "Woon je al lang in Utrecht? — Ja, ik woon er al tien jaar."
-              - pattern: "Hoeveel provincies zijn er? — Er zijn er twaalf."
-              - pattern: "Ik ben er nog nooit geweest."
-              - pattern: "Er wonen ongeveer achttien miljoen mensen in Nederland."
-            activities:
-              - { type: learn }
+              - { type: error_correct, count: 2 }
               - { type: fill_blank, count: 2 }
-              - { type: error_correct }
-              - { type: word_bank }
-              - { type: speak }
+              - { type: listen_type }
+          - id: nl-b1-geschiedenis
+            title: History, Water & the Monarchy
+            description: "Key moments in Dutch history for the KNM exam: the fight against water, the Second World War and the Holocaust, the colonial past, and the King's role."
+            vocabulary: ["de Tweede Wereldoorlog", "de bezetting", "de Jodenvervolging", "het koloniale verleden", "de slavernij", "de koning", "de Deltawerken", "de dijk"]
+            grammar:
+              - pattern: "Van 1940 tot 1945 werd Nederland bezet door Duitsland."
+              - pattern: "Op 4 mei herdenken we de slachtoffers van de oorlog."
+              - pattern: "Na de watersnoodramp van 1953 zijn de Deltawerken gebouwd."
+              - pattern: "De koning heeft geen politieke macht; de ministers zijn verantwoordelijk."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 3 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: translate }
+              - { type: story }
           - id: nl-b1-normen-waarden
             title: Norms and Values
             description: Discuss directness, appointments, equality and freedom of speech in Dutch society.
@@ -1835,6 +2042,9 @@ levels:
               - { type: multiple_choice }
               - { type: sentence_complete }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-er-overzicht
             title: Er in All Its Uses
             description: "Recognise and combine existential, place, partitive, prepositional and passive er in local politics."
@@ -1852,6 +2062,8 @@ levels:
               - type: roleplay
                 scenario: neighbourhood_inspraakavond
                 goal: At an inspraakavond of the gemeente, give your opinion about a plan for a new apartment block in your street and ask the wethouder a question about it.
+              - { type: translate, count: 2 }
+              - { type: sentence_complete, count: 2 }
 
       - id: nl-b1-nieuws
         title: News & Opinions
@@ -1873,6 +2085,8 @@ levels:
               - { type: listen_select }
               - { type: error_correct }
               - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-indirecte-vragen
             title: Indirect Questions
             description: "Ask politely and wonder aloud with of, wat, waarom and wanneer + subclause word order."
@@ -1888,6 +2102,9 @@ levels:
               - { type: sentence_complete }
               - { type: error_correct }
               - { type: speak }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
           - id: nl-b1-mening-geven
             title: Giving Opinions with Nuance
             description: "Agree, disagree and weigh arguments with hoewel, bovendien, echter, toch and daarom."
@@ -1903,6 +2120,8 @@ levels:
               - { type: sentence_complete }
               - { type: error_correct }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-nieuws-bespreken
             title: Discussing a News Item
             description: "Summarise an article using nouns made from verbs (de verhoging, het invoeren) and discuss it."
@@ -1919,6 +2138,9 @@ levels:
               - type: video_call
                 scenario: discussing_the_news
                 goal: Discuss a news item about rising rents with a friend, summarise what the article said, give your opinion with arguments and react with nuance to theirs.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-duurzaamheid
         title: Environment & Sustainability
@@ -1940,6 +2162,9 @@ levels:
               - { type: fill_blank }
               - { type: listen_select }
               - { type: translate }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete }
           - id: nl-b1-irrealis
             title: If Only
             description: "Talk about unreal situations in the present and past: als ik … had, zou ik …; als ik … had gedaan, zou …"
@@ -1955,21 +2180,28 @@ levels:
               - { type: error_correct }
               - { type: word_bank }
               - { type: speak }
-          - id: nl-b1-afval-scheiden
-            title: Separating Waste
-            description: Understand how waste is collected and recycled in your gemeente.
-            vocabulary: ["het afval", "het plastic", "het gft", "de glasbak", "het statiegeld", "de container", scheiden, hergebruiken]
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: nl-b1-energie
+            title: Energy Bills & Contracts
+            description: Understand an energy contract, pass on meter readings, compare suppliers and save energy at home.
+            vocabulary: ["de energieleverancier", "het voorschot", "de jaarafrekening", "de meterstand", "het vaste contract", "het variabele tarief", "de warmtepomp", besparen]
             grammar:
-              - pattern: "Afval wordt in onze gemeente gescheiden opgehaald."
-              - pattern: "Op blikjes zit tegenwoordig ook statiegeld."
-              - pattern: "Weet je of dit bij het plastic mag?"
-              - pattern: "Er wordt steeds meer afval gerecycled."
+              - pattern: "Kunt u de meterstanden doorgeven?"
+              - pattern: "Als ik minder verbruik, krijg ik geld terug bij de jaarafrekening."
+              - pattern: "Ik overweeg om over te stappen naar een andere leverancier."
+              - pattern: "Door de verwarming een graad lager te zetten, bespaar je veel energie."
             activities:
-              - { type: learn }
-              - { type: image_select }
-              - { type: fill_blank }
-              - { type: error_correct }
-              - { type: story }
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: calling_the_energy_supplier
+                goal: Call your energy supplier because your monthly advance payment went up, ask why, and agree on a lower amount.
+              - { type: translate }
           - id: nl-b1-klimaatdebat
             title: The Climate Debate
             description: Weigh up climate measures and say what the government and citizens should do.
@@ -1986,27 +2218,31 @@ levels:
               - type: roleplay
                 scenario: debating_a_car_free_centre
                 goal: With a colleague, discuss whether the gemeente should make the city centre car-free, give arguments for and against using zou/zouden, and reach a nuanced conclusion.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
       - id: nl-b1-sociaal-leven
         title: Social Life & Relationships
         description: Birthdays, invitations and cancellations, relationships, and choosing the right register in writing.
         icon: 🎉
         steps:
-          - id: nl-b1-verjaardag
-            title: The Dutch Birthday Party
-            description: Know what to expect at a Dutch verjaardag and congratulate everyone the right way.
-            vocabulary: ["de verjaardag", "de jarige", feliciteren, gefeliciteerd, "de kring", "het cadeau", "het feestje", "de taart"]
+          - id: nl-b1-partikels
+            title: "Softening Words: even, maar, toch, wel, hoor"
+            description: "Use the little words that make Dutch sound natural and polite: Kom maar binnen, Mag ik even iets vragen?, Dat is toch logisch, Het komt wel goed, hoor."
+            vocabulary: [even, maar, toch, wel, eens, hoor, "hè", gewoon]
             grammar:
-              - pattern: "Gefeliciteerd met je verjaardag!"
-              - pattern: "Gefeliciteerd met je zus!"
-              - pattern: "Iedereen zat in een kring en kreeg eerst koffie met taart."
-              - pattern: "Hij had niet verwacht dat er zoveel mensen zouden komen."
+              - pattern: "Mag ik even iets vragen?"
+              - pattern: "Kom maar binnen, hoor!"
+              - pattern: "Je komt toch ook morgen?"
+              - pattern: "Probeer het nog eens; het komt wel goed."
             activities:
-              - { type: learn, count: 2 }
-              - { type: match }
-              - { type: multiple_choice }
-              - { type: listen_select }
-              - { type: translate }
+              - { type: learn, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: dialogue }
+              - { type: speak }
           - id: nl-b1-uitnodigen-afzeggen
             title: Inviting and Cancelling
             description: Invite people, accept, cancel politely and suggest a new date.
@@ -2022,6 +2258,9 @@ levels:
               - { type: error_correct }
               - { type: word_bank }
               - { type: speak }
+              - { type: translate, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
           - id: nl-b1-register
             title: Formal and Informal Writing
             description: "Choose between je and u, Hoi, Beste and Geachte, and Groetjes or Met vriendelijke groet."
@@ -2037,6 +2276,8 @@ levels:
               - { type: error_correct }
               - { type: sentence_complete }
               - { type: translate }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
           - id: nl-b1-relaties
             title: Relationships
             description: Talk about partners, in-laws and friendships, combining relative clauses and conditionals.
@@ -2054,6 +2295,9 @@ levels:
               - type: video_call
                 scenario: video_call_with_a_dutch_friend
                 goal: Video-call a Dutch friend, congratulate them on moving in with their partner, apologise for cancelling last week's dinner and suggest a new date.
+              - { type: error_correct, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
 
     checkpoint:
       title: B1 Checkpoint
@@ -2068,3 +2312,1625 @@ levels:
         - type: roleplay
           scenario: formal_phone_call
           goal: Phone a government office or landlord about a problem, explain what happened, ask indirect questions and agree on next steps politely.
+
+  B2:
+    title: Upper Intermediate
+    description: >
+      Study, work and argue in Dutch with confidence: weigh pros and cons, write argumentative texts and letters,
+      give presentations, negotiate at work and stand up for your rights as a tenant and consumer.
+      This is the level of the Staatsexamen NT2 Programma II (hbo/university) and the CNaVT STRT and PROF exams.
+
+    units:
+      - id: nl-b2-zou
+        title: Zou in Depth
+        description: Regrets, polite advice, rumours and what would have happened, with zou, had moeten and verb clusters.
+        icon: 🤔
+        steps:
+          - id: nl-b2-had-moeten
+            title: Should Have Done
+            description: "Express regret and reproach with had + infinitive + moeten/kunnen/hoeven at the end of the clause."
+            vocabulary: [achteraf, "spijt hebben van", "het verwijt", "de kans", "laten liggen", "beter opletten", "achteraf gezien", "dat had je niet hoeven doen"]
+            grammar:
+              - pattern: "Je had me eerder moeten bellen, dan had ik je kunnen helpen."
+              - pattern: "Achteraf gezien hadden we het project anders moeten aanpakken."
+              - pattern: "Dat had je echt niet hoeven doen, maar het is heel lief."
+              - pattern: "Ik heb spijt dat ik die kans heb laten liggen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: missed_deadline_with_colleague
+                goal: A colleague missed a deadline; react with a mild reproach (je had het moeten zeggen) and agree how to avoid it next time.
+          - id: nl-b2-zou-advies
+            title: Polite Advice with Zou
+            description: "Use zou for tactful requests, suggestions and advice: zou je willen, ik zou, zou het niet beter zijn om."
+            vocabulary: [verstandig, "de offerte", "het advies", overwegen, "in jouw plaats", "het overleg", tactvol, "de leidinggevende"]
+            grammar:
+              - pattern: "Zou je iets langzamer willen praten?"
+              - pattern: "Als ik jou was, zou ik er nog even een nachtje over slapen."
+              - pattern: "Zou het niet verstandiger zijn om eerst een offerte op te vragen?"
+              - pattern: "Je zou eens met je leidinggevende moeten overleggen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: match }
+              - { type: translate, count: 2 }
+              - { type: listen_select }
+              - { type: speak }
+          - id: nl-b2-zou-geruchten
+            title: Rumours and Unconfirmed Claims
+            description: "Read the news like a native: zou signals that a claim is not confirmed (De minister zou … hebben geweten)."
+            vocabulary: ["naar verluidt", "de getuige", "de verdachte", "het gerucht", bevestigen, ontkennen, "de bron", "op de hoogte"]
+            grammar:
+              - pattern: "De minister zou al maanden van de problemen op de hoogte zijn geweest."
+              - pattern: "Volgens getuigen zou de verdachte via de achterdeur zijn gevlucht."
+              - pattern: "Het bedrijf zou honderd banen willen schrappen, maar dat is nog niet bevestigd."
+              - pattern: "Naar verluidt is de overname volgende week rond."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: error_correct }
+              - { type: story }
+              - { type: translate }
+          - id: nl-b2-zou-hebben
+            title: Would Have and Future in the Past
+            description: "Imagine a different past with zou + participle + hebben/zijn, and report promises with zou + infinitive."
+            vocabulary: [beloven, "op tijd", halen, missen, "zonder jouw hulp", "wie weet", anders, "in dat geval"]
+            grammar:
+              - pattern: "Zonder jouw hulp zou ik het examen nooit gehaald hebben."
+              - pattern: "Wat zou er gebeurd zijn als we die trein hadden gemist?"
+              - pattern: "Ik was gekomen als ik het had geweten."
+              - pattern: "Hij had beloofd dat hij zou bellen, maar hij heeft niets van zich laten horen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: match }
+
+      - id: nl-b2-passief
+        title: The Passive in Depth
+        description: Passive with modals and in all tenses, impersonal er-passives, and the active alternatives Dutch often prefers.
+        icon: ⚙️
+        steps:
+          - id: nl-b2-passief-modaal
+            title: Passive with Modal Verbs
+            description: "Combine modals with the passive: moet worden ingeleverd, kan niet worden opgelost, mag niet gerookt worden."
+            vocabulary: [inleveren, ondertekenen, oplossen, goedkeuren, publiceren, "de aanvraag", "de termijn", uiterlijk]
+            grammar:
+              - pattern: "Het formulier moet uiterlijk 1 mei worden ingeleverd."
+              - pattern: "Dit probleem kan niet zomaar worden opgelost."
+              - pattern: "De aanvraag moet nog door de directeur goedgekeurd worden."
+              - pattern: "Het rapport zal volgende week worden gepubliceerd."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: match }
+          - id: nl-b2-passief-tijden
+            title: Passive Past and Perfect
+            description: "Choose between werd (a process in the past) and is/was + participle (a finished result)."
+            vocabulary: [openen, verbouwen, verkopen, versturen, "het pand", "de verbouwing", "in gebruik nemen", "inmiddels"]
+            grammar:
+              - pattern: "Het Rijksmuseum werd in 1885 geopend."
+              - pattern: "Het pand is inmiddels verkocht."
+              - pattern: "Het huis was al verkocht voordat wij een bod konden doen."
+              - pattern: "Tijdens de verbouwing werd het station tijdelijk gesloten."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_select }
+              - { type: translate, count: 2 }
+              - { type: story }
+          - id: nl-b2-er-passief
+            title: Er in the Passive
+            description: "Use the impersonal er-passive for activities without a subject (er wordt vergaderd) and with indefinite subjects."
+            vocabulary: [discussiëren, vergaderen, aanhouden, "het beleid", "de verwachting", "tot laat", bekendmaken, "de maatregel"]
+            grammar:
+              - pattern: "Er wordt veel over het nieuwe beleid gediscussieerd."
+              - pattern: "Er werd tot laat in de avond vergaderd."
+              - pattern: "Er zijn gisteren drie verdachten aangehouden."
+              - pattern: "Er wordt van je verwacht dat je op tijd bent."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
+              - { type: match }
+          - id: nl-b2-passief-alternatieven
+            title: Alternatives to the Passive
+            description: "Sound more natural with men, je, laten + infinitive and constructions like valt te / is te + infinitive."
+            vocabulary: [men, "laten repareren", "laten weten", "valt te bezien", "valt mee", eenvoudig, "de huizenprijs", vermoeden]
+            grammar:
+              - pattern: "Men zegt dat de huizenprijzen weer gaan stijgen."
+              - pattern: "Ik laat mijn fiets bij de fietsenmaker repareren."
+              - pattern: "Of het plan doorgaat, valt nog te bezien."
+              - pattern: "Dit probleem is eenvoudig op te lossen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: repair_shop_counter
+                goal: Drop off a laptop for repair, ask how long it will take to have it fixed and whether it is worth repairing at all.
+
+      - id: nl-b2-verbanden
+        title: Linking Ideas
+        description: Connect ideas like a writer with concession, conditions, proportion and weighing words.
+        icon: 🔗
+        steps:
+          - id: nl-b2-toegeving
+            title: Concession
+            description: "Admit a point and still go on: hoewel, ondanks, desondanks, toch, al + inversion."
+            vocabulary: [hoewel, ondanks, desondanks, toch, "al is", "neemt niet weg", weliswaar, "het nadeel"]
+            grammar:
+              - pattern: "Hoewel het plan duur is, steunt de gemeenteraad het."
+              - pattern: "Ondanks de regen zijn we toch gaan fietsen."
+              - pattern: "Hij had weinig tijd; desondanks heeft hij het rapport op tijd afgemaakt."
+              - pattern: "Het is weliswaar een goed idee, maar het is niet haalbaar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: match }
+          - id: nl-b2-voorwaarden
+            title: "Conditions: mits, tenzij, zolang"
+            description: "State precise conditions with mits (provided that), tenzij (unless), zolang (as long as) and stel dat."
+            vocabulary: [mits, tenzij, zolang, "stel dat", "op voorwaarde dat", "in dat geval", "de voorwaarde", "anders"]
+            grammar:
+              - pattern: "Je mag het rapport later inleveren, mits je het vooraf meldt."
+              - pattern: "We gaan morgen wandelen, tenzij het regent."
+              - pattern: "Zolang je de huur betaalt, kan de verhuurder je niet zomaar uit huis zetten."
+              - pattern: "Stel dat je ontslagen wordt, wat doe je dan?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: listen_select }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-b2-hoe-meer
+            title: The More, the Better
+            description: "Express proportion with hoe … hoe, hoe … des te, naarmate and steeds + comparative."
+            vocabulary: ["hoe meer", "des te", naarmate, steeds, toenemen, afnemen, "de kans", gespannen]
+            grammar:
+              - pattern: "Hoe meer je oefent, hoe beter je wordt."
+              - pattern: "Hoe eerder je je aanmeldt, des te groter is de kans op een kamer."
+              - pattern: "Naarmate de deadline dichterbij kwam, werd de sfeer gespannener."
+              - pattern: "Het wordt steeds moeilijker om een betaalbare woning te vinden."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: translate }
+              - { type: listen_type, count: 2 }
+              - { type: error_correct }
+          - id: nl-b2-enerzijds-anderzijds
+            title: Weighing Up and Concluding
+            description: "Structure an argument: enerzijds … anderzijds, niet alleen … maar ook, bovendien, daarentegen, kortom."
+            vocabulary: [enerzijds, anderzijds, bovendien, daarentegen, kortom, "niet alleen", "het voordeel", "opwegen tegen"]
+            grammar:
+              - pattern: "Enerzijds is thuiswerken efficiënt, anderzijds mis je het contact met collega's."
+              - pattern: "Niet alleen de prijs, maar ook de kwaliteit is belangrijk."
+              - pattern: "De trein is duur; de bus is daarentegen veel goedkoper."
+              - pattern: "Kortom, de voordelen wegen niet op tegen de nadelen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_select }
+              - type: roleplay
+                scenario: work_from_home_discussion
+                goal: Discuss with your manager whether to work from home three days a week, weighing pros and cons with enerzijds/anderzijds and ending with a conclusion.
+
+      - id: nl-b2-er-voorzetsel
+        title: Er + Preposition
+        description: Master erover, ervan, erop and daar- forms, fixed prepositions with nouns and adjectives, and opinions with er.
+        icon: 🎯
+        steps:
+          - id: nl-b2-er-vooruit
+            title: Er Pointing Forward
+            description: "Use er + preposition to announce a dat- or om te-clause: ik reken erop dat, ik ben ervan overtuigd dat."
+            vocabulary: ["rekenen op", "overtuigd van", "afhangen van", "nadenken over", "zorgen voor", "zich verheugen op", "klagen over", "wennen aan"]
+            grammar:
+              - pattern: "Ik reken erop dat je morgen op tijd bent."
+              - pattern: "Het hangt ervan af of we subsidie krijgen."
+              - pattern: "We hebben erover nagedacht om naar Utrecht te verhuizen."
+              - pattern: "Zorg ervoor dat alle documenten vóór vrijdag binnen zijn."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: match }
+              - { type: translate }
+              - { type: listen_type }
+          - id: nl-b2-daar-nadruk
+            title: Daar- for Emphasis
+            description: "Put daar first for emphasis and split pronominal adverbs: daar ben ik het niet mee eens, waar heb je het over?"
+            vocabulary: ["het eens zijn met", "zin hebben in", "denken aan", "praten over", "bang zijn voor", "houden van", "waar … over", "daar … mee"]
+            grammar:
+              - pattern: "Daar ben ik het helemaal niet mee eens."
+              - pattern: "Daar heb ik nooit aan gedacht."
+              - pattern: "Waar heb je het eigenlijk over?"
+              - pattern: "Daar heb ik nu even geen zin in."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - type: dialogue
+                scenario: disagreeing_with_a_friend
+                goal: A friend proposes a weekend plan you dislike; push back with daar-constructions and suggest an alternative.
+          - id: nl-b2-vaste-voorzetsels
+            title: Nouns and Adjectives with Fixed Prepositions
+            description: "Learn combinations like trots op, behoefte aan, verantwoordelijk voor, benieuwd naar, and replace the object with er-."
+            vocabulary: ["trots op", "behoefte aan", "verantwoordelijk voor", "benieuwd naar", "interesse in", "tevreden met", "afhankelijk van", "gewend aan"]
+            grammar:
+              - pattern: "Er is veel behoefte aan betaalbare woningen."
+              - pattern: "Ze is verantwoordelijk voor de planning van het project."
+              - pattern: "Ik ben benieuwd naar de uitslag; ben jij er ook benieuwd naar?"
+              - pattern: "Hij is nog niet gewend aan het Nederlandse weer."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: translate }
+              - { type: sentence_complete }
+              - { type: listen_type }
+              - { type: error_correct }
+          - id: nl-b2-mening-er
+            title: Opinions with Er and Daar
+            description: "Take a stand with ertegen/ervoor zijn, ervan overtuigd zijn, eraan twijfelen and daar valt veel voor te zeggen."
+            vocabulary: ["ertegen zijn", "ervoor zijn", "twijfelen aan", "zeker van", "daar valt iets voor te zeggen", "het punt", "haalbaar", "de huurstijging"]
+            grammar:
+              - pattern: "Ik ben ertegen dat de huren nog verder stijgen."
+              - pattern: "Ik ben er niet zo zeker van dat dit plan werkt."
+              - pattern: "Daar valt veel voor te zeggen, maar het is duur."
+              - pattern: "Ik twijfel eraan of dat financieel haalbaar is."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct }
+              - { type: listen_select }
+              - { type: word_bank }
+              - { type: speak }
+
+      - id: nl-b2-partikels
+        title: Modal Particles in Depth
+        description: Sound natural with maar, even, toch, wel, eens, nou, hoor, hè and zeg, and learn how natives stack them.
+        icon: 💬
+        steps:
+          - id: nl-b2-maar-even
+            title: "Maar and Even: Softening"
+            description: "Even makes a request small and friendly; maar gives permission or encouragement. Know when each fits."
+            vocabulary: [even, maar, "gerust", "rustig aan", "ga je gang", "het geeft niet", "wacht even", "kom maar"]
+            grammar:
+              - pattern: "Wacht maar even, ik kom zo bij je."
+              - pattern: "Kun je me even helpen met deze tas?"
+              - pattern: "Ga maar zitten, de dokter komt zo."
+              - pattern: "Ik bel je straks even terug."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: translate }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: neighbour_asks_a_favour
+                goal: A neighbour asks you to water her plants; answer warmly using maar and even and arrange when to pick up the key.
+          - id: nl-b2-toch-wel
+            title: "Toch and Wel: Contrast and Reassurance"
+            description: "Toch appeals to shared knowledge or expresses surprise; wel contrasts with a negative or softens a claim."
+            vocabulary: [toch, wel, "toch nog", "wel degelijk", "dat dacht ik al", "ik zei het toch", "nou ja", "toch wel"]
+            grammar:
+              - pattern: "Ik heb het je toch gezegd!"
+              - pattern: "Je bent toch niet boos op me?"
+              - pattern: "Hij komt wel, maar hij is iets later."
+              - pattern: "Ze zei dat ze geen tijd had, maar ze is toch gekomen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete }
+              - { type: listen_type, count: 2 }
+              - { type: translate }
+              - { type: match }
+          - id: nl-b2-eens-nou-hoor
+            title: Eens, Nou, Hoor, Hè and Zeg
+            description: "Add tone in speech: eens (invitation), nou (impatience or hesitation), hoor (reassurance), hè (tag question), zeg (attention)."
+            vocabulary: [eens, nou, hoor, "hè", zeg, "valt mee", "moet je eens kijken", "nou en"]
+            grammar:
+              - pattern: "Moet je eens kijken wat ik op zolder heb gevonden!"
+              - pattern: "Nou, dat valt best mee."
+              - pattern: "Het is koud vandaag, hè?"
+              - pattern: "Zeg, heb jij mijn sleutels ergens gezien?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: translate }
+              - { type: match }
+              - { type: speak }
+          - id: nl-b2-stapelen
+            title: Stacking Particles
+            description: "Combine particles in the natural order (toch maar, maar eens, eens even, nou maar) and hear how they change the tone."
+            vocabulary: ["maar eens", "eens even", "toch maar", "nou maar", "gewoon", "wel even", "doe maar gewoon", "zeg het nou maar"]
+            grammar:
+              - pattern: "Kom maar eens langs als je tijd hebt."
+              - pattern: "Doe toch maar gewoon mee, het is hartstikke gezellig."
+              - pattern: "Zeg het nou maar gewoon."
+              - pattern: "Dat had je toch wel even kunnen zeggen!"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - type: roleplay
+                scenario: persuading_a_shy_colleague
+                goal: Persuade a hesitant colleague to come to the team outing, using stacked particles to sound friendly rather than pushy.
+
+      - id: nl-b2-werkvloer
+        title: Working Life in Depth
+        description: Run and contribute to meetings, give and receive direct feedback, network and negotiate your salary.
+        icon: 💼
+        steps:
+          - id: nl-b2-vergaderen
+            title: Meetings and the Agenda
+            description: "Follow a Dutch meeting: agendapunten, notulen, rondvraag and actiepunten, and take the floor politely."
+            vocabulary: ["het agendapunt", "de notulen", "de voorzitter", "de rondvraag", "het actiepunt", "een besluit nemen", "het woord geven", "uitstellen"]
+            grammar:
+              - pattern: "Laten we beginnen met het eerste agendapunt."
+              - pattern: "Mag ik hier even op reageren?"
+              - pattern: "Wie neemt dit actiepunt op zich?"
+              - pattern: "Zullen we dit punt naar de volgende vergadering verschuiven?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: sentence_complete }
+              - { type: translate }
+              - type: roleplay
+                scenario: chairing_a_team_meeting
+                goal: Chair a short team meeting, go through two agenda points, give a colleague the floor and close with action points and the rondvraag.
+          - id: nl-b2-feedback
+            title: Feedback and Dutch Directness
+            description: "Give and receive direct but respectful feedback: start positive, be concrete, use ik-boodschappen."
+            vocabulary: ["de feedback", "het verbeterpunt", "het compliment", "concreet", "wat mij betreft", "eerlijk gezegd", "opbouwend", "direct"]
+            grammar:
+              - pattern: "Ik wil je graag wat feedback geven over je presentatie."
+              - pattern: "Wat ik goed vond, is dat je heel duidelijk was."
+              - pattern: "Eerlijk gezegd heb ik het idee dat de planning niet haalbaar is."
+              - pattern: "Bedankt voor je feedback, daar ga ik mee aan de slag."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: peer_feedback_session
+                goal: Give a colleague constructive feedback on a report, naming one strength and one concrete improvement point.
+          - id: nl-b2-netwerken
+            title: Networking and Your Pitch
+            description: "Introduce yourself professionally in 30 seconds and keep the conversation going at a borrel or event."
+            vocabulary: ["de pitch", "het netwerk", "de borrel", "gespecialiseerd in", "de achtergrond", "contact houden", "het visitekaartje", "de branche"]
+            grammar:
+              - pattern: "Ik werk als data-analist bij een energiebedrijf in Rotterdam."
+              - pattern: "Ik ben gespecialiseerd in duurzame bouwprojecten."
+              - pattern: "Waar ik naar op zoek ben, is een functie met meer verantwoordelijkheid."
+              - pattern: "Zullen we contact houden via LinkedIn?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - { type: translate, count: 2 }
+              - { type: match }
+              - { type: speak }
+          - id: nl-b2-salaris
+            title: Negotiating Salary and Terms
+            description: "Negotiate salary and secondary terms with arguments, counter-offers and conditions (mits, zou er ruimte zijn)."
+            vocabulary: ["het bruto maandsalaris", "de cao", "de salarisschaal", "het vakantiegeld", "de dertiende maand", "het tegenvoorstel", "de secundaire arbeidsvoorwaarden", onderhandelen]
+            grammar:
+              - pattern: "Gezien mijn ervaring had ik gedacht aan een bruto maandsalaris van 4.200 euro."
+              - pattern: "Zou er ruimte zijn om over het salaris te onderhandelen?"
+              - pattern: "Als het salaris vastligt, zijn er dan mogelijkheden voor een opleidingsbudget?"
+              - pattern: "Ik ga akkoord, mits het contract na een jaar wordt omgezet in een vast contract."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: salary_negotiation
+                goal: Negotiate your starting salary with HR, justify a higher amount, react to their counter-offer and agree on secondary terms.
+
+      - id: nl-b2-studie
+        title: Study & Presenting
+        description: Enter hbo or university, present clearly, summarise texts and follow lectures (CNaVT STRT).
+        icon: 🎓
+        steps:
+          - id: nl-b2-hoger-onderwijs
+            title: Higher Education and DUO
+            description: "Apply via Studielink, meet the language requirement and arrange tuition and student finance with DUO."
+            vocabulary: ["het hbo", "het wo", "het collegegeld", "de studiefinanciering", "de toelatingseis", "de propedeuse", "de studieschuld", inschrijven]
+            grammar:
+              - pattern: "Om toegelaten te worden, moet je het Staatsexamen NT2 Programma II hebben gehaald."
+              - pattern: "De aanmelding loopt via Studielink."
+              - pattern: "Via DUO kun je een lening afsluiten om je collegegeld te betalen."
+              - pattern: "Wie zich te laat inschrijft, kan pas in februari beginnen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: study_advisor_appointment
+                goal: Ask a study advisor about admission requirements, the application deadline and how to finance your studies.
+          - id: nl-b2-presentatie
+            title: Structuring a Presentation
+            description: "Signpost a talk: introduction, main points, transitions, conclusion and handling questions."
+            vocabulary: ["de inleiding", "het hoofdpunt", "de dia", "de overgang", "tot slot", benadrukken, "ingaan op", "een vraag stellen"]
+            grammar:
+              - pattern: "In mijn presentatie ga ik eerst in op de oorzaken en daarna op de gevolgen."
+              - pattern: "Zoals u op deze dia kunt zien, is het aantal studenten sterk gestegen."
+              - pattern: "Dan kom ik nu bij mijn tweede punt."
+              - pattern: "Tot slot wil ik benadrukken dat we snel moeten handelen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: match }
+              - { type: speak }
+          - id: nl-b2-samenvatten
+            title: Summarising a Text
+            description: "Report the main point of a text with neutral phrases and nominal style: de invoering van, het verbieden van."
+            vocabulary: ["de auteur", stellen, "de hoofdgedachte", "de invoering", "de toename", "samenvattend", "de kern", "het verbod"]
+            grammar:
+              - pattern: "De auteur stelt dat thuiswerken de werkdruk verhoogt."
+              - pattern: "Het artikel gaat over de toename van het aantal thuiswerkers."
+              - pattern: "De invoering van de nieuwe regel heeft tot veel kritiek geleid."
+              - pattern: "Samenvattend kan worden gezegd dat het plan meer kost dan het oplevert."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct }
+              - { type: fill_blank }
+              - { type: story }
+          - id: nl-b2-hoorcollege
+            title: Following a Lecture
+            description: "Catch the key points of a lecture and talk about it afterwards with verb clusters (heb niet kunnen volgen)."
+            vocabulary: ["het hoorcollege", "de werkgroep", "de aantekeningen", "de docent", "de stof", "het tentamen", bijhouden, "het hoofdstuk"]
+            grammar:
+              - pattern: "Ik heb niet alles kunnen opschrijven, het ging zo snel."
+              - pattern: "De docent zei dat we hoofdstuk drie al hadden moeten lezen."
+              - pattern: "Kun je me je aantekeningen even sturen?"
+              - pattern: "Het belangrijkste punt van het college was dat taal voortdurend verandert."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+              - { type: translate }
+
+      - id: nl-b2-consument
+        title: Housing & Consumer Rights
+        description: Buy a home, challenge your rent, understand energy contracts and take a dispute to the Geschillencommissie.
+        icon: 🏠
+        steps:
+          - id: nl-b2-hypotheek
+            title: Buying a Home and the Mortgage
+            description: "Follow the buying process: bezichtiging, bod, voorbehoud van financiering, taxatie and the notaris."
+            vocabulary: ["de hypotheek", "de makelaar", "het bod", "de bezichtiging", "de taxatie", "de notaris", "het voorbehoud van financiering", "de overdracht"]
+            grammar:
+              - pattern: "We hebben een bod uitgebracht onder voorbehoud van financiering."
+              - pattern: "De woning moet eerst worden getaxeerd voordat de bank de hypotheek verstrekt."
+              - pattern: "Hoeveel kan ik maximaal lenen met mijn inkomen?"
+              - pattern: "Bij de notaris wordt de akte getekend en krijg je de sleutels."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+              - { type: translate }
+              - type: roleplay
+                scenario: mortgage_advisor_meeting
+                goal: Meet a mortgage advisor, explain your income and situation, ask how much you can borrow and what costs come on top of the price.
+          - id: nl-b2-huurcommissie
+            title: Rent Disputes and the Huurcommissie
+            description: "Object to a rent increase, have your rent checked against the puntensysteem and report defects."
+            vocabulary: ["de Huurcommissie", "de huurverhoging", "het puntensysteem", "de servicekosten", "het gebrek", "bezwaar maken", "de uitspraak", "de huurverlaging"]
+            grammar:
+              - pattern: "Ik ben het niet eens met de huurverhoging en maak daar bezwaar tegen."
+              - pattern: "U kunt de huurprijs laten toetsen door de Huurcommissie."
+              - pattern: "Volgens het puntensysteem is mijn huur veel te hoog."
+              - pattern: "Zolang het gebrek niet is verholpen, kun je een tijdelijke huurverlaging aanvragen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - { type: translate, count: 2 }
+              - { type: word_bank }
+              - { type: story }
+          - id: nl-b2-energiecontract
+            title: Energy Contracts in Detail
+            description: "Compare fixed, variable and dynamic contracts, know your bedenktijd and cancellation fees, and ask about feed-in costs."
+            vocabulary: ["de opzegtermijn", "de opzegvergoeding", "de bedenktijd", "het welkomstaanbod", "het dynamische contract", terugleveren, "de terugleverkosten", "de leveringsvoorwaarden"]
+            grammar:
+              - pattern: "Als je een vast contract voortijdig opzegt, moet je een opzegvergoeding betalen."
+              - pattern: "Bij een contract dat aan de deur is afgesloten, heb je veertien dagen bedenktijd."
+              - pattern: "Ik wil graag weten wat de terugleverkosten voor mijn zonnepanelen zijn."
+              - pattern: "Er wordt mij een hoger maandbedrag in rekening gebracht dan afgesproken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+              - { type: translate }
+              - type: dialogue
+                scenario: door_to_door_energy_seller
+                goal: A salesperson at the door offers a new energy contract; ask critical questions about the terms and politely decline to sign on the spot.
+          - id: nl-b2-geschillencommissie
+            title: Taking a Dispute Further
+            description: "Write a formal notice of default (ingebrekestelling) and escalate to the Geschillencommissie with formal mocht-clauses."
+            vocabulary: ["de Geschillencommissie", "het geschil", "de ingebrekestelling", "de schadevergoeding", "de redelijke termijn", "de garantie", bindend, "de webwinkel"]
+            grammar:
+              - pattern: "Hierbij stel ik u in gebreke en geef ik u veertien dagen om het probleem op te lossen."
+              - pattern: "Mocht u niet reageren, dan leg ik het geschil voor aan de Geschillencommissie."
+              - pattern: "Het product voldoet niet aan wat ik er redelijkerwijs van mocht verwachten."
+              - pattern: "De uitspraak van de commissie is bindend voor beide partijen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete }
+              - { type: translate, count: 2 }
+              - { type: listen_select }
+              - { type: multiple_choice }
+
+      - id: nl-b2-media
+        title: Media & Argument
+        description: Read columns, write argumentative texts and letters to the editor, and debate a statement (Programma II).
+        icon: 📰
+        steps:
+          - id: nl-b2-column
+            title: Reading a Column
+            description: "Recognise tone, irony and exaggeration in a newspaper column and find the writer's real point."
+            vocabulary: ["de column", "de columnist", "de ironie", "de toon", "de strekking", overdrijven, "met een knipoog", "de vergelijking"]
+            grammar:
+              - pattern: "De columnist bedoelt het ironisch: eigenlijk vindt ze het een slecht plan."
+              - pattern: "Wat is de strekking van deze column?"
+              - pattern: "Met deze vergelijking wil de schrijver laten zien hoe absurd de regel is."
+              - pattern: "Je zou bijna denken dat de trein nooit op tijd rijdt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: story }
+              - { type: multiple_choice, count: 3 }
+              - { type: match }
+              - { type: translate }
+              - { type: listen_select }
+              - { type: fill_blank, count: 2 }
+          - id: nl-b2-betoog
+            title: The Argumentative Text
+            description: "Build a betoog: a clear stelling, supported arguments, a refuted counter-argument and a conclusion."
+            vocabulary: ["de stelling", "het argument", "het tegenargument", "het betoog", onderbouwen, weerleggen, "de bron", "op grond van"]
+            grammar:
+              - pattern: "Ik ben van mening dat de overheid meer moet investeren in sociale huurwoningen."
+              - pattern: "Een belangrijk argument hiervoor is dat de wachtlijsten steeds langer worden."
+              - pattern: "Tegenstanders voeren aan dat dit te duur is; dat argument gaat echter niet op."
+              - pattern: "Op grond van deze argumenten concludeer ik dat het plan moet worden uitgevoerd."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: match }
+          - id: nl-b2-ingezonden-brief
+            title: A Letter to the Editor
+            description: "React in writing to a newspaper article: refer to it, state your view, back it up and end with a call to action."
+            vocabulary: ["de ingezonden brief", "de redactie", "naar aanleiding van", "de bewering", volstrekt, onterecht, "ter harte nemen", "aandacht besteden aan"]
+            grammar:
+              - pattern: "Naar aanleiding van uw artikel van 12 maart over de woningnood wil ik graag reageren."
+              - pattern: "Het verbaast mij dat de schrijver geen aandacht besteedt aan de positie van starters."
+              - pattern: "Ik ben het volstrekt oneens met de bewering dat jongeren lui zijn."
+              - pattern: "Ik hoop dat de gemeente deze kritiek ter harte neemt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate, count: 2 }
+              - { type: listen_select }
+              - { type: word_bank }
+          - id: nl-b2-debat
+            title: Debating a Statement
+            description: "Defend a position live: interrupt politely, concede a point, ask for evidence and keep the floor."
+            vocabulary: ["het debat", "de tegenstander", "uitpraten", "inbrengen tegen", "een terecht punt", "de onderbouwing", "het eens zijn", "het oneens zijn"]
+            grammar:
+              - pattern: "Mag ik even uitpraten?"
+              - pattern: "Daar wil ik tegen inbrengen dat de kosten veel hoger zijn."
+              - pattern: "Dat is een terecht punt, maar het neemt niet weg dat het probleem blijft bestaan."
+              - pattern: "Kunt u dat met cijfers onderbouwen?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete }
+              - { type: translate }
+              - { type: listen_select }
+              - type: roleplay
+                scenario: debate_on_a_statement
+                goal: "Debate the statement 'Auto's moeten uit de binnenstad worden geweerd': take a side, give two arguments, concede one point and respond to a counter-argument."
+
+      - id: nl-b2-identiteit
+        title: History & Identity
+        description: Go deeper into the war and the Holocaust, the colonial past, the fight against water and the constitution.
+        icon: 🏛️
+        steps:
+          - id: nl-b2-oorlog-holocaust
+            title: The War and the Holocaust
+            description: "Talk about the occupation, the persecution of Jews, resistance and remembrance, mostly in the past passive."
+            vocabulary: ["de Holocaust", "de deportatie", "het verzet", "de onderduiker", "de Februaristaking", "de herdenking", "het antisemitisme", "de bevrijding"]
+            grammar:
+              - pattern: "Ruim honderdduizend Joden werden vanuit Nederland gedeporteerd en vermoord."
+              - pattern: "Anne Frank zat ruim twee jaar met haar familie ondergedoken in het Achterhuis."
+              - pattern: "In februari 1941 legden duizenden Amsterdammers het werk neer uit protest tegen de Jodenvervolging."
+              - pattern: "Het is belangrijk dat we blijven herdenken, zodat zoiets nooit meer gebeurt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: story }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+              - { type: translate, count: 2 }
+          - id: nl-b2-koloniaal-verleden
+            title: The Colonial Past and Keti Koti
+            description: "Discuss the VOC and WIC, the slave trade, the abolition of slavery and how the Netherlands remembers it today."
+            vocabulary: ["de VOC", "de slavenhandel", "het slavernijverleden", "de afschaffing", "Keti Koti", "de excuses", "de nazaten", "tot slaaf gemaakt"]
+            grammar:
+              - pattern: "Op 1 juli wordt met Keti Koti de afschaffing van de slavernij herdacht en gevierd."
+              - pattern: "Hoewel de slavernij in 1863 werd afgeschaft, moesten veel tot slaaf gemaakten nog tien jaar doorwerken."
+              - pattern: "In 2022 bood de premier namens de regering excuses aan voor het slavernijverleden."
+              - pattern: "Lange tijd werd dit deel van de geschiedenis nauwelijks op school behandeld."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: translate }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-b2-water
+            title: Living Below Sea Level
+            description: "Explain polders, waterschappen and the Afsluitdijk, and discuss climate adaptation with zullen + passive."
+            vocabulary: ["het waterschap", "de polder", "het gemaal", "de stormvloedkering", "de zeespiegelstijging", inpolderen, droogleggen, "de Afsluitdijk"]
+            grammar:
+              - pattern: "Een groot deel van Nederland ligt onder de zeespiegel."
+              - pattern: "De Afsluitdijk werd in 1932 voltooid en maakte van de Zuiderzee het IJsselmeer."
+              - pattern: "Als de zeespiegel blijft stijgen, zullen de dijken verder verhoogd moeten worden."
+              - pattern: "Het waterschap is verantwoordelijk voor de dijken en de waterkwaliteit."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-b2-grondwet
+            title: The Constitution and Equality
+            description: "Discuss article 1, freedom of expression, self-determination and the role of the king under ministerial responsibility."
+            vocabulary: ["de Grondwet", "artikel 1", "de gelijke behandeling", "de vrijheid van meningsuiting", "de zelfbeschikking", "de ministeriële verantwoordelijkheid", "de Troonrede", onschendbaar]
+            grammar:
+              - pattern: "Artikel 1 van de Grondwet verbiedt discriminatie op welke grond dan ook."
+              - pattern: "Iedereen mag zelf bepalen met wie hij of zij trouwt."
+              - pattern: "De koning is onschendbaar; de ministers zijn verantwoordelijk."
+              - pattern: "Op Prinsjesdag leest de koning de Troonrede voor."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: translate, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: discussing_freedom_of_speech
+                goal: Discuss with a friend where freedom of expression ends, referring to article 1 and giving an example from the news.
+
+    checkpoint:
+      title: B2 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 3 }
+        - { type: listen_select, count: 2 }
+        - { type: translate, count: 3 }
+        - { type: story }
+        - type: roleplay
+          scenario: argued_discussion
+          goal: Discuss a social issue (housing, work from home or energy) with a critical colleague, state and defend your position with arguments, concede a point and conclude.
+
+  C1:
+    title: Advanced
+    description: >
+      Use Dutch flexibly and precisely in professional and academic life: chair meetings, negotiate,
+      write memos, minutes and objections, follow legal, scientific and economic debate, and catch
+      idiom, irony and regional variation. This is the level of the CNaVT Educatief Professioneel (EDUP)
+      and near-native professional use.
+
+    units:
+      - id: nl-c1-woordvolgorde
+        title: Advanced Word Order
+        description: Control verb clusters, the middle field and fronting, and tell separable from inseparable verbs by stress.
+        icon: 🔀
+        steps:
+          - id: nl-c1-werkwoordclusters
+            title: Verb Clusters
+            description: "Stack modals and auxiliaries in subclauses and conditionals (had kunnen weten, heeft moeten inleveren)."
+            vocabulary: [achteraf, voorzien, nalaten, inzien, vermijden, "het misverstand", "de inschatting", "de valkuil"]
+            grammar:
+              - pattern: "Ik had het kunnen weten als ik de mail beter had gelezen."
+              - pattern: "Ik denk dat hij het rapport al had moeten inleveren."
+              - pattern: "Ze zegt dat ze de vergadering niet heeft kunnen bijwonen."
+              - pattern: "Achteraf gezien hadden we die valkuil kunnen voorzien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: sentence_complete }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: multiple_choice }
+              - { type: speak }
+          - id: nl-c1-middenveld
+            title: The Middle Field & Negation
+            description: "Place niet, adverbs and modal words like immers and overigens correctly in the middle of the sentence."
+            vocabulary: [overigens, immers, namelijk, "in elk geval", nauwelijks, allerminst, geenszins, wellicht]
+            grammar:
+              - pattern: "Hij heeft het rapport gisteren niet gelezen."
+              - pattern: "Ik heb dat boek niet aan hem gegeven, maar aan haar."
+              - pattern: "Zij heeft immers nooit om die functie gevraagd."
+              - pattern: "Dat was overigens geenszins de bedoeling."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+              - { type: match }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: story }
+          - id: nl-c1-vooropplaatsing
+            title: Fronting for Emphasis
+            description: "Put the object, a contrast or a framing phrase first to set the topic or add emphasis."
+            vocabulary: [benadrukken, "het contrast", "de nadruk", juist, uitgerekend, "nota bene", zelfs, "wat dat betreft"]
+            grammar:
+              - pattern: "Dat rapport heb ik nooit gezien."
+              - pattern: "Uitgerekend vandaag moest de server uitvallen."
+              - pattern: "Wat dat betreft heeft ze gelijk."
+              - pattern: "Hem had ik niet verwacht, haar wel."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: correcting_a_colleague
+                goal: Politely correct a colleague's wrong assumptions in a project update, fronting the element you want to contrast.
+          - id: nl-c1-scheidbaar
+            title: Separable or Not?
+            description: "Hear and use the stress difference between separable and inseparable verbs (vóórkomen vs voorkómen)."
+            vocabulary: [voorkómen, vóórkomen, ondergaan, doorzien, overwegen, onderhouden, omschrijven, "het voorvoegsel"]
+            grammar:
+              - pattern: "We moeten voorkómen dat dit nog eens gebeurt."
+              - pattern: "Zulke fouten komen helaas vaak voor."
+              - pattern: "De zon gaat om negen uur onder; de patiënt ondergaat morgen een operatie."
+              - pattern: "Hij heeft het plan meteen doorzien."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: match }
+              - { type: translate }
+              - { type: speak }
+
+      - id: nl-c1-woordvorming
+        title: Word Formation & Nominal Style
+        description: Build and unpack words with prefixes, suffixes and compounds, and switch between verbal and nominal style.
+        icon: 🧩
+        steps:
+          - id: nl-c1-voorvoegsels
+            title: "Prefixes: be-, ver-, ont-"
+            description: "See how be-, ver- and ont- change a verb's meaning and make it transitive, causative or reversed."
+            vocabulary: [bespreken, beantwoorden, verduidelijken, verbeteren, ontlasten, ontmoedigen, ontkrachten, bewerken]
+            grammar:
+              - pattern: "Kunt u uw standpunt nader verduidelijken?"
+              - pattern: "De nieuwe regeling moet de huisartsen ontlasten."
+              - pattern: "Wij zullen uw vraag zo snel mogelijk beantwoorden."
+              - pattern: "Dat argument is inmiddels volledig ontkracht."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: listen_type }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-c1-achtervoegsels
+            title: "Suffixes: -baar, -ling, -heid, -ing"
+            description: "Form adjectives and nouns with -baar, -ling, -heid, -ing and -schap and choose the right article."
+            vocabulary: [haalbaar, betaalbaar, "de nieuweling", "de betrouwbaarheid", "de beschikbaarheid", "het leiderschap", "de verzekering", "de duurzaamheid"]
+            grammar:
+              - pattern: "Is dit plan financieel haalbaar?"
+              - pattern: "De beschikbaarheid van betaalbare woningen neemt af."
+              - pattern: "Als nieuweling moest ik nog veel leren."
+              - pattern: "Betrouwbaarheid is voor ons het belangrijkste criterium."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+              - { type: match }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: speak }
+          - id: nl-c1-samenstellingen
+            title: Compounds
+            description: "Build long compounds, choose the linking -s- or -en-, and find the head word that gives the article."
+            vocabulary: ["de arbeidsmarkt", "het pannenkoekenrestaurant", "de zorgverzekering", "de verblijfsvergunning", "het overheidsbeleid", "de klantenservice", "de woningnood", "de tussenklank"]
+            grammar:
+              - pattern: "De verblijfsvergunning moet tijdig worden verlengd."
+              - pattern: "Het overheidsbeleid op het gebied van woningbouw schiet tekort."
+              - pattern: "We gingen met de kinderen naar een pannenkoekenrestaurant."
+              - pattern: "De klantenservice was urenlang onbereikbaar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: story }
+          - id: nl-c1-nominalisering
+            title: From Verb to Noun
+            description: "Rewrite verbal sentences in the nominal style of reports and official letters, and back again."
+            vocabulary: ["de invoering", "het besluit", "de uitvoering", "de toename", "de afname", "het onderzoek", "de beoordeling", "naar aanleiding van"]
+            grammar:
+              - pattern: "Na de invoering van de nieuwe regels nam het aantal klachten toe."
+              - pattern: "Het besluit tot sluiting van de vestiging is definitief."
+              - pattern: "De uitvoering van het plan wordt uitgesteld."
+              - pattern: "Naar aanleiding van uw verzoek is een onderzoek ingesteld."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: listen_select }
+              - { type: multiple_choice }
+              - { type: speak }
+
+      - id: nl-c1-register
+        title: Register & Tone
+        description: Read officialese and rewrite it in plain B1 Dutch, write a bezwaarschrift, and pitch your tone in speech and writing.
+        icon: 🎩
+        steps:
+          - id: nl-c1-ambtelijk
+            title: Officialese vs Plain Language
+            description: "Decode ambtelijke taal (teneinde, inzake, dienen te) and say the same thing in plain language."
+            vocabulary: ["ten behoeve van", inzake, "dienen te", teneinde, conform, "de beschikking", "in behandeling nemen", "het taalniveau B1"]
+            grammar:
+              - pattern: "U dient het formulier vóór 1 maart te retourneren."
+              - pattern: "Teneinde uw aanvraag in behandeling te kunnen nemen, verzoeken wij u een kopie van uw identiteitsbewijs mee te sturen."
+              - pattern: "In gewone taal: stuur ons een kopie van uw paspoort, dan kunnen we uw aanvraag behandelen."
+              - pattern: "Inzake uw verzoek van 3 mei delen wij u het volgende mee."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: match }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: listen_select }
+              - { type: story }
+          - id: nl-c1-bezwaarschrift
+            title: Writing an Objection
+            description: "Write a bezwaarschrift against a decision by the gemeente, Belastingdienst or IND: reference, grounds and request."
+            vocabulary: ["het bezwaarschrift", "bezwaar maken", "de bezwaartermijn", "de belanghebbende", "de motivering", "de dagtekening", "het kenmerk", "de hoorzitting"]
+            grammar:
+              - pattern: "Hierbij maak ik bezwaar tegen het besluit van 12 maart 2026, kenmerk 2026-0451."
+              - pattern: "Ik ben het niet eens met dit besluit, omdat mijn inkomen onjuist is vastgesteld."
+              - pattern: "De bezwaartermijn bedraagt zes weken na de dagtekening van het besluit."
+              - pattern: "Graag word ik in de gelegenheid gesteld mijn bezwaar mondeling toe te lichten."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: error_correct }
+              - { type: sentence_complete }
+              - { type: translate }
+              - { type: listen_type }
+              - type: roleplay
+                scenario: objection_hearing
+                goal: At a hoorzitting, explain why the gemeente's decision on your parking permit is wrong and what you ask them to do instead.
+          - id: nl-c1-toon
+            title: Finding the Right Tone
+            description: "Choose between u and je, soften requests and complaints, and open and close emails at the right level."
+            vocabulary: ["met vriendelijke groet", "hartelijke groet", "zou u zo vriendelijk willen zijn", tutoyeren, geachte, beste, "het taalgebruik", "de aanhef"]
+            grammar:
+              - pattern: "Zou u zo vriendelijk willen zijn mij uiterlijk vrijdag te laten weten of dit lukt?"
+              - pattern: "Mag ik je tutoyeren, of zeg ik liever u?"
+              - pattern: "Ik begrijp uw frustratie, en ik doe mijn best om dit snel op te lossen."
+              - pattern: "Excuus voor de late reactie; het was een drukke week."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: fill_blank }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: match }
+              - type: dialogue
+                scenario: first_contact_with_a_new_client
+                goal: Open a call with a new client formally, notice when they switch to je, and follow their lead naturally.
+          - id: nl-c1-spreek-schrijftaal
+            title: Spoken vs Written Dutch
+            description: "Move between written connectors (echter, derhalve, zodoende) and their spoken equivalents."
+            vocabulary: [derhalve, echter, zodoende, gaandeweg, "hoe dan ook", "nou ja", "maar goed", dus]
+            grammar:
+              - pattern: "Het project is echter vertraagd, maar ja, dat loopt dus wat uit."
+              - pattern: "Derhalve wordt de deadline verschoven naar 1 juni."
+              - pattern: "Nou ja, hoe dan ook, we zien wel."
+              - pattern: "Zodoende hebben wij besloten de samenwerking te beëindigen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+
+      - id: nl-c1-professioneel
+        title: Professional Communication
+        description: Chair a meeting, negotiate a deal, de-escalate a conflict and probe with precise follow-up questions.
+        icon: 🤝
+        steps:
+          - id: nl-c1-voorzitten
+            title: Chairing a Meeting
+            description: "Open, steer and close a meeting: give the floor, keep to the agenda, summarise and assign actions."
+            vocabulary: ["de agenda", "het agendapunt", "de rondvraag", "het woord geven", samenvattend, "ter besluitvorming", "de actiepunten", afronden]
+            grammar:
+              - pattern: "Ik stel voor dat we naar het volgende agendapunt gaan."
+              - pattern: "Mag ik Karin even het woord geven?"
+              - pattern: "Samenvattend: we zijn het eens over het budget, maar niet over de planning."
+              - pattern: "Is er nog iets voor de rondvraag? Dan sluit ik de vergadering."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+              - { type: sentence_complete }
+              - { type: translate }
+              - { type: error_correct }
+              - type: roleplay
+                scenario: chairing_a_team_meeting
+                goal: Chair a team meeting where two colleagues keep interrupting; keep to the agenda, give everyone the floor and close with clear action points.
+          - id: nl-c1-onderhandelen
+            title: Negotiating a Deal
+            description: "Make conditional offers, counter-proposals and concessions, and steer towards a compromise."
+            vocabulary: ["het voorstel", "het tegenvoorstel", "de concessie", "het compromis", tegemoetkomen, "de marge", "akkoord gaan", "de win-winsituatie"]
+            grammar:
+              - pattern: "Als u ons tegemoetkomt in de levertijd, kunnen wij iets doen aan de prijs."
+              - pattern: "Daar kunnen wij helaas niet mee akkoord gaan."
+              - pattern: "Wat zou voor u een acceptabel compromis zijn?"
+              - pattern: "Stel dat we de looptijd verlengen, wat betekent dat dan voor de korting?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: error_correct }
+              - type: roleplay
+                scenario: negotiating_with_a_supplier
+                goal: Negotiate a better price with a supplier by offering a longer contract, and reach a compromise you can both accept.
+          - id: nl-c1-conflict
+            title: Handling Conflict & Complaints
+            description: "Name a problem without blaming, acknowledge feelings, apologise on behalf of the team and de-escalate."
+            vocabulary: ["het conflict", "het verwijt", "zich aangesproken voelen", "uit de hand lopen", "de lucht klaren", "de bemiddeling", "begrip tonen", "excuses aanbieden"]
+            grammar:
+              - pattern: "Ik voel me eerlijk gezegd een beetje aangesproken door die opmerking."
+              - pattern: "Laten we dit even rustig uitpraten voordat het uit de hand loopt."
+              - pattern: "Ik snap dat u boos bent; daar heeft u ook alle reden toe."
+              - pattern: "Namens het team bied ik u onze excuses aan."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: match }
+              - type: dialogue
+                scenario: angry_customer_call
+                goal: Calm down an angry customer whose delivery is three weeks late, acknowledge the problem and agree on a concrete solution.
+          - id: nl-c1-doorvragen
+            title: Probing Questions
+            description: "Ask for precision, check assumptions and paraphrase to make sure you understood correctly."
+            vocabulary: [doorvragen, concreet, "de aanname", "wat bedoel je precies", "klopt het dat", "in hoeverre", "als ik je goed begrijp", toelichten]
+            grammar:
+              - pattern: "Wat bedoel je precies met 'binnenkort'?"
+              - pattern: "Klopt het dat de klant al eerder heeft geklaagd?"
+              - pattern: "In hoeverre is dit afhankelijk van de nieuwe software?"
+              - pattern: "Als ik je goed begrijp, wil je dus eerst het budget rond hebben?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: word_bank }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+
+      - id: nl-c1-schrijven
+        title: Writing at Work
+        description: Write a memo, take minutes, draft a press release and summarise someone else's argument in your own words.
+        icon: ✍️
+        steps:
+          - id: nl-c1-memo
+            title: Memo & Report
+            description: "Structure a memo or short report: occasion, findings, conclusion and recommendation."
+            vocabulary: ["de aanleiding", "de doelstelling", "de conclusie", "de aanbeveling", "de bijlage", "het advies", "ter informatie", "de opbouw"]
+            grammar:
+              - pattern: "Aanleiding voor deze memo is de stijging van het ziekteverzuim."
+              - pattern: "Wij bevelen aan het pilotproject met een halfjaar te verlengen."
+              - pattern: "In de bijlage vindt u een overzicht van de kosten."
+              - pattern: "Deze memo is ter informatie; er wordt geen besluit gevraagd."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: match }
+              - { type: story }
+          - id: nl-c1-notulen
+            title: Taking Minutes
+            description: "Write notulen in the impersonal style: attendance, decisions, action points and the passive with er."
+            vocabulary: ["de notulen", notuleren, "de aanwezigen", "afwezig met kennisgeving", "de actielijst", vaststellen, "de besluitenlijst", ongewijzigd]
+            grammar:
+              - pattern: "De notulen van de vorige vergadering worden ongewijzigd vastgesteld."
+              - pattern: "Afwezig met kennisgeving: mevrouw De Vries."
+              - pattern: "Peter zegt toe vóór de volgende vergadering een offerte op te vragen."
+              - pattern: "Besloten wordt de evaluatie uit te stellen tot het najaar."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: listen_select }
+              - { type: story }
+          - id: nl-c1-persbericht
+            title: Press Release
+            description: "Write a press release with a dateline, a strong lead, a quote with aldus and a note for the editors."
+            vocabulary: ["het persbericht", "het embargo", "de woordvoerder", "de kop", "de lead", "noot voor de redactie", bekendmaken, "de lancering"]
+            grammar:
+              - pattern: "Amsterdam, 3 november 2026 – Vanaf 1 januari breidt GreenBike haar diensten uit naar Utrecht."
+              - pattern: "'We zijn trots op deze stap,' aldus directeur Sanne Bakker."
+              - pattern: "Noot voor de redactie, niet voor publicatie."
+              - pattern: "Het bedrijf maakt vandaag de lancering van zijn nieuwe app bekend."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: match }
+              - { type: word_bank }
+              - { type: translate }
+              - { type: listen_select }
+              - type: roleplay
+                scenario: briefing_the_press_officer
+                goal: Brief the press officer on your team's new product, agree on the key message and dictate a quote for the press release.
+          - id: nl-c1-samenvatten
+            title: Summarising & Paraphrasing
+            description: "Capture the core of an argument in your own words and attribute claims with volgens, stelt and aldus."
+            vocabulary: ["de kern", "de hoofdgedachte", parafraseren, "in een notendop", "volgens de auteur", kortom, "het betoog", weergeven]
+            grammar:
+              - pattern: "Kortom, de auteur stelt dat thuiswerken de productiviteit niet schaadt."
+              - pattern: "In een notendop: het plan is te duur en komt te laat."
+              - pattern: "Volgens de schrijver zou de overheid meer moeten investeren in onderwijs."
+              - pattern: "De kern van het betoog is dat taal en identiteit onlosmakelijk verbonden zijn."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_type }
+              - { type: word_bank }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+
+      - id: nl-c1-recht
+        title: Law & Justice
+        description: Follow a court case, talk about offences and penalties, understand gedoogbeleid and know your route to legal help and appeal.
+        icon: ⚖️
+        steps:
+          - id: nl-c1-rechtszaak
+            title: A Court Case
+            description: "Follow court reporting: who demands what, who testifies, and when the judge gives a ruling."
+            vocabulary: ["de rechter", "de officier van justitie", "de verdachte", "de advocaat", "het vonnis", "de uitspraak", "de getuige", "de rechtbank"]
+            grammar:
+              - pattern: "De officier van justitie eiste een gevangenisstraf van twee jaar."
+              - pattern: "De rechtbank doet over twee weken uitspraak."
+              - pattern: "De verdachte ontkent elke betrokkenheid."
+              - pattern: "De getuige verklaarde dat zij de dader niet had herkend."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-c1-strafrecht
+            title: Offences & Penalties
+            description: "Report a crime, tell an overtreding from a misdrijf, and understand penalties and the VOG."
+            vocabulary: ["het misdrijf", "de overtreding", "de taakstraf", "de boete", voorwaardelijk, "aangifte doen", "het strafblad", "de verklaring omtrent het gedrag"]
+            grammar:
+              - pattern: "Ik wil aangifte doen van diefstal van mijn fiets."
+              - pattern: "Hij kreeg een taakstraf van tachtig uur en een voorwaardelijke celstraf."
+              - pattern: "Voor deze baan heb je een verklaring omtrent het gedrag nodig."
+              - pattern: "Door rood licht rijden is een overtreding, geen misdrijf."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: match }
+              - type: roleplay
+                scenario: reporting_a_crime_at_the_police_station
+                goal: Report a burglary at the police station, describe exactly what happened and when, and ask what happens next with your aangifte.
+          - id: nl-c1-gedoogbeleid
+            title: Gedoogbeleid
+            description: "Discuss the Dutch policy of tolerance: what is illegal but tolerated, why, and its contradictions."
+            vocabulary: [gedogen, "het gedoogbeleid", "de coffeeshop", "het achterdeurprobleem", strafbaar, "de handhaving", "oogluikend toestaan", "de overlast"]
+            grammar:
+              - pattern: "Softdrugs zijn officieel verboden, maar de verkoop in coffeeshops wordt gedoogd."
+              - pattern: "Het achterdeurprobleem laat zien hoe tegenstrijdig het beleid is."
+              - pattern: "De gemeente staat het oogluikend toe, zolang er geen overlast is."
+              - pattern: "Critici vinden dat gedogen de handhaving ondermijnt."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: word_bank }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: explaining_dutch_policy_to_a_visitor
+                goal: Explain to a puzzled foreign visitor why coffeeshops are tolerated though illegal, and give both sides of the debate.
+          - id: nl-c1-hoger-beroep
+            title: Legal Help & Appeal
+            description: "Find legal help through the Juridisch Loket or legal-expenses insurance, settle or appeal a ruling."
+            vocabulary: ["in hoger beroep gaan", "het Juridisch Loket", "de rechtsbijstandsverzekering", "de toevoeging", "het griffierecht", "de dagvaarding", "de schikking", "de kantonrechter"]
+            grammar:
+              - pattern: "Als u het niet eens bent met de uitspraak, kunt u in hoger beroep gaan."
+              - pattern: "Het Juridisch Loket geeft gratis juridisch advies."
+              - pattern: "Via mijn rechtsbijstandsverzekering kreeg ik een advocaat toegewezen."
+              - pattern: "Uiteindelijk hebben beide partijen een schikking getroffen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+              - { type: match }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+
+      - id: nl-c1-wetenschap
+        title: Science, Ethics & Hedging
+        description: Report findings with appropriate caution and take part in Dutch ethical debates on donation, animal testing and AI.
+        icon: 🔬
+        steps:
+          - id: nl-c1-voorzichtig-formuleren
+            title: Hedging
+            description: "Qualify claims precisely: het lijkt erop dat, voor zover bekend, vermoedelijk, het valt niet uit te sluiten."
+            vocabulary: ["het lijkt erop dat", "voor zover bekend", vermoedelijk, "naar alle waarschijnlijkheid", "in zekere mate", "het valt niet uit te sluiten", "de aanwijzing", suggereren]
+            grammar:
+              - pattern: "Het lijkt erop dat de resultaten niet representatief zijn."
+              - pattern: "Voor zover bekend zijn er geen bijwerkingen gemeld."
+              - pattern: "Het valt niet uit te sluiten dat andere factoren een rol spelen."
+              - pattern: "De gegevens suggereren een verband, maar bewijzen geen oorzakelijkheid."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-c1-donorregistratie
+            title: Organ Donation
+            description: "Discuss the Dutch donor register, the 'geen bezwaar' default and the role of the next of kin."
+            vocabulary: ["het Donorregister", "de orgaandonatie", "geen bezwaar", "de nabestaanden", "de wachtlijst", "de toestemming", "het opt-outsysteem", "de transplantatie"]
+            grammar:
+              - pattern: "Sinds 2020 geldt in Nederland een actief donorregistratiesysteem."
+              - pattern: "Wie niets invult, wordt geregistreerd met 'geen bezwaar'."
+              - pattern: "De nabestaanden worden altijd bij het besluit betrokken."
+              - pattern: "Voorstanders wijzen op de lange wachtlijsten voor transplantaties."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: match }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-c1-dierproeven
+            title: Animal Testing
+            description: "Weigh interests in a debate on animal testing and argue with men zou kunnen stellen and de afweging."
+            vocabulary: ["de dierproef", "het proefdier", "de proefpersoon", "het alternatief", verantwoord, "de afweging", ethisch, "de commissie"]
+            grammar:
+              - pattern: "Dierproeven zijn alleen toegestaan als er geen alternatief bestaat."
+              - pattern: "Het gaat om een afweging tussen het belang van mens en dier."
+              - pattern: "Een ethische commissie moet het onderzoek eerst goedkeuren."
+              - pattern: "Men zou kunnen stellen dat proefdieren onvoldoende worden beschermd."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: ethics_panel_discussion
+                goal: Take part in a panel discussion on animal testing, present one side with hedged claims and respond to a counter-argument.
+          - id: nl-c1-ai-privacy
+            title: AI & Privacy
+            description: "Talk about the AVG, algorithms and data protection, with the toeslagenaffaire as a Dutch reference point."
+            vocabulary: ["de AVG", "de persoonsgegevens", "het algoritme", "de toeslagenaffaire", "de Autoriteit Persoonsgegevens", transparant, discriminerend, "een boete opleggen"]
+            grammar:
+              - pattern: "Volgens de AVG mag een bedrijf je persoonsgegevens niet zomaar delen."
+              - pattern: "De toeslagenaffaire liet zien hoe een algoritme kan discrimineren."
+              - pattern: "Het is de vraag in hoeverre zulke systemen transparant zijn."
+              - pattern: "De Autoriteit Persoonsgegevens heeft het bedrijf een boete opgelegd."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: match }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: multiple_choice }
+              - { type: speak }
+
+      - id: nl-c1-economie
+        title: Economy & Business
+        description: Start as a zzp'er, follow cao negotiations, and discuss the circular economy and the tight labour market.
+        icon: 📈
+        steps:
+          - id: nl-c1-zzp-kvk
+            title: Freelancing & the KvK
+            description: "Register at the Kamer van Koophandel, invoice with btw, and understand the self-employed deduction and false self-employment."
+            vocabulary: ["de zzp'er", "de Kamer van Koophandel", inschrijven, "het btw-nummer", "de factuur", "het urencriterium", "de zelfstandigenaftrek", "de opdrachtgever"]
+            grammar:
+              - pattern: "Als zzp'er moet je je inschrijven bij de Kamer van Koophandel."
+              - pattern: "Wie aan het urencriterium voldoet, heeft recht op zelfstandigenaftrek."
+              - pattern: "Vergeet niet de btw apart op je factuur te vermelden."
+              - pattern: "Bij schijnzelfstandigheid ben je eigenlijk gewoon in loondienst."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: error_correct }
+              - type: roleplay
+                scenario: meeting_an_accountant
+                goal: Ask an accountant what you must arrange to start as a zzp'er, including KvK registration, btw and the urencriterium.
+          - id: nl-c1-cao-onderhandelingen
+            title: Collective Bargaining
+            description: "Follow news about cao talks: unions' demands, ultimatums, strikes and the vote of the members."
+            vocabulary: ["de vakbond", "de werkgeversorganisatie", "de looneis", "de staking", "het ultimatum", "het onderhandelaarsresultaat", "de achterban", "de koopkracht"]
+            grammar:
+              - pattern: "De vakbonden eisen een loonsverhoging van zes procent."
+              - pattern: "Als de werkgevers het ultimatum negeren, volgen er acties."
+              - pattern: "Het onderhandelaarsresultaat wordt nog aan de achterban voorgelegd."
+              - pattern: "Zonder volledige prijscompensatie gaan de leden er in koopkracht op achteruit."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank }
+              - { type: fill_blank }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-c1-circulaire-economie
+            title: The Circular Economy
+            description: "Discuss how businesses reuse raw materials, extend product life and cut waste streams."
+            vocabulary: ["de circulaire economie", "de grondstof", hergebruiken, "het statiegeld", "de afvalstroom", verduurzamen, "de levensduur", "de productieketen"]
+            grammar:
+              - pattern: "In een circulaire economie worden grondstoffen zo lang mogelijk hergebruikt."
+              - pattern: "Sinds eind 2022 zit er ook statiegeld op blikjes."
+              - pattern: "Het bedrijf wil zijn hele productieketen verduurzamen."
+              - pattern: "Door reparatie gaat de levensduur van apparaten omhoog."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: word_bank }
+              - { type: speak }
+          - id: nl-c1-arbeidsmarkt
+            title: The Labour Market
+            description: "Talk about labour shortages, flexible work, ageing and the position of knowledge migrants."
+            vocabulary: ["de krapte", "de vacature", "de flexwerker", "het uitzendbureau", "de vergrijzing", "de kennismigrant", "de werkloosheid", "het personeelstekort"]
+            grammar:
+              - pattern: "Door de krapte op de arbeidsmarkt blijven veel vacatures onvervuld."
+              - pattern: "De vergrijzing zet de zorg verder onder druk."
+              - pattern: "Als kennismigrant moet je een salaris boven een bepaalde norm verdienen."
+              - pattern: "Het aantal flexwerkers is de afgelopen jaren sterk gestegen."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: networking_drink
+                goal: At a networking borrel, discuss the labour shortage in your sector and your own experience as an international professional.
+
+      - id: nl-c1-uitdrukkingen
+        title: Idioms & Proverbs
+        description: Understand and use common idioms, body and animal expressions, proverbs and the Dutch art of understatement.
+        icon: 🦉
+        steps:
+          - id: nl-c1-alledaagse-idiomen
+            title: Everyday Idioms
+            description: "Use the idioms you hear daily at work: met de deur in huis vallen, de kat uit de boom kijken."
+            vocabulary: ["de kat uit de boom kijken", "met de deur in huis vallen", "door de mand vallen", "het heft in handen nemen", "de puntjes op de i zetten", "een balletje opgooien", "ergens geen kaas van gegeten hebben", "iets op zijn beloop laten"]
+            grammar:
+              - pattern: "Ik wil niet met de deur in huis vallen, maar we hebben een probleem."
+              - pattern: "De directie kijkt voorlopig de kat uit de boom."
+              - pattern: "Mag ik een balletje opgooien over de planning?"
+              - pattern: "Van belastingzaken heb ik eerlijk gezegd geen kaas gegeten."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+              - { type: listen_select }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+          - id: nl-c1-lichaam-dieren
+            title: Body & Animal Idioms
+            description: "Learn idioms built on body parts and animals, and when they sound natural or overdone."
+            vocabulary: ["iemand een hart onder de riem steken", "zijn hand overspelen", "voet bij stuk houden", "met de handen in het haar zitten", "een olifantenhuid hebben", "als een kip zonder kop", "het paard achter de wagen spannen", "een vinger in de pap hebben"]
+            grammar:
+              - pattern: "Na het slechte nieuws zat hij met de handen in het haar."
+              - pattern: "Ze bleef voet bij stuk houden, ondanks alle kritiek."
+              - pattern: "Je moet het paard niet achter de wagen spannen."
+              - pattern: "Hij liep de hele dag rond als een kip zonder kop."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: match, count: 2 }
+              - { type: listen_type }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-c1-spreekwoorden
+            title: Proverbs
+            description: "Recognise well-known proverbs, what they say about Dutch values, and how to drop one in at the right moment."
+            vocabulary: ["wie niet waagt, die niet wint", "doe maar normaal, dan doe je al gek genoeg", "beter een goede buur dan een verre vriend", "oost west, thuis best", "zachte heelmeesters maken stinkende wonden", "hoge bomen vangen veel wind", "de appel valt niet ver van de boom", "eind goed, al goed"]
+            grammar:
+              - pattern: "Zoals het spreekwoord zegt: wie niet waagt, die niet wint."
+              - pattern: "Doe maar normaal, dan doe je al gek genoeg: dat hoor je vaak in Nederland."
+              - pattern: "Hoge bomen vangen veel wind, dus de minister ligt voortdurend onder vuur."
+              - pattern: "Zachte heelmeesters maken stinkende wonden; we moeten het probleem nu aanpakken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: word_bank }
+              - type: dialogue
+                scenario: coffee_break_chat
+                goal: Chat with a colleague at the coffee machine about a risky career move, and use or react to at least two proverbs naturally.
+          - id: nl-c1-understatement
+            title: Understatement
+            description: "Read Dutch understatement correctly: niet verkeerd and best aardig often mean quite good, valt tegen means bad."
+            vocabulary: ["niet verkeerd", "best aardig", "niet onaardig", "het valt mee", "het valt tegen", "even balen", "niet helemaal handig", "om het zacht uit te drukken"]
+            grammar:
+              - pattern: "Dat salaris is niet verkeerd, hoor."
+              - pattern: "Het concert was best aardig, eigenlijk."
+              - pattern: "Dat was niet helemaal handig van je."
+              - pattern: "De resultaten vallen een beetje tegen, om het zacht uit te drukken."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - { type: translate }
+              - { type: match }
+              - { type: speak }
+
+      - id: nl-c1-taal-cultuur
+        title: Language, Culture & Humour
+        description: Follow fast spoken Dutch, understand Flemish and regional variants, navigate Dutch directness, and get the joke in cabaret and columns.
+        icon: 🎭
+        steps:
+          - id: nl-c1-spreektaal
+            title: Authentic Speech
+            description: "Understand the reduced forms of fast speech: 'k, ie, 't, d'r, m'n, effe."
+            vocabulary: ["'k", ie, "'t", "d'r", "m'n", effe, "zo meteen", gewoon]
+            grammar:
+              - pattern: "Heb je 't al gezien? Ik weet niet of-ie komt."
+              - pattern: "'k Heb d'r effe geen zin in."
+              - pattern: "Kom je zo meteen nog even langs?"
+              - pattern: "Ik doe gewoon m'n best, toch?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 3 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: match }
+              - { type: story }
+          - id: nl-c1-vlaams
+            title: Flemish & Regional Dutch
+            description: "Recognise Belgian Dutch words and the soft g of the south, and know the Netherlands equivalents."
+            vocabulary: [goesting, "de gsm", allee, "het pintje", plezant, ambetant, "de beenhouwer", "zeker en vast"]
+            grammar:
+              - pattern: "In Vlaanderen zeg je 'gsm', in Nederland 'mobiel'."
+              - pattern: "Ik heb goesting in een pintje."
+              - pattern: "Allee, dat is toch ambetant!"
+              - pattern: "In Limburg en Brabant klinkt de zachte g heel anders dan in Holland."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: match, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice }
+              - { type: translate }
+              - { type: fill_blank }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: meeting_a_flemish_colleague
+                goal: Meet a colleague from the Antwerp office, understand their Flemish expressions and ask about the ones you don't know.
+          - id: nl-c1-intercultureel
+            title: Directness & the Polder
+            description: "Understand Dutch directness, the drive for consensus and draagvlak, and how decisions are made in the polder."
+            vocabulary: ["de directheid", "de botheid", "het poldermodel", "het overleg", "de consensus", afstemmen, "het draagvlak", "de hiërarchie"]
+            grammar:
+              - pattern: "Nederlanders zeggen vaak direct wat ze denken; dat is niet bot bedoeld."
+              - pattern: "Eerst moet er draagvlak zijn, en daarvoor is veel overleg nodig."
+              - pattern: "We moeten dit nog even afstemmen met de andere afdelingen."
+              - pattern: "Het poldermodel draait om consensus tussen werkgevers, werknemers en overheid."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: sentence_complete, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: multiple_choice }
+              - { type: listen_type }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: speak }
+          - id: nl-c1-cabaret
+            title: Cabaret, Columns & Humour
+            description: "Get the irony, wordplay and self-mockery in cabaret, the oudejaarsconference and newspaper columns."
+            vocabulary: ["de cabaretier", "de oudejaarsconference", "de column", "de ironie", "de woordgrap", "de zelfspot", "de satire", "de clou"]
+            grammar:
+              - pattern: "Elk jaar kijkt half Nederland op 31 december naar de oudejaarsconference."
+              - pattern: "Die column zit vol ironie; je moet tussen de regels door lezen."
+              - pattern: "Nederlanders houden van zelfspot en droge humor."
+              - pattern: "Ik snapte de woordgrap pas toen iemand hem uitlegde."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_select, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: match }
+              - { type: fill_blank }
+              - { type: translate }
+              - { type: error_correct }
+              - { type: story }
+
+    checkpoint:
+      title: C1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: error_correct, count: 2 }
+        - { type: listen_select, count: 2 }
+        - { type: translate, count: 3 }
+        - { type: story }
+        - type: roleplay
+          scenario: objection_hearing
+          goal: At a hoorzitting about your bezwaarschrift, explain formally and precisely why the decision is wrong, respond to the official's counter-arguments and negotiate a solution.
