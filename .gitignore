@@ -34,3 +34,12 @@ eval/
 # Playwright (pnpm test:e2e)
 test-results/
 playwright-report/
+
+# Local web deployment: private CA, TLS key and downloaded Whisper model
+.private/
+certs/
+models/
+web/__pycache__/
+
+# Local Compose settings
+.env

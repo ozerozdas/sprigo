@@ -5,7 +5,7 @@ import { languages } from "../i18n";
 import type { ThemePref } from "../theme";
 import { SMALL_MODEL_B, isSmallModel } from "../modelSize";
 import { PROVIDERS, RECOMMENDED_OLLAMA, detectLocal, getKey, listModels, pullOllama, setKey, type AiConfig, type ProviderId } from "../ai";
-import { aiUsage, aiUsageMonths, getSetting, isCompanion, isTauri, setSetting } from "../db";
+import { aiUsage, aiUsageMonths, getSetting, isCompanion, isTauri, isWeb, setSetting } from "../db";
 import { monthOf, summarize, type UsageRow } from "../usage";
 import { setCompanion, tailscaleStatus, type TailscaleStatus } from "../companion";
 import { CourseFlag, CourseSheet, NATIVE, ProfileForm, useLangName } from "./Profiles";
@@ -378,7 +378,7 @@ export function Settings() {
   const themes: ThemePref[] = ["system", "light", "dark"];
   const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
   // Phone: AI, voice and data settings are the desktop's (shared database), so those tabs stay there.
-  const tabs: Tab[] = isCompanion ? ["profile", "prefs"] : ["profile", "prefs", "ai", "privacy"];
+  const tabs: Tab[] = isCompanion ? (isWeb ? ["profile", "prefs", "ai"] : ["profile", "prefs"]) : ["profile", "prefs", "ai", "privacy"];
   const [tab, setTab] = useState<Tab>(ai || isCompanion ? "profile" : "ai"); // AI not set up yet → its tab, so the warning shows
   return (
     <>

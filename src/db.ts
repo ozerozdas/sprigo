@@ -1,7 +1,7 @@
 // SQLite storage (DECISIONS A5, E4–E6). In Tauri: tauri-plugin-sql, `sprigo.db` in the data folder (src/datadir.ts).
 // Schema changes live in src/migrations.ts and run on open.
 // ponytail: in a plain browser (the Vite preview used during development) the same SQL runs on sql.js,
-// persisted to localStorage. Never used in the shipped app.
+// persisted to localStorage. The standalone web edition uses IndexedDB instead.
 import type { Cefr } from "./course";
 import type { ThemePref } from "./theme";
 import { NEW_STATS, type Stats } from "./progress";
@@ -23,10 +23,30 @@ type Db = SqlDb;
 async function browserDb(): Promise<Db> {
   const [{ default: init }, { default: wasm }] = await Promise.all([import("sql.js"), import("sql.js/dist/sql-wasm.wasm?url")]);
   const SQL = await init({ locateFile: () => wasm });
+  if (import.meta.env.VITE_STANDALONE_WEB === "1") {
+    // The web edition keeps each browser's progress in IndexedDB. localStorage is too small for lesson caches.
+    const store = await new Promise<IDBDatabase>((resolve, reject) => {
+      const req = indexedDB.open("sprigo-web", 1);
+      req.onupgradeneeded = () => req.result.createObjectStore("state");
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    const saved = await new Promise<ArrayBuffer | undefined>((resolve, reject) => {
+      const req = store.transaction("state", "readonly").objectStore("state").get("db");
+      req.onsuccess = () => resolve(req.result as ArrayBuffer | undefined);
+      req.onerror = () => reject(req.error);
+    });
+    const db = new SQL.Database(saved ? new Uint8Array(saved) : undefined);
+    return wrapSqlJs(db, () => {
+      const bytes = db.export();
+      const tx = store.transaction("state", "readwrite");
+      tx.objectStore("state").put(bytes.buffer, "db");
+      tx.onerror = () => console.error("Sprigo database save failed", tx.error);
+    });
+  }
   const KEY = "sprigo.devdb";
   const saved = localStorage.getItem(KEY);
   const db = new SQL.Database(saved ? Uint8Array.from(atob(saved), (c) => c.charCodeAt(0)) : undefined);
-  // Chunked: spreading the whole export into fromCharCode overflows the stack once the database passes ~100 KB.
   const b64 = (u: Uint8Array) => { let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode(...u.subarray(i, i + 0x8000)); return btoa(s); };
   return wrapSqlJs(db, () => localStorage.setItem(KEY, b64(db.export())));
 }
@@ -34,12 +54,20 @@ async function browserDb(): Promise<Db> {
 let dbP: Promise<Db> | null = null;
 export const isTauri = "__TAURI_INTERNALS__" in window;
 /** Opened from a phone through `tailscale serve` (docs/MOBILE.md): data, whisper and Ollama are the desktop's. */
-export const isCompanion = !isTauri && location.hostname.endsWith(".ts.net");
+export const isWeb = import.meta.env.VITE_STANDALONE_WEB === "1";
+export const isCompanion = !isTauri && (location.hostname.endsWith(".ts.net") || isWeb);
 function db() {
   return (dbP ??= (async () => {
-    if (isCompanion) return remoteDb(); // the desktop already migrated it
-    const d = await (isTauri ? openTauriDb() : import.meta.env.DEV ? browserDb() : Promise.reject(new Error("Sprigo needs the Tauri shell")));
+    if (isCompanion && !isWeb) return remoteDb(); // the desktop already migrated it
+    const d = await (isTauri ? openTauriDb() : (import.meta.env.DEV || isWeb) ? browserDb() : Promise.reject(new Error("Sprigo needs the Tauri shell")));
     await runMigrations(d, MIGRATIONS, isTauri ? (v) => snapshot(d, `pre-v${v}-${Date.now()}.db`).then(() => {}) : undefined);
+    if (isWeb) {
+      const response = await fetch("/web-config", { cache: "no-store" });
+      if (!response.ok) throw new Error("Could not load the web server configuration");
+      const { model } = await response.json();
+      const ai = JSON.stringify({ provider: "ollama", baseURL: `${location.origin}/ollama`, model });
+      await d.execute("INSERT INTO device_settings(key, value) VALUES ($1, $2) ON CONFLICT(key) DO UPDATE SET value = $2 WHERE device_settings.value IS NOT $2", ["ai", ai]);
+    }
     if (isTauri) await dailyBackup(d).catch((e) => console.error("daily backup", e));
     if (isTauri) void serveCompanion(d).catch((e) => console.error("companion", e));
     return d;

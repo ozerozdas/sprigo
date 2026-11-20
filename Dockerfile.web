@@ -1,0 +1,17 @@
+FROM node:22-bookworm-slim AS build
+WORKDIR /src
+RUN npm install -g pnpm@10
+COPY package.json pnpm-lock.yaml ./
+COPY patches ./patches
+RUN pnpm install --frozen-lockfile
+COPY . .
+ENV VITE_STANDALONE_WEB=1
+RUN pnpm build
+
+FROM python:3.12-slim
+WORKDIR /app
+RUN pip install --no-cache-dir faster-whisper==1.2.1 "av<19"
+COPY --from=build /src/dist /app/dist
+COPY web/server.py /app/
+EXPOSE 1431 1432
+CMD ["python", "-u", "/app/server.py"]
