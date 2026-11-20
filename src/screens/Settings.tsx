@@ -299,7 +299,7 @@ function AiConfigSheet({ provider, models: found }: { provider: ProviderId; mode
       setModels(list);
       if (!model && list[0]) setModel(list[0]);
       setStatus({ ok: true, msg: t("ai.connected", { count: list.length }) });
-    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${(e as Error).message}` }); }
+    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${e instanceof Error ? e.message : String(e)}` }); }
     finally { setBusy(false); }
   };
   const save = async (asBackup = false) => {

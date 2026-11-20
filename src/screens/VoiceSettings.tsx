@@ -188,7 +188,7 @@ function ElevenSheet({ onSaved, onCancel }: { onSaved: () => void; onCancel: () 
     try {
       await sayWithEleven(HELLO[lang] ?? HELLO.en, lang, key.trim(), vf.trim() || ELEVEN_VOICES.f);
       setStatus({ ok: true, msg: t("voice.connected") });
-    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${(e as Error).message}` }); }
+    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${e instanceof Error ? e.message : String(e)}` }); }
     finally { setBusy(false); }
   };
   const save = async () => {
@@ -242,7 +242,7 @@ function LocalTtsSheet({ onSaved, onCancel }: { onSaved: () => void; onCancel: (
   const test = async () => {
     setBusy(true); setStatus(null);
     try { await sayWithLocal(HELLO[lang] ?? HELLO.en, cfg); setStatus({ ok: true, msg: t("voice.connected") }); }
-    catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${(e as Error).message}` }); }
+    catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${e instanceof Error ? e.message : String(e)}` }); }
     finally { setBusy(false); }
   };
   const save = async () => {
@@ -482,7 +482,7 @@ function DeepgramSheet({ onSaved, onCancel }: { onSaved: () => void; onCancel: (
     try {
       await deepgramTranscribe(wav16(new Float32Array(8000)), "en", key.trim()); // 0.5 s of silence
       setStatus({ ok: true, msg: t("voice.connected") });
-    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${(e as Error).message}` }); }
+    } catch (e) { setStatus({ ok: false, msg: `${t("ai.connectFailed")}: ${e instanceof Error ? e.message : String(e)}` }); }
     finally { setBusy(false); }
   };
   const save = async () => {
