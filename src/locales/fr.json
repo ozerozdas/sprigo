@@ -815,6 +815,8 @@
     "whisperSmallGood": "190 Mo · plus précis, un peu plus lent",
     "whisperTurbo": "Le meilleur (large-v3 turbo)",
     "whisperTurboGood": "574 Mo · le plus précis ; demande un ordinateur puissant",
+    "whisperLarge": "Most accurate (large-v3)",
+    "whisperLargeGood": "1.1 GB · best for harder languages; slower, needs a strong computer",
     "whisperFor": "Pour {{lang}}, {{name}} comprend bien mieux.",
     "whisperRemove": "Supprimer le modèle {{name}}",
     "whisperRemoveAsk": "Supprimer le modèle {{name}} ? Tu pourras le retélécharger.",

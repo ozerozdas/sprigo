@@ -843,6 +843,8 @@
     "whisperSmallGood": "190 МБ · точнее, чуть медленнее",
     "whisperTurbo": "Лучшая (large-v3 turbo)",
     "whisperTurboGood": "574 МБ · самая точная; нужен мощный компьютер",
+    "whisperLarge": "Most accurate (large-v3)",
+    "whisperLargeGood": "1.1 GB · best for harder languages; slower, needs a strong computer",
     "whisperFor": "Для языка «{{lang}}» модель {{name}} понимает гораздо лучше.",
     "whisperRemove": "Удалить модель {{name}}",
     "whisperRemoveAsk": "Удалить модель {{name}}? Позже её можно скачать снова.",

@@ -787,6 +787,8 @@
     "whisperSmallGood": "190 MB · more accurate, a bit slower",
     "whisperTurbo": "Best (large-v3 turbo)",
     "whisperTurboGood": "574 MB · most accurate; needs a strong computer",
+    "whisperLarge": "Most accurate (large-v3)",
+    "whisperLargeGood": "1.1 GB · best for harder languages; slower, needs a strong computer",
     "whisperFor": "For {{lang}}, {{name}} understands much better.",
     "whisperRemove": "Delete the {{name}} model",
     "whisperRemoveAsk": "Delete the {{name}} model? You can download it again later.",

@@ -87,6 +87,7 @@ fn stt_file(name: &str) -> Option<&'static str> {
     match name {
         "small" => Some("ggml-small-q5_1.bin"),
         "turbo" => Some("ggml-large-v3-turbo-q5_0.bin"),
+        "large" => Some("ggml-large-v3-q5_0.bin"),
         _ => None,
     }
 }
@@ -110,7 +111,7 @@ fn stt_model(app: &tauri::AppHandle) -> Option<std::path::PathBuf> {
 fn stt_models(app: tauri::AppHandle) -> Result<(String, Vec<String>), String> {
     let dir = models_dir(&app)?;
     let chosen = std::fs::read_to_string(dir.join("whisper.txt")).unwrap_or_default().trim().to_string();
-    let have: Vec<String> = ["small", "turbo"].iter().filter(|n| dir.join(stt_file(n).unwrap()).exists()).map(|n| n.to_string()).collect();
+    let have: Vec<String> = ["small", "turbo", "large"].iter().filter(|n| dir.join(stt_file(n).unwrap()).exists()).map(|n| n.to_string()).collect();
     Ok((if have.contains(&chosen) { chosen } else { "base".into() }, have))
 }
 

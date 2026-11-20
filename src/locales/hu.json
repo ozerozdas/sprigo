@@ -787,6 +787,8 @@
     "whisperSmallGood": "190 MB · pontosabb, kicsit lassabb",
     "whisperTurbo": "Legjobb (large-v3 turbo)",
     "whisperTurboGood": "574 MB · a legpontosabb; erős gép kell hozzá",
+    "whisperLarge": "Most accurate (large-v3)",
+    "whisperLargeGood": "1.1 GB · best for harder languages; slower, needs a strong computer",
     "whisperFor": "{{lang}} nyelven sokkal jobban ért ez a modell: {{name}}.",
     "whisperRemove": "{{name}} modell törlése",
     "whisperRemoveAsk": "Törlöd ezt a modellt: {{name}}? Később újra letöltheted.",
