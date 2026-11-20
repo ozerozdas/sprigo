@@ -3,7 +3,7 @@ import { crossChecked, formsPrompt, formsSchema, fromTable, pickAsks } from "./c
 import { z } from "zod";
 import { generate, generatePlain, generateStream } from "./ai";
 import { applyMemoryOps, cachedGuides, enrollmentProfile, getCached, listMemories, listMistakes, markMemoriesUsed, memoryOn, putCached } from "./db";
-import { REGISTRY, givesAway, langEn, lessonPrompt, mistakeLine, lessonSchema, plannedActivities, checkPrompt, checkSchema, rejected, reviewSystem, shuffleAnswer, solvePrompt, solveSchema, solveSystem, systemPrompt, toItems, type Item, type LessonContext } from "./activities";
+import { REGISTRY, givesAway, langEn, lessonPrompt, mistakeLine, lessonSchema, plannedActivities, checkPrompt, checkSchema, rejected, reviewSystem, shuffleAnswer, solvePrompt, solveSchema, solveSystem, systemPrompt, toItems, type Item, type LessonContext, translationOrEmpty, isEchoCorrection } from "./activities";
 import { CHARACTERS, CHAT_MAX_TURNS, CHAT_MIN_TURNS, FREE_GOAL, type CharacterId } from "./characters";
 import { CEFR, levelsOf, storyId, type Course, type CourseLevel, type Cefr } from "./course";
 import { looseTutor, tutorPrompt, tutorSchema, tutorSystem, type TutorEvent, type TutorMsg } from "./tutor";
@@ -270,7 +270,7 @@ const looseTurn = turnSchema.extend({ correction: z.string().catch(""), goal_rea
 
 /** The character's next turn; also corrects the learner's last message. Empty history = opening line.
  *  `opts.rules` add lines to the system prompt (drills); `opts.keep` caps how many past messages the prompt carries. */
-export function chatTurn(c: Base & { about?: string[] }, who: CharacterId, topic: { goal: string }, history: ChatMsg[], opts: { rules?: string[]; keep?: number } = {}) {
+export async function chatTurn(c: Base & { about?: string[] }, who: CharacterId, topic: { goal: string }, history: ChatMsg[], opts: { rules?: string[]; keep?: number } = {}) {
   const ch = CHARACTERS[who], native = langEn(c.native);
   const free = topic.goal.startsWith(FREE_GOAL);
   const sent = history.filter((m) => m.from === "me").length;
@@ -281,7 +281,7 @@ export function chatTurn(c: Base & { about?: string[] }, who: CharacterId, topic
       ? `Your personality: ${ch.persona} The learner picked the topic, so this is a casual chat between two people, not a scene from your job. Keep your personality and manner, but never bring up your work, customers, place or tasks unless the learner does. Topic: ${topic.goal.slice(FREE_GOAL.length)}.`
       : `${ch.persona} The learner's goal: ${topic.goal}.`,
     c.about?.length ? `You have talked with this learner before and remember: ${c.about.join(" ")} Where it fits the chat, ask about one of these or link the topic to it, one thing at a time; never list what you know.` : "",
-    `Stay in character. \`reply\`: ${c.course.name} only, 1–2 short sentences suited to ${c.level}, in your own manner. Always ${c.course.name}, even when the learner or the goal is written in another language. \`translation\`: the reply in ${native}.`,
+    `Stay in character. \`reply\`: ${c.course.name} only, 1–2 short sentences suited to ${c.level}, in your own manner. Always ${c.course.name}, even when the learner or the goal is written in another language. \`translation\`: translate the complete reply into ${native}; do not repeat the ${c.course.name} text.`,
     free
       ? "Keep the chat going: react to what the learner just said and ask one follow-up question about the topic or their experience with it."
       : `Pace the scene so it lasts about ${CHAT_MIN_TURNS}–${CHAT_MAX_TURNS} learner messages: one small step per turn, with realistic details to sort out (names, dates, preferences, a small complication) and a question the learner has to answer. Never solve several steps at once.`,
@@ -298,7 +298,18 @@ export function chatTurn(c: Base & { about?: string[] }, who: CharacterId, topic
       `Check only this last learner message for \`correction\` (earlier ones were already corrected): "${last.text}"\nThen write ${ch.name}'s next turn.`
     : free ? "Open the chat: a short, friendly greeting and a first question about the topic."
     : "Open the scene: a short greeting that leads straight into the goal and invites the learner to start.";
-  return generate(turnSchema, system, prompt, "tutor", undefined, looseTurn);
+  const r = await generate(turnSchema, system, prompt, "tutor", undefined, looseTurn);
+  // Guard against false corrections: an exact echo of the learner's utterance is not a correction.
+  const guard = (x: typeof r) => (x.correction && isEchoCorrection(last?.text ?? "", x.correction, c.course.iso) ? { ...x, correction: "" } : x);
+  const out = guard(r);
+  const translation = await translationOrEmpty(out.reply, out.translation, async () => {
+    const translated = await generate(z.object({ translation: z.string() }),
+      `Translate the text from ${c.course.name} into ${native}. Return only the translation in the JSON field. Do not continue the conversation.`,
+      out.reply, "tutor");
+    return translated.translation;
+  });
+  return { ...out, translation };
+
 }
 
 /** Rehearsal: the next in-role turn as `brief.who`. No correction, no goal, and no learner facts: the brief is the whole context. */

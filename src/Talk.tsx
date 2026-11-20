@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Icon } from "./icons";
 import { useApp } from "./store";
+import { mark } from "./latency";
 import { sfx, useStartLesson } from "./Lesson";
 import { onTtsFallback, prewarm, resetTtsNotice, speak, speakingWith, stopSpeaking } from "./tts";
 import { MicButton } from "./Mic";
@@ -317,7 +318,7 @@ export function Chat({ talk }: { talk: Talk }) {
   const [engine, setEngine] = useState<string | null>(null); // which voice engine is speaking it, once audio starts
   const say = (text: string, i: number) => {
     setVoicing(i); setEngine(null);
-    speak(text, lang, { gender: ch.gender, kokoro: ch.kokoroVoice }, () => setEngine(speakingWith())).finally(() => setVoicing((v) => v === i ? null : v));
+    speak(text, lang, { gender: ch.gender, kokoro: ch.kokoroVoice }, () => { mark("audio"); setEngine(speakingWith()); }).finally(() => setVoicing((v) => v === i ? null : v));
   };
   usePrewarm(lang, ch.gender);
   const [msgs, setMsgs] = useState<ChatMsg[]>([]);
@@ -332,6 +333,7 @@ export function Chat({ talk }: { talk: Talk }) {
   const [deb, setDeb] = useState<Debrief | null>(null);
   const [stepping, setStepping] = useState(false); // a failed debrief retries the debrief, not a turn
   const ending = useRef(false); // finish once: double click, Enter
+  const req = useRef(0); // stale-response guard for async turns
   const total = drill ? drill.minutes * 60 : 0;
   const [left, setLeft] = useState(total); // drill: seconds of talk left
   const [plan, setPlan] = useState(drill?.planningSec ?? 0); // drill: planning seconds left; talk starts at 0
@@ -358,11 +360,15 @@ export function Chat({ talk }: { talk: Talk }) {
 
   const turn = async (history: ChatMsg[]) => {
     if (!course || !enrollment || !profile) return;
+    const myReq = ++req.current;
     setBusy(true); setErr(""); setStepping(false);
     try {
+      mark("req");
       if (rehearse) {
         const r = await rehearseTurn({ course, level: enrollment.level, native: profile.native_lang }, rehearse, history);
         if (ending.current) return; // the session ended while the reply was on its way (a drill's time ran out)
+        if (req.current !== myReq) return; // a newer turn superseded this one
+        mark("llm");
         setMsgs([...history, { from: "ai", text: r.reply, translation: r.translation }]);
         say(r.reply, history.length);
         return;
@@ -370,13 +376,15 @@ export function Chat({ talk }: { talk: Talk }) {
       const r = await chatTurn({ course, level: enrollment.level, native: profile.native_lang, about: await about }, who, topic, history,
         drill ? { rules: drillRules(drill), keep: DRILL_KEEP } : {});
       if (ending.current) return;
+      if (req.current !== myReq) return;
+      mark("llm");
       const fixed = history.map((m, i) => i === history.length - 1 && m.from === "me" ? { ...m, correction: r.correction.trim() || undefined } : m);
       setMsgs([...fixed, { from: "ai", text: r.reply, translation: r.translation }]);
       say(r.reply, fixed.length);
       // The prompt holds the goal back too; this guards models that wrap up early anyway.
       if (r.goal_reached && history.filter((m) => m.from === "me").length >= CHAT_MIN_TURNS) setGoal(true);
-    } catch (e) { setErr((e as Error).message); setMsgs(history); }
-    finally { setBusy(false); }
+    } catch (e) { if (!ending.current && req.current === myReq) { setErr((e as Error).message); setMsgs(history); } }
+    finally { if (req.current === myReq) setBusy(false); }
   };
   const opened = useRef(false); // StrictMode runs effects twice; open the scene once
   useEffect(() => { if (talking && !opened.current) { opened.current = true; turn([]); } }, [talking]);
@@ -478,7 +486,7 @@ export function Chat({ talk }: { talk: Talk }) {
       <div className="chat">
         {msgs.map((m, i) => m.from === "ai" ? (
           <button key={i} className="bubble" lang={lang} aria-busy={voicing === i} onClick={() => { say(m.text, i); setOpen((s) => new Set(s).add(i)); }}>
-            <span>{m.text}</span>{open.has(i) && <small>{m.translation}</small>}
+            <span>{m.text}</span>{open.has(i) && <small>{m.translation || t("practice.wordsError_translation")}</small>}
             {voicing === i && <small className="voicing gen-pulse" role="status"><Icon name="headphones" /> {engine ? t("ai.speakingWith", { engine: t(`voice.engine.${engine}`) }) : t("ai.speaking")}</small>}
           </button>
         ) : (

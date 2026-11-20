@@ -307,3 +307,25 @@ export function shuffleAnswer(opts: string[], answer: number) {
   const options = shuffle(opts);
   return { options, answer: options.indexOf(opts[answer]) };
 }
+
+/** A translation is usable only when it is non-empty and not just the reply in the target language. */
+export function validTranslation(reply: string, translation: string) {
+  const a = reply.trim().toLocaleLowerCase(), b = translation.trim().toLocaleLowerCase();
+  return b !== "" && a !== b;
+}
+
+
+/** A correction that is just the learner's original utterance echoed back is not a real correction. */
+export function isEchoCorrection(original: string, correction: string, lang?: string) {
+  const a = normalize(original, lang), b = normalize(correction, lang);
+  return a !== "" && a === b;
+}
+
+/** Keep the original reply if a translation retry fails or is still an obvious echo. */
+export async function translationOrEmpty(reply: string, translation: string, retry: () => Promise<string>): Promise<string> {
+  if (validTranslation(reply, translation)) return translation;
+  try {
+    const next = await retry();
+    return validTranslation(reply, next) ? next : "";
+  } catch { return ""; }
+}
