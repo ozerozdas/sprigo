@@ -1048,7 +1048,7 @@
       },
       "offline": {
         "q": "Geht es offline? Hört Sprigo ständig zu?",
-        "a": "Mit einem lokalen Modell, Whisper und einer lokalen Stimme geht alles offline; nur Downloads brauchen Internet. Sprigo ist kostenlos und quelloffen, ohne Konto.\nDas Mikrofon ist nur bei Sprechübungen und Live-Lektionen an, und Audio wird nie gespeichert."
+        "a": "Mit einem lokalen Modell, Whisper und einer lokalen Stimme geht alles offline; nur Downloads brauchen Internet. Sprigo ist kostenlos und quelloffen. Ein gemeinsames Konto ist optional, um den Fortschritt auf anderen Geräten fortzusetzen.\nDas Mikrofon ist nur bei Sprechübungen und Live-Lektionen an, und Audio wird nie gespeichert."
       }
     }
   },
@@ -1065,5 +1065,29 @@
     "notInGuide": "Der KI-Leitfaden hat dieses Muster ausgelassen. Versuch es noch einmal.",
     "alsoIn": "Auch in: {{units}}",
     "practise": "Üben"
+  },
+  "webAccount": {
+    "login": "Einloggen",
+    "create": "Neuen Account erstellen",
+    "description": "Verwende dieselben Profile und Fortschritte auf deinem Handy und Computer.",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "copyLocal": "Kopiere die Profile und den Fortschritt von diesem Gerät in den neuen Account. Die lokale Kopie bleibt auf diesem Gerät.",
+    "haveAccount": "Ich habe bereits einen Account",
+    "newAccount": "Neuen Account erstellen",
+    "useLocal": "Nur dieses Gerät verwenden",
+    "useShared": "Auf anderen Geräten fortfahren",
+    "signOut": "Aus dem gemeinsamen Account ausloggen",
+    "localTitle": "Profile auf diesem Gerät",
+    "localDesc": "Der Fortschritt bleibt in diesem Browser.",
+    "sharedTitle": "Gemeinsamer Account",
+    "sharedDesc": "Angemeldet als {{name}}. Der Fortschritt wird auf dem Server gespeichert und ist auf anderen Geräten verfügbar.",
+    "usernameHint": "3–32 Zeichen: Buchstaben, Zahlen, Punkte, Bindestriche oder Unterstriche.",
+    "passwordHint": "Mindestens 4 Zeichen. Du brauchst das Passwort auf anderen Geräten.",
+    "confirmPassword": "Passwort bestätigen",
+    "passwordMismatch": "Die Passwörter stimmen nicht überein.",
+    "loginPasswordHint": "Leer lassen, wenn das Konto kein Passwort hat.",
+    "passwordless": "Nur mit Benutzername anmelden",
+    "passwordlessHint": "Wer in deinem LAN oder VPN diesen Benutzernamen kennt, kann das Konto öffnen."
   }
 }

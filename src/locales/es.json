@@ -1080,7 +1080,7 @@
       },
       "offline": {
         "q": "¿Funciona sin conexión? ¿Me escucha todo el tiempo?",
-        "a": "Con un modelo local, Whisper y una voz local, todo funciona sin conexión; solo las descargas necesitan internet. Sprigo es gratuito y de código abierto, sin cuenta.\nEl micrófono solo se activa en los ejercicios orales y las lecciones en vivo, y el audio nunca se guarda."
+        "a": "Con un modelo local, Whisper y una voz local, todo funciona sin conexión; solo las descargas necesitan internet. Sprigo es gratuito y de código abierto. La cuenta compartida es opcional para continuar en otros dispositivos.\nEl micrófono solo se activa en los ejercicios orales y las lecciones en vivo, y el audio nunca se guarda."
       }
     }
   },
@@ -1097,5 +1097,29 @@
     "notInGuide": "La guía de la IA omitió esta estructura. Inténtalo de nuevo.",
     "alsoIn": "También en: {{units}}",
     "practise": "Practicar"
+  },
+  "webAccount": {
+    "login": "Iniciar sesión en una cuenta compartida",
+    "create": "Crear una cuenta compartida",
+    "description": "Utiliza los mismos perfiles y progreso en tu teléfono y computadora.",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "copyLocal": "Copia los perfiles y el progreso desde este dispositivo a la nueva cuenta. La copia local permanece en este dispositivo.",
+    "haveAccount": "Ya tengo una cuenta",
+    "newAccount": "Crear una nueva cuenta",
+    "useLocal": "Usar solo los perfiles de este dispositivo",
+    "useShared": "Continuar en mis otros dispositivos",
+    "signOut": "Cerrar sesión en la cuenta compartida",
+    "localTitle": "Perfiles en este dispositivo",
+    "localDesc": "El progreso aquí se mantiene en este navegador.",
+    "sharedTitle": "Cuenta compartida",
+    "sharedDesc": "Sesión iniciada como {{name}}. El progreso se guarda en tu servidor y está disponible en tus otros dispositivos.",
+    "usernameHint": "De 3 a 32 caracteres: letras, números, puntos, guiones o guiones bajos.",
+    "passwordHint": "Al menos 4 caracteres. La necesitarás en otros dispositivos.",
+    "confirmPassword": "Confirmar contraseña",
+    "passwordMismatch": "Las contraseñas no coinciden.",
+    "loginPasswordHint": "Déjalo vacío si la cuenta no tiene contraseña.",
+    "passwordless": "Entrar solo con el nombre de usuario",
+    "passwordlessHint": "Quien esté en tu LAN o VPN y conozca este nombre de usuario puede abrir la cuenta."
   }
 }

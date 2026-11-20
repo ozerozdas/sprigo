@@ -1042,7 +1042,7 @@
       },
       "offline": {
         "q": "İnternetsiz çalışır mı? Sürekli dinliyor mu?",
-        "a": "Yerel model, Whisper ve yerel bir sesle her şey internetsiz çalışır; yalnızca indirmeler için internet gerekir. Sprigo ücretsiz ve açık kaynaklıdır, hesap gerekmez.\nMikrofon yalnızca konuşma egzersizlerinde ve canlı derslerde açılır; ses hiçbir zaman kaydedilmez."
+        "a": "Yerel model, Whisper ve yerel bir sesle her şey internetsiz çalışır; yalnızca indirmeler için internet gerekir. Sprigo ücretsiz ve açık kaynaklıdır. Başka cihazlarda devam etmek için ortak hesap isteğe bağlıdır.\nMikrofon yalnızca konuşma egzersizlerinde ve canlı derslerde açılır; ses hiçbir zaman kaydedilmez."
       }
     }
   },
@@ -1059,5 +1059,29 @@
     "notInGuide": "Yapay zekânın rehberi bu kalıbı atlamış. Tekrar dene.",
     "alsoIn": "Şunlarda da var: {{units}}",
     "practise": "Bunu çalış"
+  },
+  "webAccount": {
+    "login": "Connexion au compte partagé",
+    "create": "Créer un compte partagé",
+    "description": "Utilisez les mêmes profils et la même progression sur votre téléphone et votre ordinateur.",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "copyLocal": "Copier les profils et la progression depuis cet appareil vers le nouveau compte. La copie locale reste sur cet appareil.",
+    "haveAccount": "J'ai déjà un compte",
+    "newAccount": "Créer un nouveau compte",
+    "useLocal": "Utiliser uniquement les profils de cet appareil",
+    "useShared": "Continuer sur mes autres appareils",
+    "signOut": "Déconnexion du compte partagé",
+    "localTitle": "Profils sur cet appareil",
+    "localDesc": "La progression ici reste dans ce navigateur.",
+    "sharedTitle": "Compte partagé",
+    "sharedDesc": "Connecté en tant que {{name}}. La progression est sauvegardée sur votre serveur et disponible sur vos autres appareils.",
+    "usernameHint": "3–32 karakter: harf, rakam, nokta, tire veya alt çizgi.",
+    "passwordHint": "En az 4 karakter. Diğer cihazlarda da gerekli olacak.",
+    "confirmPassword": "Şifreyi doğrula",
+    "passwordMismatch": "Şifreler eşleşmiyor.",
+    "loginPasswordHint": "Hesabın şifresi yoksa boş bırak.",
+    "passwordless": "Yalnızca kullanıcı adıyla giriş yap",
+    "passwordlessHint": "Yerel ağında veya VPN’de bu kullanıcı adını bilen herkes hesabı açabilir."
   }
 }

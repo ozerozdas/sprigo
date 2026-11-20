@@ -1080,7 +1080,7 @@
       },
       "offline": {
         "q": "Ça marche hors ligne ? Sprigo écoute-t-il tout le temps ?",
-        "a": "Avec un modèle local, Whisper et une voix locale, tout marche hors ligne ; seuls les téléchargements demandent internet. Sprigo est gratuit et open source, sans compte.\nLe micro ne s'allume que pendant les exercices oraux et les leçons en direct, et l'audio n'est jamais enregistré."
+        "a": "Avec un modèle local, Whisper et une voix locale, tout marche hors ligne ; seuls les téléchargements demandent internet. Sprigo est gratuit et open source. Un compte partagé est facultatif pour retrouver sa progression sur d’autres appareils.\nLe micro ne s'allume que pendant les exercices oraux et les leçons en direct, et l'audio n'est jamais enregistré."
       }
     }
   },
@@ -1097,5 +1097,29 @@
     "notInGuide": "Le guide de l’IA a omis cette structure. Réessaie.",
     "alsoIn": "Aussi dans : {{units}}",
     "practise": "S’entraîner"
+  },
+  "webAccount": {
+    "login": "Se connecter à un compte partagé",
+    "create": "Créer un compte partagé",
+    "description": "Utilisez les mêmes profils et la même progression sur votre téléphone et votre ordinateur.",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "copyLocal": "Copier les profils et la progression depuis cet appareil vers le nouveau compte. La copie locale reste sur cet appareil.",
+    "haveAccount": "J'ai déjà un compte",
+    "newAccount": "Créer un nouveau compte",
+    "useLocal": "Utiliser uniquement les profils de cet appareil",
+    "useShared": "Continuer sur mes autres appareils",
+    "signOut": "Se déconnecter du compte partagé",
+    "localTitle": "Profils sur cet appareil",
+    "localDesc": "La progression reste dans ce navigateur.",
+    "sharedTitle": "Compte partagé",
+    "sharedDesc": "Connecté en tant que {{name}}. La progression est sauvegardée sur votre serveur et disponible sur vos autres appareils.",
+    "usernameHint": "3 à 32 caractères : lettres, chiffres, points, tirets ou traits de soulignement.",
+    "passwordHint": "Au moins 4 caractères. Tu en auras besoin sur les autres appareils.",
+    "confirmPassword": "Confirmer le mot de passe",
+    "passwordMismatch": "Les mots de passe ne correspondent pas.",
+    "loginPasswordHint": "Laisse vide si le compte n’a pas de mot de passe.",
+    "passwordless": "Se connecter avec le nom d’utilisateur seul",
+    "passwordlessHint": "Toute personne sur ton réseau local ou VPN connaissant ce nom peut ouvrir le compte."
   }
 }

@@ -1,0 +1,14 @@
+.git
+node_modules
+src-tauri/target
+certs
+data
+squashfs-root
+.private
+models
+
+server-data
+web/__pycache__
+
+.env
+dist

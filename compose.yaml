@@ -1,0 +1,29 @@
+services:
+  sprigo-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: sprigo-web:local
+    container_name: sprigo-web
+    restart: unless-stopped
+    user: "${SPRIGO_UID:-1000}:${SPRIGO_GID:-1000}"
+    network_mode: bridge
+    ports:
+      - "${SPRIGO_BIND_IP:-127.0.0.1}:${SPRIGO_HTTPS_PORT:-1431}:1431"
+      - "${SPRIGO_BIND_IP:-127.0.0.1}:${SPRIGO_CERT_PORT:-1432}:1432"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      HOME: /app/models
+      HF_HOME: /app/models/hf
+      XDG_CACHE_HOME: /app/models/cache
+      HF_HUB_DISABLE_XET: "1"
+      OLLAMA_URL: ${SPRIGO_OLLAMA_URL:-http://host.docker.internal:11434}
+      MODEL_NAME: ${SPRIGO_MODEL:-qwen3:8b}
+      DATA_DIR: /app/data
+    volumes:
+      - ./server-data:/app/data
+      - ./models:/app/models
+      - ./certs/ca.crt:/app/certs/ca.crt:ro
+      - ./certs/server.crt:/app/certs/server.crt:ro
+      - ./certs/server.key:/app/certs/server.key:ro

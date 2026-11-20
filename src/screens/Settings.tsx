@@ -5,7 +5,7 @@ import { languages } from "../i18n";
 import type { ThemePref } from "../theme";
 import { SMALL_MODEL_B, isSmallModel } from "../modelSize";
 import { PROVIDERS, RECOMMENDED_OLLAMA, detectLocal, getKey, listModels, pullOllama, setKey, type AiConfig, type ProviderId } from "../ai";
-import { aiUsage, aiUsageMonths, getSetting, isCompanion, isTauri, setSetting } from "../db";
+import { aiUsage, aiUsageMonths, getSetting, isCompanion, isTauri, isWeb, setSetting } from "../db";
 import { monthOf, summarize, type UsageRow } from "../usage";
 import { setCompanion, tailscaleStatus, type TailscaleStatus } from "../companion";
 import { CourseFlag, CourseSheet, NATIVE, ProfileForm, useLangName } from "./Profiles";
@@ -13,6 +13,7 @@ import { notifyAllowed } from "../notify";
 import { betaOn, findUpdate, UpdateSheet } from "../Update";
 import { DataSection } from "./DataSettings";
 import { InfoTip, SttRow, TtsRow } from "./VoiceSettings";
+import { WebAccountControls } from "../WebAccess";
 import { Icon, type IconName } from "../icons";
 import { HelpButton, HelpSheet, openLink } from "../Help";
 
@@ -378,7 +379,7 @@ export function Settings() {
   const themes: ThemePref[] = ["system", "light", "dark"];
   const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
   // Phone: AI, voice and data settings are the desktop's (shared database), so those tabs stay there.
-  const tabs: Tab[] = isCompanion ? ["profile", "prefs"] : ["profile", "prefs", "ai", "privacy"];
+  const tabs: Tab[] = isCompanion ? (isWeb ? ["profile", "prefs", "ai"] : ["profile", "prefs"]) : ["profile", "prefs", "ai", "privacy"];
   const [tab, setTab] = useState<Tab>(ai || isCompanion ? "profile" : "ai"); // AI not set up yet → its tab, so the warning shows
   return (
     <>
@@ -410,6 +411,7 @@ export function Settings() {
             <button className="btn btn-ghost" onClick={() => openSheet(<><h3 style={{ marginBottom: 14 }}>{t("settings.editProfile")}</h3><ProfileForm initial={profile!} onDone={closeSheet} /></>)}>{t("settings.edit")}</button>
           </div>
           <button className="btn btn-ghost btn-block mobile-only" onClick={logout}>{t("settings.logout")}</button>
+          {isWeb && <WebAccountControls />}
         </>}
 
         {tab === "prefs" && <>

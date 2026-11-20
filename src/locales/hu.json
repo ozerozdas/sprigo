@@ -1048,7 +1048,7 @@
       },
       "offline": {
         "q": "Működik offline? Folyamatosan hallgatózik?",
-        "a": "Helyi modellel, a Whisperrel és helyi hanggal minden offline működik; csak a letöltésekhez kell internet. A Sprigo ingyenes és nyílt forráskódú, és nem kell hozzá fiók.\nA mikrofon csak a beszédgyakorlatok és az élő órák alatt van bekapcsolva, és a hangot soha nem mentjük el."
+        "a": "Helyi modellel, a Whisperrel és helyi hanggal minden offline működik; csak a letöltésekhez kell internet. A Sprigo ingyenes és nyílt forráskódú. A közös fiók opcionális, ha más eszközön folytatnád a tanulást.\nA mikrofon csak a beszédgyakorlatok és az élő órák alatt van bekapcsolva, és a hangot soha nem mentjük el."
       }
     }
   },
@@ -1065,5 +1065,29 @@
     "notInGuide": "Az MI útmutatója kihagyta ezt a mintát. Próbáld újra.",
     "alsoIn": "Szerepel még: {{units}}",
     "practise": "Gyakorold"
+  },
+  "webAccount": {
+    "login": "Iniciar sesión en cuenta compartida",
+    "create": "Crear cuenta compartida",
+    "description": "Usa los mismos perfiles y progreso en tu teléfono y computadora.",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "copyLocal": "Copia los perfiles y el progreso desde este dispositivo a la nueva cuenta. La copia local se mantiene en este dispositivo.",
+    "haveAccount": "Ya tengo una cuenta",
+    "newAccount": "Crear una nueva cuenta",
+    "useLocal": "Usar solo perfiles en este dispositivo",
+    "useShared": "Continuar en mis otros dispositivos",
+    "signOut": "Cerrar sesión de la cuenta compartida",
+    "localTitle": "Perfiles en este dispositivo",
+    "localDesc": "El progreso aquí se guarda en este navegador.",
+    "sharedTitle": "Cuenta compartida",
+    "sharedDesc": "Sesión iniciada como {{name}}. El progreso se guarda en tu servidor y está disponible en tus otros dispositivos.",
+    "usernameHint": "3–32 karakter: betűk, számok, pontok, kötőjelek vagy aláhúzások.",
+    "passwordHint": "Legalább 4 karakter. Más eszközökön is szükséged lesz rá.",
+    "confirmPassword": "Jelszó megerősítése",
+    "passwordMismatch": "A jelszavak nem egyeznek.",
+    "loginPasswordHint": "Hagyd üresen, ha a fióknak nincs jelszava.",
+    "passwordless": "Belépés csak felhasználónévvel",
+    "passwordlessHint": "A helyi hálózaton vagy VPN-en bárki megnyithatja a fiókot, aki ismeri ezt a nevet."
   }
 }

@@ -1048,7 +1048,7 @@
       },
       "offline": {
         "q": "Does it work offline? Does it listen all the time?",
-        "a": "With a local model, Whisper and a local voice, everything works offline; only downloads need the internet. Sprigo is free and open source, with no account.\nThe microphone is only on during speaking exercises and live lessons, and audio is never stored."
+        "a": "With a local model, Whisper and a local voice, everything works offline; only downloads need the internet. Sprigo is free and open source. A shared account is optional for using progress across devices.\nThe microphone is only on during speaking exercises and live lessons, and audio is never stored."
       }
     }
   },
@@ -1065,5 +1065,29 @@
     "notInGuide": "The AI's guide left this pattern out. Try again.",
     "alsoIn": "Also in: {{units}}",
     "practise": "Practise this"
+  },
+  "webAccount": {
+    "login": "Sign in to a shared account",
+    "create": "Create a shared account",
+    "description": "Use the same profiles and progress on your phone and computer.",
+    "username": "Username",
+    "password": "Password",
+    "copyLocal": "Copy the profiles and progress from this device into the new account. The local copy stays on this device.",
+    "haveAccount": "I already have an account",
+    "newAccount": "Create a new account",
+    "useLocal": "Use profiles only on this device",
+    "useShared": "Continue on my other devices",
+    "signOut": "Sign out of shared account",
+    "localTitle": "Profiles on this device",
+    "localDesc": "Progress here stays in this browser.",
+    "sharedTitle": "Shared account",
+    "sharedDesc": "Signed in as {{name}}. Progress is saved on your server and available on your other devices.",
+    "usernameHint": "3–32 letters, numbers, dots, dashes or underscores.",
+    "passwordHint": "At least 4 characters. You will need it on other devices.",
+    "confirmPassword": "Confirm password",
+    "passwordMismatch": "Passwords do not match.",
+    "loginPasswordHint": "Leave blank for an account without a password.",
+    "passwordless": "Sign in with username only",
+    "passwordlessHint": "Anyone on your LAN or VPN who knows this username can open the account."
   }
 }
