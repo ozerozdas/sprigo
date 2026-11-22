@@ -86,5 +86,11 @@ jobs:
         if: matrix.platform == 'windows-11-arm'
         shell: bash
         run: printf 'CMAKE_GENERATOR=Ninja\nCC=clang-cl\nCXX=clang-cl\nCXXFLAGS=/EHsc\n' >> "$GITHUB_ENV"
+      # The cached CMakeCache.txt keeps the old MSVC path; when the runner image updates Visual Studio,
+      # whisper-rs-sys fails with "CMAKE_ASM_COMPILER is not a full path". Drop it so CMake reconfigures.
+      - name: Drop stale CMake cache
+        if: runner.os == 'Windows'
+        shell: bash
+        run: find src-tauri/target -name CMakeCache.txt -path '*whisper-rs-sys*' -delete 2>/dev/null || true
       - run: cargo check --locked --target ${{ matrix.target }}
         working-directory: src-tauri
