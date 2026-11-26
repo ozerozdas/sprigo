@@ -56,7 +56,7 @@ jobs:
             args: ""
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Linux dependencies
         if: startsWith(matrix.platform, 'ubuntu')
@@ -67,16 +67,17 @@ jobs:
           # good (pulse) and pipewire, WebKitGTK has no audio in or out on hosts whose own plugins can't load (#138).
           sudo apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-pipewire
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
         with:
           version: 10
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: lts/*
           cache: pnpm
 
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@39008827e6b4319a349e9a42dfc90579dd25f1ca # stable
         with:
+          toolchain: stable
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
       # ggml defaults to -march=native: the runner's AVX-512 ended up in the Windows build and crashed
       # CPUs without it (#120). OFF keeps AVX2/FMA/F16C, no AVX-512; on ARM Linux/Windows it builds for plain
@@ -108,7 +109,7 @@ jobs:
         run: |
           if grep -q '"version": "[^"]*-' src-tauri/tauri.conf.json; then echo "BUNDLE_ARGS=--bundles deb,appimage" >> "$GITHUB_ENV"; fi
 
-      - uses: swatinem/rust-cache@v2
+      - uses: swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
         with:
           workspaces: src-tauri
           # whisper-rs-sys doesn't rerun its build script when GGML_*/CMAKE_* change: a new suffix drops the old cache.
@@ -119,7 +120,7 @@ jobs:
         shell: bash
         run: pnpm fetch-model
 
-      - uses: tauri-apps/tauri-action@v1
+      - uses: tauri-apps/tauri-action@1deb371b0cd8bd54025b384f1cd735e725c4060f # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -143,7 +144,7 @@ jobs:
           done
       - name: Upload AppImage (manual runs)
         if: github.event_name == 'workflow_dispatch' && startsWith(matrix.platform, 'ubuntu')
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: appimage-${{ matrix.platform }}
           path: src-tauri/target/**/*.AppImage

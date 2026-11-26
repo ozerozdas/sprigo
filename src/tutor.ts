@@ -117,7 +117,7 @@ export function mergeInput(queue: TutorEvent[]): TutorEvent | null {
   const said = queue.flatMap((e) => (e.kind === "user_said" || e.kind === "user_typed" ? [e] : []));
   if (!said.length) return null;
   const kind = said[said.length - 1].kind, text = said.map((e) => e.text).join(" ");
-  return kind === "user_said" ? { kind, text } : { kind, text };
+  return { kind, text };
 }
 
 /** Speech-to-text output that is empty or only a noise tag ("[BLANK_AUDIO]", "(wind)"). One-word answers count. */
