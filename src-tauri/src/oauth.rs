@@ -11,14 +11,23 @@ const EXCHANGE: &str = "https://openrouter.ai/api/v1/auth/keys";
 const CALLBACK: &str = "/callback";
 const WAIT: Duration = Duration::from_secs(600); // OpenRouter's codes expire after ten minutes
 
-/// The sign-in in progress: its listener, and the flag its own cancel sets (a fresh one per attempt, so a late
-/// cancel from a closed sheet cannot end the next sign-in).
+/// The sign-in in progress, keyed by its PKCE `state` (unique per attempt): a cancel or cleanup names the attempt
+/// it belongs to, so a late cancel from a closed sheet, or an older attempt finishing, never touches a newer one.
 struct Active {
+    state: String,
+    /// The webview's request order for sign-ins (starts may run in any order on the async pool).
+    seq: u64,
+    /// Random per webview load: after a reload the counter restarts, so seq is only compared within one epoch.
+    epoch: String,
     server: Arc<Server>,
     cancelled: Arc<AtomicBool>,
 }
 
 static ACTIVE: Mutex<Option<Active>> = Mutex::new(None);
+/// A cancel that arrived before its attempt registered (the sheet closed while the command was still starting):
+/// that attempt then returns "cancelled" at once instead of opening the browser and waiting ten minutes.
+static CANCELLED_EARLY: Mutex<Vec<String>> = Mutex::new(Vec::new());
+const EARLY_MAX: usize = 8; // a dead entry (its attempt already ended) must not grow this forever
 
 const DONE_PAGE: &str = "<!doctype html><meta charset=utf-8><title>Sprigo</title>
 <body style=\"font-family:system-ui;padding:12vh 1.5rem;text-align:center\">
@@ -65,44 +74,65 @@ fn header<'a>(req: &'a Request, name: &'static str) -> Option<&'a str> {
 /// `challenge` and `state` come from the webview's PKCE helper; `verifier` returns with the code to exchange.
 /// Returns "ok", "cancelled" or "timeout" so the sheet can stay quiet on a close and explain a timeout.
 #[tauri::command]
-pub async fn openrouter_signin(app: tauri::AppHandle, challenge: String, verifier: String, state: String) -> Result<String, String> {
+pub async fn openrouter_signin(app: tauri::AppHandle, challenge: String, verifier: String, state: String, seq: u64, epoch: String) -> Result<String, String> {
     if [&challenge, &verifier, &state].iter().any(|v| v.is_empty() || v.len() > 256) {
         return Err("The sign-in request is incomplete".into());
     }
     let (server, cancelled) = {
         let mut slot = ACTIVE.lock().map_err(|e| e.to_string())?;
-        if slot.is_some() {
-            return Err("An OpenRouter sign-in is already open".into());
+        {
+            let mut early = CANCELLED_EARLY.lock().map_err(|e| e.to_string())?;
+            let before = early.len();
+            early.retain(|s| *s != state);
+            if early.len() != before {
+                return Ok("cancelled".into());
+            }
+        }
+        // An older request that only now got to run: the learner has already moved on to a newer attempt.
+        if slot.as_ref().is_some_and(|a| yields_to(a, seq, &epoch)) {
+            return Ok("cancelled".into());
         }
         // Port 0: the OS picks a free port, which OpenRouter allows for localhost callbacks.
         let server = Arc::new(Server::http(("127.0.0.1", 0)).map_err(|e| e.to_string())?);
         let cancelled = Arc::new(AtomicBool::new(false));
-        *slot = Some(Active { server: server.clone(), cancelled: cancelled.clone() });
+        take_over(&mut slot, Active { state: state.clone(), seq, epoch, server: server.clone(), cancelled: cancelled.clone() });
         (server, cancelled)
     };
     let port = match server.server_addr().to_ip() {
         Some(addr) => addr.port(),
         None => {
-            finish();
+            finish(&state);
             return Err("Could not start the sign-in listener".into());
         }
     };
     let url = match auth_url(&format!("http://127.0.0.1:{port}{CALLBACK}"), &challenge, &state) {
         Ok(url) => url,
         Err(e) => {
-            finish();
+            finish(&state);
             return Err(e);
         }
     };
 
+    // A cancel may have landed between registering and here: do not open a consent tab for a dead attempt.
+    if cancelled.load(Ordering::SeqCst) {
+        finish(&state);
+        return Ok("cancelled".into());
+    }
     use tauri_plugin_opener::OpenerExt;
     if let Err(e) = app.opener().open_url(url, None::<&str>) {
-        finish();
+        finish(&state);
         return Err(e.to_string());
     }
+    let attempt = state.clone();
     let waited = tauri::async_runtime::spawn_blocking(move || -> Result<String, String> {
-        match wait_for_callback(&server, &cancelled, port, &state) {
+        match wait_for_callback(&server, &cancelled, port, &attempt) {
             Waiting::Code(code) => {
+                // tiny_http queues requests ahead of the unblock marker, so a cancelled or superseded attempt can
+                // still be handed its callback: it must not exchange the code or overwrite the newer attempt's key.
+                // (A cancel landing during the exchange itself still saves the key: the code was already spent.)
+                if cancelled.load(Ordering::SeqCst) {
+                    return Ok("cancelled".into());
+                }
                 exchange(&code, &verifier)?;
                 Ok("ok".into())
             }
@@ -113,30 +143,62 @@ pub async fn openrouter_signin(app: tauri::AppHandle, challenge: String, verifie
     .await
     .map_err(|e| e.to_string())
     .and_then(|r| r);
-    finish();
+    finish(&state);
     waited
 }
 
-/// Stops a pending sign-in, e.g. when its sheet closes. Only the attempt that is running now is affected.
+/// Stops the sign-in whose PKCE `state` this is, e.g. when its sheet closes. Any other attempt is left alone; a
+/// cancel for an attempt that has not registered yet is remembered so it ends as soon as it starts.
 #[tauri::command]
-pub fn openrouter_cancel() {
-    if let Ok(slot) = ACTIVE.lock() {
-        if let Some(active) = slot.as_ref() {
+pub fn openrouter_cancel(state: String) {
+    let Ok(slot) = ACTIVE.lock() else { return };
+    match slot.as_ref() {
+        Some(active) if active.state == state => {
+            active.cancelled.store(true, Ordering::SeqCst);
+            active.server.unblock();
+        }
+        _ => {
+            if let Ok(mut early) = CANCELLED_EARLY.lock() {
+                if early.len() >= EARLY_MAX {
+                    early.remove(0);
+                }
+                early.push(state);
+            }
+        }
+    }
+}
+
+/// App exit: frees the port if a sign-in is still waiting, ending it as cancelled.
+pub fn stop() {
+    if let Ok(mut slot) = ACTIVE.lock() {
+        if let Some(active) = slot.take() {
             active.cancelled.store(true, Ordering::SeqCst);
             active.server.unblock();
         }
     }
 }
 
-/// App exit: frees the port if a sign-in is still waiting.
-pub fn stop() {
-    finish();
+/// True when this request is older than the running attempt (same webview load) and must yield to it.
+fn yields_to(active: &Active, seq: u64, epoch: &str) -> bool {
+    active.epoch == epoch && active.seq > seq
 }
 
-fn finish() {
+/// A newer attempt supersedes a leftover one (its sheet is gone or the learner clicked again): the old wait ends as
+/// "cancelled" and frees its port, so nothing can block a new sign-in for ten minutes.
+fn take_over(slot: &mut Option<Active>, next: Active) {
+    if let Some(old) = slot.replace(next) {
+        old.cancelled.store(true, Ordering::SeqCst);
+        old.server.unblock();
+    }
+}
+
+/// Clears the slot only if it still holds this attempt: a superseded attempt must not end its successor.
+fn finish(state: &str) {
     if let Ok(mut slot) = ACTIVE.lock() {
-        if let Some(active) = slot.take() {
-            active.server.unblock();
+        if slot.as_ref().is_some_and(|a| a.state == state) {
+            if let Some(active) = slot.take() {
+                active.server.unblock();
+            }
         }
     }
 }
@@ -161,6 +223,9 @@ fn end_of_wait(cancelled: &AtomicBool) -> Waiting {
 fn wait_for_callback(server: &Server, cancelled: &AtomicBool, port: u16, state: &str) -> Waiting {
     let deadline = Instant::now() + WAIT;
     loop {
+        if cancelled.load(Ordering::SeqCst) {
+            return end_of_wait(cancelled);
+        }
         let left = deadline.saturating_duration_since(Instant::now());
         if left.is_zero() {
             return Waiting::Timeout;
@@ -316,5 +381,55 @@ mod tests {
         // consumed by the swap: a later early return in this attempt is not another cancel
         assert!(!cancelled.load(Ordering::SeqCst));
         assert!(matches!(end_of_wait(&cancelled), Waiting::Timeout));
+    }
+
+    #[test]
+    fn an_older_request_yields_only_within_the_same_webview_load() {
+        let a = Active { state: "s".into(), seq: 5, epoch: "e1".into(), server: Arc::new(Server::http(("127.0.0.1", 0)).unwrap()), cancelled: Arc::new(AtomicBool::new(false)) };
+        assert!(yields_to(&a, 4, "e1"));
+        assert!(!yields_to(&a, 5, "e1"));
+        assert!(!yields_to(&a, 6, "e1"));
+        assert!(!yields_to(&a, 1, "e2")); // after a reload the counter restarts: a new load always takes over
+    }
+
+    // The only test touching ACTIVE / CANCELLED_EARLY, so it cannot race another test.
+    #[test]
+    fn cancel_and_cleanup_only_reach_their_own_attempt() {
+        let register = |state: &str| {
+            let flag = Arc::new(AtomicBool::new(false));
+            let server = Arc::new(Server::http(("127.0.0.1", 0)).unwrap());
+            *ACTIVE.lock().unwrap() = Some(Active { state: state.into(), seq: 1, epoch: "e".into(), server, cancelled: flag.clone() });
+            flag
+        };
+        let b = register("attempt-b");
+        // a late cancel from an older sheet
+        openrouter_cancel("attempt-a".into());
+        assert!(!b.load(Ordering::SeqCst));
+        // an older attempt finishing does not free the newer one's slot
+        finish("attempt-a");
+        assert!(ACTIVE.lock().unwrap().is_some());
+        // the right cancel reaches it, and its own finish clears the slot
+        openrouter_cancel("attempt-b".into());
+        assert!(b.load(Ordering::SeqCst));
+        finish("attempt-b");
+        assert!(ACTIVE.lock().unwrap().is_none());
+        // cancels for attempts that are not running are all remembered, until they register
+        openrouter_cancel("attempt-c".into());
+        assert_eq!(*CANCELLED_EARLY.lock().unwrap(), ["attempt-a", "attempt-c"]);
+        // a new attempt supersedes a leftover one: the old wait ends as cancelled
+        let d = register("attempt-d");
+        let flag = Arc::new(AtomicBool::new(false));
+        let server = Arc::new(Server::http(("127.0.0.1", 0)).unwrap());
+        take_over(&mut ACTIVE.lock().unwrap(), Active { state: "attempt-e".into(), seq: 2, epoch: "e".into(), server, cancelled: flag.clone() });
+        assert!(d.load(Ordering::SeqCst));
+        assert!(!flag.load(Ordering::SeqCst));
+        stop(); // app exit ends the running attempt as cancelled
+        assert!(flag.load(Ordering::SeqCst));
+        assert!(ACTIVE.lock().unwrap().is_none());
+        for _ in 0..EARLY_MAX + 2 {
+            openrouter_cancel("dead".into());
+        }
+        assert_eq!(CANCELLED_EARLY.lock().unwrap().len(), EARLY_MAX);
+        CANCELLED_EARLY.lock().unwrap().clear();
     }
 }
