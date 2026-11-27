@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../store";
 import { languages } from "../i18n";
@@ -351,7 +351,8 @@ function AiConfigSheet({ provider, models: found }: { provider: ProviderId; mode
 
   useEffect(() => { getKey(provider).then((k) => setKeyState(k ?? "")); }, [provider]);
   // Closing the sheet abandons a sign-in that is still waiting for the browser.
-  useEffect(() => () => { void cancelOpenRouter(); }, []);
+  const attempt = useRef<string | null>(null);
+  useEffect(() => () => { if (attempt.current) void cancelOpenRouter(attempt.current); }, []);
   const cfg: AiConfig = { provider, baseURL: baseURL.trim(), model: model.trim() };
   // The measured guidance sits outside the label and is linked by aria-describedby, so it does not become part of the
   // field's accessible name. A small model keeps the size warning even when it was measured.
@@ -371,8 +372,11 @@ function AiConfigSheet({ provider, models: found }: { provider: ProviderId; mode
   // #197: one click in the browser; Rust exchanges the code and writes the key to the keychain.
   const signIn = async () => {
     setSigningIn(true); setStatus(null);
+    let pkce: Awaited<ReturnType<typeof createPkce>> | undefined;
     try {
-      const r = await signInOpenRouter(await createPkce());
+      pkce = await createPkce();
+      attempt.current = pkce.state;
+      const r = await signInOpenRouter(pkce);
       if (r === "cancelled") return; // the learner closed the tab or the sheet
       if (r === "timeout") { setStatus({ ok: false, msg: t("ai.openrouterTimeout") }); return; }
       const k = (await getKey(provider)) ?? "";
@@ -385,7 +389,10 @@ function AiConfigSheet({ provider, models: found }: { provider: ProviderId; mode
       } catch { /* the key is saved; Test shows what the model list could not load */ }
     } catch (e) {
       setStatus({ ok: false, msg: `${t("ai.openrouterFailed")}: ${e instanceof Error ? e.message : String(e)}` });
-    } finally { setSigningIn(false); }
+    } finally {
+      if (attempt.current === pkce?.state) attempt.current = null; // nothing left to cancel on close
+      setSigningIn(false);
+    }
   };
   const save = async (asBackup = false) => {
     setBusy(true);

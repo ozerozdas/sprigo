@@ -1,7 +1,7 @@
 // Run: pnpm test  (node --test, native TS type stripping)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { parseCourse, buildPath, guideId, levelRange, parseGuideId, parseStoryId, storyId } from "./course.ts";
 
 const en = readFileSync(new URL("../courses/en.yml", import.meta.url), "utf8");
@@ -61,7 +61,7 @@ test("broken YAML fails with file, path and reason", () => {
 
 // Smaller courses: every level has the same shape as en.yml's A1, so the path, chests and checkpoint work unchanged.
 // Add a level here when a course grows (#4–#6: fr, de, tr A2).
-const LEVELS: Record<string, string[]> = { es: ["A1", "A2", "B1", "B2", "C1", "C2"], fr: ["A1", "A2", "B1", "B2", "C1", "C2"], de: ["A1", "A2", "B1", "B2", "C1", "C2"], tr: ["A1", "A2", "B1", "B2", "C1", "C2"], hu: ["A1", "A2", "B1", "B2", "C1", "C2"], ro: ["A1"], nl: ["A1", "A2", "B1", "B2", "C1"] };
+const LEVELS: Record<string, string[]> = { es: ["A1", "A2", "B1", "B2", "C1", "C2"], fr: ["A1", "A2", "B1", "B2", "C1", "C2"], de: ["A1", "A2", "B1", "B2", "C1", "C2"], tr: ["A1", "A2", "B1", "B2", "C1", "C2"], hu: ["A1", "A2", "B1", "B2", "C1", "C2"], ro: ["A1"], nl: ["A1", "A2", "B1", "B2", "C1"], it: ["A1"], pt: ["A1"] };
 for (const [iso, levels] of Object.entries(LEVELS)) test(`courses/${iso}.yml has ${levels.join(", ")}: 10 units × 4 steps and a checkpoint each`, () => {
   const c = parseCourse(readFileSync(new URL(`../courses/${iso}.yml`, import.meta.url), "utf8"), `${iso}.yml`);
   assert.equal(c.iso, iso);
@@ -71,6 +71,25 @@ for (const [iso, levels] of Object.entries(LEVELS)) test(`courses/${iso}.yml has
     const level = c.levels[lv as keyof typeof c.levels]!;
     assert.deepEqual(level.units.map((u) => u.steps.length), Array(10).fill(4), lv);
     assert.ok(level.checkpoint && level.units.every((u) => u.steps.every((st) => st.vocabulary.length + st.grammar.length > 0)), lv);
+  }
+});
+
+// Every bundled course must parse, not just the ones listed above (#7, #8 add it and pt).
+test("every courses/*.yml parses, with unique step ids and vocabulary or grammar on every step", () => {
+  const dir = new URL("../courses/", import.meta.url);
+  const files = readdirSync(dir).filter((f) => f.endsWith(".yml"));
+  assert.ok(files.length >= 8, `found ${files.length} course files`);
+  for (const f of files) {
+    const c = parseCourse(readFileSync(new URL(f, dir), "utf8"), f);
+    assert.ok(Object.keys(c.levels).length > 0, `${f}: no level`);
+    const steps = Object.values(c.levels).flatMap((l) => l!.units.flatMap((u) => u.steps));
+    const ids = steps.map((s) => s.id);
+    assert.equal(new Set(ids).size, ids.length, `${f}: duplicate step id`);
+    for (const s of steps) {
+      assert.ok(s.vocabulary.length + s.grammar.length > 0, `${f}/${s.id}: no vocabulary and no grammar`);
+      assert.ok(s.vocabulary.every((w) => w.trim()), `${f}/${s.id}: blank vocabulary entry`);
+      assert.ok(s.grammar.every((g) => g.pattern.trim()), `${f}/${s.id}: blank grammar pattern`);
+    }
   }
 });
 

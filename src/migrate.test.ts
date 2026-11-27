@@ -265,3 +265,20 @@ test("runMigrations leaves foreign keys enforced", async () => {
   const [pragma] = await db.select<{ foreign_keys: number }>("PRAGMA foreign_keys");
   assert.equal(pragma.foreign_keys, 1);
 });
+
+test("v12: drops only the content_cache keys written before levels were part of them", async () => {
+  const db = fresh();
+  await runMigrations(db, MIGRATIONS.filter((m) => m.v < 12));
+  await db.execute(`
+INSERT INTO profiles(id, name, color, ui_lang, native_lang, stats) VALUES (1, 'a', 'green', 'en', 'en', '{}');
+INSERT INTO enrollments(id, profile_id, course_iso, level) VALUES (10, 1, 'en', 'A1')`);
+  const legacy = ["story:greetings", "guide:greetings", "practice:greetings", "word:hello", "word:b1"];
+  const kept = ["story:A1:greetings", "guide:B2:food", "practice:C1:society-and-environment", "word:A1:hello", "write:A1:greetings",
+    "legend:greet-1", "garden:note", "A1:checkpoint", "greet-1", "storyline"];
+  for (const k of [...legacy, ...kept])
+    await db.execute("INSERT INTO content_cache(enrollment_id, step_id, content) VALUES (10, $1, '{}')", [k]);
+
+  await runMigrations(db, MIGRATIONS);
+  const left = (await db.select<{ step_id: string }>("SELECT step_id FROM content_cache")).map((r) => r.step_id).sort();
+  assert.deepEqual(left, [...kept].sort());
+});

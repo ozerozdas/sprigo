@@ -35,7 +35,20 @@ export async function openTauriDb(): Promise<SqlDb> {
   if (lockVerdict(lock, device, Date.now()) === "held") throw new LockedError(lock!.device);
   await invoke("lock_write", { dir: dataDir }).catch(() => { throw new DataDirError(dataDir); });
   const { default: Database } = await import("@tauri-apps/plugin-sql");
-  return (opened = await Database.load(sqliteUrl(dbFile(dataDir))));
+  opened = await Database.load(sqliteUrl(dbFile(dataDir)));
+  await checkForeignKeys(opened);
+  return opened;
+}
+
+/** tauri-plugin-sql has no connect hook and the URL takes no pragmas, so foreign keys rely on sqlx's default
+ *  (SqliteConnectOptions::new sets foreign_keys=ON for every pooled connection, sqlx-sqlite 0.8.6). A single JS
+ *  PRAGMA would only reach one pooled connection, so this checks instead of setting, and warns if a dependency
+ *  update ever changes that default (#184: cascades and the v11 orphan cleanup assume enforcement). */
+async function checkForeignKeys(d: SqlDb) {
+  try {
+    const [r] = await d.select<{ foreign_keys: number }>("PRAGMA foreign_keys");
+    if (r?.foreign_keys !== 1) console.warn("SQLite foreign keys are OFF on the desktop database", r);
+  } catch (e) { console.warn("Could not read PRAGMA foreign_keys", e); }
 }
 
 /** Consistent copy of the live database into `<dataDir>/backups/<name>` (VACUUM INTO works under WAL). Returns its path. */
