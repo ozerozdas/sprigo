@@ -145,4 +145,16 @@ DELETE FROM speech_sessions WHERE profile_id NOT IN (SELECT id FROM profiles);
 UPDATE speech_sessions SET enrollment_id = NULL WHERE enrollment_id IS NOT NULL AND enrollment_id NOT IN (SELECT id FROM enrollments);
 UPDATE profiles SET active_enrollment_id = NULL WHERE active_enrollment_id IS NOT NULL AND active_enrollment_id NOT IN (SELECT id FROM enrollments)`,
   },
+  {
+    v: 12, // Generated content keyed before levels were part of the key (stories/guides before 1.9 and #183, practice and
+    // word lookups before #192) is never read again: readers use `<kind>:<level>:…` (src/course.ts, src/practice.ts,
+    // src/lookup.ts). Drop those rows. GLOB is case-sensitive, and old word keys are lowercased, so a word cannot
+    // look like a level. `write:`, `legend:`, `garden:note`, exam ids (`A1:checkpoint`) and plain step ids stay.
+    sql: `
+DELETE FROM content_cache WHERE
+     (step_id GLOB 'story:*'    AND step_id NOT GLOB 'story:[ABC][12]:*')
+  OR (step_id GLOB 'guide:*'    AND step_id NOT GLOB 'guide:[ABC][12]:*')
+  OR (step_id GLOB 'practice:*' AND step_id NOT GLOB 'practice:[ABC][12]:*')
+  OR (step_id GLOB 'word:*'     AND step_id NOT GLOB 'word:[ABC][12]:*')`,
+  },
 ];
