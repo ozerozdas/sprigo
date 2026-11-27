@@ -1,0 +1,624 @@
+# Italian course. Hierarchy: levels (CEFR) > units > steps > activities.
+# Activities name only a type (+ optional count and hints like scenario/goal); the AI writes the content
+# from the step's title, description, vocabulary, grammar and the level. Types: see src/course.ts.
+name: Italian
+native_name: Italiano
+iso: it
+flag: 🇮🇹
+
+# Step and unit ids are ASCII-only transliterations (regex in src/course.ts); they key user
+# progress and must never be renamed once shipped.
+levels:
+  A1:
+    title: Beginner
+    description: >
+      Understand and use familiar everyday expressions and very basic phrases
+      about yourself, your family and your surroundings.
+
+    units:
+      - id: saluti
+        title: Greetings & Introductions
+        description: Meet people and introduce yourself.
+        icon: 👋
+        steps:
+          - id: it-basic-greetings
+            title: Basic Greetings
+            description: Common greetings and farewells for different times of day.
+            vocabulary: [ciao, buongiorno, buonasera, buonanotte, arrivederci, salve, "a domani", "a presto"]
+            grammar:
+              - pattern: "Buongiorno!"
+              - pattern: "Ciao! Come stai?"
+              - pattern: "Arrivederci! Ci vediamo domani."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: it-introduce-yourself
+            title: Introduce Yourself
+            description: Tell someone your name and ask theirs.
+            vocabulary: ["mi chiamo", nome, "il cognome", sono, piacere, "di dove", italiano, italiana]
+            grammar:
+              - pattern: "Come ti chiami?"
+              - pattern: "Mi chiamo {name}. Sono {name}."
+              - pattern: "Piacere!"
+              - pattern: "Di dove sei? Sono italiano."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+              - type: dialogue
+                scenario: meeting_someone
+                goal: Greet the person, introduce yourself, say where you are from and ask their name.
+          - id: it-how-are-you
+            title: How Are You?
+            description: Ask and answer how someone is, using tu informally and Lei politely.
+            vocabulary: [bene, "molto bene", stanco, stanca, grazie, "e tu?", "e Lei?", "come sta"]
+            grammar:
+              - pattern: "Come stai?"
+              - pattern: "Come sta?"
+              - pattern: "Bene, grazie. E tu?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_type }
+              - type: dialogue
+                scenario: friend_on_the_street
+          - id: it-polite-words
+            title: Please & Thank You
+            description: Be polite in everyday situations, from casual to formal.
+            vocabulary: ["per favore", grazie, prego, scusa, scusi, "di niente", "non c'è problema"]
+            grammar:
+              - pattern: "Per favore."
+              - pattern: "Grazie mille!"
+              - pattern: "Scusi, dov'è la stazione?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: match }
+              - { type: sentence_complete, count: 2 }
+              - { type: listen_select }
+
+      - id: alfabeto-suoni
+        title: Alphabet & Sounds
+        description: Spell your name and learn the sounds of Italian.
+        icon: 🔤
+        steps:
+          - id: it-spelling
+            title: Spelling Your Name
+            description: Spell names out letter by letter.
+            vocabulary: [nome, cognome, lettera, alfabeto, "si scrive", "come si scrive", "il tuo nome"]
+            grammar:
+              - pattern: "Come si scrive il tuo nome?"
+              - pattern: "Si scrive A-N-A."
+              - pattern: "Il mio cognome è…"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: speak }
+          - id: it-sounds
+            title: Hard & Soft Sounds
+            description: The sounds of c and g, and the groups gn and gl.
+            vocabulary: [casa, cena, che, chi, gnocchi, famiglia, ghiaccio, piazza]
+            grammar:
+              - pattern: "«Casa» ha la c dura, «cena» ha la c dolce."
+              - pattern: "«Che» e «chi» hanno il suono duro /k/."
+              - pattern: "«Gnocchi» inizia con gn."
+              - pattern: "«Famiglia» ha il suono gl."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: multiple_choice, count: 2 }
+              - { type: speak }
+          - id: it-question-words
+            title: First Question Words
+            description: Who, what, where, when, how — ask your first questions.
+            vocabulary: [chi, che, dove, quando, come, perché, quanto, quanti]
+            grammar:
+              - pattern: "Chi è?"
+              - pattern: "Che cos'è?"
+              - pattern: "Dove abiti?"
+              - pattern: "Quanti anni hai?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: it-reading
+            title: Reading Simple Words
+            description: Read short words out loud using Italian sounds.
+            vocabulary: [latte, pane, sera, caffè, stazione, amico, famiglia]
+            grammar:
+              - pattern: "«Latte» ha due t."
+              - pattern: "«Caffè» ha l'accento sulla e finale."
+              - pattern: "Leggi ad alta voce: latte, pane, sera."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select }
+
+      - id: numeri-colori
+        title: Numbers & Colors
+        description: Count, say your age and name colors.
+        icon: 🔢
+        steps:
+          - id: it-numbers-1-10
+            title: Numbers 1–10
+            vocabulary: [uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci]
+            grammar:
+              - pattern: "uno, due, tre…"
+              - pattern: "un libro — due libri"
+              - pattern: "una mela — due mele"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: listen_select, count: 2 }
+              - { type: listen_type }
+          - id: it-numbers-11-100
+            title: Numbers 11–100
+            vocabulary: [undici, dodici, tredici, venti, ventuno, ventotto, trenta, "trentuno", cinquanta, cento]
+            grammar:
+              - pattern: "ventuno, ventotto, ventitré"
+              - pattern: "Il mio numero è…"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: match }
+          - id: it-how-old
+            title: How Old Are You?
+            description: Say your age with avere (not "essere").
+            vocabulary: [anni, "quanti anni", ho, hai, ha, "un anno", "vent'anni"]
+            grammar:
+              - pattern: "Quanti anni hai?"
+              - pattern: "Ho vent'anni."
+              - pattern: "Mio fratello ha sette anni."
+            activities:
+              - { type: learn }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
+          - id: it-colors
+            title: Colors & Agreement
+            description: Colors and how the adjective agrees with the noun.
+            vocabulary: [rosso, nero, bianco, verde, blu, giallo, "il colore"]
+            grammar:
+              - pattern: "La macchina è rossa."
+              - pattern: "I pantaloni sono neri."
+              - pattern: "Di che colore è?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank }
+
+      - id: paesi-lingue
+        title: Countries, Languages & Occupations
+        description: Say where you are from, what languages you speak and what you do.
+        icon: 🌍
+        steps:
+          - id: it-countries
+            title: Countries
+            description: Name countries and say where you live.
+            vocabulary: [Italia, Spagna, Francia, Germania, "Stati Uniti", città, paese, "a Roma"]
+            grammar:
+              - pattern: "Di dove sei?"
+              - pattern: "Vengo dall'Italia."
+              - pattern: "Abito a Roma."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: it-nationalities
+            title: Nationalities
+            description: Nationality adjectives change with the person's gender.
+            vocabulary: [italiano, italiana, spagnolo, spagnola, americano, americana, tedesco, tedesca]
+            grammar:
+              - pattern: "Lui è italiano, lei è italiana."
+              - pattern: "Sono americano."
+              - pattern: "Lui è tedesco, lei è tedesca."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - type: error_correct
+                hint: Match the nationality to the person’s gender.
+          - id: it-languages
+            title: Languages
+            description: Languages you speak and how to ask about a word.
+            vocabulary: [lingua, parlo, parli, italiano, inglese, francese, tedesco, "un po'"]
+            grammar:
+              - pattern: "Che lingue parli?"
+              - pattern: "Parlo un po' di italiano."
+              - pattern: "Parli inglese?"
+              - pattern: "Come si dice «grazie» in inglese?"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: listen_type }
+              - { type: fill_blank }
+          - id: it-occupations
+            title: Occupations
+            description: Talk about what people do for a living.
+            vocabulary: [studente, studentessa, professore, professoressa, medico, ingegnere, avvocato, "il lavoro"]
+            grammar:
+              - pattern: "Che lavoro fai?"
+              - pattern: "Sono studente."
+              - pattern: "Lei è medico."
+              - pattern: "Lavoro in una scuola."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: match }
+
+      - id: famiglia-articoli
+        title: Family, Articles & Core Verbs
+        description: Talk about your family while learning essere, avere and the articles.
+        icon: 👨‍👩‍👧
+        steps:
+          - id: it-family
+            title: Family Members
+            vocabulary: [madre, mamma, padre, papà, fratello, sorella, nonno, nonna, figlio]
+            grammar:
+              - pattern: "Ho un fratello e una sorella."
+              - pattern: "Questa è mia madre."
+              - pattern: "Hanno due figli."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: match }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: it-articles
+            title: Articles & Gender
+            description: Masculine and feminine nouns, articles and plurals.
+            vocabulary: [il, lo, la, i, gli, le, un, uno, una, "un'amica"]
+            grammar:
+              - pattern: "il libro → i libri"
+              - pattern: "lo studente → gli studenti"
+              - pattern: "la casa → le case"
+              - pattern: "un amico — un'amica"
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank }
+          - id: it-essere-avere
+            title: I Am, I Have
+            description: Conjugate essere and avere in the present.
+            vocabulary: [sono, sei, è, siamo, siete, ho, hai, ha, abbiamo, avete, hanno]
+            grammar:
+              - pattern: "Io sono, tu sei, lui/lei è."
+              - pattern: "Noi siamo, voi siete, loro sono."
+              - pattern: "Ho un cane. Lei ha due gatti."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank }
+          - id: it-friends
+            title: Friends & Descriptions
+            description: Describe friends and how they feel.
+            vocabulary: [amico, amica, collega, simpatico, triste, felice, persone]
+            grammar:
+              - pattern: "Il mio amico è simpatico."
+              - pattern: "Ho un'amica simpatica."
+              - pattern: "Oggi lei è triste."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: sentence_complete }
+
+      - id: cibo-bevande
+        title: Food, Drink & Requests
+        description: Order food and drinks and say what you like.
+        icon: 🍎
+        steps:
+          - id: it-food
+            title: Food Basics
+            vocabulary: [pane, latte, pasta, carne, uovo, mela, formaggio]
+            grammar:
+              - pattern: "A pranzo mangio la pasta."
+              - pattern: "Mi piace il pane."
+              - pattern: "Non mi piace la carne."
+              - pattern: "un uovo — due uova"
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: it-drinks
+            title: Drinks
+            description: Order a drink politely.
+            vocabulary: [acqua, caffè, tè, vino, birra, succo, bicchiere]
+            grammar:
+              - pattern: "Un'acqua, per favore."
+              - pattern: "Vorrei un caffè con il latte."
+              - pattern: "Un tè, per favore."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_type }
+          - id: it-want-can
+            title: I Want / I Can
+            description: Say what you want and what you can do with volere and potere.
+            vocabulary: [voglio, vuoi, vuole, posso, "vorrei", "posso pagare", carta]
+            grammar:
+              - pattern: "Vorrei un caffè, per favore."
+              - pattern: "Posso pagare con la carta?"
+              - pattern: "Voglio partire adesso."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: it-at-the-cafe
+            title: At the Café
+            description: A short visit to a café, ordering and paying.
+            vocabulary: [caffè, menù, cameriere, conto, dolce, "molto buono", "molto buona"]
+            grammar:
+              - pattern: "Cosa desidera?"
+              - pattern: "Un cappuccino, per favore."
+              - pattern: "Il conto, per favore."
+              - pattern: "Grazie, era molto buono."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+              - type: dialogue
+                scenario: cafe_order
+                goal: Order a drink and a snack, then ask for the bill.
+
+      - id: tempo-giorni
+        title: Time, Days & Weather
+        description: Tell the time, talk about days, seasons and the weather.
+        icon: ⏰
+        steps:
+          - id: it-time
+            title: Telling Time
+            description: Ask and say the time.
+            vocabulary: [ora, minuto, orologio, "a che ora", oggi, domani, ieri]
+            grammar:
+              - pattern: "Che ore sono?"
+              - pattern: "Sono le tre."
+              - pattern: "È l'una."
+              - pattern: "A che ora? Alle sei."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: listen_type, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank }
+          - id: it-days
+            title: Days of the Week
+            vocabulary: [lunedì, martedì, mercoledì, giovedì, venerdì, sabato, domenica]
+            grammar:
+              - pattern: "Lunedì vado al lavoro."
+              - pattern: "Sabato ho tempo."
+              - pattern: "Domenica non lavoro."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: multiple_choice, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: it-seasons-weather
+            title: Seasons & Weather
+            description: The four seasons and everyday weather talk.
+            vocabulary: [primavera, estate, autunno, inverno, piove, nevica, "fa freddo", "fa caldo"]
+            grammar:
+              - pattern: "Oggi fa caldo."
+              - pattern: "In inverno fa freddo e nevica."
+              - pattern: "Fuori piove."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: multiple_choice, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: it-habits
+            title: Everyday Habits
+            description: Simple present sentences about your routine.
+            vocabulary: ["mi sveglio", lavoro, studio, leggo, dormo, "la mattina", "la sera"]
+            grammar:
+              - pattern: "La mattina mi sveglio alle sette."
+              - pattern: "La sera leggo."
+              - pattern: "Lavoro dal lunedì al venerdì."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: speak }
+
+      - id: citta-trasporti
+        title: Around Town
+        description: Find your way, use transport and ask prices.
+        icon: 🏙️
+        steps:
+          - id: it-places
+            title: Places in Town
+            description: Name city places and ask where they are.
+            vocabulary: [piazza, parco, stazione, scuola, ospedale, teatro, centro]
+            grammar:
+              - pattern: "Dov'è la piazza?"
+              - pattern: "La piazza è in centro."
+              - pattern: "L'ospedale è vicino."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: it-directions
+            title: Directions
+            description: Give and follow simple directions.
+            vocabulary: [avanti, "a sinistra", "a destra", qui, là, vicino, lontano]
+            grammar:
+              - pattern: "Vai avanti, poi a sinistra."
+              - pattern: "È vicino?"
+              - pattern: "È lontano da qui."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: it-transport
+            title: Transport
+            description: Buses, trains, taxis and how you travel.
+            vocabulary: [autobus, tram, taxi, treno, macchina, bicicletta, biglietto]
+            grammar:
+              - pattern: "Prendo l'autobus."
+              - pattern: "Il biglietto costa tre euro."
+              - pattern: "Vado in taxi."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: listen_type }
+          - id: it-prices
+            title: Prices & Money
+            description: Ask what things cost and talk about money.
+            vocabulary: [euro, soldi, costa, caro, economico]
+            grammar:
+              - pattern: "Quanto costa?"
+              - pattern: "Costa dieci euro."
+              - pattern: "È troppo caro."
+              - pattern: "È economico."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: word_select, count: 2 }
+              - { type: translate, count: 2 }
+              - type: dialogue
+                scenario: buying_ticket
+                goal: Ask how much the ticket to the center is and buy it.
+
+      - id: casa-oggetti
+        title: Home & Objects
+        description: Describe your home and say where things are.
+        icon: 🏠
+        steps:
+          - id: it-rooms
+            title: Rooms & Home
+            vocabulary: [appartamento, casa, camera, cucina, bagno, ingresso, balcone]
+            grammar:
+              - pattern: "Abito in un appartamento piccolo."
+              - pattern: "L'appartamento ha due camere."
+              - pattern: "La cucina è piccola."
+            activities:
+              - { type: learn, count: 3 }
+              - { type: image_select, count: 2 }
+              - { type: match }
+              - { type: listen_select }
+          - id: it-furniture
+            title: Furniture & Objects
+            vocabulary: [letto, tavolo, sedia, armadio, divano, cuscino, porta]
+            grammar:
+              - pattern: "Il cuscino è sul letto."
+              - pattern: "La sedia è vicino al tavolo."
+              - pattern: "La porta è grande."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: sentence_complete, count: 2 }
+          - id: it-prepositions
+            title: Where Things Are
+            description: Locate objects with in, su, sotto and accanto a.
+            vocabulary: [in, su, sotto, accanto, sopra, giù, "vicino a"]
+            grammar:
+              - pattern: "Il gatto è sul letto."
+              - pattern: "Il libro è sotto il tavolo."
+              - pattern: "La chiave è nell'armadio."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: fill_blank, count: 3 }
+              - { type: word_select, count: 2 }
+              - { type: listen_select }
+          - id: it-everyday-things
+            title: Everyday Things
+            description: Common household objects and where they are.
+            vocabulary: [finestra, chiave, telefono, televisione, lampada, pentola, muro]
+            grammar:
+              - pattern: "Il telefono è sul tavolo."
+              - pattern: "La lampada è accanto alla finestra."
+              - pattern: "La chiave è nella porta."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: image_select, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: word_select }
+
+      - id: ieri-domani
+        title: Yesterday & Tomorrow
+        description: Talk about yesterday and your plans for tomorrow.
+        icon: 📅
+        steps:
+          - id: it-where-i-was
+            title: Where I Was
+            description: Say where you were with sono stato, sei stato, è stato.
+            vocabulary: [ieri, "sono stato", "sei stato", "è stato", "al mare", "al lavoro", "a casa"]
+            grammar:
+              - pattern: "Ieri sono stato a casa."
+              - pattern: "Dove sei stato?"
+              - pattern: "Lui è stato al lavoro."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: listen_select }
+          - id: it-what-i-did
+            title: What I Did
+            description: A few very common past forms you can reuse everywhere.
+            vocabulary: ["ho fatto", "sono andato", "ho visto", "ho mangiato", "ho parlato", "con gli amici", "molto bene"]
+            grammar:
+              - pattern: "Ho parlato con gli amici."
+              - pattern: "Ho mangiato al ristorante."
+              - pattern: "Che cosa hai fatto? — Sono andato al mare."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: error_correct, count: 2 }
+              - { type: word_bank, count: 2 }
+              - { type: listen_select }
+          - id: it-plans
+            title: Tomorrow's Plans
+            description: Present tense for plans, volere for wishes.
+            vocabulary: [domani, dopodomani, università, film, presto, "voglio", "devo"]
+            grammar:
+              - pattern: "Domani vado all'università."
+              - pattern: "Voglio vedere il film."
+              - pattern: "Devo partire presto."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: fill_blank, count: 2 }
+              - { type: word_bank, count: 2 }
+          - id: it-weekend
+            title: Last Weekend
+            description: Put it together in a short conversation about the past.
+            vocabulary: ["il fine settimana scorso", "in montagna", escursione, meraviglioso, foto, "molto bello"]
+            grammar:
+              - pattern: "Il fine settimana scorso sono stato in montagna."
+              - pattern: "È stato meraviglioso."
+              - pattern: "Ho fatto molte foto."
+            activities:
+              - { type: learn, count: 2 }
+              - { type: translate, count: 2 }
+              - { type: error_correct }
+              - type: dialogue
+                scenario: weekend_catchup
+                goal: Tell a friend what you did last weekend and ask what they did.
+
+    checkpoint:
+      title: A1 Checkpoint
+      required_score: 80
+      activities:
+        - { type: word_select, count: 3 }
+        - { type: fill_blank, count: 3 }
+        - { type: listen_select, count: 3 }
+        - { type: translate, count: 3 }
+        - { type: dialogue }
